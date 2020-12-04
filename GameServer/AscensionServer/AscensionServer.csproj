@@ -158,6 +158,7 @@
     <Compile Include="Ascension\Core\Base\Concurrent\ConcurrentInt.cs" />
     <Compile Include="Ascension\Core\Base\EventCore\CommandEventCore.cs" />
     <Compile Include="Ascension\Core\Base\HelperImplement\DataImpl\GateDataProvider.cs" />
+    <Compile Include="Ascension\Core\Base\HelperImplement\DataImpl\ServerDataConvertor.cs" />
     <Compile Include="Ascension\Core\Base\HelperImplement\DebugHelper\Log4NetDebugHelper.cs" />
     <Compile Include="Ascension\Core\Base\HelperImplement\JsonHelper\NewtonjsonHelper.cs" />
     <Compile Include="Ascension\Core\Base\HelperImplement\MessagePackHelper\ImplMessagePackHelper.cs" />
@@ -182,12 +183,19 @@
     <Compile Include="Ascension\Core\RunTime\Role\RoleEntity.cs" />
     <Compile Include="Ascension\Core\RunTime\Role\RoleManager.cs" />
     <Compile Include="Ascension\Core\RunTime\TestChannel\TestChannelManager.cs" />
+    <Compile Include="Ascension\DataObject\BattleAttackSkillData.cs" />
     <Compile Include="Command\Battle\BattleRoomManager.cs" />
+    <Compile Include="Command\RegisterAndLogin\RegisterAndLoginManager.cs" />
+    <Compile Include="DataObjectMap\RoleAssetsMap.cs" />
     <Compile Include="DataObjectMap\UserMap.cs" />
+    <Compile Include="DataObject\RoleAssets.cs" />
     <Compile Include="DataObject\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="JsonData\BattleAttackSkillData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />
     <Content Include="Plugin\ExitGames.Logging.Log4Net.XML" />
     <Content Include="Plugin\ExitGamesLibs.dll" />
