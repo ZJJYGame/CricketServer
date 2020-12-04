@@ -39,7 +39,7 @@ namespace AscensionServer
                 XmlConfigurator.ConfigureAndWatch(configFileInfo);//让log4net读取配置文件
                 Utility.Debug.LogInfo("Server Start Running");
             }
-            //NHibernateQuerier.Init();
+            NHibernateQuerier.Init();
             GameManager.InitCustomeModule(this.GetType().Assembly);
             var thread = new Thread(GameManagerAgent.Instance.Start);
             thread.Start();
