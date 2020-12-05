@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Cosmos
 {
-    public sealed partial class GameManager : ConcurrentSingleton<GameManager>, IControllable, IReference
+    public sealed partial class GameManager : ConcurrentSingleton<GameManager>, IControllable, IRefreshable
     {
         #region Properties
         public bool IsPause { get; private set; }

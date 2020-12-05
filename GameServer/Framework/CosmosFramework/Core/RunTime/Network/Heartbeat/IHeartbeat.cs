@@ -9,7 +9,7 @@ namespace Cosmos
     /// <summary>
     /// 心跳接口
     /// </summary>
-    public interface IHeartbeat : IReference, IRenewable, IOperable, IReference
+    public interface IHeartbeat : IRefreshable, IRenewable, IOperable, IReference
     {
         long Conv { get; set; }
         /// <summary>
