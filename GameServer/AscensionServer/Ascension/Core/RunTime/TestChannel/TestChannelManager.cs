@@ -24,7 +24,7 @@ namespace AscensionServer
             dp.Messages.TryGetValue((byte)ParameterCode.ClientPeer, out var peer);
             Utility.Debug.LogWarning($"SessionId:{(peer as IPeerEntity).SessionId}");
 
-            opDataTest.DataMessage = "服务器 倒计时10 秒  over！ ";
+            opDataTest.DataMessage = "服务器 倒计时10 秒  over！服务器说 老陆 奥利给！ ";
             opDataTest.OperationCode = ProtocolDefine.OPR_TESTCAHNNEL;
             GameManager.CustomeModule<PeerManager>().SendMessage((peer as IPeerEntity).SessionId, opDataTest);
         }
