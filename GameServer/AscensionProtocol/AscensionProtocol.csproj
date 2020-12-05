@@ -44,8 +44,8 @@
     <Compile Include="ErrorCode.cs" />
     <Compile Include="EventCode.cs" />
     <Compile Include="MessageChannel.cs" />
-    <Compile Include="OperationCode.cs" />
-    <Compile Include="ParameterCode.cs" />
+    <Compile Include="Crickey\ATCmd.cs" />
+    <Compile Include="Crickey\ParameterCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReturnCode.cs" />
     <Compile Include="SubOperationCode.cs" />
@@ -53,6 +53,10 @@
   <ItemGroup>
     <None Include="log4net.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Crickey\subCmd\" />
+    <Folder Include="DTO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
