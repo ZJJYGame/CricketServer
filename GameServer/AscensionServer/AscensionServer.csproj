@@ -151,6 +151,13 @@
     <Compile Include="Ascension\Core\RunTime\Role\RoleEntity.cs" />
     <Compile Include="Ascension\Core\RunTime\Role\RoleManager.cs" />
     <Compile Include="Ascension\Core\RunTime\TestChannel\TestChannelManager.cs" />
+    <Compile Include="Command\Battle\BattleCharacter\BattleCharacterEntity.cs" />
+    <Compile Include="Command\Battle\BattleCharacter\BattleCharacterManager.cs" />
+    <Compile Include="Command\Battle\BattleController.cs" />
+    <Compile Include="Command\Battle\BattleRoom\BattleRoomEntity.cs" />
+    <Compile Include="Command\Battle\BattleRoom\BattleRoomManager.cs" />
+    <Compile Include="Command\Battle\BattleSkill\BattleSkill.cs" />
+    <Compile Include="Command\Battle\Data\RoleBattleData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

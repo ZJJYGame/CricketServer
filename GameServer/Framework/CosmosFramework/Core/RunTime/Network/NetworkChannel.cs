@@ -11,7 +11,7 @@ namespace Cosmos
     /// <summary>
     /// 通信协议基类
     /// </summary>
-    public abstract class NetworkChannel:IBehaviour,IRefreshable
+    public abstract class NetworkChannel:IBehaviour,IReference
     {
         #region Properties
         //TODO NetworkChannel

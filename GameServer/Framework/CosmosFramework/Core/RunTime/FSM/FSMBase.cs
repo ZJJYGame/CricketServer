@@ -2,7 +2,7 @@
 using System;
 namespace Cosmos.FSM
 {
-    public abstract class FSMBase : IRefreshable, IControllable
+    public abstract class FSMBase : IReference, IControllable
     {
         string name;
         public string Name

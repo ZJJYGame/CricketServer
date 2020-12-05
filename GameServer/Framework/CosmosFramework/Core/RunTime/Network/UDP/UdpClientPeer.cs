@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 
 namespace Cosmos.Network
 {
-    public class UdpClientPeer : IRemotePeer, IRefreshable
+    public class UdpClientPeer : IRemotePeer, IReference
     {
         /// <summary>
         /// 会话ID

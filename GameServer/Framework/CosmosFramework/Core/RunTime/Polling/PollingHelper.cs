@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cosmos
 {
-    public interface PollingHelper:IRefreshable,IOperable
+    public interface PollingHelper:IReference,IOperable
     {
 
     }

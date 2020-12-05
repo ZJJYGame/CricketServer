@@ -8,7 +8,7 @@ namespace Cosmos
     /// <summary>
     /// 网络服务接口
     /// </summary>
-    public interface INetworkService : IBehaviour, IRefreshable, IControllable
+    public interface INetworkService : IBehaviour, IReference, IControllable
     {
         /// <summary>
         /// 发送网络消息;
