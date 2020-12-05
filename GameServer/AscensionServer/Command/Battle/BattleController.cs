@@ -29,8 +29,10 @@ namespace AscensionServer
                 }
                 else
                 {
-
+                    attackPlayer = playerTwo;
+                    defendPlayer = playerOne;
                 }
+
             }
         }
     }
