@@ -30,10 +30,13 @@ namespace AscensionServer
                 #region 获取Json文件转换成对应数据类
                 //GameManager.CustomeModule<DataManager>().TryGetValue(typeof(SecondaryJobLevelData).Name, out var secondaryJobLevelData);
                 //var secondaryJobLevelDict = TransObject<List<SecondaryJobLevelData>>(secondaryJobLevelData).ToDictionary(key => key.SecondaryType, value => value);
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(BattleAttackSkillData).Name, out var battleAttackSkillDataData);
+                var battleAttackSkillDataDict = TransObject<List<BattleAttackSkillData>>(battleAttackSkillDataData).ToDictionary(key => key.skillId, value => value);
                 #endregion
 
                 #region 储存方式
                 //GameManager.CustomeModule<DataManager>().TryAdd(secondaryJobLevelDict);
+                GameManager.CustomeModule<DataManager>().TryAdd(battleAttackSkillDataDict);
                 #endregion
 
                 #region 获取方式
