@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
+    <OutputPath>..\..\..\..\Localphotonserver\Criket\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -157,7 +157,8 @@
     <Compile Include="Command\Battle\BattleRoom\BattleRoomManager.cs" />
     <Compile Include="Command\Battle\BattleSkill\BattleSkill.cs" />
     <Compile Include="Command\Battle\Data\RoleBattleData.cs" />
-    <Compile Include="Command\RegisterAndLogin\RegisterAndLoginManager.cs" />
+    <Compile Include="Command\RegisterAndLogin\LoginManager\LoginHandler.cs" />
+    <Compile Include="Command\RegisterAndLogin\LoginManager\LoginManager.cs" />
     <Compile Include="DataObjectMap\RoleAssetsMap.cs" />
     <Compile Include="DataObjectMap\RoleCricketMap.cs" />
     <Compile Include="DataObjectMap\RoleMap.cs" />
