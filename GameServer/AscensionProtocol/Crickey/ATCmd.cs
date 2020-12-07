@@ -20,6 +20,10 @@ namespace AscensionProtocol
         /// </summary>
         SyncRole=4,
         /// <summary>
+        /// 同步战斗消息
+        /// </summary>
+        SyncBattle=5,
+        /// <summary>
         /// 测试消息队列
         /// </summary>
         MessageQueue = 187,
