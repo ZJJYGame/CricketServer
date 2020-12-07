@@ -14,13 +14,13 @@ namespace AscensionServer
     {
         public static void LoginRole(string account, string password,object peer)
         {
-            NHCriteria nHCriteriauser = GameManager.CustomeModule<ReferencePoolManager>().Spawn<NHCriteria>().SetValue("Account", account);
+            NHCriteria nHCriteriauser = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("Account", account);
             var user = NHibernateQuerier.CriteriaSelect<User>(nHCriteriauser);
             if (user != null)
             {
                 if (user.Password == password)
                 {
-                    NHCriteria nHCriteriaRole = GameManager.CustomeModule<ReferencePoolManager>().Spawn<NHCriteria>().SetValue("RoleID", user.RoleID);
+                    NHCriteria nHCriteriaRole = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("RoleID", user.RoleID);
                     var role = NHibernateQuerier.CriteriaSelect<Role>(nHCriteriaRole);
                     var roleAsset = NHibernateQuerier.CriteriaSelect<RoleAssets>(nHCriteriaRole);
 

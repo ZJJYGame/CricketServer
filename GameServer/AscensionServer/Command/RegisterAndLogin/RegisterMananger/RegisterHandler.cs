@@ -11,28 +11,39 @@ namespace AscensionServer
 {
     public static  class RegisterHandler
     {
-        public static void RegisterRole(string account,string password)
+        public static void RegisterRole(string account,string password,object peer)
         {
-            NHCriteria nHCriteriaAccount = GameManager.CustomeModule<ReferencePoolManager>().Spawn<NHCriteria>().SetValue("Account", account);
+            NHCriteria nHCriteriaAccount = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("Account", account);
+            Utility.Debug.LogInfo("yzqData发送失败" + nHCriteriaAccount.Value.ToString());
             bool isExist = NHibernateQuerier.Verify<User>(nHCriteriaAccount);
-            var userObj = GameManager.ReferencePoolManager.Spawn<User>();
-            var role = GameManager.ReferencePoolManager.Spawn<Role>();
-            var roleAsset = GameManager.ReferencePoolManager.Spawn<RoleAssets>();
+            var userObj = new User() {Account= account,Password= password };
+            var role = new Role() { };
+            var roleAsset = new RoleAssets();
             if (!isExist)
             {
                 userObj = NHibernateQuerier.Insert(userObj);
-                NHCriteria nHCriteriaUUID = GameManager.CustomeModule<ReferencePoolManager>().Spawn<NHCriteria>().SetValue("UUID", userObj.UUID);
+                NHCriteria nHCriteriaUUID = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("UUID", userObj.UUID);
 
-                role = NHibernateQuerier.Insert<Role>(role);
+                role = NHibernateQuerier.Insert(role);
                 userObj.RoleID = role.RoleID;
                 NHibernateQuerier.Update(userObj);
                 roleAsset.RoleID = role.RoleID;
                 NHibernateQuerier.Insert(roleAsset);
-                GameManager.CustomeModule<RegisterMananger>().S2CRegister(role.RoleID, Utility.Json.ToJson(role), AscensionProtocol.ReturnCode.Success);
+                OperationData operationData = new OperationData();
+                operationData.DataMessage = Utility.Json.ToJson(role);
+                operationData.ReturnCode = (byte)ReturnCode.Success;
+                operationData.OperationCode = (ushort)ATCmd.Register;
+                Utility.Debug.LogInfo("yzqData发送成功");
+                GameManager.CustomeModule<PeerManager>().SendMessage((peer as IPeerEntity).SessionId, operationData);
             }
             else
             {
-                GameManager.CustomeModule<RegisterMananger>().S2CRegister(role.RoleID, "账号已存在",AscensionProtocol.ReturnCode.Fail);
+                OperationData operationData = new OperationData();
+                operationData.DataMessage = "账号已存在";
+                operationData.ReturnCode = (byte)ReturnCode.Fail;
+                operationData.OperationCode = (ushort)ATCmd.Register;
+                Utility.Debug.LogInfo("yzqData发送失败");
+                GameManager.CustomeModule<PeerManager>().SendMessage((peer as IPeerEntity).SessionId, operationData);
             }
         }
     }

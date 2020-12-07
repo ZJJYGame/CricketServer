@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace AscensionServer
 {
     [Serializable]
-    public class RoleAssets: IReference
+    public class RoleAssets
     {
         public virtual int RoleID { get; set; }
         public virtual int RoleGold { get; set; }
@@ -17,9 +17,6 @@ namespace AscensionServer
         {
             RoleGold = 5000;
         }
-        public void Clear()
-        {
-            
-        }
+
     }
 }

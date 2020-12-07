@@ -8,18 +8,16 @@ using System.Threading.Tasks;
 namespace AscensionServer
 {
     [Serializable]
-    public class Role: IReference
+    public class Role
     {
         public virtual int RoleID { get; set; }
         public virtual string RoleName { get; set; }
 
         public Role()
         {
+            RoleID = -1;
             RoleName = "蛐蛐你个大蝈蝈";
         }
-        public void Clear()
-        {
-    
-        }
+
     }
 }
