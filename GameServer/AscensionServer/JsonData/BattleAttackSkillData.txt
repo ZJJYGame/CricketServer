@@ -1,1 +1,219 @@
 ﻿
+[
+        {
+            "skillId": 3001,
+            "name": "保守攻击",
+            "describe": "以90%的攻击力对敌方发动一次攻击",
+            "enduranceCost": 15,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 90,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": []
+        },
+        {
+            "skillId": 3002,
+            "name": "撕咬",
+            "describe": "以80%的攻击力对敌方发动2次攻击",
+            "enduranceCost": 30,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 80,
+                "attackNumber": 2,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": []
+        },
+        {
+            "skillId": 3003,
+            "name": "兴奋",
+            "describe": "以90%的攻击力对敌方发动一次攻击 攻击后增加减伤20%，持续3秒",
+            "enduranceCost": 40,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 90,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4006,
+                    "buffValue": 20,
+                    "durationTime": 3,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "skillId": 3004,
+            "name": "反击",
+            "describe": "以80%的攻击力对敌方发动一次攻击 攻击后增加反伤20%，持续3秒",
+            "enduranceCost": 40,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 80,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4008,
+                    "buffValue": 20,
+                    "durationTime": 3,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "skillId": 3005,
+            "name": "攻击强化",
+            "describe": "以70%的攻击力对敌方发动一次攻击 攻击后增加30%攻击力，持续3秒",
+            "enduranceCost": 30,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 70,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4001,
+                    "buffValue": 30,
+                    "durationTime": 3,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "skillId": 3006,
+            "name": "防御强化",
+            "describe": "以70%的攻击力对敌方发动一次攻击 攻击后增加30%的防御力，持续3秒",
+            "enduranceCost": 30,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 70,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4002,
+                    "buffValue": 30,
+                    "durationTime": 3,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "skillId": 3007,
+            "name": "弱点攻击",
+            "describe": "以90%的攻击力对敌方发动一次攻击 攻击后增加穿透20%，持续3秒",
+            "enduranceCost": 35,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 90,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4007,
+                    "buffValue": 20,
+                    "durationTime": 3,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "skillId": 3008,
+            "name": "破坏",
+            "describe": "以80%的攻击力对敌方发动一次攻击 攻击后减少对方20%的攻击力，持续3秒",
+            "enduranceCost": 35,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 80,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4001,
+                    "buffValue": -20,
+                    "durationTime": 3,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "TargetIsSelf": false
+                }
+            ]
+        },
+        {
+            "skillId": 3009,
+            "name": "粉碎",
+            "describe": "以80%的攻击力对敌方发动一次攻击 并且减少对方20%的防御力，持续3秒",
+            "enduranceCost": 35,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 80,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4002,
+                    "buffValue": -20,
+                    "durationTime": 3,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "TargetIsSelf": false
+                }
+            ]
+        }
+    ]
