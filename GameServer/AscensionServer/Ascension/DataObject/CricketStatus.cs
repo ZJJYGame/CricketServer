@@ -10,6 +10,7 @@ namespace AscensionServer
     [ConfigData]
     public class CricketStatus
     {
+        public int Level { set; get; }
         public int Atk { set; get; }
         public int Hp { set; get; }
         public int Defense { set; get; }
