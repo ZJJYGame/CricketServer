@@ -9,16 +9,18 @@ namespace AscensionServer
 {
     public class BattleCharacterEntity : IReference
     {
-        int roleId;
-        public int remainActionBar;
+        public int RoleId { get; private set; }
+        public int RemainActionBar { get; private set; }
 
         public RoleBattleData roleBattleData;
 
+
+
         public void Init(int roleId)
         {
-            this.roleId = roleId;
+            this.RoleId = roleId;
             roleBattleData = GetRoleBattleData(roleId);
-            remainActionBar = roleBattleData.ActionBar;
+            RemainActionBar = roleBattleData.ActionBar;
         }
 
         /// <summary>
@@ -26,20 +28,30 @@ namespace AscensionServer
         /// </summary>
         public BattleSkill RandomSkill()
         {
-            Random random = new Random();
-            int randomNum = random.Next(0, roleBattleData.AllSkillProp);
+            int randomNum = GameManager.CustomeModule<BattleRoomManager>() .random.Next(0, roleBattleData.AllSkillProp);
             BattleSkill resultSkill;
+            int propNum=0;
             for (int i = 0; i < roleBattleData.BattleSkillList.Count; i++)
             {
-                if (randomNum <= roleBattleData.BattleSkillList[i].TriggerProb)
+                propNum += roleBattleData.BattleSkillList[i].TriggerProb;
+                if (randomNum <= propNum)
                 {
                     resultSkill = roleBattleData.BattleSkillList[i];
                     return resultSkill;
                 }
             }
+            Utility.Debug.LogInfo("没有符合的技能");
             return null;
         }
 
+        public void ChangeActionBar(int num)
+        {
+            RemainActionBar -= num;
+            if (RemainActionBar <= 0)
+            {
+                RemainActionBar = roleBattleData.ActionBar;
+            }
+        }
 
 
         //待完善，需要从数据库拿取人物数据

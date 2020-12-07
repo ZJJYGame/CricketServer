@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cosmos;
 
 namespace AscensionServer
 {
@@ -82,13 +83,23 @@ namespace AscensionServer
             Endurance = 200;
             EnduranceReply = 20;
             ActionBar = 1000;
-            CritProp = 10;
-            DodgeProp = 10;
+            CritProp = 25;
+            DodgeProp = 25;
             ReceiveDamage = 100;
             Pierce = 10;
             ReboundDamage = 10;
             CritDamage = 150;
             CritResistance = 0;
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, BattleAttackSkillData>>(out var tempSkillDict);
+            BattleSkillList = new List<BattleSkill>();
+            BattleSkillList.Add(new BattleSkill(tempSkillDict[3001],1));
+            BattleSkillList.Add(new BattleSkill(tempSkillDict[3002],1));
+            BattleSkillList.Add(new BattleSkill(tempSkillDict[3003],1));
+            BattleSkillList.Add(new BattleSkill(tempSkillDict[3004],1));
+            for (int i = 0; i < BattleSkillList.Count; i++)
+            {
+                AllSkillProp += BattleSkillList[i].TriggerProb;
+            }
         }
     }
 }

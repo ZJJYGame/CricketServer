@@ -10,6 +10,22 @@ namespace AscensionServer
     [CustomeModule]
     public class BattleCharacterManager:Module<BattleCharacterManager>
     {
-        Dictionary<int, BattleCharacterEntity> battleCharacterEntityDict;
+        Dictionary<int, BattleCharacterEntity> battleCharacterEntityDict = new Dictionary<int, BattleCharacterEntity>();
+
+        public BattleCharacterEntity CreateCharacter(int roleId)
+        {
+            BattleCharacterEntity battleCharacterEntity = GameManager.ReferencePoolManager.Spawn<BattleCharacterEntity>();
+            battleCharacterEntity.Init(roleId);
+            battleCharacterEntityDict.Add(roleId, battleCharacterEntity);
+            return battleCharacterEntity;
+        }
+        public void RemoveCharacter(int roleId)
+        {
+            if (battleCharacterEntityDict.ContainsKey(roleId))
+            {
+                GameManager.ReferencePoolManager.Despawn(battleCharacterEntityDict[roleId]);
+                battleCharacterEntityDict.Remove(roleId);
+            }
+        }
     }
 }
