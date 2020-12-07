@@ -21,6 +21,27 @@ namespace AscensionServer
             remainActionBar = roleBattleData.ActionBar;
         }
 
+        /// <summary>
+        /// 随机使用一个技能
+        /// </summary>
+        public BattleSkill RandomSkill()
+        {
+            Random random = new Random();
+            int randomNum = random.Next(0, roleBattleData.AllSkillProp);
+            BattleSkill resultSkill;
+            for (int i = 0; i < roleBattleData.BattleSkillList.Count; i++)
+            {
+                if (randomNum <= roleBattleData.BattleSkillList[i].TriggerProb)
+                {
+                    resultSkill = roleBattleData.BattleSkillList[i];
+                    return resultSkill;
+                }
+            }
+            return null;
+        }
+
+
+
         //待完善，需要从数据库拿取人物数据
         RoleBattleData GetRoleBattleData(int roleId)
         {
