@@ -12,19 +12,47 @@ namespace AscensionServer
 {
    public static  class LoginHandler
     {
-        public static void LoginRole(string account, string password)
+        public static void LoginRole(string account, string password,object peer)
         {
-            NHCriteria nHCriteriaRole = GameManager.CustomeModule<ReferencePoolManager>().Spawn<NHCriteria>().SetValue("Account", account);
-            var user = NHibernateQuerier.CriteriaSelect<User>(nHCriteriaRole);
+            NHCriteria nHCriteriauser = GameManager.CustomeModule<ReferencePoolManager>().Spawn<NHCriteria>().SetValue("Account", account);
+            var user = NHibernateQuerier.CriteriaSelect<User>(nHCriteriauser);
             if (user != null)
             {
                 if (user.Password == password)
                 {
+                    NHCriteria nHCriteriaRole = GameManager.CustomeModule<ReferencePoolManager>().Spawn<NHCriteria>().SetValue("RoleID", user.RoleID);
+                    var role = NHibernateQuerier.CriteriaSelect<Role>(nHCriteriaRole);
+                    var roleAsset = NHibernateQuerier.CriteriaSelect<RoleAssets>(nHCriteriaRole);
 
+
+                    var roleEntity= RoleEntity.Create(role.RoleID, (peer as IPeerEntity).SessionId, role);
+                    IPeerEntity peerAgent;
+                    var result = GameManager.CustomeModule<PeerManager>().TryGetValue((peer as IPeerEntity).SessionId, out peerAgent);
+                    if (result)
+                    {
+                        var remoteRoleType = typeof(RoleEntity);
+                        var exist = peerAgent.ContainsKey(remoteRoleType);
+                        if (!exist)
+                        {
+                            GameManager.CustomeModule<RoleManager>().TryAdd(role.RoleID, roleEntity);
+                            peerAgent.TryAdd(remoteRoleType, roleEntity);
+
+                            GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID,Utility.Json.ToJson(role), AscensionProtocol.ReturnCode.Success);
+                        }
+                        else
+                        {
+                            object legacyRole;
+                            peerAgent.TryGetValue(remoteRoleType, out legacyRole);
+                            var remoteRoleObj = legacyRole as RoleEntity;
+                            var updateResult = peerAgent.TryUpdate(remoteRoleType, role, legacyRole);
+                            if (updateResult)
+                            {
+                                //TODO提示账号已在线阻止登陆
+                                GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID, "账号已登录", AscensionProtocol.ReturnCode.Fail);
+                            }
+                        }
+                    }
                 }
-            }
-            else
-            {
             }
         }
     }

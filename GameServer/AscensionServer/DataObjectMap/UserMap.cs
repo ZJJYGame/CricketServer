@@ -14,6 +14,7 @@ namespace AscensionServer
             Id(x => x.UUID).GeneratedBy.UuidHex("N").Column("uuid");
             Map(x => x.Account).Unique().Column("account");
             Map(x => x.Password).Column("password");
+            Map(x => x.RoleID).Column("roleid");
             Table("user");
         }
     }

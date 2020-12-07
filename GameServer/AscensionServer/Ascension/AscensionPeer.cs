@@ -90,6 +90,36 @@ namespace AscensionServer
             CommandEventCore.Instance.Dispatch(opData.OperationCode, opData);
 
         }
+
+        public bool TryGetValue(Type key, out object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ContainsKey(Type key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryRemove(Type key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryRemove(Type key, out object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryAdd(Type key, object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryUpdate(Type key, object newValue, object comparsionValue)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

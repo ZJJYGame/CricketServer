@@ -21,11 +21,14 @@ namespace AscensionServer
         {
             var message =Utility.Json.ToObject<User>(opData.DataMessage.ToString());
 
-            Utility.Debug.LogInfo("yzqData"+message.Account+"////"+ message.Password);
-          LoginHandler.LoginRole(message.Account, message.Password);
+            var dp = opData.DataContract as DataParameters;
+            dp.Messages.TryGetValue((byte)ParameterCode.ClientPeer, out var peer);
+
+
+          LoginHandler.LoginRole(message.Account, message.Password,peer );
         }
 
-        public void S2CLoginr(int roleid, string message, ReturnCode returnCode)
+        public void S2CLogin(int roleid, string message, ReturnCode returnCode)
         {
             OperationData operationData = new OperationData();
             operationData.DataMessage = message;

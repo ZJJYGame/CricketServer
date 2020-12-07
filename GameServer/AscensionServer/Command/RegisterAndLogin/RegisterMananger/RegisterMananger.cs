@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AscensionProtocol;
-using AscensionProtocol.DTO;
+using AscensionProtocol;
 using Cosmos;
 using Protocol;
 
@@ -20,7 +20,7 @@ namespace AscensionServer
 
         public void C2SRegister(OperationData opData)
         {
-            var message = opData.DataMessage as UserData;
+            var message = opData.DataMessage as User;
             var dp = opData.DataContract as DataParameters;
             dp.Messages.TryGetValue((byte)ParameterCode.ClientPeer, out var peer);
             RegisterHandler.RegisterRole(message.Account, message.Password);

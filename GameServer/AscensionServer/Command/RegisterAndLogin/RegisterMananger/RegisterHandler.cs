@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cosmos;
 using Protocol;
-using AscensionProtocol.DTO;
+using AscensionProtocol;
 using Cosmos.Reference;
 namespace AscensionServer
 {
@@ -17,6 +17,7 @@ namespace AscensionServer
             bool isExist = NHibernateQuerier.Verify<User>(nHCriteriaAccount);
             var userObj = GameManager.ReferencePoolManager.Spawn<User>();
             var role = GameManager.ReferencePoolManager.Spawn<Role>();
+            var roleAsset = GameManager.ReferencePoolManager.Spawn<RoleAssets>();
             if (!isExist)
             {
                 userObj = NHibernateQuerier.Insert(userObj);
@@ -25,6 +26,8 @@ namespace AscensionServer
                 role = NHibernateQuerier.Insert<Role>(role);
                 userObj.RoleID = role.RoleID;
                 NHibernateQuerier.Update(userObj);
+                roleAsset.RoleID = role.RoleID;
+                NHibernateQuerier.Insert(roleAsset);
                 GameManager.CustomeModule<RegisterMananger>().S2CRegister(role.RoleID, Utility.Json.ToJson(role), AscensionProtocol.ReturnCode.Success);
             }
             else
