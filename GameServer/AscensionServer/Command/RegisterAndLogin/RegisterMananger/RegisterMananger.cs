@@ -20,10 +20,11 @@ namespace AscensionServer
 
         public void C2SRegister(OperationData opData)
         {
-            var message = opData.DataMessage as User;
+            var message = Utility.Json.ToObject<UserDTO>(opData.DataMessage.ToString());
             var dp = opData.DataContract as DataParameters;
             dp.Messages.TryGetValue((byte)ParameterCode.ClientPeer, out var peer);
-            RegisterHandler.RegisterRole(message.Account, message.Password);
+            Utility.Debug.LogInfo("yzqData/////"+ message.Account);
+            RegisterHandler.RegisterRole(message.Account, message.Password, peer);
         }
 
         public void S2CRegister(int roleid, string message,ReturnCode returnCode)
@@ -31,7 +32,7 @@ namespace AscensionServer
             OperationData operationData = new OperationData();
             operationData.DataMessage = message;
             operationData.ReturnCode = (byte)returnCode;
-            operationData.OperationCode = (ushort)ATCmd.Register;
+            operationData.OperationCode = ProtocolDefine.OPR_TESTCAHNNEL;
             GameManager.CustomeModule<RoleManager>().SendMessage(roleid, operationData);
         }
     }

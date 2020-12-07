@@ -4,16 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AscensionServer
+namespace AscensionProtocol
 {
     [Serializable]
-    public class RoleCricket
+    public class RoleAssetsDTO
     {
         public virtual int RoleID { get; set; }
-        public virtual string RoleCrickets { get; set; }
-        public RoleCricket()
-        {
-            RoleCrickets = "{}";
-        }
+        public virtual int RoleGold { get; set; }
     }
 }

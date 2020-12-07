@@ -7,7 +7,7 @@ using FluentNHibernate.Mapping;
 
 namespace AscensionServer
 {
-    public class UserMap:ClassMap<User>
+    public class UserMap : ClassMap<User>
     {
         public UserMap()
         {

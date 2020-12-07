@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace AscensionServer
+namespace AscensionProtocol
 {
     [Serializable]
-    public class RoleCricket
+    public class RoleDTO
     {
         public virtual int RoleID { get; set; }
-        public virtual string RoleCrickets { get; set; }
-        public RoleCricket()
-        {
-            RoleCrickets = "{}";
-        }
+        public virtual string RoleName { get; set; }
+
     }
+    
 }

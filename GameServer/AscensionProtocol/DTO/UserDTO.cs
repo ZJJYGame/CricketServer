@@ -12,6 +12,7 @@ namespace AscensionProtocol
         public virtual string Account { get; set; }
         public virtual string Password { get; set; }
         public virtual string UUID { get; set; }
+        public virtual int RoleID { get; set; }
     }
 
 }
