@@ -18,6 +18,7 @@ namespace AscensionServer
             var user = NHibernateQuerier.CriteriaSelect<User>(nHCriteriauser);
             if (user != null)
             {
+                Utility.Debug.LogInfo("yzqData登录成功"+ user.Password == password);
                 if (user.Password == password)
                 {
                     NHCriteria nHCriteriaRole = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("RoleID", user.RoleID);
@@ -36,8 +37,8 @@ namespace AscensionServer
                         {
                             GameManager.CustomeModule<RoleManager>().TryAdd(role.RoleID, roleEntity);
                             peerAgent.TryAdd(remoteRoleType, roleEntity);
-
-                            GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID,Utility.Json.ToJson(role), AscensionProtocol.ReturnCode.Success);
+                            Utility.Debug.LogInfo("yzqData登录成功");
+                            GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID,Utility.Json.ToJson(role), ReturnCode.Success);
                         }
                         else
                         {
@@ -48,7 +49,7 @@ namespace AscensionServer
                             if (updateResult)
                             {
                                 //TODO提示账号已在线阻止登陆
-                                GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID, "账号已登录", AscensionProtocol.ReturnCode.Fail);
+                                GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID, "账号已登录", ReturnCode.Fail);
                             }
                         }
                     }

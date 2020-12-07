@@ -150,6 +150,7 @@
     <Compile Include="Ascension\Core\RunTime\Role\RoleManager.cs" />
     <Compile Include="Ascension\Core\RunTime\TestChannel\TestChannelManager.cs" />
     <Compile Include="Ascension\DataObject\BattleAttackSkillData.cs" />
+    <Compile Include="Ascension\DataObject\CricketStatus.cs" />
     <Compile Include="Command\Battle\BattleCharacter\BattleCharacterEntity.cs" />
     <Compile Include="Command\Battle\BattleCharacter\BattleCharacterManager.cs" />
     <Compile Include="Command\Battle\BattleController.cs" />
@@ -173,7 +174,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="JsonData\BattleAttackSkillData.txt" />
+    <EmbeddedResource Include="JsonData\BattleAttackSkillData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\CricketStatus.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />
     <Content Include="Plugin\ExitGames.Logging.Log4Net.XML" />
     <Content Include="Plugin\ExitGamesLibs.dll" />

@@ -20,7 +20,7 @@ namespace AscensionServer
         public void C2SLogin(OperationData opData)
         {
             var message =Utility.Json.ToObject<User>(opData.DataMessage.ToString());
-
+            Utility.Debug.LogInfo("yzqData登录" + message.Account);
             var dp = opData.DataContract as DataParameters;
             dp.Messages.TryGetValue((byte)ParameterCode.ClientPeer, out var peer);
 
