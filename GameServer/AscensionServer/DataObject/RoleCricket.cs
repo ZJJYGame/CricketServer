@@ -13,7 +13,7 @@ namespace AscensionServer
         public virtual string RoleCrickets { get; set; }
         public RoleCricket()
         {
-            RoleCrickets = "{}";
+            RoleCrickets = "[]";
         }
     }
 }

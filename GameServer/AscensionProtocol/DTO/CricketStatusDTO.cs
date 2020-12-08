@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace AscensionProtocol
 {
-  public class CricketStatusDTO
+    [Serializable]
+    public class CricketStatusDTO
     {
-        public virtual int Level { set; get; }
+        public virtual int CricketID { set; get; }
         public virtual int Atk { set; get; }
         public virtual int Hp { set; get; }
         public virtual int Defense { set; get; }

@@ -10,7 +10,7 @@ namespace AscensionServer
     {
         public CricketStatusMap()
         {
-            Id(x => x.CricketID).GeneratedBy.Increment().Column("cricketid");
+            Id(x => x.CricketID).GeneratedBy.Assigned().Column("cricketid");
             Map(x => x.Crt).Column("crt");
             Map(x => x.CrtAtk).Column("crtatk");
             Map(x => x.CrtDef).Column("crtdef");
@@ -24,7 +24,7 @@ namespace AscensionServer
             Map(x => x.ReduceAtk).Column("reduceatk");
             Map(x => x.ReduceDef).Column("reducedef");
             Map(x => x.Atk).Column("atk");
-            Table("cricket");
+            Table("cricket_status");
 
         }
     }

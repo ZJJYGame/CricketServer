@@ -23,9 +23,6 @@ namespace AscensionServer
                     NHCriteria nHCriteriaRole = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("RoleID", user.RoleID);
                     var role = NHibernateQuerier.CriteriaSelect<Role>(nHCriteriaRole);
                     var roleAsset = NHibernateQuerier.CriteriaSelect<RoleAssets>(nHCriteriaRole);
-                    //var roleEntity= RoleEntity.Create(role.RoleID, (peer as IPeerEntity).SessionId, role);
-                    //GameManager.CustomeModule<RoleManager>().TryAdd(role.RoleID, roleEntity);
-                    //GameManager.CustomeModule<LoginManager>().S2CLogin((peer as IPeerEntity).SessionId, Utility.Json.ToJson(role), ReturnCode.Success);
                     #region 
                     var roleEntity = RoleEntity.Create(role.RoleID, (peer as IPeerEntity).SessionId, role);
                     IPeerEntity peerAgent;
@@ -50,6 +47,15 @@ namespace AscensionServer
                         }
                     }
                     #endregion
+                }
+                else
+                {
+                    OperationData operationData = new OperationData();
+                    operationData.DataMessage = "密码错误";
+                    operationData.ReturnCode = (byte)ReturnCode.Fail;
+                    operationData.OperationCode = (ushort)ATCmd.Login;
+                    Utility.Debug.LogInfo("yzqData密码错误");
+                    GameManager.CustomeModule<PeerManager>().SendMessage((peer as IPeerEntity).SessionId, operationData);
                 }
             }
         }
