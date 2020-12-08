@@ -15,10 +15,16 @@ namespace AscensionServer
         {
             NHCriteria nHCriteriaAccount = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("Account", account);
             Utility.Debug.LogInfo("yzqData发送失败" + nHCriteriaAccount.Value.ToString());
+
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketStatus>>(out var cricketStatusDict);
             bool isExist = NHibernateQuerier.Verify<User>(nHCriteriaAccount);
+
             var userObj = new User() {Account= account,Password= password };
             var role = new Role() { };
             var roleAsset = new RoleAssets();
+
+
+
             if (!isExist)
             {
                 userObj = NHibernateQuerier.Insert(userObj);
