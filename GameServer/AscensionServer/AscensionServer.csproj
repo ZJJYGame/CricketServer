@@ -169,6 +169,7 @@
     <Compile Include="Command\RegisterAndLogin\RegisterMananger\RegisterMananger.cs" />
     <Compile Include="DataObjectMap\CricketAptitudeMap.cs" />
     <Compile Include="DataObjectMap\CricketMap.cs" />
+    <Compile Include="DataObjectMap\CricketPointMap.cs" />
     <Compile Include="DataObjectMap\CricketStatusMap.cs" />
     <Compile Include="DataObjectMap\RoleAssetsMap.cs" />
     <Compile Include="DataObjectMap\RoleCricketMap.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="DataObjectMap\UserMap.cs" />
     <Compile Include="DataObject\Cricket.cs" />
     <Compile Include="DataObject\CricketAptitude.cs" />
+    <Compile Include="DataObject\CricketPoint.cs" />
     <Compile Include="DataObject\CricketStatus.cs" />
     <Compile Include="DataObject\Role.cs" />
     <Compile Include="DataObject\RoleAssets.cs" />

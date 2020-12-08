@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DTO\CricketAptitudeDTO.cs" />
     <Compile Include="DTO\CricketDTO.cs" />
+    <Compile Include="DTO\CricketPointDTO.cs" />
     <Compile Include="DTO\CricketStatusDTO.cs" />
     <Compile Include="DTO\RoleAssetsDTO.cs" />
     <Compile Include="DTO\RoleCricketDTO.cs" />
