@@ -9,7 +9,6 @@ namespace AscensionServer
    public class CricketStatus
     {
         public virtual int CricketID { set; get; }
-        public virtual int Level { set; get; }
         public virtual int Atk { set; get; }
         public virtual int Hp { set; get; }
         public virtual int Defense { set; get; }
@@ -22,5 +21,20 @@ namespace AscensionServer
         public virtual int ReduceDef { set; get; }
         public virtual int Rebound { set; get; }
         public virtual int Eva { set; get; }
+        public CricketStatus()
+        {
+            Atk = 10;
+            Hp =30;
+            Defense = 10;
+            Mp = 100;
+            MpReply = 10;
+            Crt = 0;
+            CrtAtk = 150;
+            CrtDef = 0;
+            ReduceAtk = 0;
+            ReduceDef = 0;
+            Rebound = 0;
+            Eva = 0;
+        }
     }
 }

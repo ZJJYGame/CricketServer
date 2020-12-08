@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\CricketAptitudeDTO.cs" />
     <Compile Include="DTO\CricketDTO.cs" />
     <Compile Include="DTO\CricketStatusDTO.cs" />
     <Compile Include="DTO\RoleAssetsDTO.cs" />

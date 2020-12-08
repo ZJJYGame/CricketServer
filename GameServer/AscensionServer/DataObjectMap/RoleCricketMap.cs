@@ -11,7 +11,8 @@ namespace AscensionServer
         public RoleCricketMap()
         {
             Id(x => x.RoleID).GeneratedBy.Assigned().Column("roleid");
-            Map(x => x.RoleCrickets).Column("role_crickets");
+            Map(x => x.CricketList).Column("cricketlist");
+            Map(x => x.TemporaryCrickets).Column("temporary_crickets");           
             Table("role_cricket");
         }
     }

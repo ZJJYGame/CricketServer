@@ -10,10 +10,12 @@ namespace AscensionServer
     {
         public CricketMap()
         {
-            Id(x => x.CricketID).GeneratedBy.Increment().Column("cricketid");
+            Id(x => x.ID).GeneratedBy.Increment().Column("id");
+            Map(x => x.CricketID).Column("cricketid");
             Map(x => x.CricketName).Column("cricket_name");
             Map(x => x.LevelID).Column("levelid");
             Map(x => x.RankID).Column("rankid");
+            Map(x => x.SkillList).Column("skill_list");
             Table("cricket");
         }
     }

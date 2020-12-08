@@ -9,11 +9,12 @@ namespace AscensionProtocol
     [Serializable]
     public class CricketDTO
     {
+        public virtual int ID { set; get; }
         public virtual int CricketID { set; get; }
         public virtual int LevelID { set; get; }
         public virtual int Exp { set; get; }
         public virtual string CricketName { set; get; }
         public virtual int RankID { set; get; }
-
+        public virtual List<int> SkillList { set; get; }
     }
 }

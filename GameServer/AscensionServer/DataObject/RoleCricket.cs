@@ -10,10 +10,12 @@ namespace AscensionServer
     public class RoleCricket
     {
         public virtual int RoleID { get; set; }
-        public virtual string RoleCrickets { get; set; }
+        public virtual string CricketList { get; set; }
+        public virtual string TemporaryCrickets { get; set; }
         public RoleCricket()
         {
-            RoleCrickets = "[]";
+            CricketList = "{}";
+            TemporaryCrickets = "{}";
         }
     }
 }

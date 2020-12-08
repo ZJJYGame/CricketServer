@@ -17,7 +17,6 @@ namespace AscensionServer
             Map(x => x.Defense).Column("defense");
             Map(x => x.Eva).Column("eva");
             Map(x => x.Hp).Column("hp");
-            Map(x => x.Level).Column("level");
             Map(x => x.Mp).Column("mp");
             Map(x => x.MpReply).Column("mpreply");
             Map(x => x.Rebound).Column("rebound");
