@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\Photon-OnPremise-Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
+    <OutputPath>..\..\..\..\Localphotonserver\Criket\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -151,7 +151,8 @@
     <Compile Include="Ascension\Core\RunTime\TestChannel\TestChannelManager.cs" />
     <Compile Include="Ascension\DataObject\BattleAttackSkillData.cs" />
     <Compile Include="Ascension\DataObject\BattleBuffData.cs" />
-    <Compile Include="Ascension\DataObject\CricketStatus.cs" />
+    <Compile Include="Ascension\DataObject\CricketData.cs" />
+    <Compile Include="Ascension\DataObject\CricketStatusData.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffController.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffEntity.cs" />
     <Compile Include="Command\Battle\BattleCharacter\BattleCharacterEntity.cs" />
@@ -166,12 +167,12 @@
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginManager.cs" />
     <Compile Include="Command\RegisterAndLogin\RegisterMananger\RegisterHandler.cs" />
     <Compile Include="Command\RegisterAndLogin\RegisterMananger\RegisterMananger.cs" />
-    <Compile Include="DataObjectMap\CricketMap.cs" />
+    <Compile Include="DataObjectMap\CricketStatusMap.cs" />
     <Compile Include="DataObjectMap\RoleAssetsMap.cs" />
     <Compile Include="DataObjectMap\RoleCricketMap.cs" />
     <Compile Include="DataObjectMap\RoleMap.cs" />
     <Compile Include="DataObjectMap\UserMap.cs" />
-    <Compile Include="DataObject\Cricket.cs" />
+    <Compile Include="DataObject\CricketStatus.cs" />
     <Compile Include="DataObject\Role.cs" />
     <Compile Include="DataObject\RoleAssets.cs" />
     <Compile Include="DataObject\RoleCricket.cs" />
@@ -182,10 +183,15 @@
     <EmbeddedResource Include="JsonData\BattleAttackSkillData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="JsonData\CricketStatus.txt">
+    <EmbeddedResource Include="JsonData\CricketStatusData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Content Include="JsonData\BattleBuffData.txt" />
+    <EmbeddedResource Include="JsonData\BattleBuffData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\CricketData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />
     <Content Include="Plugin\ExitGames.Logging.Log4Net.XML" />
     <Content Include="Plugin\ExitGamesLibs.dll" />

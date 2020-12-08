@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AscensionServer
 {
-   public class Cricket
+   public class CricketStatus
     {
         public virtual int CricketID { set; get; }
         public virtual int Level { set; get; }

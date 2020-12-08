@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AscensionProtocol
 {
-  public class CricketDTO
+  public class CricketStatusDTO
     {
         public virtual int Level { set; get; }
         public virtual int Atk { set; get; }

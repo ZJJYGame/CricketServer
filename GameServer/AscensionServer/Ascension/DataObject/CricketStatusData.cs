@@ -8,7 +8,7 @@ namespace AscensionServer
 {
     [Serializable]
     [ConfigData]
-    public class CricketStatus
+    public class CricketStatusData
     {
         public int Level { set; get; }
         public int Atk { set; get; }

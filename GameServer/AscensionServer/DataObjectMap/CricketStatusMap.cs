@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using FluentNHibernate.Mapping;
 namespace AscensionServer
 {
-    public class CricketMap : ClassMap<Cricket>
+    public class CricketStatusMap : ClassMap<CricketStatus>
     {
-        public CricketMap()
+        public CricketStatusMap()
         {
             Id(x => x.CricketID).GeneratedBy.Increment().Column("cricketid");
             Map(x => x.Crt).Column("crt");

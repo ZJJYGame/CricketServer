@@ -23,7 +23,7 @@ namespace AscensionServer
             var dp = opData.DataContract as DataParameters;
             dp.Messages.TryGetValue((byte)ParameterCode.ClientPeer, out var peer);
 
-            Utility.Debug.LogInfo("yzqData登录" + message.Account+"&&&&&" + message.Password);
+            Utility.Debug.LogInfo("yzqData登录账号：" + message.Account+"密码：" + message.Password);
             LoginHandler.LoginRole(message.Account, message.Password,peer );
         }
 
@@ -33,8 +33,8 @@ namespace AscensionServer
             operationData.DataMessage = message;
             operationData.ReturnCode = (byte)returnCode;
             operationData.OperationCode = (ushort)ATCmd.Login;
-            //GameManager.CustomeModule<RoleManager>().SendMessage(sessionId, operationData);
-            GameManager.CustomeModule<PeerManager>().SendMessage(sessionId, operationData);
+            GameManager.CustomeModule<RoleManager>().SendMessage(sessionId, operationData);
+            //GameManager.CustomeModule<PeerManager>().SendMessage(sessionId, operationData);
         }
     }
 }
