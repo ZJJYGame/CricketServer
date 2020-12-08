@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\Photon-OnPremise-Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
+    <OutputPath>..\..\..\..\Localphotonserver\Criket\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -150,6 +150,7 @@
     <Compile Include="Ascension\Core\RunTime\Role\RoleManager.cs" />
     <Compile Include="Ascension\Core\RunTime\TestChannel\TestChannelManager.cs" />
     <Compile Include="Ascension\DataObject\BattleAttackSkillData.cs" />
+    <Compile Include="Ascension\DataObject\CricketStatus.cs" />
     <Compile Include="Command\Battle\BattleCharacter\BattleCharacterEntity.cs" />
     <Compile Include="Command\Battle\BattleCharacter\BattleCharacterManager.cs" />
     <Compile Include="Command\Battle\BattleController.cs" />
@@ -162,10 +163,12 @@
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginManager.cs" />
     <Compile Include="Command\RegisterAndLogin\RegisterMananger\RegisterHandler.cs" />
     <Compile Include="Command\RegisterAndLogin\RegisterMananger\RegisterMananger.cs" />
+    <Compile Include="DataObjectMap\CricketMap.cs" />
     <Compile Include="DataObjectMap\RoleAssetsMap.cs" />
     <Compile Include="DataObjectMap\RoleCricketMap.cs" />
     <Compile Include="DataObjectMap\RoleMap.cs" />
     <Compile Include="DataObjectMap\UserMap.cs" />
+    <Compile Include="DataObject\Cricket.cs" />
     <Compile Include="DataObject\Role.cs" />
     <Compile Include="DataObject\RoleAssets.cs" />
     <Compile Include="DataObject\RoleCricket.cs" />
@@ -174,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="JsonData\BattleAttackSkillData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\CricketStatus.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />

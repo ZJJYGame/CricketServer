@@ -20,6 +20,7 @@ namespace AscensionServer
         SendParameters sendParam = new SendParameters();
         EventData eventData = new EventData();
         public RoleEntity RoleEntity { get; set; }
+        Dictionary<Type, object> dataDict = new Dictionary<Type, object>();
         #endregion
         #region Methods
         public AscensionPeer(InitRequest initRequest) : base(initRequest)
@@ -59,7 +60,8 @@ namespace AscensionServer
             Dictionary<byte, object> data = new Dictionary<byte, object>();
             ed.Parameters = data;
             //尝试获取负载的角色数据；
-            if (RoleEntity!=null)
+            //if (RoleEntity!=null)
+            if (TryGetValue(typeof(RoleEntity), out var roleEntity))
             {
                 //若存在，则广播到各个模块；
                 var opData = new OperationData();
@@ -93,32 +95,34 @@ namespace AscensionServer
 
         public bool TryGetValue(Type key, out object value)
         {
-            throw new NotImplementedException();
+            return dataDict.TryGetValue(key, out value);
         }
-
         public bool ContainsKey(Type key)
         {
-            throw new NotImplementedException();
+            return dataDict.ContainsKey(key);
         }
-
-        public bool TryRemove(Type key)
+        public bool TryRemove(Type Key)
         {
-            throw new NotImplementedException();
+            return dataDict.Remove(Key, out _);
         }
-
         public bool TryRemove(Type key, out object value)
         {
-            throw new NotImplementedException();
+            return dataDict.Remove(key, out value);
         }
-
-        public bool TryAdd(Type key, object value)
+        public bool TryAdd(Type key, object Value)
         {
-            throw new NotImplementedException();
+            return dataDict.TryAdd(key, Value);
         }
-
         public bool TryUpdate(Type key, object newValue, object comparsionValue)
         {
-            throw new NotImplementedException();
+            if (dataDict.ContainsKey(key))
+            {
+                var equal = dataDict[key].Equals(comparsionValue);
+                if (equal)
+                    dataDict[key] = newValue;
+                return equal;
+            }
+            return false;
         }
         #endregion
     }
