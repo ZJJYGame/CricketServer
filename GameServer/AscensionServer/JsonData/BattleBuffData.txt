@@ -1,0 +1,12 @@
+[
+{"buffId":4001,"buffEffectProperty":0},
+{"buffId":4002,"buffEffectProperty":1},
+{"buffId":4003,"buffEffectProperty":2},
+{"buffId":4004,"buffEffectProperty":3},
+{"buffId":4005,"buffEffectProperty":4},
+{"buffId":4006,"buffEffectProperty":5},
+{"buffId":4007,"buffEffectProperty":6},
+{"buffId":4008,"buffEffectProperty":7},
+{"buffId":4009,"buffEffectProperty":8},
+{"buffId":4010,"buffEffectProperty":9}
+]

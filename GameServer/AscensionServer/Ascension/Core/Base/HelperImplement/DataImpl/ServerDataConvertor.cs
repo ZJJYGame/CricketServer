@@ -32,11 +32,14 @@ namespace AscensionServer
                 var battleAttackSkillDataDict = TransObject<List<BattleAttackSkillData>>(battleAttackSkillDataData).ToDictionary(key => key.skillId, value => value);
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(CricketStatus).Name, out var CricketStatusData);
                 var CricketStatusDict = TransObject<List<CricketStatus>>(CricketStatusData).ToDictionary(key => key.Level, value => value);
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(BattleBuffData).Name, out var battleBuffDataData);
+                var battleBuffDataDict= TransObject<List<BattleBuffData>>(CricketStatusData).ToDictionary(key => key.buffId, value => value);
                 #endregion
 
                 #region 储存方式
                 GameManager.CustomeModule<DataManager>().TryAdd(battleAttackSkillDataDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(CricketStatusDict);
+                GameManager.CustomeModule<DataManager>().TryAdd(battleBuffDataDict);
                 #endregion
 
                 #region 获取方式
