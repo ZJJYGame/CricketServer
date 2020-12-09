@@ -49,12 +49,13 @@ namespace AscensionServer
         public void ChangeActionBar(int num)
         {
             RemainActionBar -= num;
-            if (RemainActionBar <= 0)
-            {
-                RemainActionBar = roleBattleData.ActionBar;
-            }
-        }
 
+        }
+        public void TryRestartActionBar()
+        {
+                RemainActionBar = roleBattleData.ActionBar;
+
+        }
 
         //待完善，需要从数据库拿取人物数据
         RoleBattleData GetRoleBattleData(int roleId)

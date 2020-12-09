@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cosmos;
+using AscensionProtocol;
 
 namespace AscensionServer
 {
@@ -15,6 +16,8 @@ namespace AscensionServer
         int nowAttackNum;
         BattleCharacterEntity playerOne;
         BattleCharacterEntity playerTwo;
+
+        List<BattleRoleActionData> battleRoleActionDataList = new List<BattleRoleActionData>();
 
         public void StartBattle()
         {
@@ -66,13 +69,16 @@ namespace AscensionServer
                         }
                     }
                 }
-
+                //总时间增加 
+                int oldTime = nowTime;
+                nowTime += attackPlayer.RemainActionBar;
+                int offestTime = nowTime - oldTime;
                 //行动条结算
-                attackPlayer.ChangeActionBar(attackPlayer.roleBattleData.ActionBar);
-                defendPlayer.ChangeActionBar(attackPlayer.roleBattleData.ActionBar);
+                attackPlayer.ChangeActionBar(offestTime);
+                defendPlayer.ChangeActionBar(offestTime);
                 //todo所有buff实体持续时间减少
-                attackPlayer.battleBuffController.UpdateBuffTime(attackPlayer.roleBattleData.ActionBar);
-                defendPlayer.battleBuffController.UpdateBuffTime(attackPlayer.roleBattleData.ActionBar);
+                attackPlayer.battleBuffController.UpdateBuffTime(offestTime);
+                defendPlayer.battleBuffController.UpdateBuffTime(offestTime);
 
                 BattleSkill battleSkill = attackPlayer.RandomSkill();
                 BattleDamageData battleDamageData = GetDamageData(battleSkill, attackPlayer, defendPlayer);
@@ -108,9 +114,14 @@ namespace AscensionServer
                 attackPlayer.battleBuffController.TriggerBuff();
                 defendPlayer.battleBuffController.TriggerBuff();
 
+                //恢复进度条
+                attackPlayer.TryRestartActionBar();
+
+                battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { battleDamageData }, new List<int>() { attackPlayer.RoleId }, false));
                 //Utility.Debug.LogInfo(attackPlayer.RoleId + "的行动条为" + attackPlayer.RemainActionBar + "," + defendPlayer.RoleId+"的行动条为" + defendPlayer.RemainActionBar);
             }
             Utility.Debug.LogInfo("战斗计算流程结束");
+            Utility.Debug.LogInfo("战斗传输数据=>" + Utility.Json.ToJson(battleRoleActionDataList));
         }
 
         BattleDamageData GetDamageData(BattleSkill battleSkill, BattleCharacterEntity attackPlayer, BattleCharacterEntity defendPlayer)
@@ -155,6 +166,37 @@ namespace AscensionServer
             }
             return battleDamageData;
         }
+        //设置一次行为的传输数据
+        BattleRoleActionData GetTransferData(List<BattleDamageData> battleDamageDataList,List<int> roleIdList,bool isCrash)
+        {
+            BattleRoleActionData battleRoleActionData = new BattleRoleActionData();
+            battleRoleActionData.Time = nowTime;
+            battleRoleActionData.IsCrash = isCrash;
+            BattleDamageData attackDamageData = battleDamageDataList[0];
+            BattleActionData attackBattleActionData = battleRoleActionData.AttackBattleActionData;
+            attackBattleActionData.RoleId = roleIdList[0];
+            attackBattleActionData.SkillId = attackDamageData.skillId;
+            for (int i = 0; i < attackDamageData.damageNumList.Count; i++)
+                attackBattleActionData.DamageList.Add(attackDamageData.damageNumList[i]);
+            for (int i = 0; i < attackDamageData.isCritList.Count; i++)
+                attackBattleActionData.IsCritList.Add(attackDamageData.isCritList[i]);
+            for (int i = 0; i < attackDamageData.isDodgeList.Count; i++)
+                attackBattleActionData.IsDodgeList.Add(attackDamageData.isDodgeList[i]);
+            for (int i = 0; i < attackDamageData.returnDamageNumList.Count; i++)
+                attackBattleActionData.ReturnDamageList.Add(attackDamageData.returnDamageNumList[i]);
+            for (int i = 0; i < attackDamageData.battleSkillAddBuffList.Count; i++)
+                attackBattleActionData.AddBuffList.Add(attackDamageData.battleSkillAddBuffList[i].BuffId);
+            if (isCrash)
+            {
+
+            }
+            else
+            {
+                battleRoleActionData.DefendBattleActionData = null;
+            }
+            return battleRoleActionData;
+        }
+
         public void InitController(BattleCharacterEntity battleCharacterEntityOne,BattleCharacterEntity battleCharacterEntityTwo)
         {
             playerOne = battleCharacterEntityOne;

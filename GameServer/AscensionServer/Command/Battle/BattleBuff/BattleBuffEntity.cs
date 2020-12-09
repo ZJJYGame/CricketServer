@@ -79,6 +79,7 @@ namespace AscensionServer
         {
             if (isInfiniteTime)
                 return;
+            Utility.Debug.LogWarning("remainTime=>" + remainTime + ",changeTime" + changeTime);
             remainTime -= changeTime;
             if (remainTime <= 0)
             {

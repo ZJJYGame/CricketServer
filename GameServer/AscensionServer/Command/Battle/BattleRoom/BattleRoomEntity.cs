@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cosmos;
 using Cosmos.Reference;
+using AscensionProtocol;
 
 namespace AscensionServer
 {
@@ -15,6 +16,7 @@ namespace AscensionServer
         BattleCharacterEntity battleCharacterEntity_Two;
 
         BattleController battleController;
+
 
         public void Init(int roomId,int playerOneId,int playerTwoId)
         {

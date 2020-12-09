@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Cosmos;
 using Cosmos.Reference;
+using AscensionProtocol;
+using Protocol;
 
 namespace AscensionServer
 {
@@ -42,11 +44,17 @@ namespace AscensionServer
 
         public override void OnInitialization()
         {
+            CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncBattle, EnterBattleHandler);
         }
         public override void OnPreparatory()
         {
-            Utility.Debug.LogInfo("开始创建房间");
-            CreateRoom(111, 222);
+            //Utility.Debug.LogInfo("开始创建房间");
+            //CreateRoom(111, 222);
+        }
+
+        void EnterBattleHandler(OperationData OpData)
+        {
+            Utility.Debug.LogError("收到战斗请求");
         }
 
         /// <summary>

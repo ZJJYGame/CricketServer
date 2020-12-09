@@ -145,10 +145,10 @@ namespace AscensionServer
             this.buffRoleBattleData = buffRoleBattleData;
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, BattleAttackSkillData>>(out var tempSkillDict);
             BattleSkillList = new List<BattleSkill>();
-            //BattleSkillList.Add(new BattleSkill(tempSkillDict[3001],1));
-            //BattleSkillList.Add(new BattleSkill(tempSkillDict[3002],1));
+            BattleSkillList.Add(new BattleSkill(tempSkillDict[3001],1));
+            BattleSkillList.Add(new BattleSkill(tempSkillDict[3002],1));
             BattleSkillList.Add(new BattleSkill(tempSkillDict[3003],1));
-            //BattleSkillList.Add(new BattleSkill(tempSkillDict[3004],1));
+            BattleSkillList.Add(new BattleSkill(tempSkillDict[3004],1));
             for (int i = 0; i < BattleSkillList.Count; i++)
             {
                 AllSkillProp += BattleSkillList[i].TriggerProb;
