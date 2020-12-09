@@ -176,9 +176,10 @@ namespace AscensionServer
         void OnPlayerLogoff(OperationData opData)
         {
             var roleEntity= opData.DataMessage as RoleEntity;
+            Utility.Debug.LogInfo("1yzqData移除成功RoleID:" + roleEntity.RoleId);
             if (roleEntity != null)
             {
-                Utility.Debug.LogInfo("yzqData移除成功RoleID:" + roleEntity.RoleId);
+                //Utility.Debug.LogInfo("2yzqData移除成功RoleID:" + roleEntity.RoleId);
                 TryRemove(roleEntity.RoleId);
             }
         }

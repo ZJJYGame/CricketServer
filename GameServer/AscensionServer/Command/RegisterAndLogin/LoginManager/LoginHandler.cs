@@ -23,9 +23,16 @@ namespace AscensionServer
                     NHCriteria nHCriteriaRole = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("RoleID", user.RoleID);
                     var role = NHibernateQuerier.CriteriaSelect<Role>(nHCriteriaRole);
                     var roleAsset = NHibernateQuerier.CriteriaSelect<RoleAssets>(nHCriteriaRole);
+                    var roleCricket = NHibernateQuerier.CriteriaSelect<RoleCricket>(nHCriteriaRole);
+                    RoleCricketDTO roleCricketDTO = new RoleCricketDTO();
+                    roleCricketDTO.RoleID = roleCricket.RoleID;
+                    roleCricketDTO.CricketList =Utility.Json.ToObject<Dictionary<int,int>>(roleCricket.CricketList);
+                    roleCricketDTO.TemporaryCrickets = Utility.Json.ToObject<Dictionary<int, int>>(roleCricket.TemporaryCrickets);
+
                     Dictionary<byte, string> dataDict = new Dictionary<byte, string>();
                     dataDict.Add((byte)ParameterCode.Role,Utility.Json.ToJson(role));
                     dataDict.Add((byte)ParameterCode.RoleAsset, Utility.Json.ToJson(roleAsset));
+                    dataDict.Add((byte)ParameterCode.RoleCricket, Utility.Json.ToJson(roleCricketDTO));
                     #region 
                     var roleEntity = RoleEntity.Create(role.RoleID, (peer as IPeerEntity).SessionId, role);
                     IPeerEntity peerAgent;
@@ -36,10 +43,10 @@ namespace AscensionServer
                         var exist = peerAgent.ContainsKey(remoteRoleType);
                         if (!exist)
                         {
-                            GameManager.CustomeModule<RoleManager>().TryAdd(role.RoleID, roleEntity);
+                          var isture=  GameManager.CustomeModule<RoleManager>().TryAdd(role.RoleID, roleEntity);
                             peerAgent.TryAdd(remoteRoleType, roleEntity);
                             (peer as AscensionPeer).RoleEntity = roleEntity;
-                            Utility.Debug.LogInfo("yzqData登录成功RoleID:"+ role.RoleID);
+                            Utility.Debug.LogInfo("yzqData登录成功RoleID:"+ role.RoleID+ isture);
                             GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID, Utility.Json.ToJson(dataDict), ReturnCode.Success);
                         }
                         else
