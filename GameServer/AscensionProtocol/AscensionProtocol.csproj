@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crickey\subCmd\CricketOperate.cs" />
     <Compile Include="DTO\CricketAptitudeDTO.cs" />
     <Compile Include="DTO\CricketDTO.cs" />
     <Compile Include="DTO\CricketPointDTO.cs" />
@@ -62,8 +63,6 @@
     <None Include="log4net.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Crickey\subCmd\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

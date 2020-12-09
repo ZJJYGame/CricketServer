@@ -178,6 +178,7 @@ namespace AscensionServer
             var roleEntity= opData.DataMessage as RoleEntity;
             if (roleEntity != null)
             {
+                Utility.Debug.LogInfo("yzqDataÒÆ³ý³É¹¦RoleID:" + roleEntity.RoleId);
                 TryRemove(roleEntity.RoleId);
             }
         }

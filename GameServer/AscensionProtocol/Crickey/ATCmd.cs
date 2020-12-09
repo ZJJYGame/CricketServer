@@ -24,6 +24,10 @@ namespace AscensionProtocol
         /// </summary>
         SyncBattle=5,
         /// <summary>
+        /// 同步蛐蛐
+        /// </summary>
+        SyncCricket =6,
+        /// <summary>
         /// 测试消息队列
         /// </summary>
         MessageQueue = 187,
