@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crickey\subCmd\CricketOperate.cs" />
+    <Compile Include="DTO\BattleTransferDTO.cs" />
     <Compile Include="DTO\CricketAptitudeDTO.cs" />
     <Compile Include="DTO\CricketDTO.cs" />
     <Compile Include="DTO\CricketPointDTO.cs" />
