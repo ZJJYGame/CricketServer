@@ -23,6 +23,16 @@ namespace AscensionServer
                     NHCriteria nHCriteriaRole = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("RoleID", user.RoleID);
                     var role = NHibernateQuerier.CriteriaSelect<Role>(nHCriteriaRole);
                     var roleAsset = NHibernateQuerier.CriteriaSelect<RoleAssets>(nHCriteriaRole);
+                    var roleCricket = NHibernateQuerier.CriteriaSelect<RoleCricket>(nHCriteriaRole);
+                    RoleCricketDTO roleCricketDTO = new RoleCricketDTO();
+                    roleCricketDTO.RoleID = roleCricket.RoleID;
+                    roleCricketDTO.CricketList =Utility.Json.ToObject<Dictionary<int,int>>(roleCricket.CricketList);
+                    roleCricketDTO.TemporaryCrickets = Utility.Json.ToObject<Dictionary<int, int>>(roleCricket.TemporaryCrickets);
+
+                    Dictionary<byte, string> dataDict = new Dictionary<byte, string>();
+                    dataDict.Add((byte)ParameterCode.Role,Utility.Json.ToJson(role));
+                    dataDict.Add((byte)ParameterCode.RoleAsset, Utility.Json.ToJson(roleAsset));
+                    dataDict.Add((byte)ParameterCode.RoleCricket, Utility.Json.ToJson(roleCricketDTO));
                     #region 
                     var roleEntity = RoleEntity.Create(role.RoleID, (peer as IPeerEntity).SessionId, role);
                     IPeerEntity peerAgent;
@@ -33,15 +43,14 @@ namespace AscensionServer
                         var exist = peerAgent.ContainsKey(remoteRoleType);
                         if (!exist)
                         {
-                            GameManager.CustomeModule<RoleManager>().TryAdd(role.RoleID, roleEntity);
+                          var isture=  GameManager.CustomeModule<RoleManager>().TryAdd(role.RoleID, roleEntity);
                             peerAgent.TryAdd(remoteRoleType, roleEntity);
                             (peer as AscensionPeer).RoleEntity = roleEntity;
-                            Utility.Debug.LogInfo("yzqData登录成功2");
-                            GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID, Utility.Json.ToJson(role), ReturnCode.Success);
+                            Utility.Debug.LogInfo("yzqData登录成功RoleID:"+ role.RoleID+ isture);
+                            GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID, Utility.Json.ToJson(dataDict), ReturnCode.Success);
                         }
                         else
                         {
-                            Utility.Debug.LogInfo("yzqData登录成功3");
                             //TODO提示账号已在线阻止登陆
                             GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID, "账号已登录", ReturnCode.Fail);
                         }
@@ -50,13 +59,12 @@ namespace AscensionServer
                 }
                 else
                 {
-                    OperationData operationData = new OperationData();
-                    operationData.DataMessage = "密码错误";
-                    operationData.ReturnCode = (byte)ReturnCode.Fail;
-                    operationData.OperationCode = (ushort)ATCmd.Login;
-                    Utility.Debug.LogInfo("yzqData密码错误");
-                    GameManager.CustomeModule<PeerManager>().SendMessage((peer as IPeerEntity).SessionId, operationData);
+                    GameManager.CustomeModule<LoginManager>().S2CLogin((peer as IPeerEntity).SessionId);
                 }
+            }
+            else
+            {
+                GameManager.CustomeModule<LoginManager>().S2CLogin((peer as IPeerEntity).SessionId);
             }
         }
     }

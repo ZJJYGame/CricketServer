@@ -27,14 +27,22 @@ namespace AscensionServer
             LoginHandler.LoginRole(message.Account, message.Password,peer );
         }
 
-        public void S2CLogin(int sessionId, string message, ReturnCode returnCode)
+        public void S2CLogin(int roleid, string message, ReturnCode returnCode)
         {
             OperationData operationData = new OperationData();
             operationData.DataMessage = message;
             operationData.ReturnCode = (byte)returnCode;
             operationData.OperationCode = (ushort)ATCmd.Login;
-            GameManager.CustomeModule<RoleManager>().SendMessage(sessionId, operationData);
-            //GameManager.CustomeModule<PeerManager>().SendMessage(sessionId, operationData);
+            GameManager.CustomeModule<RoleManager>().SendMessage(roleid, operationData);
+        }
+        public void S2CLogin(int seesionid)
+        {
+            Utility.Debug.LogInfo("yzqData账号错误请重试");
+            OperationData operationData = new OperationData();
+            operationData.DataMessage = "账号错误请重试";
+            operationData.ReturnCode = (byte)ReturnCode.Fail;
+            operationData.OperationCode = (ushort)ATCmd.Login;
+            GameManager.CustomeModule<PeerManager>().SendMessage(seesionid, operationData);
         }
     }
 }

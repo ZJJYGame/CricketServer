@@ -1,0 +1,14 @@
+﻿[
+{"PropID":1001,"PropPrice":100},
+{"PropID":1002,"PropPrice":200},
+{"PropID":1003,"PropPrice":300},
+{"PropID":1004,"PropPrice":400},
+{"PropID":1005,"PropPrice":1000},
+{"PropID":1006,"PropPrice":1000},
+{"PropID":1007,"PropPrice":1000},
+{"PropID":1008,"PropPrice":1000},
+{"PropID":1009,"PropPrice":1000},
+{"PropID":1901,"PropPrice":100},
+{"PropID":1902,"PropPrice":300},
+{"PropID":1903,"PropPrice":500}
+]
