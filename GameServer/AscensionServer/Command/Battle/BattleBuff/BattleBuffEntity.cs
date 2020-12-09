@@ -20,10 +20,20 @@ namespace AscensionServer
         //是否无限时间
         bool isInfiniteTime;
         int buffValue;
+        BattleBuffEffectProperty battleBuffEffectProperty;
+        //临界值
+        int limitValue;
+        bool isUp;
+        //buff是否触发过
+        bool hasTrigger;
+
+        BattleBuffController battleBuffController;
         
-        public void InitData(BattleSkillAddBuff battleSkillAddBuff)
+        public void InitData(BattleSkillAddBuff battleSkillAddBuff,BattleBuffController owner,int skillId)
         {
+            battleBuffController = owner;
             buffId = battleSkillAddBuff.BuffId;
+            sourceSkillId = skillId;
             buffValue = battleSkillAddBuff.BuffValue;
             if (battleSkillAddBuff.DurationTime > 0)
             {
@@ -34,6 +44,48 @@ namespace AscensionServer
             {
                 isInfiniteTime = true;
             }
+            limitValue = battleSkillAddBuff.TriggerLimitValue;
+            isUp = battleSkillAddBuff.IsUp;
+            hasTrigger = false;
+
+            BattleBuffData battleBuffData = GameManager.CustomeModule<BattleRoomManager>().BattleBuffDataDict[buffId];
+            battleBuffEffectProperty = battleBuffData.buffEffectProperty;
+
+            battleBuffController.BuffTriggerEvent += OnTrigger;
+            battleBuffController.BuffTimeUpdateEvent += OnTImeUpdate;
+        }
+
+        public void OnTrigger(IRoleBattleData roleBattleData)
+        {
+            if (hasTrigger)
+                return;
+            int healthPercent = roleBattleData.Health * 100 / roleBattleData.MaxHealth;
+            if (isUp)
+            {
+                if (healthPercent <= limitValue)
+                    return;
+            }
+            else
+            {
+                if (healthPercent > limitValue)
+                    return;
+            }
+            //修改属性
+            battleBuffController.ChangeProperty(battleBuffEffectProperty, buffValue);
+            hasTrigger = true;
+        }
+
+        void OnTImeUpdate(int changeTime)
+        {
+            if (isInfiniteTime)
+                return;
+            remainTime -= changeTime;
+            if (remainTime <= 0)
+            {
+                Utility.Debug.LogWarning("buff时间到了");
+                int tempId = Convert.ToInt32(buffId.ToString() + sourceSkillId.ToString());
+                battleBuffController.RemoveBuff(tempId);
+            }
         }
 
         /// <summary>
@@ -41,14 +93,19 @@ namespace AscensionServer
         /// </summary>
         public void OnRemove()
         {
-
+            //恢复属性
+            if (hasTrigger)
+                battleBuffController.ChangeProperty(battleBuffEffectProperty, -buffValue);
         }
+
 
         public void Clear()
         {
             buffId = 0;
             sourceSkillId = 0;
             remainTime = 0;
+            battleBuffController.BuffTriggerEvent -= OnTrigger;
+            battleBuffController.BuffTimeUpdateEvent -= OnTImeUpdate;
         }
     }
 }

@@ -66,6 +66,14 @@ namespace AscensionServer
                         }
                     }
                 }
+
+                //行动条结算
+                attackPlayer.ChangeActionBar(attackPlayer.roleBattleData.ActionBar);
+                defendPlayer.ChangeActionBar(attackPlayer.roleBattleData.ActionBar);
+                //todo所有buff实体持续时间减少
+                attackPlayer.battleBuffController.UpdateBuffTime(attackPlayer.roleBattleData.ActionBar);
+                defendPlayer.battleBuffController.UpdateBuffTime(attackPlayer.roleBattleData.ActionBar);
+
                 BattleSkill battleSkill = attackPlayer.RandomSkill();
                 BattleDamageData battleDamageData = GetDamageData(battleSkill, attackPlayer, defendPlayer);
                 //伤害结算
@@ -73,9 +81,6 @@ namespace AscensionServer
                 attackPlayer.roleBattleData.OnReboundHurt(battleDamageData);
                 //耐力消耗
                 attackPlayer.roleBattleData.OnEnduranceCost(battleSkill);
-                //行动条结算
-                attackPlayer.ChangeActionBar( attackPlayer.roleBattleData.ActionBar);
-                defendPlayer.ChangeActionBar(attackPlayer.roleBattleData.ActionBar);
                 //显示
                 Utility.Debug.LogInfo(attackPlayer.RoleId + "使用技能" + battleSkill.SkillId + "攻击了" + defendPlayer.RoleId);
                 for (int i = 0; i < battleDamageData.damageNumList.Count; i++)
@@ -85,7 +90,25 @@ namespace AscensionServer
                     else
                         Utility.Debug.LogInfo("造成了" + battleDamageData.damageNumList[i] + "点伤害" + (battleDamageData.isCritList[i] ? "暴击" : "没有暴击"));
                 }
-                Utility.Debug.LogInfo(attackPlayer.RoleId + "的行动条为" + attackPlayer.RemainActionBar + "," + defendPlayer.RoleId+"的行动条为" + defendPlayer.RemainActionBar);
+                //添加buff
+                for (int i = 0; i < battleDamageData.battleSkillAddBuffList.Count; i++)
+                {
+                    if (battleDamageData.battleSkillAddBuffList[i].TargetSelf)//对自己
+                    {
+                        Utility.Debug.LogInfo(attackPlayer.RoleId + "添加buff" + battleDamageData.battleSkillAddBuffList[i].BuffId);
+                        attackPlayer.battleBuffController.AddBuff(battleDamageData.battleSkillAddBuffList[i], battleDamageData.skillId);
+                    }
+                    else
+                    {
+                        Utility.Debug.LogInfo(defendPlayer.RoleId + "添加buff" + battleDamageData.battleSkillAddBuffList[i].BuffId);
+                        defendPlayer.battleBuffController.AddBuff(battleDamageData.battleSkillAddBuffList[i], battleDamageData.skillId);
+                    }
+                }
+                //触发buff
+                attackPlayer.battleBuffController.TriggerBuff();
+                defendPlayer.battleBuffController.TriggerBuff();
+
+                //Utility.Debug.LogInfo(attackPlayer.RoleId + "的行动条为" + attackPlayer.RemainActionBar + "," + defendPlayer.RoleId+"的行动条为" + defendPlayer.RemainActionBar);
             }
             Utility.Debug.LogInfo("战斗计算流程结束");
         }
@@ -125,6 +148,10 @@ namespace AscensionServer
                         battleDamageData.isCritList.Add(false);
                     }
                 }
+            }
+            for (int i = 0; i < battleSkill.BattleSkillAddBuffList.Count; i++)
+            {
+                battleDamageData.battleSkillAddBuffList.Add(battleSkill.BattleSkillAddBuffList[i]);
             }
             return battleDamageData;
         }

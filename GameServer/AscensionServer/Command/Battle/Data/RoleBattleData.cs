@@ -7,44 +7,96 @@ using Cosmos;
 
 namespace AscensionServer
 {
-    public class RoleBattleData
+    public class RoleBattleData: IRoleBattleData
     {
         //攻击力
-        public int Attack { get; private set; }
+        int attack;
+        public int Attack { get { return attack + buffRoleBattleData.Attack; } }
         //最大血量
-        public int MaxHealth { get; private set; }
+        int maxHealth;
+        public int MaxHealth { get { return maxHealth + buffRoleBattleData.MaxHealth; }  }
         //血量
-        public int Health { get; private set; }
+        int health;
+        public int Health { get { return health + buffRoleBattleData.Health; } }
         //防御力
-        public int Defence { get; private set; }
+        int defence;
+        public int Defence { get { return defence + buffRoleBattleData.Defence; } }
         //最大耐力
-        public int MaxEndurance { get; private set; }
+        int maxEndurance;
+        public int MaxEndurance { get { return maxEndurance + buffRoleBattleData.MaxEndurance; }  }
         //耐力
-        public int Endurance { get; private set; }
+        int endurance;
+        public int Endurance { get { return endurance + buffRoleBattleData.Endurance; } }
         //耐力回复
-        public int EnduranceReply { get; private set; }
+        int enduranceReply;
+        public int EnduranceReply { get { return enduranceReply + buffRoleBattleData.EnduranceReply; }  }
         //行动条
-        public int ActionBar { get; private set; }
+        int actionBar;
+        public int ActionBar { get { return actionBar;}  }
         //暴击率
-        public int CritProp { get; private set; }
+        int critProp;
+        public int CritProp
+        {
+            get
+            {
+                int num = critProp + buffRoleBattleData.CritProp;
+                return num > 80 ? 80 : num;
+            }
+        }
         //闪避率
-        public int DodgeProp { get; private set; }
+        int dodgeProp;
+        public int DodgeProp { get { return dodgeProp + buffRoleBattleData.DodgeProp; } }
         //受到伤害
-        public int ReceiveDamage { get; private set; }
+        int receiveDamage;
+        public int ReceiveDamage
+        {
+            get
+            {
+                int num = receiveDamage + buffRoleBattleData.ReceiveDamage;
+                return num < 20 ? 20 : num;
+            }
+        }
         //穿透
-        public int Pierce { get; private set; }
+        int pierce;
+        public int Pierce
+        {
+            get
+            {
+                int num = pierce + buffRoleBattleData.Pierce;
+                return num > 50 ? 50 : num;
+            }
+        }
         //反伤
-        public int ReboundDamage { get; private set; }
+        int reboundDamage;
+        public int ReboundDamage
+        {
+            get
+            {
+                int num = reboundDamage + buffRoleBattleData.ReboundDamage;
+                return num > 50 ? 50 : num;
+            }
+        }
         //暴击伤害
-        public int CritDamage { get; private set; }
+        int critDamage;
+        public int CritDamage { get { return critDamage + buffRoleBattleData.CritDamage; }  }
         //暴击抗性
-        public int CritResistance { get; private set; }
+        int critResistance;
+        public int CritResistance
+        {
+            get
+            {
+                int num = critResistance + buffRoleBattleData.CritResistance;
+                return num > 80 ? 80 : num;
+            }
+        }
 
         //玩家战斗技能列表
         public List<BattleSkill> BattleSkillList { get; private set; }
         //所有技能总概率
         public int AllSkillProp { get; private set; }
-        
+
+        IRoleBattleData buffRoleBattleData;
+
         /// <summary>
         /// 受到的直接伤害
         /// </summary>
@@ -52,7 +104,7 @@ namespace AscensionServer
         {
             for (int i = 0; i < battleDamageData.damageNumList.Count; i++)
             {
-                Health -= battleDamageData.damageNumList[i];
+                health -= battleDamageData.damageNumList[i];
             }
         }
         /// <summary>
@@ -62,7 +114,7 @@ namespace AscensionServer
         {
             for (int i = 0; i < battleDamageData.returnDamageNumList.Count; i++)
             {
-                Health -= battleDamageData.returnDamageNumList[i];
+                health -= battleDamageData.returnDamageNumList[i];
             }
         }
         /// <summary>
@@ -70,32 +122,33 @@ namespace AscensionServer
         /// </summary>
         public void OnEnduranceCost(BattleSkill battleSkill)
         {
-            Endurance -= battleSkill.EnduranceCost;
+            endurance -= battleSkill.EnduranceCost;
         }
 
-        public RoleBattleData()
+        public RoleBattleData(IRoleBattleData buffRoleBattleData)
         {
-            Attack = 20;
-            MaxHealth = 100;
-            Health = 100;
-            Defence =5;
-            MaxEndurance = 200;
-            Endurance = 200;
-            EnduranceReply = 20;
-            ActionBar = 1000;
-            CritProp = 25;
-            DodgeProp = 25;
-            ReceiveDamage = 100;
-            Pierce = 10;
-            ReboundDamage = 10;
-            CritDamage = 150;
-            CritResistance = 0;
+            attack = 20;
+            maxHealth = 100;
+            health = 100;
+            defence =5;
+            maxEndurance = 200;
+            endurance = 200;
+            enduranceReply = 20;
+            actionBar = 1000;
+            critProp = 25;
+            dodgeProp = 25;
+            receiveDamage = 100;
+            pierce = 10;
+            reboundDamage = 10;
+            critDamage = 150;
+            critResistance = 0;
+            this.buffRoleBattleData = buffRoleBattleData;
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, BattleAttackSkillData>>(out var tempSkillDict);
             BattleSkillList = new List<BattleSkill>();
-            BattleSkillList.Add(new BattleSkill(tempSkillDict[3001],1));
-            BattleSkillList.Add(new BattleSkill(tempSkillDict[3002],1));
+            //BattleSkillList.Add(new BattleSkill(tempSkillDict[3001],1));
+            //BattleSkillList.Add(new BattleSkill(tempSkillDict[3002],1));
             BattleSkillList.Add(new BattleSkill(tempSkillDict[3003],1));
-            BattleSkillList.Add(new BattleSkill(tempSkillDict[3004],1));
+            //BattleSkillList.Add(new BattleSkill(tempSkillDict[3004],1));
             for (int i = 0; i < BattleSkillList.Count; i++)
             {
                 AllSkillProp += BattleSkillList[i].TriggerProb;

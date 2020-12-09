@@ -11,6 +11,22 @@ namespace AscensionServer
     [CustomeModule]
     public class BattleRoomManager:Module<BattleRoomManager>
     {
+        #region json数据
+        private Dictionary<int, BattleBuffData> battlebuffDataDict;
+        public Dictionary<int,BattleBuffData> BattleBuffDataDict
+        {
+            get
+            {
+                if (battlebuffDataDict == null)
+                {
+                    GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, BattleBuffData>>(out var tempDict);
+                    battlebuffDataDict = tempDict;
+                }
+                return battlebuffDataDict;
+            }
+        }
+        #endregion
+
         //战斗房间id起始位置
         int battleRoomIdStartIndex = 1000;
         //回收后可被使用的房间Id列表

@@ -14,13 +14,15 @@ namespace AscensionServer
 
         public RoleBattleData roleBattleData;
 
-
+        public BattleBuffController battleBuffController;
 
         public void Init(int roleId)
         {
             this.RoleId = roleId;
+            battleBuffController = new BattleBuffController(roleBattleData);
             roleBattleData = GetRoleBattleData(roleId);
             RemainActionBar = roleBattleData.ActionBar;
+            battleBuffController.roleBattleData = roleBattleData;
         }
 
         /// <summary>
@@ -57,7 +59,7 @@ namespace AscensionServer
         //待完善，需要从数据库拿取人物数据
         RoleBattleData GetRoleBattleData(int roleId)
         {
-            RoleBattleData roleBattleData = new RoleBattleData() { };
+            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController) { };
             return roleBattleData;
         }
 
