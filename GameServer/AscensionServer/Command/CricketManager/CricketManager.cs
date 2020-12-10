@@ -20,21 +20,22 @@ namespace AscensionServer
 
         public void C2SCricket(OperationData opData)
         {
-            var data = Utility.Json.ToObject<Dictionary<byte,string>>(opData.DataMessage.ToString());
+            var data = Utility.Json.ToObject<Dictionary<byte,object>>(opData.DataMessage.ToString());
             Utility.Debug.LogInfo("yzqData请求蛐蛐属性:" +Utility.Json.ToJson(data));
             foreach (var item in data)
             {
-                var dict = Utility.Json.ToObject<Dictionary<byte, string>>(item.Value);
+                var dict = Utility.Json.ToObject<Dictionary<byte, object>>(item.Value.ToString());
                 switch ((CricketOperateType)item.Key)
                 {
                     case CricketOperateType.AddCricket:
-                        var roleObj = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.Role]);
-                        var cricket = Utility.Json.ToObject<Cricket>(dict[(byte)ParameterCode.Cricket]);
-                        Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID+"蛐蛐id"+ cricket.CricketID);
+                        var roleObj = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.Role].ToString());
+                        var cricket = Utility.Json.ToObject<Cricket>(dict[(byte)ParameterCode.Cricket].ToString());
+                        Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID + "蛐蛐id" + cricket.CricketID);
                         RoleCricketManager.AddCricket(cricket.CricketID, roleObj.RoleID);
                         break;
                     case CricketOperateType.GetCricket:
-                        var role = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.RoleCricket]);
+                        var role = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.RoleCricket].ToString());
+                        Utility.Debug.LogInfo("yzqData添加蛐蛐:" + role.RoleID);
                         RoleCricketManager.GetRoleCricket(role.RoleID);
                         break;
                     case CricketOperateType.GetCricketStatus:
@@ -42,8 +43,8 @@ namespace AscensionServer
                     case CricketOperateType.RemoveCricket:
                         break;
                     case CricketOperateType.AddPoint:
-                        var roleTemp = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.Role]);
-                        var pointObj = Utility.Json.ToObject<CricketPointDTO>(dict[(byte)ParameterCode.CricketPoint]);
+                        var roleTemp = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.Role].ToString());
+                        var pointObj = Utility.Json.ToObject<CricketPointDTO>(dict[(byte)ParameterCode.CricketPoint].ToString());
                         RoleCricketManager.AddPointForScricket(roleTemp.RoleID, pointObj.CricketID, pointObj);
                         break;
                     case CricketOperateType.ResetPoint:

@@ -24,7 +24,7 @@ namespace AscensionServer
             Dictionary<int, CricketStatus> statusDict = new Dictionary<int, CricketStatus>();
             Dictionary<int, CricketPoint> pointDict = new Dictionary<int, CricketPoint>();
             Dictionary<int, CricketAptitude> aptitudeDict = new Dictionary<int, CricketAptitude>();
-            Dictionary<byte, string> dataDict = new Dictionary<byte, string>();
+            Dictionary<byte, object> dataDict = new Dictionary<byte, object>();
             Dictionary<byte, string> messageDict = new Dictionary<byte, string>();
             if (roleCricket!=null)
             {
@@ -60,10 +60,10 @@ namespace AscensionServer
 
                 }
 
-                dataDict.Add((byte)ParameterCode.Cricket,Utility.Json.ToJson(cricketsDict));
-                dataDict.Add((byte)ParameterCode.CricketStatus, Utility.Json.ToJson(statusDict));
-                dataDict.Add((byte)ParameterCode.CricketPoint, Utility.Json.ToJson(pointDict)); 
-                dataDict.Add((byte)ParameterCode.CricketAptitude, Utility.Json.ToJson(aptitudeDict));
+                dataDict.Add((byte)ParameterCode.Cricket, cricketsDict);
+                dataDict.Add((byte)ParameterCode.CricketStatus, statusDict);
+                dataDict.Add((byte)ParameterCode.CricketPoint, pointDict); 
+                dataDict.Add((byte)ParameterCode.CricketAptitude, aptitudeDict);
                 Utility.Debug.LogInfo("yzqData请求蛐蛐属性发送了:" + Utility.Json.ToJson(dataDict));
                 messageDict.Add((byte)CricketOperateType.GetCricket,Utility.Json.ToJson(dataDict));
                 GameManager.CustomeModule<CricketManager>().S2CCricketMessage(roleid,Utility.Json.ToJson(messageDict),ReturnCode.Success);

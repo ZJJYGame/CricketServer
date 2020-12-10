@@ -43,7 +43,8 @@ namespace AscensionServer
                         var exist = peerAgent.ContainsKey(remoteRoleType);
                         if (!exist)
                         {
-                          var isture=  GameManager.CustomeModule<RoleManager>().TryAdd(role.RoleID, roleEntity);
+                            GameManager.CustomeModule<RoleManager>().TryRemove(role.RoleID);
+                            var isture=  GameManager.CustomeModule<RoleManager>().TryAdd(role.RoleID, roleEntity);
                             peerAgent.TryAdd(remoteRoleType, roleEntity);
                             Utility.Debug.LogInfo("yzqData登录成功RoleID:"+ role.RoleID+ isture);
                             GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID, Utility.Json.ToJson(dataDict), ReturnCode.Success);
