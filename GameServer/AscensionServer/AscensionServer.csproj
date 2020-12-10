@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\Localphotonserver\Criket\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
+    <OutputPath>..\..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -181,6 +181,7 @@
     <Compile Include="Command\CricketManager\CricketManager.cs" />
     <Compile Include="Command\CricketManager\RoleCricketManager.Calculate.cs" />
     <Compile Include="Command\CricketManager\RoleCricketManager.cs" />
+    <Compile Include="Command\Inventory\InventoryManager.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginHandler.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginManager.cs" />
     <Compile Include="Command\RegisterAndLogin\RegisterMananger\RegisterHandler.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="DataObjectMap\CricketMap.cs" />
     <Compile Include="DataObjectMap\CricketPointMap.cs" />
     <Compile Include="DataObjectMap\CricketStatusMap.cs" />
+    <Compile Include="DataObjectMap\InventoryMap.cs" />
     <Compile Include="DataObjectMap\RoleAssetsMap.cs" />
     <Compile Include="DataObjectMap\RoleCricketMap.cs" />
     <Compile Include="DataObjectMap\RoleMap.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="DataObject\CricketAptitude.cs" />
     <Compile Include="DataObject\CricketPoint.cs" />
     <Compile Include="DataObject\CricketStatus.cs" />
+    <Compile Include="DataObject\Inventory.cs" />
     <Compile Include="DataObject\Role.cs" />
     <Compile Include="DataObject\RoleAssets.cs" />
     <Compile Include="DataObject\RoleCricket.cs" />

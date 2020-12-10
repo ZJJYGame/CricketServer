@@ -43,10 +43,12 @@
   <ItemGroup>
     <Compile Include="Crickey\subCmd\CricketOperate.cs" />
     <Compile Include="DTO\BattleTransferDTO.cs" />
+    <Compile Include="Crickey\subCmd\subInventoryOp.cs" />
     <Compile Include="DTO\CricketAptitudeDTO.cs" />
     <Compile Include="DTO\CricketDTO.cs" />
     <Compile Include="DTO\CricketPointDTO.cs" />
     <Compile Include="DTO\CricketStatusDTO.cs" />
+    <Compile Include="DTO\InventoryDTO.cs" />
     <Compile Include="DTO\RoleAssetsDTO.cs" />
     <Compile Include="DTO\RoleCricketDTO.cs" />
     <Compile Include="DTO\RoleDTO.cs" />
