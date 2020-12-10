@@ -31,7 +31,19 @@ namespace AscensionServer
 
         }
 
-
+        /// <summary>
+        /// 获取资质等随机随机
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <param name="num"></param>
+        public static int RandomNum(int min,int max)
+        {
+            int num = 50;
+            Random random = new Random();
+            num= random.Next(min,max);
+            return num;
+        }
 
 
     }

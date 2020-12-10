@@ -45,7 +45,6 @@ namespace AscensionServer
                         {
                           var isture=  GameManager.CustomeModule<RoleManager>().TryAdd(role.RoleID, roleEntity);
                             peerAgent.TryAdd(remoteRoleType, roleEntity);
-                            (peer as AscensionPeer).RoleEntity = roleEntity;
                             Utility.Debug.LogInfo("yzqData登录成功RoleID:"+ role.RoleID+ isture);
                             GameManager.CustomeModule<LoginManager>().S2CLogin(role.RoleID, Utility.Json.ToJson(dataDict), ReturnCode.Success);
                         }

@@ -28,10 +28,13 @@ namespace AscensionServer
                 switch ((CricketOperateType)item.Key)
                 {
                     case CricketOperateType.AddCricket:
+                        var roleObj = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.Role]);
+                        var cricket = Utility.Json.ToObject<Cricket>(dict[(byte)ParameterCode.Cricket]);
+                        Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID+"蛐蛐id"+ cricket.CricketID);
+                        RoleCricketManager.AddCricket(cricket.CricketID, roleObj.RoleID);
                         break;
                     case CricketOperateType.GetCricket:
                         var role = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.RoleCricket]);
-                        Utility.Debug.LogInfo("yzqData请求蛐蛐属性:" + role.RoleID);
                         RoleCricketManager.GetRoleCricket(role.RoleID);
                         break;
                     case CricketOperateType.GetCricketStatus:
@@ -39,10 +42,9 @@ namespace AscensionServer
                     case CricketOperateType.RemoveCricket:
                         break;
                     case CricketOperateType.AddPoint:
-                        var roleObj = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.Role]);
+                        var roleTemp = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.Role]);
                         var pointObj = Utility.Json.ToObject<CricketPointDTO>(dict[(byte)ParameterCode.CricketPoint]);
-                        Utility.Debug.LogInfo("yzqData请求蛐蛐属性:" + roleObj.RoleID);
-                        RoleCricketManager.AddPointForScricket(roleObj.RoleID, pointObj.CricketID, pointObj);
+                        RoleCricketManager.AddPointForScricket(roleTemp.RoleID, pointObj.CricketID, pointObj);
                         break;
                     case CricketOperateType.ResetPoint:
                         break;
