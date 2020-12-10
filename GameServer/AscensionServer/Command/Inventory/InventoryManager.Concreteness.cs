@@ -47,9 +47,19 @@ namespace AscensionServer
         /// <returns></returns>
         public static Dictionary<byte,object> xRS2CParams()
         {
+            Dictionary<byte, object> paramsS2CDict = new Dictionary<byte, object>();
+            return paramsS2CDict;
+        }
+        /// <summary>
+        /// 统一sub码
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<byte, object> xRS2CSub()
+        {
             Dictionary<byte, object> subS2CDict = new Dictionary<byte, object>();
             return subS2CDict;
         }
+
         /// <summary>
         /// 统一发送
         /// </summary>
@@ -59,7 +69,7 @@ namespace AscensionServer
         {
             OperationData opData = new OperationData();
             opData.OperationCode = op;
-            opData.DataMessage = xRS2CParams();
+            opData.DataMessage = xRS2CSub();
             GameManager.CustomeModule<RoleManager>().SendMessage(roleId, opData);
         }
 
@@ -72,7 +82,8 @@ namespace AscensionServer
                 var xRserver = xRCriteriaSelectMethod<Inventory>(nHcriteria);
                 Utility.Debug.LogInfo("老陆==>" + xRserver.ItemDict);
                 xRS2CParams().Add((byte)ParameterCode.RoleInventory, xRserver.ItemDict);
-                xRS2CSend(roleId, (byte)subInventoryOp.Get);
+                xRS2CSub().Add((byte)subInventoryOp.Get, xRS2CParams());
+                xRS2CSend(roleId, (byte)ATCmd.SyncInventory);
             }
         }
 
