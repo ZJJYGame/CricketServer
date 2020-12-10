@@ -8,6 +8,7 @@ using Cosmos.Reference;
 using AscensionProtocol;
 using Protocol;
 
+
 namespace AscensionServer
 {
     [CustomeModule]
@@ -54,7 +55,17 @@ namespace AscensionServer
 
         void EnterBattleHandler(OperationData OpData)
         {
-            Utility.Debug.LogError("收到战斗请求");
+            Utility.Debug.LogError("收到战斗请求=>"+ OpData.DataMessage.ToString());
+            Dictionary<byte, object> tempDict = Utility.Json.ToObject<Dictionary<byte, object>>(OpData.DataMessage.ToString());
+            int roleId = Convert.ToInt32(tempDict[(byte)ParameterCode.RoleCricket]);
+            CreateRoom(roleId, 111);
+        }
+        public void S2CEnterBattle(int roleid,List<BattleRoleActionData> battleRoleActionDataList)
+        {
+            OperationData operationData = new OperationData();
+            operationData.DataMessage = Utility.Json.ToJson(battleRoleActionDataList);
+            operationData.OperationCode = (ushort)ATCmd.SyncBattle;
+            GameManager.CustomeModule<RoleManager>().SendMessage(roleid, operationData);
         }
 
         /// <summary>

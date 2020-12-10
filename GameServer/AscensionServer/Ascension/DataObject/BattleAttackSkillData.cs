@@ -12,6 +12,7 @@ namespace AscensionServer
     {
         public int skillId;
         public string name;
+        public bool isAttackSkill;
         public string describe;
         public int enduranceCost;
         public int triggerProb;

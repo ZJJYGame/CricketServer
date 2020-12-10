@@ -33,6 +33,7 @@ namespace AscensionProtocol
         public List<bool> IsDodgeList { get; set; }
         public List<int> ReturnDamageList { get; set; }
         public List<int> AddBuffList { get; set; }
+        public List<int> TriggerSkillList { get; set; }
         public BattleActionData()
         {
             DamageList = new List<int>();
@@ -40,6 +41,7 @@ namespace AscensionProtocol
             IsDodgeList = new List<bool>();
             ReturnDamageList = new List<int>();
             AddBuffList = new List<int>();
+            TriggerSkillList = new List<int>();
         }
     }
 

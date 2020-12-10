@@ -80,34 +80,66 @@ namespace AscensionServer
                 attackPlayer.battleBuffController.UpdateBuffTime(offestTime);
                 defendPlayer.battleBuffController.UpdateBuffTime(offestTime);
 
-                BattleSkill battleSkill = attackPlayer.RandomSkill();
-                BattleDamageData battleDamageData = GetDamageData(battleSkill, attackPlayer, defendPlayer);
-                //伤害结算
-                defendPlayer.roleBattleData.OnHurt(battleDamageData);
-                attackPlayer.roleBattleData.OnReboundHurt(battleDamageData);
-                //耐力消耗
-                attackPlayer.roleBattleData.OnEnduranceCost(battleSkill);
-                //显示
-                Utility.Debug.LogInfo(attackPlayer.RoleId + "使用技能" + battleSkill.SkillId + "攻击了" + defendPlayer.RoleId);
-                for (int i = 0; i < battleDamageData.damageNumList.Count; i++)
+                BattleSkill attackBattleSkill = attackPlayer.RandomSkill(true);
+                BattleDamageData attackBattleDamageData = GetDamageData(attackBattleSkill, attackPlayer, defendPlayer);
+                List<BattleSkill> defendBattleSkillList = new List<BattleSkill>();
+                List<BattleDamageData> defendBattleDamageDataList = new List<BattleDamageData>();
+                for (int i = 0; i < attackBattleDamageData.isDodgeList.Count; i++)
                 {
-                    if (battleDamageData.isDodgeList[i])
+                    if (!attackBattleDamageData.isDodgeList[i])
+                    {
+                        BattleSkill defendBattleSkill = defendPlayer.RandomSkill(false);
+                        BattleDamageData defendBattleDamageData = GetDamageData(defendBattleSkill, defendPlayer, attackPlayer);
+                        defendBattleSkillList.Add(defendBattleSkill);
+                        defendBattleDamageDataList.Add(defendBattleDamageData);
+                    }
+                }
+                //伤害结算
+                defendPlayer.roleBattleData.OnHurt(attackBattleDamageData);
+                attackPlayer.roleBattleData.OnReboundHurt(attackBattleDamageData);
+                //耐力消耗
+                attackPlayer.roleBattleData.OnEnduranceCost(attackBattleSkill);
+                for (int i = 0; i < defendBattleSkillList.Count; i++)
+                {
+                    defendPlayer.roleBattleData.OnEnduranceCost(defendBattleSkillList[i]);
+                }
+                //显示
+                Utility.Debug.LogInfo(attackPlayer.RoleId + "使用技能" + attackBattleSkill.SkillId + "攻击了" + defendPlayer.RoleId);
+                for (int i = 0; i < attackBattleDamageData.damageNumList.Count; i++)
+                {
+                    if (attackBattleDamageData.isDodgeList[i])
                         Utility.Debug.LogInfo("闪避了");
                     else
-                        Utility.Debug.LogInfo("造成了" + battleDamageData.damageNumList[i] + "点伤害" + (battleDamageData.isCritList[i] ? "暴击" : "没有暴击"));
+                        Utility.Debug.LogInfo("造成了" + attackBattleDamageData.damageNumList[i] + "点伤害" + (attackBattleDamageData.isCritList[i] ? "暴击" : "没有暴击"));
                 }
                 //添加buff
-                for (int i = 0; i < battleDamageData.battleSkillAddBuffList.Count; i++)
+                for (int i = 0; i < attackBattleDamageData.battleSkillAddBuffList.Count; i++)
                 {
-                    if (battleDamageData.battleSkillAddBuffList[i].TargetSelf)//对自己
+                    if (attackBattleDamageData.battleSkillAddBuffList[i].TargetSelf)//对自己
                     {
-                        Utility.Debug.LogInfo(attackPlayer.RoleId + "添加buff" + battleDamageData.battleSkillAddBuffList[i].BuffId);
-                        attackPlayer.battleBuffController.AddBuff(battleDamageData.battleSkillAddBuffList[i], battleDamageData.skillId);
+                        Utility.Debug.LogInfo(attackPlayer.RoleId + "添加buff" + attackBattleDamageData.battleSkillAddBuffList[i].BuffId);
+                        attackPlayer.battleBuffController.AddBuff(attackBattleDamageData.battleSkillAddBuffList[i], attackBattleDamageData.skillId);
                     }
                     else
                     {
-                        Utility.Debug.LogInfo(defendPlayer.RoleId + "添加buff" + battleDamageData.battleSkillAddBuffList[i].BuffId);
-                        defendPlayer.battleBuffController.AddBuff(battleDamageData.battleSkillAddBuffList[i], battleDamageData.skillId);
+                        Utility.Debug.LogInfo(defendPlayer.RoleId + "添加buff" + attackBattleDamageData.battleSkillAddBuffList[i].BuffId);
+                        defendPlayer.battleBuffController.AddBuff(attackBattleDamageData.battleSkillAddBuffList[i], attackBattleDamageData.skillId);
+                    }
+                }
+                for (int i = 0; i < defendBattleDamageDataList.Count; i++)
+                {
+                    for (int j = 0; j < defendBattleDamageDataList[i].battleSkillAddBuffList.Count; j++)
+                    {
+                        if (defendBattleDamageDataList[i].battleSkillAddBuffList[j].TargetSelf)//对自己
+                        {
+                            Utility.Debug.LogInfo(defendPlayer.RoleId + "添加buff" + defendBattleDamageDataList[i].battleSkillAddBuffList[j].BuffId);
+                            defendPlayer.battleBuffController.AddBuff(defendBattleDamageDataList[i].battleSkillAddBuffList[j], defendBattleDamageDataList[i].skillId);
+                        }
+                        else
+                        {
+                            Utility.Debug.LogInfo(attackPlayer.RoleId + "添加buff" + defendBattleDamageDataList[i].battleSkillAddBuffList[j].BuffId);
+                            attackPlayer.battleBuffController.AddBuff(defendBattleDamageDataList[i].battleSkillAddBuffList[j], defendBattleDamageDataList[i].skillId);
+                        }
                     }
                 }
                 //触发buff
@@ -117,11 +149,19 @@ namespace AscensionServer
                 //恢复进度条
                 attackPlayer.TryRestartActionBar();
 
-                battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { battleDamageData }, new List<int>() { attackPlayer.RoleId }, false));
+                List<int> defendTriggerSkillList = new List<int>();
+                for (int i = 0; i < defendBattleSkillList.Count; i++)
+                {
+                    defendTriggerSkillList.Add(defendBattleSkillList[i].SkillId);
+                }
+
+                battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData }, null, defendTriggerSkillList, new List<int>() { attackPlayer.RoleId }, false));
                 //Utility.Debug.LogInfo(attackPlayer.RoleId + "的行动条为" + attackPlayer.RemainActionBar + "," + defendPlayer.RoleId+"的行动条为" + defendPlayer.RemainActionBar);
             }
             Utility.Debug.LogInfo("战斗计算流程结束");
             Utility.Debug.LogInfo("战斗传输数据=>" + Utility.Json.ToJson(battleRoleActionDataList));
+            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerOne.RoleId, battleRoleActionDataList);
+            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerTwo.RoleId, battleRoleActionDataList);
         }
 
         BattleDamageData GetDamageData(BattleSkill battleSkill, BattleCharacterEntity attackPlayer, BattleCharacterEntity defendPlayer)
@@ -167,7 +207,7 @@ namespace AscensionServer
             return battleDamageData;
         }
         //设置一次行为的传输数据
-        BattleRoleActionData GetTransferData(List<BattleDamageData> battleDamageDataList,List<int> roleIdList,bool isCrash)
+        BattleRoleActionData GetTransferData(List<BattleDamageData> battleDamageDataList,List<int> attackTriggerSkillList,List<int> defendTriggerList,List<int> roleIdList,bool isCrash)
         {
             BattleRoleActionData battleRoleActionData = new BattleRoleActionData();
             battleRoleActionData.Time = nowTime;
@@ -186,6 +226,7 @@ namespace AscensionServer
                 attackBattleActionData.ReturnDamageList.Add(attackDamageData.returnDamageNumList[i]);
             for (int i = 0; i < attackDamageData.battleSkillAddBuffList.Count; i++)
                 attackBattleActionData.AddBuffList.Add(attackDamageData.battleSkillAddBuffList[i].BuffId);
+            attackBattleActionData.TriggerSkillList = defendTriggerList;
             if (isCrash)
             {
 

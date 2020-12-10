@@ -28,17 +28,29 @@ namespace AscensionServer
         /// <summary>
         /// 随机使用一个技能
         /// </summary>
-        public BattleSkill RandomSkill()
+        public BattleSkill RandomSkill(bool isAttackSkill)
         {
-            int randomNum = GameManager.CustomeModule<BattleRoomManager>() .random.Next(0, roleBattleData.AllSkillProp);
+            List<BattleSkill> randomSkillList;
+            int randomNum;
+            if (isAttackSkill)
+            {
+                randomSkillList = roleBattleData.BattleAttackSkillList;
+                randomNum = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, roleBattleData.AllAttackSkillProp);
+            }
+            else
+            {
+                randomSkillList = roleBattleData.BattleDefendSkillList;
+                randomNum = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, roleBattleData.AllDefendSkillProp);
+            }
+            
             BattleSkill resultSkill;
             int propNum=0;
-            for (int i = 0; i < roleBattleData.BattleSkillList.Count; i++)
+            for (int i = 0; i < randomSkillList.Count; i++)
             {
-                propNum += roleBattleData.BattleSkillList[i].TriggerProb;
+                propNum += randomSkillList[i].TriggerProb;
                 if (randomNum <= propNum)
                 {
-                    resultSkill = roleBattleData.BattleSkillList[i];
+                    resultSkill = randomSkillList[i];
                     return resultSkill;
                 }
             }
