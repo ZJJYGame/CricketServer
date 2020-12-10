@@ -10,7 +10,7 @@ namespace AscensionServer
     {
         public InventoryMap()
         {
-            Id(x => x.RoleId).GeneratedBy.Assigned().Column("roleid");
+            Id(x => x.RoleID).GeneratedBy.Assigned().Column("roleid");
             Map(x => x.ItemDict).Column("itemdict");
             Table("inventory");
         }

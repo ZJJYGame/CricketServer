@@ -50,5 +50,6 @@
         /// </summary>
         RoleStatusSet = 19,
         Role = 20,
+        RoleInventory =21,
     }
 }

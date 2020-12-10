@@ -17,11 +17,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\Localphotonserver\Criket\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
+    <OutputPath>..\..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\AscensionServer.xml</DocumentationFile>
+    <DocumentationFile>..\..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\Cache\AscensionServer.xml</DocumentationFile>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -181,6 +181,7 @@
     <Compile Include="Command\CricketManager\CricketManager.cs" />
     <Compile Include="Command\CricketManager\RoleCricketManager.Calculate.cs" />
     <Compile Include="Command\CricketManager\RoleCricketManager.cs" />
+    <Compile Include="Command\Inventory\InventoryManager.Concreteness.cs" />
     <Compile Include="Command\Inventory\InventoryManager.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginHandler.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginManager.cs" />
