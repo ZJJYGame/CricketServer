@@ -29,6 +29,7 @@ namespace AscensionServer
             var cricketStatus = new CricketStatus();
             var cricketAptitude = new CricketAptitude();
             var cricketPoint = new CricketPoint();
+            var inventory = new Inventory();
             if (!isExist)
             {
                 userObj = NHibernateQuerier.Insert(userObj);
@@ -51,6 +52,7 @@ namespace AscensionServer
                 NHibernateQuerier.Insert(cricketAptitude);
                 cricketPoint.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketPoint);
+                NHibernateQuerier.Insert(new Inventory() { RoleID = role.RoleID });
                 OperationData operationData = new OperationData();
                 operationData.DataMessage = Utility.Json.ToJson(role);
                 operationData.ReturnCode = (byte)ReturnCode.Success;
