@@ -38,7 +38,7 @@ namespace AscensionServer
                         Utility.Debug.LogInfo("yzqData添加蛐蛐:" + role.RoleID);
                         RoleCricketManager.GetRoleCricket(role.RoleID);
                         break;
-                    case CricketOperateType.GetCricketStatus:
+                    case CricketOperateType.GetTempCricket:
                         break;
                     case CricketOperateType.RemoveCricket:
                         break;
