@@ -11,7 +11,10 @@ namespace AscensionServer
 {
    public static  partial class RoleCricketManager
     {
-
+        /// <summary>
+        /// 获取
+        /// </summary>
+        /// <param name="roleid"></param>
         public static void GetRoleCricket(int roleid)
         {
             NHCriteria nHCriteriaRole = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("RoleID", roleid);
@@ -21,7 +24,8 @@ namespace AscensionServer
             Dictionary<int, CricketStatus> statusDict = new Dictionary<int, CricketStatus>();
             Dictionary<int, CricketPoint> pointDict = new Dictionary<int, CricketPoint>();
             Dictionary<int, CricketAptitude> aptitudeDict = new Dictionary<int, CricketAptitude>();
-            Dictionary<byte, string> dataDict = new Dictionary<byte, string>();
+            Dictionary<byte, object> dataDict = new Dictionary<byte, object>();
+            Dictionary<byte, string> messageDict = new Dictionary<byte, string>();
             if (roleCricket!=null)
             {
                 var cricketDict = Utility.Json.ToObject<Dictionary<int,int>>(roleCricket.CricketList);
@@ -56,12 +60,13 @@ namespace AscensionServer
 
                 }
 
-                dataDict.Add((byte)ParameterCode.Cricket,Utility.Json.ToJson(cricketsDict));
-                dataDict.Add((byte)ParameterCode.CricketStatus, Utility.Json.ToJson(statusDict));
-                dataDict.Add((byte)ParameterCode.CricketPoint, Utility.Json.ToJson(pointDict)); 
-                dataDict.Add((byte)ParameterCode.CricketAptitude, Utility.Json.ToJson(aptitudeDict));
+                dataDict.Add((byte)ParameterCode.Cricket, cricketsDict);
+                dataDict.Add((byte)ParameterCode.CricketStatus, statusDict);
+                dataDict.Add((byte)ParameterCode.CricketPoint, pointDict); 
+                dataDict.Add((byte)ParameterCode.CricketAptitude, aptitudeDict);
                 Utility.Debug.LogInfo("yzqData请求蛐蛐属性发送了:" + Utility.Json.ToJson(dataDict));
-                GameManager.CustomeModule<CricketManager>().S2CCricketMessage(roleid,Utility.Json.ToJson(dataDict),ReturnCode.Success);
+                messageDict.Add((byte)CricketOperateType.GetCricket,Utility.Json.ToJson(dataDict));
+                GameManager.CustomeModule<CricketManager>().S2CCricketMessage(roleid,Utility.Json.ToJson(messageDict),ReturnCode.Success);
                 
             }
 
@@ -76,7 +81,58 @@ namespace AscensionServer
         /// <param name="roleid"></param>
         public static void AddCricket(int cricketid,int roleid)
         {
+            NHCriteria nHCriteriaRole = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("RoleID", roleid);
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketLevel>>(out var cricketLevelDict);
 
+            var roleCricket = NHibernateQuerier.CriteriaSelect<RoleCricket>(nHCriteriaRole);
+            RoleCricketDTO roleCricketDTO = new RoleCricketDTO();
+            roleCricketDTO.RoleID = roleCricket.RoleID;
+            roleCricketDTO.CricketList = Utility.Json.ToObject<Dictionary<int, int>>(roleCricket.CricketList);
+            roleCricketDTO.TemporaryCrickets = Utility.Json.ToObject<Dictionary<int, int>>(roleCricket.TemporaryCrickets);
+
+            foreach (var item in roleCricketDTO.TemporaryCrickets)
+            {
+                if (item.Value != 0)
+                {
+                    var cricketStatus = new CricketStatus();
+                    var cricketAptitude = new CricketAptitude();
+                    cricketAptitude.ConAptitude = RandomNum(1, 101);
+                    cricketAptitude.StrAptitude = RandomNum(1, 101);
+                    cricketAptitude.DefAptitude = RandomNum(1, 101);
+                    cricketAptitude.DexAptitude = RandomNum(1, 101);
+                    var cricket = new Cricket();
+                    cricket = NHibernateQuerier.Insert(cricket);
+                    cricketStatus.CricketID = cricket.ID;
+                    NHibernateQuerier.Insert(cricketStatus);
+                    cricketAptitude.CricketID = cricket.ID;
+                    NHibernateQuerier.Insert(cricketAptitude);
+                    var cricketPoint = new CricketPoint();
+                    cricketPoint.FreePoint = cricketLevelDict[cricket.LevelID].AssignPoint;
+                    cricketPoint.CricketID = cricket.ID;
+                    NHibernateQuerier.Insert(cricketPoint);
+
+                }
+
+
+            }
+
+
+
+
+
+            GetRoleCricket(roleid);
+        }
+
+        public static void RemoveCricket(int cricketid, int roleid)
+        {
+            NHCriteria nHCriteriaRole = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("RoleID", roleid);
+            NHibernateQuerier.CriteriaSelect<RoleCricket>(nHCriteriaRole);
+
+            NHCriteria nHCriteria = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("ID", cricketid);
+            Cricket cricket = new Cricket();
+            //NHibernateQuerier.Delete<Cricket>();
+
+            //NHCriteria nHCriteriaCricket = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("CricketID", cricketid);
         }
 
         /// <summary>
@@ -130,8 +186,5 @@ namespace AscensionServer
             }
 
         }
-
-
-
     }
 }

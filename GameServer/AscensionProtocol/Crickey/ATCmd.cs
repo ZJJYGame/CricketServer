@@ -28,6 +28,10 @@ namespace AscensionProtocol
         /// </summary>
         SyncCricket =6,
         /// <summary>
+        /// 同步背包
+        /// </summary>
+        SyncInventory = 7,
+        /// <summary>
         /// 测试消息队列
         /// </summary>
         MessageQueue = 187,

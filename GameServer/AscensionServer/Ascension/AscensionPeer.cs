@@ -66,8 +66,9 @@ namespace AscensionServer
                 //若存在，则广播到各个模块；
                 var opData = new OperationData();
                 opData.OperationCode = ProtocolDefine.OPR_PLYAER_LOGOFF;
-                opData.DataMessage = RoleEntity;
-                Utility.Debug.LogInfo("1yzqData移除成功RoleID:");
+                opData.DataMessage = roleEntity;
+                //opData.DataMessage = (roleEntity as RoleEntity).RoleId;
+                Utility.Debug.LogInfo("yzqData获取移除RoleID:"+ (roleEntity as RoleEntity).RoleId);
                 var t = CommandEventCore.Instance.DispatchAsync(ProtocolDefine.OPR_PLYAER_LOGOFF, opData);
             }
             GameManager.CustomeModule<PeerManager>().TryRemove(SessionId);
