@@ -57,8 +57,6 @@ namespace AscensionServer
                         var cricketAptitude = NHibernateQuerier.CriteriaSelect<CricketAptitude>(nHCriteriastatus);
                         aptitudeDict.Add(item.Value, cricketAptitude);
                     }
-
-
                 }
 
                 dataDict.Add((byte)ParameterCode.Cricket, cricketsDict);
@@ -68,7 +66,7 @@ namespace AscensionServer
                 Utility.Debug.LogInfo("yzqData请求蛐蛐属性发送了:" + Utility.Json.ToJson(dataDict));
                 messageDict.Add((byte)CricketOperateType.GetCricket,Utility.Json.ToJson(dataDict));
                 GameManager.CustomeModule<CricketManager>().S2CCricketMessage(roleid,Utility.Json.ToJson(messageDict),ReturnCode.Success);
-                
+
             }
 
             GameManager.ReferencePoolManager.Despawns(nHCriterias);

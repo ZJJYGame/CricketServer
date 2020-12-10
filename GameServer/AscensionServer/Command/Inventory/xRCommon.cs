@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AscensionProtocol;
 
 namespace AscensionServer
 {
-    public class xRCommon
+    public partial class xRCommon
     {
         /// <summary>
         /// 映射T
@@ -64,12 +65,12 @@ namespace AscensionServer
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="op"></param>
-        public static void xRS2CSend(int roleId, ushort op, short rc)
+        public static void xRS2CSend(int roleId, ushort op, short rc,object tip =null)
         {
             OperationData opData = new OperationData();
             opData.OperationCode = op;
             opData.ReturnCode = rc;
-            opData.DataMessage = xRS2CSub();
+            opData.DataMessage = rc !=(short)ReturnCode.Success? tip : xRS2CSub();
             GameManager.CustomeModule<RoleManager>().SendMessage(roleId, opData);
         }
 
