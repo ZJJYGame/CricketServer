@@ -70,7 +70,7 @@ namespace AscensionServer
             OperationData opData = new OperationData();
             opData.OperationCode = op;
             opData.ReturnCode = rc;
-            opData.DataMessage = rc !=(short)ReturnCode.Success? tip : xRS2CSub();
+            opData.DataMessage = rc !=(short)ReturnCode.Success? tip : tip;
             GameManager.CustomeModule<RoleManager>().SendMessage(roleId, opData);
         }
 
