@@ -61,14 +61,15 @@ namespace AscensionServer
         }
 
         /// <summary>
-        /// 统一发送
+        /// 统一发送成功 
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="op"></param>
-        public static void xRS2CSend(int roleId,ushort op)
+        public static void xRS2CSend(int roleId,ushort op,short rc)
         {
             OperationData opData = new OperationData();
             opData.OperationCode = op;
+            opData.ReturnCode = rc;
             opData.DataMessage = xRS2CSub();
             GameManager.CustomeModule<RoleManager>().SendMessage(roleId, opData);
         }
@@ -83,7 +84,7 @@ namespace AscensionServer
                 Utility.Debug.LogInfo("老陆==>" + xRserver.ItemDict);
                 xRS2CParams().Add((byte)ParameterCode.RoleInventory, xRserver.ItemDict);
                 xRS2CSub().Add((byte)subInventoryOp.Get, xRS2CParams());
-                xRS2CSend(roleId, (byte)ATCmd.SyncInventory);
+                xRS2CSend(roleId, (byte)ATCmd.SyncInventory,(byte)ReturnCode.Success);
             }
         }
 
