@@ -37,6 +37,7 @@ namespace AscensionServer
                         NHCriteria nHCriteriaCricket = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("ID", item.Value);
                         NHCriteria nHCriteriastatus = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("CricketID", item.Value);
                         nHCriterias.Add(nHCriteriaCricket);
+                        nHCriterias.Add(nHCriteriastatus);
                         var crickets = NHibernateQuerier.CriteriaSelect<Cricket>(nHCriteriaCricket);
                         CricketDTO cricketDTO = new CricketDTO()
                         {
@@ -111,16 +112,13 @@ namespace AscensionServer
                     cricketPoint.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketPoint);
 
+                    roleCricketDTO.TemporaryCrickets[item.Key]= cricket.ID;
+                    break;
                 }
-
-
             }
 
-
-
-
-
-            GetRoleCricket(roleid);
+            roleCricket.CricketList = Utility.Json.ToJson(roleCricketDTO.TemporaryCrickets);
+            NHibernateQuerier.Insert(roleCricket);
         }
 
         public static void RemoveCricket(int cricketid, int roleid)
@@ -177,10 +175,10 @@ namespace AscensionServer
                 cricketPoint.FreePoint -= (cricketPointDTO.Dex + cricketPointDTO.Def + cricketPointDTO.Con + cricketPointDTO.Str);
                 NHibernateQuerier.Update(cricketPoint);
 
-                Dictionary<byte, string> dataDict = new Dictionary<byte, string>();
-                Dictionary<byte, string> cricketPointDict = new Dictionary<byte, string>();
-                cricketPointDict.Add((byte)ParameterCode.CricketPoint,Utility.Json.ToJson(cricketPoint));
-                dataDict.Add((byte)CricketOperateType.AddPoint,Utility.Json.ToJson(cricketPointDict));
+                Dictionary<byte, object> dataDict = new Dictionary<byte, object>();
+                Dictionary<byte, object> cricketPointDict = new Dictionary<byte, object>();
+                cricketPointDict.Add((byte)ParameterCode.CricketPoint, cricketPoint);
+                dataDict.Add((byte)CricketOperateType.AddPoint, cricketPointDict);
                 GameManager.CustomeModule<CricketManager>().S2CCricketMessage(roleid, Utility.Json.ToJson(dataDict), ReturnCode.Success);
 
             }
