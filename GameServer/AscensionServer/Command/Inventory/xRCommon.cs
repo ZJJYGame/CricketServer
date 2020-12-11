@@ -17,7 +17,7 @@ namespace AscensionServer
         /// <typeparam name="T"></typeparam>
         /// <param name="nHCriteria"></param>
         /// <returns></returns>
-        public static T xRCriteriaSelectMethod<T>(NHCriteria nHCriteria)
+        public static T xRCriteria<T>(NHCriteria nHCriteria)
         {
             return NHibernateQuerier.CriteriaSelect<T>(nHCriteria);
         }

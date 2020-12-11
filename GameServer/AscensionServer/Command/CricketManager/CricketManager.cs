@@ -56,6 +56,7 @@ namespace AscensionServer
                     case CricketOperateType.UseItem:
                         break;
                     case CricketOperateType.EnlargeNest:
+                        RoleCricketManager.EnlargeNest(roleObj.RoleID);
                         break;
                     default:
                         break;

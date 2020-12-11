@@ -21,7 +21,7 @@ namespace AscensionServer
             var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
             if (xRCommon.xRVerify<Role>(nHcriteria))
             {
-                var xRserver = xRCommon.xRCriteriaSelectMethod<Inventory>(nHcriteria);
+                var xRserver = xRCommon.xRCriteria<Inventory>(nHcriteria);
                 var xrDict = Utility.Json.ToObject<Dictionary<int, ItemDTO>>(xRserver.ItemDict);
                 if (xrDict.ContainsKey(ItemId) && xrDict[ItemId].ItemAmount>= acount)
                     return true;
@@ -39,7 +39,7 @@ namespace AscensionServer
             var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
             if (xRCommon.xRVerify<Role>(nHcriteria))
             {
-                var xRserver = xRCommon.xRCriteriaSelectMethod<Inventory>(nHcriteria);
+                var xRserver = xRCommon.xRCriteria<Inventory>(nHcriteria);
                 Utility.Debug.LogInfo("老陆==>" + xRserver.ItemDict);
                 var pareams = xRCommon.xRS2CParams();
                 pareams.Add((byte)ParameterCode.RoleInventory, xRserver.ItemDict);
@@ -58,7 +58,7 @@ namespace AscensionServer
             var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
             if (xRCommon.xRVerify<Role>(nHcriteria))
             {
-                var xRserver = xRCommon.xRCriteriaSelectMethod<Inventory>(nHcriteria);
+                var xRserver = xRCommon.xRCriteria<Inventory>(nHcriteria);
                 var xrDict = Utility.Json.ToObject<Dictionary<int, ItemDTO>>(xRserver.ItemDict);
                 foreach (var info in ItemInfo)
                 {
@@ -86,7 +86,7 @@ namespace AscensionServer
             var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
             if (xRCommon.xRVerify<Role>(nHcriteria))
             {
-                var xRserver = xRCommon.xRCriteriaSelectMethod<Inventory>(nHcriteria);
+                var xRserver = xRCommon.xRCriteria<Inventory>(nHcriteria);
                 var xrDict = Utility.Json.ToObject<Dictionary<int, ItemDTO>>(xRserver.ItemDict);
                 foreach (var info in ItemInfo)
                 {

@@ -1,11 +1,12 @@
-﻿NestID	Gold
-1	0
-2	0
-3	0
-4	500
-5	500
-6	500
-7	500
-8	500
-9	500
-10	500
+﻿[
+{"NestID":1,"Gold":0},
+{"NestID":2,"Gold":0},
+{"NestID":3,"Gold":0},
+{"NestID":4,"Gold":500},
+{"NestID":5,"Gold":500},
+{"NestID":6,"Gold":500},
+{"NestID":7,"Gold":500},
+{"NestID":8,"Gold":500},
+{"NestID":9,"Gold":500},
+{"NestID":10,"Gold":500}
+]
