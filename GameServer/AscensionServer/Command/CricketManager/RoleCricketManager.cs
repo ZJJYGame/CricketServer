@@ -61,7 +61,6 @@ namespace AscensionServer
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, messageDict);
             }
         }
-
         /// <summary>
         /// 添加新蛐蛐
         /// </summary>
@@ -218,7 +217,6 @@ namespace AscensionServer
             GameManager.ReferencePoolManager.Despawns(nHCriteriaCricket, nHCriteriaStatus);
             return cricketData;
         }
-
         /// <summary>
         /// 蛐蛐加点
         /// </summary>
@@ -343,7 +341,10 @@ namespace AscensionServer
             else
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Fail, xRCommonTip.xR_err_ReLogin);
         }
-
+        /// <summary>
+        /// 扩充蟋蟀窝
+        /// </summary>
+        /// <param name="roleid"></param>
         public static void EnlargeNest( int roleid)
         {
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, NestLevel>>(out var nestLevelDict);
@@ -366,7 +367,7 @@ namespace AscensionServer
                         dataDict.Add((byte)ParameterCode.RoleAsset, roleAssets);
                         dataDict.Add((byte)ParameterCode.RoleCricket, crickets);
                         var sendDict = xRCommon.xRS2CSub();
-                        sendDict.Add((byte)CricketOperateType.EnlargeNest, dataDict);
+                        sendDict.Add((byte)CricketOperateType.EnlargeNest, Utility.Json.ToJson(dataDict));
                         xRCommon.xRS2CSend(roleid,(ushort)ATCmd.SyncCricket,(short)ReturnCode.Success, sendDict);
                     }
                     else

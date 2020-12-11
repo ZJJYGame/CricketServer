@@ -168,6 +168,8 @@
     <Compile Include="Ascension\DataObject\CricketLevel.cs" />
     <Compile Include="Ascension\DataObject\CricketStatusData.cs" />
     <Compile Include="Ascension\DataObject\NestLevel.cs" />
+    <Compile Include="Ascension\DataObject\PropData.cs" />
+    <Compile Include="Ascension\DataObject\Shop.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffController.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffEntity.cs" />
     <Compile Include="Command\Battle\BattleCharacter\BattleCharacterEntity.cs" />
@@ -190,6 +192,8 @@
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginManager.cs" />
     <Compile Include="Command\RegisterAndLogin\RegisterMananger\RegisterHandler.cs" />
     <Compile Include="Command\RegisterAndLogin\RegisterMananger\RegisterMananger.cs" />
+    <Compile Include="Command\ShopManager\BuyPropManager.cs" />
+    <Compile Include="Command\ShopManager\ShopManager.cs" />
     <Compile Include="DataObjectMap\CricketAptitudeMap.cs" />
     <Compile Include="DataObjectMap\CricketMap.cs" />
     <Compile Include="DataObjectMap\CricketPointMap.cs" />
@@ -230,6 +234,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="JsonData\NestLevel.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\PropData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />
