@@ -26,14 +26,14 @@ namespace AscensionServer
             var dataDict = xRCommon.xRS2CParams();
             if (roleCricket != null)
             {
-                var cricketDict = Utility.Json.ToObject<Dictionary<int, int>>(roleCricket.CricketList);
+                var cricketDict = Utility.Json.ToObject<List<int>>(roleCricket.CricketList);
 
-                foreach (var item in cricketDict)
+                for (int i = 0; i < cricketDict.Count; i++)
                 {
-                    if (item.Value != 0)
+                    if (cricketDict[i] != -1)
                     {
-                        var nHCriteriaCricket = xRCommon.xRNHCriteria("ID", item.Value);
-                        var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", item.Value);
+                        var nHCriteriaCricket = xRCommon.xRNHCriteria("ID", cricketDict[i]);
+                        var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", cricketDict[i]);
                         var crickets = xRCommon.xRCriteriaSelectMethod<Cricket>(nHCriteriaCricket);
                         CricketDTO cricketDTO = new CricketDTO()
                         {
@@ -45,13 +45,13 @@ namespace AscensionServer
                             RankID = crickets.RankID,
                             SkillList = Utility.Json.ToObject<List<int>>(crickets.SkillList)
                         };
-                        cricketsDict.Add(item.Value, cricketDTO);
-                        statusDict.Add(item.Value, xRCommon.xRCriteriaSelectMethod<CricketStatus>(nHCriteriastatus));
-                        pointDict.Add(item.Value, xRCommon.xRCriteriaSelectMethod<CricketPoint>(nHCriteriastatus));
-                        aptitudeDict.Add(item.Value, xRCommon.xRCriteriaSelectMethod<CricketAptitude>(nHCriteriastatus));
+                        cricketsDict.Add(cricketDict[i], cricketDTO);
+                        statusDict.Add(cricketDict[i], xRCommon.xRCriteriaSelectMethod<CricketStatus>(nHCriteriastatus));
+                        pointDict.Add(cricketDict[i], xRCommon.xRCriteriaSelectMethod<CricketPoint>(nHCriteriastatus));
+                        aptitudeDict.Add(cricketDict[i], xRCommon.xRCriteriaSelectMethod<CricketAptitude>(nHCriteriastatus));
                     }
                 }
-
+                dataDict.Add((byte)ParameterCode.RoleCricket, cricketDict);
                 dataDict.Add((byte)ParameterCode.Cricket, cricketsDict);
                 dataDict.Add((byte)ParameterCode.CricketStatus, statusDict);
                 dataDict.Add((byte)ParameterCode.CricketPoint, pointDict);
@@ -76,12 +76,12 @@ namespace AscensionServer
 
             RoleCricketDTO roleCricketDTO = new RoleCricketDTO();
             roleCricketDTO.RoleID = roleCricket.RoleID;
-            roleCricketDTO.CricketList = Utility.Json.ToObject<Dictionary<int, int>>(roleCricket.CricketList);
-            roleCricketDTO.TemporaryCrickets = Utility.Json.ToObject<Dictionary<int, int>>(roleCricket.TemporaryCrickets);
+            roleCricketDTO.CricketList = Utility.Json.ToObject<List<int>>(roleCricket.CricketList);
+            roleCricketDTO.TemporaryCrickets = Utility.Json.ToObject<List<int>>(roleCricket.TemporaryCrickets);
 
-            foreach (var item in roleCricketDTO.TemporaryCrickets)
+            for (int i = 0; i < roleCricketDTO.TemporaryCrickets.Count; i++)
             {
-                if (item.Value != 0)
+                if (roleCricketDTO.TemporaryCrickets[i] != 0)
                 {
                     var cricketStatus = new CricketStatus();
                     var cricketAptitude = new CricketAptitude();
@@ -100,7 +100,7 @@ namespace AscensionServer
                     cricketPoint.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketPoint);
 
-                    roleCricketDTO.TemporaryCrickets[item.Key] = cricket.ID;
+                    roleCricketDTO.TemporaryCrickets[roleCricketDTO.TemporaryCrickets[i]] = cricket.ID;
                     break;
                 }
             }
@@ -113,17 +113,38 @@ namespace AscensionServer
         /// </summary>
         /// <param name="cricketid"></param>
         /// <param name="roleid"></param>
-        public static void RemoveCricket( int roleid,RoleCricketDTO roleCricketDTO)
+        public static void RemoveCricket( int roleid,int index)
         {
             NHCriteria nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", roleid);
             var roleCricket = xRCommon.xRCriteriaSelectMethod<RoleCricket>(nHCriteriaRole);
 
-            //NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketid); ;
-            //NHCriteria nHCriteriaStatus = xRCommon.xRNHCriteria("CricketID", cricketid);
-            var tempCricket = roleCricketDTO.TemporaryCrickets;
-            var crickets = roleCricketDTO.CricketList;
-            if (tempCricket.Count>0)
+            var crickets = Utility.Json.ToObject<List<int>>(roleCricket.CricketList);
+            
+            if (crickets.Contains(index) && index != -1)
             {
+                NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", crickets[index]);
+                var cricket = xRCommon.xRCriteriaSelectMethod<Cricket>(nHCriteria);
+                NHCriteria nHCriteriaStatus = xRCommon.xRNHCriteria("CricketID", crickets[index]);
+                var cricketStatus = xRCommon.xRCriteriaSelectMethod<CricketStatus>(nHCriteriaStatus);
+                if (cricketStatus!=null)
+                {
+                    NHibernateQuerier.Delete(cricketStatus);
+                }
+                var cricketAptitude = xRCommon.xRCriteriaSelectMethod<CricketAptitude>(nHCriteriaStatus);
+                if (cricketAptitude!=null)
+                {
+                    NHibernateQuerier.Delete(cricketAptitude);
+                }
+                var cricketPoint = xRCommon.xRCriteriaSelectMethod<CricketPoint>(nHCriteriaStatus);
+                if (cricketPoint!=null)
+                {
+                    NHibernateQuerier.Delete(cricketPoint);
+                }
+                crickets[index]=-1;
+                roleCricket.CricketList = Utility.Json.ToJson(crickets);
+                NHibernateQuerier.Update(roleCricket);
+
+                GetRoleCricket(roleid,CricketOperateType.UpdCricket);
 
             }
         }
@@ -200,14 +221,14 @@ namespace AscensionServer
             var dataDict = xRCommon.xRS2CParams();
             if (roleCricket != null)
             {
-                var cricketDict = Utility.Json.ToObject<Dictionary<int, int>>(roleCricket.TemporaryCrickets);
+                var cricketDict = Utility.Json.ToObject<List<int>>(roleCricket.TemporaryCrickets);
 
-                foreach (var item in cricketDict)
+                for (int i = 0; i < cricketDict.Count; i++)
                 {
-                    if (item.Value != 0)
+                    if (cricketDict[i] != 0)
                     {
-                        var nHCriteriaCricket = xRCommon.xRNHCriteria("ID", item.Value);
-                        var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", item.Value);
+                        var nHCriteriaCricket = xRCommon.xRNHCriteria("ID", cricketDict[i]);
+                        var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", cricketDict[i]);
                         var crickets = xRCommon.xRCriteriaSelectMethod<Cricket>(nHCriteriaCricket);
                         CricketDTO cricketDTO = new CricketDTO()
                         {
@@ -219,12 +240,12 @@ namespace AscensionServer
                             RankID = crickets.RankID,
                             SkillList = Utility.Json.ToObject<List<int>>(crickets.SkillList)
                         };
-                        cricketsDict.Add(item.Value, cricketDTO);
-                        statusDict.Add(item.Value, xRCommon.xRCriteriaSelectMethod<CricketStatus>(nHCriteriastatus));
-                        aptitudeDict.Add(item.Value, xRCommon.xRCriteriaSelectMethod<CricketAptitude>(nHCriteriastatus));
+                        cricketsDict.Add(cricketDict[i], cricketDTO);
+                        statusDict.Add(cricketDict[i], xRCommon.xRCriteriaSelectMethod<CricketStatus>(nHCriteriastatus));
+                        aptitudeDict.Add(cricketDict[i], xRCommon.xRCriteriaSelectMethod<CricketAptitude>(nHCriteriastatus));
                     }
                 }
-
+                dataDict.Add((byte)ParameterCode.RoleCricket, cricketDict);
                 dataDict.Add((byte)ParameterCode.Cricket, cricketsDict);
                 dataDict.Add((byte)ParameterCode.CricketStatus, statusDict);
                 dataDict.Add((byte)ParameterCode.CricketAptitude, aptitudeDict);
@@ -242,19 +263,19 @@ namespace AscensionServer
             var roleCricket = xRCommon.xRCriteriaSelectMethod<RoleCricket>(nHCriteriaRole);
             if (roleCricket!=null)
             {
-                var tempDict = Utility.Json.ToObject<Dictionary<int, int>>(roleCricket.TemporaryCrickets);
-                var normalDict = Utility.Json.ToObject<Dictionary<int, int>>(roleCricket.CricketList);
+                var tempDict = Utility.Json.ToObject<List<int>>(roleCricket.TemporaryCrickets);
+                var normalDict = Utility.Json.ToObject<List<int>>(roleCricket.CricketList);
 
-                tempDict.TryGetValue(index, out int cricketid);
 
-                if (cricketid!=0)
+
+                if (tempDict.Contains(index) && tempDict [index]!= -1)
                 {
-                    foreach (var item in normalDict)
+                    for (int i = 0; i < normalDict.Count; i++)
                     {
-                        if (item.Value==0)
+                        if (normalDict[i] == -1)
                         {
-                            normalDict[item.Key] = cricketid;
-                            tempDict[index] =0;
+                            normalDict[i] = tempDict[index];
+                            tempDict[index] =-1;
                             break;
                         }
                     }

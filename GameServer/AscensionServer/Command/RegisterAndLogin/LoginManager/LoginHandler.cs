@@ -26,8 +26,8 @@ namespace AscensionServer
                     var roleCricket = xRCommon.xRCriteriaSelectMethod<RoleCricket>(nHCriteriaRole);
                     RoleCricketDTO roleCricketDTO = new RoleCricketDTO();
                     roleCricketDTO.RoleID = roleCricket.RoleID;
-                    roleCricketDTO.CricketList =Utility.Json.ToObject<Dictionary<int,int>>(roleCricket.CricketList);
-                    roleCricketDTO.TemporaryCrickets = Utility.Json.ToObject<Dictionary<int, int>>(roleCricket.TemporaryCrickets);
+                    roleCricketDTO.CricketList =Utility.Json.ToObject<List<int>>(roleCricket.CricketList);
+                    roleCricketDTO.TemporaryCrickets = Utility.Json.ToObject<List<int>>(roleCricket.TemporaryCrickets);
 
                     Dictionary<byte, string> dataDict = new Dictionary<byte, string>();
                     dataDict.Add((byte)ParameterCode.Role,Utility.Json.ToJson(role));

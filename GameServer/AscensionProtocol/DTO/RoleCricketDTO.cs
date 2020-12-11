@@ -10,19 +10,13 @@ namespace AscensionProtocol
     public  class RoleCricketDTO
     {
         public virtual int RoleID { set; get; }
-        public virtual Dictionary<int, int> CricketList { set; get; }
-        public virtual Dictionary<int,int> TemporaryCrickets { get; set; }
+        public virtual List<int> CricketList { set; get; }
+        public virtual List<int> TemporaryCrickets { get; set; }
 
         public RoleCricketDTO()
         {
-            CricketList = new Dictionary<int, int>();
-            CricketList.Add(0,0);
-            CricketList.Add(1, 0);
-            CricketList.Add(2, 0);
-            TemporaryCrickets = new Dictionary<int, int>();
-            TemporaryCrickets.Add(0, 0);
-            TemporaryCrickets.Add(1, 0);
-            TemporaryCrickets.Add(2, 0);
+            CricketList =new List<int>() { -1,-1,-1};
+            TemporaryCrickets = new List<int>() {-1,-1,-1 };
         }
     }
 }
