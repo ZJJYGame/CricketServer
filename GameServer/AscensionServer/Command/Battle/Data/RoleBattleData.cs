@@ -133,8 +133,8 @@ namespace AscensionServer
         public RoleBattleData(IRoleBattleData buffRoleBattleData)
         {
             attack = 20;
-            maxHealth = 100;
-            health = 100;
+            maxHealth = 500;
+            health = 500;
             defence =5;
             maxEndurance = 200;
             endurance = 200;
