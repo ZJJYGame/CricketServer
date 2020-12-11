@@ -13,12 +13,12 @@ namespace AscensionServer
     {
         public static void RegisterRole(string account,string password,object peer)
         {
-            NHCriteria nHCriteriaAccount = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("Account", account);
+            NHCriteria nHCriteriaAccount = xRCommon.xRNHCriteria("Account", account);
             Utility.Debug.LogInfo("yzqData发送失败" + nHCriteriaAccount.Value.ToString());
 
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketStatus>>(out var cricketStatusDict);
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, Cricket>>(out var cricketDict);
-            bool isExist = NHibernateQuerier.Verify<User>(nHCriteriaAccount);
+            bool isExist = xRCommon.xRVerify<User>(nHCriteriaAccount);
 
             var userObj = new User() {Account= account,Password= password };
             var role = new Role() { };
@@ -40,18 +40,20 @@ namespace AscensionServer
                 NHibernateQuerier.Update(userObj);
                 roleAsset.RoleID = role.RoleID;
                 NHibernateQuerier.Insert(roleAsset);
-                cricket= NHibernateQuerier.Insert(cricket);
+                #region 待换
+                cricket = NHibernateQuerier.Insert(cricket);
                 roleCricketObj.CricketList[0] = cricket.ID;
                 roleCricket.RoleID = role.RoleID;
                 roleCricket.CricketList = Utility.Json.ToJson(roleCricketObj.CricketList);
                 roleCricket.TemporaryCrickets = Utility.Json.ToJson(roleCricketObj.TemporaryCrickets);
                 NHibernateQuerier.Insert(roleCricket);
-                cricketStatus.CricketID= cricket.ID;
+                cricketStatus.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketStatus);
-                cricketAptitude.CricketID= cricket.ID;
+                cricketAptitude.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketAptitude);
                 cricketPoint.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketPoint);
+                #endregion
                 NHibernateQuerier.Insert(new Inventory() { RoleID = role.RoleID });
                 OperationData operationData = new OperationData();
                 operationData.DataMessage = Utility.Json.ToJson(role);

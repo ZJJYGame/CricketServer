@@ -14,8 +14,7 @@ namespace AscensionProtocol
         GetTempCricket=3,
         RemoveCricket = 4,
         AddPoint=5,
-        ResetPoint = 6,
-        LevelUP=7,
-        UseItem=8,
+        RmvTempCricket = 6,
+        UseItem = 7,
     }
 }

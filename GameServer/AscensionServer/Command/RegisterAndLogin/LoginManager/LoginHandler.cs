@@ -14,16 +14,16 @@ namespace AscensionServer
     {
         public static void LoginRole(string account, string password,object peer)
         {
-            NHCriteria nHCriteriauser = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("Account", account);
-            var user = NHibernateQuerier.CriteriaSelect<User>(nHCriteriauser);
+            NHCriteria nHCriteriauser = xRCommon.xRNHCriteria("Account", account);
+            var user = xRCommon.xRCriteriaSelectMethod<User>(nHCriteriauser);
             if (user != null)
             {
                 if (user.Password == password)
                 {
-                    NHCriteria nHCriteriaRole = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("RoleID", user.RoleID);
-                    var role = NHibernateQuerier.CriteriaSelect<Role>(nHCriteriaRole);
-                    var roleAsset = NHibernateQuerier.CriteriaSelect<RoleAssets>(nHCriteriaRole);
-                    var roleCricket = NHibernateQuerier.CriteriaSelect<RoleCricket>(nHCriteriaRole);
+                    NHCriteria nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", user.RoleID);
+                    var role = xRCommon.xRCriteriaSelectMethod<Role>(nHCriteriaRole);
+                    var roleAsset = xRCommon.xRCriteriaSelectMethod<RoleAssets>(nHCriteriaRole);
+                    var roleCricket = xRCommon.xRCriteriaSelectMethod<RoleCricket>(nHCriteriaRole);
                     RoleCricketDTO roleCricketDTO = new RoleCricketDTO();
                     roleCricketDTO.RoleID = roleCricket.RoleID;
                     roleCricketDTO.CricketList =Utility.Json.ToObject<Dictionary<int,int>>(roleCricket.CricketList);
