@@ -9,6 +9,8 @@ namespace AscensionServer
     public class BattleDamageData
     {
         public int skillId;
+        //耐力回复
+        public int endurenceReply;
         //伤害列表
         public List<int> damageNumList;
         public List<int> returnDamageNumList;

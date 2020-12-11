@@ -28,6 +28,7 @@ namespace AscensionProtocol
     {
         public int RoleId { get; set; }
         public int SkillId { get; set; }
+        public int EndurenceReply { get; set; }
         public List<int> DamageList { get; set; }
         public List<bool> IsCritList { get; set; }
         public List<bool> IsDodgeList { get; set; }

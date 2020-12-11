@@ -36,6 +36,7 @@ namespace AscensionServer
             while (playerOne.roleBattleData.Health > 0 && playerTwo.roleBattleData.Health > 0)
             {
                 bool isCrash = false;
+               
                 //决定攻击方
                 if (playerOne.RemainActionBar < playerTwo.RemainActionBar)
                 {
@@ -160,14 +161,16 @@ namespace AscensionServer
         void PlayerAction(BattleCharacterEntity attackPlayer,BattleCharacterEntity defendPlayer, List<BattleSkill> defendBattleSkillList,out BattleDamageData attackBattleDamageData,bool isCrash)
         {
             BattleSkill attackBattleSkill = attackPlayer.RandomSkill(true);
-            attackBattleDamageData = GetDamageData(attackBattleSkill, attackPlayer, defendPlayer, !isCrash);
+            if (attackBattleSkill == null)
+                attackPlayer.roleBattleData.OnEnduranceReply();
+            attackBattleDamageData = GetDamageData(attackBattleSkill, attackPlayer, defendPlayer, !isCrash,true);
             List<BattleDamageData> defendBattleDamageDataList = new List<BattleDamageData>();
             for (int i = 0; i < attackBattleDamageData.isDodgeList.Count; i++)
             {
                 if (!attackBattleDamageData.isDodgeList[i])
                 {
                     BattleSkill defendBattleSkill = defendPlayer.RandomSkill(false);
-                    BattleDamageData defendBattleDamageData = GetDamageData(defendBattleSkill, defendPlayer, attackPlayer, true);
+                    BattleDamageData defendBattleDamageData = GetDamageData(defendBattleSkill, defendPlayer, attackPlayer, true,false);
                     defendBattleSkillList.Add(defendBattleSkill);
                     defendBattleDamageDataList.Add(defendBattleDamageData);
                 }
@@ -182,6 +185,7 @@ namespace AscensionServer
                 defendPlayer.roleBattleData.OnEnduranceCost(defendBattleSkillList[i]);
             }
             //显示
+            if(attackBattleSkill!=null)
             Utility.Debug.LogInfo(attackPlayer.RoleId + "使用技能" + attackBattleSkill.SkillId + "攻击了" + defendPlayer.RoleId);
             for (int i = 0; i < attackBattleDamageData.damageNumList.Count; i++)
             {
@@ -224,45 +228,55 @@ namespace AscensionServer
             attackPlayer.TryRestartActionBar();
         }
 
-        BattleDamageData GetDamageData(BattleSkill battleSkill, BattleCharacterEntity attackPlayer, BattleCharacterEntity defendPlayer,bool canDodge)
+        //获取伤害数据
+        BattleDamageData GetDamageData(BattleSkill battleSkill, BattleCharacterEntity attackPlayer, BattleCharacterEntity defendPlayer,bool canDodge,bool isInitiative)
         {
             RoleBattleData attackPlayerData = attackPlayer.roleBattleData;
             RoleBattleData defendPlayerData = defendPlayer.roleBattleData;
-            BattleDamageData battleDamageData = new BattleDamageData() { skillId=battleSkill.SkillId};
-            int atk = (int)(attackPlayerData.Attack * battleSkill.DamagePercentValue / 100f);
-            int normalDamage = (int)((defendPlayerData.ReceiveDamage / 100f) * (atk - defendPlayerData.Defence * (100 - attackPlayerData.Pierce) / 100f))+battleSkill.DamageFixedValue;
-            int critDamage= (int)((defendPlayerData.ReceiveDamage / 100f) * ((atk+atk*attackPlayerData.CritDamage*(100-defendPlayerData.CritResistance)/10000f) - defendPlayerData.Defence * (100 - attackPlayerData.Pierce) / 100f)) + battleSkill.DamageFixedValue;
-            for (int i = 0; i < battleSkill.AttackNumber; i++)
+            BattleDamageData battleDamageData = new BattleDamageData();
+            if (battleSkill != null)
             {
-                int dodgeRandomIndex = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, 101);
-                if (canDodge&&dodgeRandomIndex <= defendPlayerData.DodgeProp)//闪避成功
+                battleDamageData.skillId = battleSkill.SkillId;
+                int atk = (int)(attackPlayerData.Attack * battleSkill.DamagePercentValue / 100f);
+                int normalDamage = (int)((defendPlayerData.ReceiveDamage / 100f) * (atk - defendPlayerData.Defence * (100 - attackPlayerData.Pierce) / 100f)) + battleSkill.DamageFixedValue;
+                int critDamage = (int)((defendPlayerData.ReceiveDamage / 100f) * ((atk + atk * attackPlayerData.CritDamage * (100 - defendPlayerData.CritResistance) / 10000f) - defendPlayerData.Defence * (100 - attackPlayerData.Pierce) / 100f)) + battleSkill.DamageFixedValue;
+                for (int i = 0; i < battleSkill.AttackNumber; i++)
                 {
-                    battleDamageData.damageNumList.Add(0);
-                    battleDamageData.isCritList.Add(false);
-                    battleDamageData.isDodgeList.Add(true);
-                    battleDamageData.returnDamageNumList.Add(0);
-                }
-                else//闪避失败
-                {
-                    battleDamageData.isDodgeList.Add(false);
-                    int critRandomIndex = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, 101);
-                    if (critRandomIndex <= attackPlayerData.CritProp)//暴击了
+                    int dodgeRandomIndex = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, 101);
+                    if (canDodge && dodgeRandomIndex <= defendPlayerData.DodgeProp)//闪避成功
                     {
-                        battleDamageData.damageNumList.Add(critDamage);
-                        battleDamageData.returnDamageNumList.Add((int)(critDamage * defendPlayerData.ReboundDamage / 100f));
-                        battleDamageData.isCritList.Add(true);
-                    }
-                    else//没暴击
-                    {
-                        battleDamageData.damageNumList.Add(normalDamage);
-                        battleDamageData.returnDamageNumList.Add((int)(normalDamage * defendPlayerData.ReboundDamage / 100f));
+                        battleDamageData.damageNumList.Add(0);
                         battleDamageData.isCritList.Add(false);
+                        battleDamageData.isDodgeList.Add(true);
+                        battleDamageData.returnDamageNumList.Add(0);
                     }
+                    else//闪避失败
+                    {
+                        battleDamageData.isDodgeList.Add(false);
+                        int critRandomIndex = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, 101);
+                        if (critRandomIndex <= attackPlayerData.CritProp)//暴击了
+                        {
+                            battleDamageData.damageNumList.Add(critDamage);
+                            battleDamageData.returnDamageNumList.Add((int)(critDamage * defendPlayerData.ReboundDamage / 100f));
+                            battleDamageData.isCritList.Add(true);
+                        }
+                        else//没暴击
+                        {
+                            battleDamageData.damageNumList.Add(normalDamage);
+                            battleDamageData.returnDamageNumList.Add((int)(normalDamage * defendPlayerData.ReboundDamage / 100f));
+                            battleDamageData.isCritList.Add(false);
+                        }
+                    }
+                }
+                for (int i = 0; i < battleSkill.BattleSkillAddBuffList.Count; i++)
+                {
+                    battleDamageData.battleSkillAddBuffList.Add(battleSkill.BattleSkillAddBuffList[i]);
                 }
             }
-            for (int i = 0; i < battleSkill.BattleSkillAddBuffList.Count; i++)
+            else
             {
-                battleDamageData.battleSkillAddBuffList.Add(battleSkill.BattleSkillAddBuffList[i]);
+                if (isInitiative)
+                    battleDamageData.endurenceReply = attackPlayer.RemainActionBar;
             }
             return battleDamageData;
         }
@@ -274,6 +288,7 @@ namespace AscensionServer
             battleRoleActionData.IsCrash = isCrash;
             BattleDamageData attackDamageData = battleDamageDataList[0];
             BattleActionData attackBattleActionData = battleRoleActionData.AttackBattleActionData;
+            attackBattleActionData.EndurenceReply = attackDamageData.endurenceReply;
             attackBattleActionData.RoleId = roleIdList[0];
             attackBattleActionData.SkillId = attackDamageData.skillId;
             for (int i = 0; i < attackDamageData.damageNumList.Count; i++)
