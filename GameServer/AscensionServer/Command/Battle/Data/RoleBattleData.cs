@@ -127,7 +127,15 @@ namespace AscensionServer
         /// </summary>
         public void OnEnduranceCost(BattleSkill battleSkill)
         {
+            if (battleSkill == null)
+                return;
             endurance -= battleSkill.EnduranceCost;
+            endurance = endurance < 0 ? 0 : endurance;
+        }
+
+        public void OnEnduranceReply()
+        {
+            endurance += enduranceReply;
         }
 
         public RoleBattleData(IRoleBattleData buffRoleBattleData)
