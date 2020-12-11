@@ -9,7 +9,7 @@ namespace AscensionProtocol
     [Serializable]
     public class InventoryDTO
     {
-        public int RoleId { get; set; }
+        public int RoleID { get; set; }
         public Dictionary<int, ItemDTO> ItemDTO { get; set; }
     }
 

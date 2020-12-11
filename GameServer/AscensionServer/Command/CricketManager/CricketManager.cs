@@ -25,31 +25,29 @@ namespace AscensionServer
             foreach (var item in data)
             {
                 var dict = Utility.Json.ToObject<Dictionary<byte, object>>(item.Value.ToString());
+                var roleObj = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.Role].ToString());
                 switch ((CricketOperateType)item.Key)
                 {
                     case CricketOperateType.AddCricket:
-                        var roleObj = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.Role].ToString());
                         var cricket = Utility.Json.ToObject<Cricket>(dict[(byte)ParameterCode.Cricket].ToString());
                         Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID + "蛐蛐id" + cricket.CricketID);
-                        RoleCricketManager.AddCricket(cricket.CricketID, roleObj.RoleID);
+                        RoleCricketManager.InsteadOfPos(cricket.CricketID, roleObj.RoleID);
                         break;
                     case CricketOperateType.GetCricket:
-                        var role = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.RoleCricket].ToString());
-                        Utility.Debug.LogInfo("yzqData添加蛐蛐:" + role.RoleID);
-                        RoleCricketManager.GetRoleCricket(role.RoleID);
+                        Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID);
+                        RoleCricketManager.GetRoleCricket(roleObj.RoleID,CricketOperateType.GetCricket);
                         break;
-                    case CricketOperateType.GetCricketStatus:
+                    case CricketOperateType.GetTempCricket:
+                        Utility.Debug.LogInfo("yzqData获得临时蛐蛐:" + roleObj.RoleID);
+                        RoleCricketManager.GetTempCricket(roleObj.RoleID,CricketOperateType.GetTempCricket);
                         break;
                     case CricketOperateType.RemoveCricket:
                         break;
                     case CricketOperateType.AddPoint:
-                        var roleTemp = Utility.Json.ToObject<Role>(dict[(byte)ParameterCode.Role].ToString());
                         var pointObj = Utility.Json.ToObject<CricketPointDTO>(dict[(byte)ParameterCode.CricketPoint].ToString());
-                        RoleCricketManager.AddPointForScricket(roleTemp.RoleID, pointObj.CricketID, pointObj);
+                        RoleCricketManager.AddPointForScricket(roleObj.RoleID, pointObj.CricketID, pointObj);
                         break;
-                    case CricketOperateType.ResetPoint:
-                        break;
-                    case CricketOperateType.LevelUP:
+                    case CricketOperateType.RmvTempCricket:
                         break;
                     case CricketOperateType.UseItem:
                         break;
@@ -57,17 +55,6 @@ namespace AscensionServer
                         break;
                 }
             }
-
-
-        }
-
-        public void S2CCricketMessage(int roleid,string message,ReturnCode returnCode)
-        {
-            OperationData operationData = new OperationData();
-            operationData.DataMessage = message;
-            operationData.ReturnCode = (byte)returnCode;
-            operationData.OperationCode = (ushort)ATCmd.SyncCricket;
-            GameManager.CustomeModule<RoleManager>().SendMessage(roleid, operationData);
         }
     }
 }

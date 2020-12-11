@@ -8,12 +8,12 @@ namespace AscensionServer
 {
     public class Inventory
     {
-        public virtual int RoleId { set; get; }
+        public virtual int RoleID { set; get; }
         public virtual string ItemDict{ set; get; }
 
         public Inventory()
         {
-            RoleId = -1;
+            RoleID = -1;
             ItemDict = "{}";
         }
     }

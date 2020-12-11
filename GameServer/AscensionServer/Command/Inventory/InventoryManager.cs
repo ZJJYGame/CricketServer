@@ -19,7 +19,7 @@ namespace AscensionServer
 
         private void C2SInventory(OperationData opData)
         {
-            var data = Utility.Json.ToObject<Dictionary<byte, string>>(opData.DataMessage.ToString());
+            var data = Utility.Json.ToObject<Dictionary<byte, object>>(opData.DataMessage.ToString());
             foreach (var subOp in data)
             {
                 switch ((subInventoryOp)subOp.Key)
@@ -27,6 +27,9 @@ namespace AscensionServer
                     case subInventoryOp.None:
                         break;
                     case subInventoryOp.Get:
+                        var roleSet = Utility.Json.ToObject<Role>(subOp.Value.ToString());
+                        Utility.Debug.LogInfo("老陆==>" + subOp.Value.ToString());
+                        InventoryManager.xRGetInventory(roleSet.RoleID);
                         break;
                     case subInventoryOp.Add:
                         break;
