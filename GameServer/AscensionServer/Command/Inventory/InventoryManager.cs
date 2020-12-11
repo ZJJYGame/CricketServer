@@ -12,36 +12,31 @@ namespace AscensionServer
     [CustomeModule]
     public partial  class InventoryManager:Module<InventoryManager>
     {
-        public override void OnPreparatory()
-        {
-            CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncInventory, C2SInventory);
-        }
+        public override void OnPreparatory() => CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncInventory, C2SInventory);
 
         private void C2SInventory(OperationData opData)
         {
+            Utility.Debug.LogInfo("老陆==>" +(opData.DataMessage.ToString()));
             var data = Utility.Json.ToObject<Dictionary<byte, object>>(opData.DataMessage.ToString());
-            foreach (var subOp in data)
+            var roleSet = Utility.Json.ToObject<Dictionary<byte, InventoryDTO>>(data.Values.ToList()[0].ToString());
+            switch ((subInventoryOp)data.Keys.ToList()[0])
             {
-                switch ((subInventoryOp)subOp.Key)
-                {
-                    case subInventoryOp.None:
-                        break;
-                    case subInventoryOp.Get:
-                        var roleSet = Utility.Json.ToObject<Role>(subOp.Value.ToString());
-                        Utility.Debug.LogInfo("老陆==>" + subOp.Value.ToString());
-                        InventoryManager.xRGetInventory(roleSet.RoleID);
-                        break;
-                    case subInventoryOp.Add:
-                        break;
-                    case subInventoryOp.Update:
-                        break;
-                    case subInventoryOp.Remove:
-                        break;
-                    case subInventoryOp.Verify:
-                        break;
-                }
+                case subInventoryOp.None:
+                    break;
+                case subInventoryOp.Get:
+                    InventoryManager.xRGetInventory(roleSet[(byte)ParameterCode.RoleInventory].RoleID);
+                    break;
+                case subInventoryOp.Add:
+                    InventoryManager.xRAddInventory(roleSet[(byte)ParameterCode.RoleInventory].RoleID, roleSet[(byte)ParameterCode.RoleInventory].ItemDTO);
+                    break;
+                case subInventoryOp.Update:
+                    InventoryManager.xRUpdateInventory(roleSet[(byte)ParameterCode.RoleInventory].RoleID, roleSet[(byte)ParameterCode.RoleInventory].ItemDTO);
+                    break;
+                case subInventoryOp.Remove:
+                    break;
+                case subInventoryOp.Verify:
+                    break;
             }
-
         }
     }
 }
