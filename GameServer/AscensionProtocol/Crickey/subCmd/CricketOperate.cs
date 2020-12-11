@@ -16,5 +16,7 @@ namespace AscensionProtocol
         AddPoint=5,
         RmvTempCricket = 6,
         UseItem = 7,
+        UpdCricket = 8,
+        UpdTempCricket = 8,
     }
 }

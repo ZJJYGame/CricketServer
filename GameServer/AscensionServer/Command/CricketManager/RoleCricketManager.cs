@@ -15,7 +15,7 @@ namespace AscensionServer
         /// 获取
         /// </summary>
         /// <param name="roleid"></param>
-        public static void GetRoleCricket(int roleid)
+        public static void GetRoleCricket(int roleid, CricketOperateType opType)
         {
             var nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", roleid);
             var roleCricket = xRCommon.xRCriteriaSelectMethod<RoleCricket>(nHCriteriaRole);
@@ -57,7 +57,7 @@ namespace AscensionServer
                 dataDict.Add((byte)ParameterCode.CricketPoint, pointDict);
                 dataDict.Add((byte)ParameterCode.CricketAptitude, aptitudeDict);
                 var messageDict = xRCommon.xRS2CSub();
-                messageDict.Add((byte)CricketOperateType.GetCricket, Utility.Json.ToJson(dataDict));
+                messageDict.Add((byte)opType, Utility.Json.ToJson(dataDict));
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, messageDict);
             }
         }
@@ -190,7 +190,7 @@ namespace AscensionServer
         /// 获取临时槽位蟋蟀
         /// </summary>
         /// <param name="roleid"></param>
-        public static void GetTempCricket(int roleid)
+        public static void GetTempCricket(int roleid,CricketOperateType opType)
         {
             var nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", roleid);
             var roleCricket = xRCommon.xRCriteriaSelectMethod<RoleCricket>(nHCriteriaRole);
@@ -229,7 +229,7 @@ namespace AscensionServer
                 dataDict.Add((byte)ParameterCode.CricketStatus, statusDict);
                 dataDict.Add((byte)ParameterCode.CricketAptitude, aptitudeDict);
                 var messageDict = xRCommon.xRS2CSub();
-                messageDict.Add((byte)CricketOperateType.GetTempCricket, Utility.Json.ToJson(dataDict));
+                messageDict.Add((byte)opType, Utility.Json.ToJson(dataDict));
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, messageDict);
             }
         }
@@ -261,8 +261,8 @@ namespace AscensionServer
                     roleCricket.CricketList = Utility.Json.ToJson(normalDict);
                     roleCricket.TemporaryCrickets = Utility.Json.ToJson(tempDict);
                     NHibernateQuerier.Update(roleCricket);
-                    GetRoleCricket(roleid);
-                    GetTempCricket(roleid);
+                    GetRoleCricket(roleid,CricketOperateType.UpdCricket);
+                    GetTempCricket(roleid, CricketOperateType.UpdTempCricket);
                 }
                 else
                     xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Fail, xRCommonTip.xR_err_ReLogin);

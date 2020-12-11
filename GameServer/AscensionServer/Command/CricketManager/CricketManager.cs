@@ -35,11 +35,11 @@ namespace AscensionServer
                         break;
                     case CricketOperateType.GetCricket:
                         Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID);
-                        RoleCricketManager.GetRoleCricket(roleObj.RoleID);
+                        RoleCricketManager.GetRoleCricket(roleObj.RoleID,CricketOperateType.GetCricket);
                         break;
                     case CricketOperateType.GetTempCricket:
                         Utility.Debug.LogInfo("yzqData获得临时蛐蛐:" + roleObj.RoleID);
-                        RoleCricketManager.GetTempCricket(roleObj.RoleID);
+                        RoleCricketManager.GetTempCricket(roleObj.RoleID,CricketOperateType.GetTempCricket);
                         break;
                     case CricketOperateType.RemoveCricket:
                         break;
