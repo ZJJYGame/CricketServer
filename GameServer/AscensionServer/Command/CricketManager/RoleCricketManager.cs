@@ -45,10 +45,10 @@ namespace AscensionServer
                             RankID = crickets.RankID,
                             SkillList = Utility.Json.ToObject<List<int>>(crickets.SkillList)
                         };
-                        cricketsDict.Add(cricketDict[i], cricketDTO);
-                        statusDict.Add(cricketDict[i], xRCommon.xRCriteriaSelectMethod<CricketStatus>(nHCriteriastatus));
-                        pointDict.Add(cricketDict[i], xRCommon.xRCriteriaSelectMethod<CricketPoint>(nHCriteriastatus));
-                        aptitudeDict.Add(cricketDict[i], xRCommon.xRCriteriaSelectMethod<CricketAptitude>(nHCriteriastatus));
+                        cricketsDict.Add(crickets.ID, cricketDTO);
+                        statusDict.Add(crickets.ID, xRCommon.xRCriteriaSelectMethod<CricketStatus>(nHCriteriastatus));
+                        pointDict.Add(crickets.ID, xRCommon.xRCriteriaSelectMethod<CricketPoint>(nHCriteriastatus));
+                        aptitudeDict.Add(crickets.ID, xRCommon.xRCriteriaSelectMethod<CricketAptitude>(nHCriteriastatus));
                     }
                 }
                 dataDict.Add((byte)ParameterCode.RoleCricket, cricketDict);
@@ -140,7 +140,8 @@ namespace AscensionServer
                 {
                     NHibernateQuerier.Delete(cricketPoint);
                 }
-                crickets[index]=-1;
+                crickets.Remove(crickets[index]);
+                crickets.Add(-1);
                 roleCricket.CricketList = Utility.Json.ToJson(crickets);
                 NHibernateQuerier.Update(roleCricket);
 
@@ -225,7 +226,7 @@ namespace AscensionServer
 
                 for (int i = 0; i < cricketDict.Count; i++)
                 {
-                    if (cricketDict[i] != 0)
+                    if (cricketDict[i] != -1)
                     {
                         var nHCriteriaCricket = xRCommon.xRNHCriteria("ID", cricketDict[i]);
                         var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", cricketDict[i]);
