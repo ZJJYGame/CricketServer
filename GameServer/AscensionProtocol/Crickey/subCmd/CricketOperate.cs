@@ -18,5 +18,6 @@ namespace AscensionProtocol
         UseItem = 7,
         UpdCricket = 8,
         UpdTempCricket =9,
+        EnlargeNest=10,
     }
 }

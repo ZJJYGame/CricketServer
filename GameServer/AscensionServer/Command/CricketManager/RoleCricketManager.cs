@@ -109,22 +109,27 @@ namespace AscensionServer
             NHibernateQuerier.Insert(roleCricket);
         }
         /// <summary>
-        /// 放生蟋蟀
+        /// 放生小屋蟋蟀
         /// </summary>
         /// <param name="cricketid"></param>
         /// <param name="roleid"></param>
-        public static void RemoveCricket( int roleid,int index)
+        public static void RemoveCricket( int roleid,int cricketid)
         {
             NHCriteria nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", roleid);
             var roleCricket = xRCommon.xRCriteriaSelectMethod<RoleCricket>(nHCriteriaRole);
 
             var crickets = Utility.Json.ToObject<List<int>>(roleCricket.CricketList);
-            
-            if (crickets.Contains(index) && index != -1)
+            if (crickets.Contains(cricketid) && cricketid != -1)
             {
-                NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", crickets[index]);
+                Utility.Debug.LogInfo("YZQData" + cricketid);
+                NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);
                 var cricket = xRCommon.xRCriteriaSelectMethod<Cricket>(nHCriteria);
-                NHCriteria nHCriteriaStatus = xRCommon.xRNHCriteria("CricketID", crickets[index]);
+                if (cricket != null)
+                {
+                    NHibernateQuerier.Delete(cricket);
+                }
+                NHCriteria nHCriteriaStatus = xRCommon.xRNHCriteria("CricketID", cricketid);
+
                 var cricketStatus = xRCommon.xRCriteriaSelectMethod<CricketStatus>(nHCriteriaStatus);
                 if (cricketStatus!=null)
                 {
@@ -140,7 +145,7 @@ namespace AscensionServer
                 {
                     NHibernateQuerier.Delete(cricketPoint);
                 }
-                crickets.Remove(crickets[index]);
+                crickets.Remove(cricketid);
                 crickets.Add(-1);
                 roleCricket.CricketList = Utility.Json.ToJson(crickets);
                 NHibernateQuerier.Update(roleCricket);
@@ -149,7 +154,52 @@ namespace AscensionServer
 
             }
         }
+        /// <summary>
+        /// 放生临时槽位
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <param name="cricketid"></param>
+        public static void RmvTempCricket(int roleid, int cricketid)
+        {
+            NHCriteria nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", roleid);
+            var roleCricket = xRCommon.xRCriteriaSelectMethod<RoleCricket>(nHCriteriaRole);
 
+            var crickets = Utility.Json.ToObject<List<int>>(roleCricket.TemporaryCrickets);
+            if (crickets.Contains(cricketid) && cricketid != -1)
+            {
+                Utility.Debug.LogInfo("YZQData" + cricketid);
+                NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);
+                var cricket = xRCommon.xRCriteriaSelectMethod<Cricket>(nHCriteria);
+                if (cricket != null)
+                {
+                    NHibernateQuerier.Delete(cricket);
+                }
+                NHCriteria nHCriteriaStatus = xRCommon.xRNHCriteria("CricketID", cricketid);
+
+                var cricketStatus = xRCommon.xRCriteriaSelectMethod<CricketStatus>(nHCriteriaStatus);
+                if (cricketStatus != null)
+                {
+                    NHibernateQuerier.Delete(cricketStatus);
+                }
+                var cricketAptitude = xRCommon.xRCriteriaSelectMethod<CricketAptitude>(nHCriteriaStatus);
+                if (cricketAptitude != null)
+                {
+                    NHibernateQuerier.Delete(cricketAptitude);
+                }
+                var cricketPoint = xRCommon.xRCriteriaSelectMethod<CricketPoint>(nHCriteriaStatus);
+                if (cricketPoint != null)
+                {
+                    NHibernateQuerier.Delete(cricketPoint);
+                }
+                crickets.Remove(cricketid);
+                crickets.Add(-1);
+                roleCricket.CricketList = Utility.Json.ToJson(crickets);
+                NHibernateQuerier.Update(roleCricket);
+
+                GetRoleCricket(roleid, CricketOperateType.UpdTempCricket);
+
+            }
+        }
         /// <summary>
         /// 获取单个蛐蛐的属性及等级
         /// </summary>
@@ -258,7 +308,7 @@ namespace AscensionServer
         /// <summary>
         /// 蟋蟀添加正常槽位
         /// </summary>
-        public static void InsteadOfPos(int index,int roleid)
+        public static void InsteadOfPos(int cricketid,int roleid)
         {
             var nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", roleid);
             var roleCricket = xRCommon.xRCriteriaSelectMethod<RoleCricket>(nHCriteriaRole);
@@ -269,14 +319,15 @@ namespace AscensionServer
 
 
 
-                if (tempDict.Contains(index) && tempDict [index]!= -1)
+                if (tempDict.Contains(cricketid) && cricketid != -1)
                 {
                     for (int i = 0; i < normalDict.Count; i++)
                     {
                         if (normalDict[i] == -1)
                         {
-                            normalDict[i] = tempDict[index];
-                            tempDict[index] =-1;
+                            normalDict[i] = cricketid;
+                            tempDict.Remove(cricketid);
+                            tempDict.Add(-1);
                             break;
                         }
                     }
@@ -291,6 +342,12 @@ namespace AscensionServer
             }
             else
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Fail, xRCommonTip.xR_err_ReLogin);
+        }
+
+        public static void EnlargeNest( int roleid)
+        {
+            NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", roleid);
+            var cricketPoint = xRCommon.xRCriteriaSelectMethod<CricketPoint>(nHCriteria);
         }
     }
 }

@@ -28,13 +28,16 @@ namespace AscensionServer
             {
 
                 #region 获取Json文件转换成对应数据类
-                #region  蛐蛐数据,属性,等级
+                #region  蛐蛐数据,属性,等级,窝升级
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(CricketData).Name, out var CricketDataData);
                 var CricketDataDict = TransObject<List<CricketData>>(CricketDataData).ToDictionary(key => key.CricketID, value => value);
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(CricketStatusData).Name, out var CricketStatusDataData);
                 var CricketStatusDict = TransObject<List<CricketStatusData>>(CricketStatusDataData).ToDictionary(key => key.Level, value => value);
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(CricketLevel).Name, out var CricketLevelData);
                 var CricketLevelDict = TransObject<List<CricketLevel>>(CricketLevelData).ToDictionary(key => key.Level, value => value);
+
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(NestLevel).Name, out var nestLevel);
+                var nestLevelDict = TransObject<List<NestLevel>>(nestLevel).ToDictionary(key => key.NestID, value => value);
                 #endregion
 
 
@@ -47,7 +50,8 @@ namespace AscensionServer
                 var battleBuffDataDict= TransObject<List<BattleBuffData>>(battleBuffDataData).ToDictionary(key => key.buffId, value => value);
                 #endregion
 
-                #region 储存方式          
+                #region 储存方式 
+                GameManager.CustomeModule<DataManager>().TryAdd(nestLevelDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(CricketLevelDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(CricketDataDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(battleAttackSkillDataDict);

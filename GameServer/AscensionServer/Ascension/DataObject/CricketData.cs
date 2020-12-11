@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace AscensionServer
 {
-   public class CricketData
+    [ConfigData]
+    [Serializable]
+    public class CricketData
     {
         public int CricketID { set; get; }
         public int LevelID { set; get; }
