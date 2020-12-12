@@ -25,7 +25,15 @@ namespace AscensionServer
                 itemDTO.ItemAmount = roleShopDTO.PropNum;
                 itemDict.Add(roleShopDTO.PropID, itemDTO);
                 InventoryManager.xRAddInventory(roleShopDTO.RoleID, itemDict);
-            }
+
+
+               var dataDict= xRCommon.xRS2CParams();
+                dataDict.Add((byte)ParameterCode.RoleAsset, roleAssets);
+                var dict = xRCommon.xRS2CSub();
+                dict.Add((byte)ShopOperate.Buy, dataDict);
+                xRCommon.xRS2CSend(roleShopDTO.RoleID,(ushort)ATCmd.SyncShop,(byte)ReturnCode.Success, dict);
+            }else
+                xRCommon.xRS2CSend(roleShopDTO.RoleID, (ushort)ATCmd.SyncShop, (byte)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
 
         }
     }
