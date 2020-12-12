@@ -112,7 +112,8 @@ namespace AscensionServer
                     List<int> defendTriggerSkillList = new List<int>();
                     for (int i = 0; i < defendBattleSkillList.Count; i++)
                     {
-                        defendTriggerSkillList.Add(defendBattleSkillList[i].SkillId);
+                        if (defendBattleSkillList[i] != null)
+                            defendTriggerSkillList.Add(defendBattleSkillList[i].SkillId);
                     }
 
                     battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData }, null, defendTriggerSkillList, new List<int>() { attackPlayer.RoleId }, false));
@@ -127,7 +128,8 @@ namespace AscensionServer
                     List<int> defendTriggerSkillList = new List<int>();
                     for (int i = 0; i < defendBattleSkillList.Count; i++)
                     {
-                        defendTriggerSkillList.Add(defendBattleSkillList[i].SkillId);
+                        if (defendBattleSkillList[i] != null)
+                            defendTriggerSkillList.Add(defendBattleSkillList[i].SkillId);
                     }
 
                     List<BattleSkill> attackBattleSkillList = new List<BattleSkill>();
@@ -136,7 +138,8 @@ namespace AscensionServer
                     List<int> attackTriggerSkillList = new List<int>();
                     for (int i = 0; i < attackBattleSkillList.Count; i++)
                     {
-                        attackTriggerSkillList.Add(attackBattleSkillList[i].SkillId);
+                        if (attackBattleSkillList[i] != null)
+                            attackTriggerSkillList.Add(attackBattleSkillList[i].SkillId);
                     }
 
                     battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData, defendBattleDamageData }, attackTriggerSkillList, defendTriggerSkillList, new List<int>() { attackPlayer.RoleId,defendPlayer.RoleId }, true));
@@ -276,7 +279,7 @@ namespace AscensionServer
             else
             {
                 if (isInitiative)
-                    battleDamageData.endurenceReply = attackPlayer.RemainActionBar;
+                    battleDamageData.endurenceReply = attackPlayer.roleBattleData.EnduranceReply;
             }
             return battleDamageData;
         }

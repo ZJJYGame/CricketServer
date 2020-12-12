@@ -30,6 +30,8 @@ namespace AscensionServer
         /// </summary>
         public BattleSkill RandomSkill(bool isAttackSkill)
         {
+            if (roleBattleData.Endurance <= 0)
+                return null;
             List<BattleSkill> randomSkillList;
             int randomNum;
             if (isAttackSkill)
@@ -51,10 +53,7 @@ namespace AscensionServer
                 if (randomNum <= propNum)
                 {
                     resultSkill = randomSkillList[i];
-                    if (roleBattleData.Endurance > 0)
-                        return resultSkill;
-                    else
-                        return null;
+                    return resultSkill;
                 }
             }
             Utility.Debug.LogInfo("没有符合的技能");
