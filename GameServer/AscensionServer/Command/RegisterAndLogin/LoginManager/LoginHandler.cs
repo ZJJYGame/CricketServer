@@ -15,15 +15,15 @@ namespace AscensionServer
         public static void LoginRole(string account, string password,object peer)
         {
             NHCriteria nHCriteriauser = xRCommon.xRNHCriteria("Account", account);
-            var user = xRCommon.xRCriteriaSelectMethod<User>(nHCriteriauser);
+            var user = xRCommon.xRCriteria<User>(nHCriteriauser);
             if (user != null)
             {
                 if (user.Password == password)
                 {
                     NHCriteria nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", user.RoleID);
-                    var role = xRCommon.xRCriteriaSelectMethod<Role>(nHCriteriaRole);
-                    var roleAsset = xRCommon.xRCriteriaSelectMethod<RoleAssets>(nHCriteriaRole);
-                    var roleCricket = xRCommon.xRCriteriaSelectMethod<RoleCricket>(nHCriteriaRole);
+                    var role = xRCommon.xRCriteria<Role>(nHCriteriaRole);
+                    var roleAsset = xRCommon.xRCriteria<RoleAssets>(nHCriteriaRole);
+                    var roleCricket = xRCommon.xRCriteria<RoleCricket>(nHCriteriaRole);
                     RoleCricketDTO roleCricketDTO = new RoleCricketDTO();
                     roleCricketDTO.RoleID = roleCricket.RoleID;
                     roleCricketDTO.CricketList =Utility.Json.ToObject<List<int>>(roleCricket.CricketList);

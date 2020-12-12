@@ -1,0 +1,12 @@
+﻿[
+{"NestID":1,"Gold":0},
+{"NestID":2,"Gold":0},
+{"NestID":3,"Gold":0},
+{"NestID":4,"Gold":500},
+{"NestID":5,"Gold":500},
+{"NestID":6,"Gold":500},
+{"NestID":7,"Gold":500},
+{"NestID":8,"Gold":500},
+{"NestID":9,"Gold":500},
+{"NestID":10,"Gold":500}
+]

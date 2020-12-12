@@ -50,8 +50,13 @@ namespace AscensionServer
                         RoleCricketManager.AddPointForScricket(roleObj.RoleID, pointObj.CricketID, pointObj);
                         break;
                     case CricketOperateType.RmvTempCricket:
+                        cricket = Utility.Json.ToObject<Cricket>(dict[(byte)ParameterCode.Cricket].ToString());
+                        RoleCricketManager.RmvTempCricket(roleObj.RoleID, cricket.CricketID);
                         break;
                     case CricketOperateType.UseItem:
+                        break;
+                    case CricketOperateType.EnlargeNest:
+                        RoleCricketManager.EnlargeNest(roleObj.RoleID);
                         break;
                     default:
                         break;
