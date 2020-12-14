@@ -15,6 +15,7 @@ namespace AscensionServer
         public virtual string CricketName { set; get; }
         public virtual int RankID { set; get; }
         public virtual string SkillList { set; get; }
+        public virtual string SpecialSkills { set; get; }
         public Cricket()
         {
             ID = -1;
@@ -24,6 +25,7 @@ namespace AscensionServer
             RankID = 301;
             CricketName = "蛐蛐1";
             SkillList="[]";
+            SpecialSkills = "[]";
         }
     }
 }

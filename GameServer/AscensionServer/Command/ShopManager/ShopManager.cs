@@ -13,20 +13,22 @@ namespace AscensionServer
     {
         public override void OnPreparatory()
         {
-            CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncCricket, null);
+            CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncShop, C2SShop);
         }
 
         public void C2SShop(OperationData opData)
         {
             var data = Utility.Json.ToObject<Dictionary<byte, object>>(opData.DataMessage.ToString());
-            Utility.Debug.LogInfo("yzqData请求蛐蛐属性:" + Utility.Json.ToJson(data));
+            Utility.Debug.LogInfo("yzqData购物数据:" + Utility.Json.ToJson(data));
             foreach (var item in data)
             {
                 var dict = Utility.Json.ToObject<Dictionary<byte, object>>(item.Value.ToString());
+                var propData = Utility.Json.ToObject<Dictionary<byte,object>>(item.Value.ToString());
                 switch ((ShopOperate)item.Key)
                 {
                     case ShopOperate.Buy:
-
+                        var prop = Utility.Json.ToObject<RoleShopDTO>(propData[(byte)ParameterCode.RoleAsset].ToString());
+                        BuyPropManager.BuyProp(prop);
                         break;
                     default:
                         break;

@@ -12,7 +12,7 @@ namespace AscensionServer
     {
         public int PropID { get; set; }
         public string PropName { get; set; }
-        public string PropType { get; set; }
+        public int PropType { get; set; }
         public int AddNumber { get; set; }
         public int SkillID { get; set; }
     }

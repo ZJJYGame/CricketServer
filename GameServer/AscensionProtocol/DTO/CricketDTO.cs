@@ -16,5 +16,6 @@ namespace AscensionProtocol
         public virtual string CricketName { set; get; }
         public virtual int RankID { set; get; }
         public virtual List<int> SkillList { set; get; }
+        public virtual List<int> SpecialSkills { set; get; }
     }
 }
