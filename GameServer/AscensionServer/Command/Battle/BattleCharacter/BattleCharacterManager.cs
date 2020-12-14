@@ -16,6 +16,11 @@ namespace AscensionServer
         {
             BattleCharacterEntity battleCharacterEntity = GameManager.ReferencePoolManager.Spawn<BattleCharacterEntity>();
             battleCharacterEntity.Init(roleId);
+            if (battleCharacterEntityDict.ContainsKey(roleId))
+            {
+                GameManager.ReferencePoolManager.Despawn(battleCharacterEntityDict[roleId]);
+                battleCharacterEntityDict.Remove(roleId);
+            }
             battleCharacterEntityDict.Add(roleId, battleCharacterEntity);
             return battleCharacterEntity;
         }

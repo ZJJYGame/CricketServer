@@ -9,6 +9,19 @@ namespace AscensionProtocol
     [Serializable]
     public class BattleTransferDTO
     {
+        public BattleRoleData RoleOneData { get; set; }
+        public BattleRoleData RoleTwoData { get; set; }
+        public List<BattleRoleActionData> BattleRoleActionDataList { get; set; }
+    }
+
+    public class BattleRoleData
+    {
+        public int MaxHealth { get; set; }
+        public int Health { get; set; }
+        public int MaxEndurance { get; set; }
+        public int Endurance { get; set; }
+        public int ActionBar { get; set; }
+        public List<int> PassiveSkill { get; set; }
     }
     [Serializable]
     public class BattleRoleActionData

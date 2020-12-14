@@ -146,7 +146,7 @@ namespace AscensionServer
             defence =5;
             maxEndurance = 200;
             endurance = 200;
-            enduranceReply = 20;
+            enduranceReply = 100;
             actionBar = GameManager.CustomeModule<BattleRoomManager>().random.Next(6, 11)*100;
             critProp = 25;
             dodgeProp = 25;
