@@ -1,19 +1,121 @@
 ﻿[
-{"PropID":1001,"PropName":"大肉包子","PropType":"AddExp","AddNumber":100,"SkillID":0},
-{"PropID":1002,"PropName":"腊八粥","PropType":"AddExp","AddNumber":200,"SkillID":0},
-{"PropID":1003,"PropName":"龙须面","PropType":"AddExp","AddNumber":300,"SkillID":0},
-{"PropID":1004,"PropName":"黄金蛋炒饭","PropType":"AddExp","AddNumber":400,"SkillID":0},
-{"PropID":1005,"PropName":"甜玉米","PropType":"AddStr","AddNumber":1,"SkillID":0},
-{"PropID":1006,"PropName":"波罗蜜","PropType":"AddCon","AddNumber":1,"SkillID":0},
-{"PropID":1007,"PropName":"坚果","PropType":"AddDef","AddNumber":1,"SkillID":0},
-{"PropID":1008,"PropName":"圣女果","PropType":"AddDex","AddNumber":1,"SkillID":0},
-{"PropID":1009,"PropName":"山药","PropType":"DeleteSkill","AddNumber":0,"SkillID":0},
-{"PropID":1010,"PropName":"莴苣","PropType":"AddAtk","AddNumber":1,"SkillID":0},
-{"PropID":1011,"PropName":"胡萝卜","PropType":"AddDefense","AddNumber":1,"SkillID":0},
-{"PropID":1012,"PropName":"山竹","PropType":"AddHp","AddNumber":1,"SkillID":0},
-{"PropID":1013,"PropName":"龙须面","PropType":"AddMp","AddNumber":1,"SkillID":0},
-{"PropID":1014,"PropName":"天山绿茶","PropType":"AddMpReply","AddNumber":1,"SkillID":0},
-{"PropID":1015,"PropName":"满汉全席","PropType":"AddExp","AddNumber":500,"SkillID":0},
-{"PropID":1016,"PropName":"保守攻击","PropType":"Skill","AddNumber":0,"SkillID":3001},
-{"PropID":1017,"PropName":"重置","PropType":"Reset","AddNumber":0,"SkillID":0}
+    {
+        "PropID":1001,
+        "PropName":"大肉包子",
+        "PropType":1,
+        "AddNumber":100,
+        "SkillID":0
+    },
+    {
+        "PropID":1002,
+        "PropName":"腊八粥",
+        "PropType":1,
+        "AddNumber":200,
+        "SkillID":0
+    },
+    {
+        "PropID":1003,
+        "PropName":"龙须面",
+        "PropType":1,
+        "AddNumber":300,
+        "SkillID":0
+    },
+    {
+        "PropID":1004,
+        "PropName":"黄金蛋炒饭",
+        "PropType":1,
+        "AddNumber":400,
+        "SkillID":0
+    },
+    {
+        "PropID":1005,
+        "PropName":"甜玉米",
+        "PropType":2,
+        "AddNumber":1,
+        "SkillID":0
+    },
+    {
+        "PropID":1006,
+        "PropName":"波罗蜜",
+        "PropType":3,
+        "AddNumber":1,
+        "SkillID":0
+    },
+    {
+        "PropID":1007,
+        "PropName":"坚果",
+        "PropType":4,
+        "AddNumber":1,
+        "SkillID":0
+    },
+    {
+        "PropID":1008,
+        "PropName":"圣女果",
+        "PropType":5,
+        "AddNumber":1,
+        "SkillID":0
+    },
+    {
+        "PropID":1009,
+        "PropName":"山药",
+        "PropType":12,
+        "AddNumber":0,
+        "SkillID":0
+    },
+    {
+        "PropID":1010,
+        "PropName":"莴苣",
+        "PropType":6,
+        "AddNumber":1,
+        "SkillID":0
+    },
+    {
+        "PropID":1011,
+        "PropName":"胡萝卜",
+        "PropType":7,
+        "AddNumber":1,
+        "SkillID":0
+    },
+    {
+        "PropID":1012,
+        "PropName":"山竹",
+        "PropType":8,
+        "AddNumber":1,
+        "SkillID":0
+    },
+    {
+        "PropID":1013,
+        "PropName":"龙须面",
+        "PropType":9,
+        "AddNumber":1,
+        "SkillID":0
+    },
+    {
+        "PropID":1014,
+        "PropName":"天山绿茶",
+        "PropType":10,
+        "AddNumber":1,
+        "SkillID":0
+    },
+    {
+        "PropID":1015,
+        "PropName":"满汉全席",
+        "PropType":1,
+        "AddNumber":500,
+        "SkillID":0
+    },
+    {
+        "PropID":1016,
+        "PropName":"保守攻击",
+        "PropType":11,
+        "AddNumber":0,
+        "SkillID":3001
+    },
+    {
+        "PropID":1017,
+        "PropName":"重置",
+        "PropType":13,
+        "AddNumber":0,
+        "SkillID":0
+    }
 ]
