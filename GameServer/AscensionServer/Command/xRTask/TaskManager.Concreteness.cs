@@ -77,7 +77,7 @@ namespace AscensionServer
                         if (xrDict[info.Key].taskProgress >= xrDict[info.Key].taskTarget)
                         {
                             xrDict[info.Key].taskStatus = true;
-                            xRRemove(roleId, info.Key);
+                            //xRRemove(roleId, info.Key);
                         }
                     }
                     NHibernateQuerier.Update(new xRTask() { RoleID = roleId,  taskDict = Utility.Json.ToJson(xrDict) });

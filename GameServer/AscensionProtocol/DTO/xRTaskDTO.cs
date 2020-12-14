@@ -18,5 +18,6 @@ namespace AscensionProtocol
         public int taskTarget { get; set; }
         public int taskProgress { get; set; }
         public bool taskStatus { get; set; }
+        public int taskManoy { get; set; }
     }
 }
