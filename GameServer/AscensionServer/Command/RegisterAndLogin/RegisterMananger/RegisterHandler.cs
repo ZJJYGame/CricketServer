@@ -53,12 +53,14 @@ namespace AscensionServer
                 cricketPoint.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketPoint);
                 #endregion
+                #region 插入背包和每日任务
                 NHibernateQuerier.Insert(new Inventory() { RoleID = role.RoleID });
                 Dictionary<int, TaskItemDTO> darilyDict = new Dictionary<int, TaskItemDTO>();
                 darilyDict.Add(301, new TaskItemDTO() { taskStatus = false, taskProgress = 0, taskTarget = 1 });
                 darilyDict.Add(302, new TaskItemDTO() { taskStatus = false, taskProgress = 0, taskTarget = 2 });
                 darilyDict.Add(303, new TaskItemDTO() { taskStatus = false, taskProgress = 0, taskTarget = 3 });
                 NHibernateQuerier.Insert(new xRTask() { RoleID = role.RoleID, taskDict = Utility.Json.ToJson(darilyDict) });
+                #endregion
                 OperationData operationData = new OperationData();
                 operationData.DataMessage = Utility.Json.ToJson(role);
                 operationData.ReturnCode = (byte)ReturnCode.Success;
