@@ -60,10 +60,10 @@ namespace AscensionServer
             int roleId = Convert.ToInt32(tempDict[(byte)ParameterCode.RoleCricket]);
             CreateRoom(roleId, 111);
         }
-        public void S2CEnterBattle(int roleid,List<BattleRoleActionData> battleRoleActionDataList)
+        public void S2CEnterBattle(int roleid,BattleTransferDTO battleTransferDTO)
         {
             OperationData operationData = new OperationData();
-            operationData.DataMessage = Utility.Json.ToJson(battleRoleActionDataList);
+            operationData.DataMessage = Utility.Json.ToJson(battleTransferDTO);
             operationData.OperationCode = (ushort)ATCmd.SyncBattle;
             GameManager.CustomeModule<RoleManager>().SendMessage(roleid, operationData);
         }

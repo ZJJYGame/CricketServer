@@ -23,10 +23,13 @@ namespace AscensionServer
 
         bool CanCrash { get { return crashNum < 3 || crashColdTime <= 0; } }
 
+        BattleTransferDTO battleTransferDTO = new BattleTransferDTO();
         List<BattleRoleActionData> battleRoleActionDataList = new List<BattleRoleActionData>();
 
         public void StartBattle()
         {
+            SetTransferRoleData();
+
             BattleCharacterEntity attackPlayer;
             BattleCharacterEntity defendPlayer;
             BattleCharacterEntity nextAttackPlayer=null;
@@ -149,10 +152,10 @@ namespace AscensionServer
                 }
                 Utility.Debug.LogError("当前时间=>" + nowTime + (isCrash ? "，发生碰撞" : "，没有碰撞") + ",碰撞冷却=>" + crashColdTime);
             }
-            Utility.Debug.LogInfo("战斗计算流程结束");
             Utility.Debug.LogInfo("战斗传输数据=>" + Utility.Json.ToJson(battleRoleActionDataList));
-            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerOne.RoleId, battleRoleActionDataList);
-            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerTwo.RoleId, battleRoleActionDataList);
+            battleTransferDTO.BattleRoleActionDataList = battleRoleActionDataList;
+            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerOne.RoleId, battleTransferDTO);
+            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerTwo.RoleId, battleTransferDTO);
         }
         /// <summary>
         /// 
@@ -328,6 +331,28 @@ namespace AscensionServer
                 battleRoleActionData.DefendBattleActionData = null;
             }
             return battleRoleActionData;
+        }
+
+        public void SetTransferRoleData()
+        {
+            battleTransferDTO.RoleOneData = new BattleRoleData()
+            {
+                MaxHealth = playerOne.roleBattleData.MaxHealth,
+                Health = playerOne.roleBattleData.Health,
+                MaxEndurance = playerOne.roleBattleData.MaxEndurance,
+                Endurance = playerOne.roleBattleData.Endurance,
+                ActionBar = playerOne.roleBattleData.ActionBar,
+                PassiveSkill = new List<int>()
+            };
+            battleTransferDTO.RoleTwoData = new BattleRoleData()
+            {
+                MaxHealth = playerTwo.roleBattleData.MaxHealth,
+                Health = playerTwo.roleBattleData.Health,
+                MaxEndurance = playerTwo.roleBattleData.MaxEndurance,
+                Endurance = playerTwo.roleBattleData.Endurance,
+                ActionBar = playerTwo.roleBattleData.ActionBar,
+                PassiveSkill = new List<int>()
+            };
         }
 
         public void InitController(BattleCharacterEntity battleCharacterEntityOne,BattleCharacterEntity battleCharacterEntityTwo)
