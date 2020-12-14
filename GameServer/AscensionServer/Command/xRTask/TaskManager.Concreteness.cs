@@ -78,6 +78,11 @@ namespace AscensionServer
                         {
                             xrDict[info.Key].taskStatus = true;
                             //xRRemove(roleId, info.Key);
+                            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int,TaskData>>(out var setTask);
+                            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var setProp);
+                            if (setTask[info.Key].PropID != 0)
+                                InventoryManager.xRUpdateInventory(roleId, new Dictionary<int, ItemDTO> { { setProp[setTask[info.Key].PropID].PropID, new ItemDTO() { ItemAmount = 1 } } });
+                            BuyPropManager.UpdateRoleAssets(roleId, xrDict[info.Key].taskManoy);
                         }
                     }
                     NHibernateQuerier.Update(new xRTask() { RoleID = roleId,  taskDict = Utility.Json.ToJson(xrDict) });
