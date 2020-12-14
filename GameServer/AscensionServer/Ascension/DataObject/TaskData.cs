@@ -15,6 +15,8 @@ namespace AscensionServer
         public string TaskDescribe { get; set; }
         public List<int> TaskMoney { get; set; }
         public int TaskPropId { get; set; }
-        public int TaskState { get; set; }
+        public bool TaskState { get; set; }
+        public int TaskNow { get; set; }
+        public int TaskTarget { get; set; }
     }
 }

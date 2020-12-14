@@ -5,7 +5,7 @@
 		"TaskDescribe":"进行1场战斗",
 		"Money":[90,110],
 		"PropID":0,
-		
+		"TaskTarget":1
 	},
 	{
 		"TaskID":302,
@@ -13,7 +13,7 @@
 		"TaskDescribe":"进行2场战斗",
 		"Money":[140,160],
 		"PropID":0,
-		
+		"TaskTarget":2
 	},
 	{
 		"TaskID":303,
@@ -21,7 +21,7 @@
 		"TaskDescribe":"进行3场战斗",
 		"Money":[140,160],
 		"PropID":1001,
-		
+		"TaskTarget":3
 	},
 	{
 		"TaskID":304,
@@ -29,7 +29,7 @@
 		"TaskDescribe":"赢得1场战斗",
 		"Money":[140,160],
 		"PropID":0,
-		
+		"TaskTarget":1
 	},
 	{
 		"TaskID":305,
@@ -37,7 +37,7 @@
 		"TaskDescribe":"赢得2场战斗",
 		"Money":[190,210],
 		"PropID":0,
-		
+		"TaskTarget":2
 	},
 	{
 		"TaskID":306,
@@ -45,7 +45,7 @@
 		"TaskDescribe":"赢得3场战斗",
 		"Money":[190,210],
 		"PropID":1001,
-		
+		"TaskTarget":3
 	},
 	{
 		"TaskID":307,
@@ -53,7 +53,7 @@
 		"TaskDescribe":"在商店购买1件物品",
 		"Money":[90,110],
 		"PropID":0,
-		
+		"TaskTarget":1
 	},
 	{
 		"TaskID":308,
@@ -61,7 +61,7 @@
 		"TaskDescribe":"在商店购买2件物品",
 		"Money":[140,160],
 		"PropID":0,
-		
+		"TaskTarget":2
 	},
 	{
 		"TaskID":309,
@@ -69,7 +69,7 @@
 		"TaskDescribe":"在商店购买3件物品",
 		"Money":[140,160],
 		"PropID":1001,
-		
+		"TaskTarget":3
 	},
 	{
 		"TaskID":310,
@@ -77,7 +77,7 @@
 		"TaskDescribe":"外出探索1次",
 		"Money":[90,110],
 		"PropID":0,
-		
+		"TaskTarget":1
 	},
 	{
 		"TaskID":311,
@@ -85,7 +85,7 @@
 		"TaskDescribe":"外出探索2次",
 		"Money":[140,160],
 		"PropID":0,
-		
+		"TaskTarget":2
 	},
 	{
 		"TaskID":312,
@@ -93,7 +93,7 @@
 		"TaskDescribe":"外出探索3次",
 		"Money":[140,160],
 		"PropID":1001,
-		
+		"TaskTarget":3
 	},
 	{
 		"TaskID":313,
@@ -101,7 +101,7 @@
 		"TaskDescribe":"与好友进行1次战斗",
 		"Money":[280,320],
 		"PropID":0,
-		
+		"TaskTarget":1
 	},
 	{
 		"TaskID":314,
@@ -109,7 +109,7 @@
 		"TaskDescribe":"观看1次广告",
 		"Money":[140,160],
 		"PropID":0,
-		
+		"TaskTarget":1
 	},
 	{
 		"TaskID":315,
@@ -117,7 +117,7 @@
 		"TaskDescribe":"查看排行榜",
 		"Money":[90,110],
 		"PropID":0,
-		
+		"TaskTarget":1
 	},
 	{
 		"TaskID":316,
@@ -125,7 +125,7 @@
 		"TaskDescribe":"喂养蛐蛐1次",
 		"Money":[90,110],
 		"PropID":0,
-		
+		"TaskTarget":1
 	},
 	{
 		"TaskID":317,
@@ -133,7 +133,7 @@
 		"TaskDescribe":"喂养蛐蛐2次",
 		"Money":[140,160],
 		"PropID":0,
-		
+		"TaskTarget":2
 	},
 	{
 		"TaskID":318,
@@ -141,6 +141,6 @@
 		"TaskDescribe":"喂养蛐蛐3次",
 		"Money":[140,160],
 		"PropID":1001,
-		
+		"TaskTarget":3
 	}
 ]
