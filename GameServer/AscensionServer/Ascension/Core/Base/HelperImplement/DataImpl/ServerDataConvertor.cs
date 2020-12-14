@@ -41,13 +41,12 @@ namespace AscensionServer
 
                 #endregion
 
-
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(PropData).Name, out var propData);
                 var propDataDict = TransObject<List<PropData>>(propData).ToDictionary(key => key.PropID, value => value);
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(Shop).Name, out var shopData);
                 var shopDict = TransObject<List<Shop>>(shopData).ToDictionary(key => key.PropID, value => value);
-
-
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(TaskData).Name, out var taskData);
+                var taskDict = TransObject<List<TaskData>>(taskData).ToDictionary(key => key.TaskId, value => value);
 
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(BattleAttackSkillData).Name, out var battleAttackSkillDataData);
                 var battleAttackSkillDataDict = TransObject<List<BattleAttackSkillData>>(battleAttackSkillDataData).ToDictionary(key => key.skillId, value => value);
@@ -56,6 +55,7 @@ namespace AscensionServer
                 #endregion
 
                 #region 储存方式 
+                GameManager.CustomeModule<DataManager>().TryAdd(taskDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(shopDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(propDataDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(nestLevelDict);

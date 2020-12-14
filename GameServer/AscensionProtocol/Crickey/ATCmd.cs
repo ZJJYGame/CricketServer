@@ -36,6 +36,10 @@ namespace AscensionProtocol
         /// </summary>
         SyncShop = 8,
         /// <summary>
+        /// 同步任务
+        /// </summary>
+        SyncTask = 9,
+        /// <summary>
         /// 测试消息队列
         /// </summary>
         MessageQueue = 187,

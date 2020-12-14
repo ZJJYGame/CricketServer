@@ -55,7 +55,7 @@ namespace AscensionServer
         /// <param name="ItemInfo"></param>
         public static void xRAddInventory(int roleId,Dictionary<int,ItemDTO> ItemInfo)
         {
-            var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
+             var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
             if (xRCommon.xRVerify<Role>(nHcriteria))
             {
                 var xRserver = xRCommon.xRCriteria<Inventory>(nHcriteria);

@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\Localphotonserver\Criket\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
+    <OutputPath>..\..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -170,6 +170,7 @@
     <Compile Include="Ascension\DataObject\NestLevel.cs" />
     <Compile Include="Ascension\DataObject\PropData.cs" />
     <Compile Include="Ascension\DataObject\Shop.cs" />
+    <Compile Include="Ascension\DataObject\TaskData.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffController.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffEntity.cs" />
     <Compile Include="Command\Battle\BattleCharacter\BattleCharacterEntity.cs" />
@@ -194,6 +195,8 @@
     <Compile Include="Command\RegisterAndLogin\RegisterMananger\RegisterMananger.cs" />
     <Compile Include="Command\ShopManager\BuyPropManager.cs" />
     <Compile Include="Command\ShopManager\ShopManager.cs" />
+    <Compile Include="Command\xRTask\TaskManager.Concreteness.cs" />
+    <Compile Include="Command\xRTask\TaskManager.cs" />
     <Compile Include="DataObjectMap\CricketAptitudeMap.cs" />
     <Compile Include="DataObjectMap\CricketMap.cs" />
     <Compile Include="DataObjectMap\CricketPointMap.cs" />
@@ -202,6 +205,7 @@
     <Compile Include="DataObjectMap\RoleAssetsMap.cs" />
     <Compile Include="DataObjectMap\RoleCricketMap.cs" />
     <Compile Include="DataObjectMap\RoleMap.cs" />
+    <Compile Include="DataObjectMap\xRTaskMap.cs" />
     <Compile Include="DataObjectMap\UserMap.cs" />
     <Compile Include="DataObject\Cricket.cs" />
     <Compile Include="DataObject\CricketAptitude.cs" />
@@ -211,6 +215,7 @@
     <Compile Include="DataObject\Role.cs" />
     <Compile Include="DataObject\RoleAssets.cs" />
     <Compile Include="DataObject\RoleCricket.cs" />
+    <Compile Include="DataObject\xRTask.cs" />
     <Compile Include="DataObject\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -237,6 +242,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="JsonData\PropData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\TaskData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />

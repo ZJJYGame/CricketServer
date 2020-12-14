@@ -35,7 +35,7 @@ namespace AscensionServer
                 case subInventoryOp.Remove:
                     break;
                 case subInventoryOp.Verify:
-                    break;
+                    break;  
             }
         }
     }

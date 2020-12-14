@@ -51,5 +51,6 @@
         RoleStatusSet = 19,
         Role = 20,
         RoleInventory =21,
+        RoleTask = 22,
     }
 }

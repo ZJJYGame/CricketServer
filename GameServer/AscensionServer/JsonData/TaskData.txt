@@ -1,0 +1,146 @@
+[
+	{
+		"TaskID":301,
+		"TaskName":"热身开始",
+		"TaskDescribe":"进行1场战斗",
+		"Money":[90,110],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":302,
+		"TaskName":"小试身手",
+		"TaskDescribe":"进行2场战斗",
+		"Money":[140,160],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":303,
+		"TaskName":"游刃有余",
+		"TaskDescribe":"进行3场战斗",
+		"Money":[140,160],
+		"PropID":1001,
+		
+	},
+	{
+		"TaskID":304,
+		"TaskName":"崭露头角",
+		"TaskDescribe":"赢得1场战斗",
+		"Money":[140,160],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":305,
+		"TaskName":"旗开得胜",
+		"TaskDescribe":"赢得2场战斗",
+		"Money":[190,210],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":306,
+		"TaskName":"大获全胜",
+		"TaskDescribe":"赢得3场战斗",
+		"Money":[190,210],
+		"PropID":1001,
+		
+	},
+	{
+		"TaskID":307,
+		"TaskName":"如愿以偿",
+		"TaskDescribe":"在商店购买1件物品",
+		"Money":[90,110],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":308,
+		"TaskName":"鱼和熊掌",
+		"TaskDescribe":"在商店购买2件物品",
+		"Money":[140,160],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":309,
+		"TaskName":"十块三样",
+		"TaskDescribe":"在商店购买3件物品",
+		"Money":[140,160],
+		"PropID":1001,
+		
+	},
+	{
+		"TaskID":310,
+		"TaskName":"初出茅庐",
+		"TaskDescribe":"外出探索1次",
+		"Money":[90,110],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":311,
+		"TaskName":"出门在外",
+		"TaskDescribe":"外出探索2次",
+		"Money":[140,160],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":312,
+		"TaskName":"跋山涉水",
+		"TaskDescribe":"外出探索3次",
+		"Money":[140,160],
+		"PropID":1001,
+		
+	},
+	{
+		"TaskID":313,
+		"TaskName":"友谊第一",
+		"TaskDescribe":"与好友进行1次战斗",
+		"Money":[280,320],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":314,
+		"TaskName":"免费午餐",
+		"TaskDescribe":"观看1次广告",
+		"Money":[140,160],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":315,
+		"TaskName":"瞻仰强者",
+		"TaskDescribe":"查看排行榜",
+		"Money":[90,110],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":316,
+		"TaskName":"精心呵护",
+		"TaskDescribe":"喂养蛐蛐1次",
+		"Money":[90,110],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":317,
+		"TaskName":"合理喂养",
+		"TaskDescribe":"喂养蛐蛐2次",
+		"Money":[140,160],
+		"PropID":0,
+		
+	},
+	{
+		"TaskID":318,
+		"TaskName":"宠爱有加",
+		"TaskDescribe":"喂养蛐蛐3次",
+		"Money":[140,160],
+		"PropID":1001,
+		
+	}
+]
