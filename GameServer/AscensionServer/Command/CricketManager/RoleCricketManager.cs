@@ -43,7 +43,7 @@ namespace AscensionServer
                             Exp = crickets.Exp,
                             LevelID = crickets.LevelID,
                             RankID = crickets.RankID,
-                            SkillList = Utility.Json.ToObject<List<int>>(crickets.SkillList)
+                            SkillDict = Utility.Json.ToObject<Dictionary<int, int>>(crickets.SkillDict)
                         };
                         cricketsDict.Add(crickets.ID, cricketDTO);
                         statusDict.Add(crickets.ID, xRCommon.xRCriteria<CricketStatus>(nHCriteriastatus));
@@ -287,7 +287,7 @@ namespace AscensionServer
                             Exp = crickets.Exp,
                             LevelID = crickets.LevelID,
                             RankID = crickets.RankID,
-                            SkillList = Utility.Json.ToObject<List<int>>(crickets.SkillList)
+                            SkillDict = Utility.Json.ToObject<Dictionary<int, int>>(crickets.SkillDict)
                         };
                         cricketsDict.Add(cricketDict[i], cricketDTO);
                         statusDict.Add(cricketDict[i], xRCommon.xRCriteria<CricketStatus>(nHCriteriastatus));

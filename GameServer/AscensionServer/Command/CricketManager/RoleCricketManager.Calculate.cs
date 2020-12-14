@@ -68,15 +68,15 @@ namespace AscensionServer
         /// </summary>
         public static void  StudySkill(int prop,Cricket cricket)
         {
-            var skillList = Utility.Json.ToObject<List<int>>(cricket.SkillList);
-            if (skillList.Contains(prop))
+            var skillList = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SpecialDict);
+            if (skillList.ContainsKey(prop))
             {
                 //返回失败
                 return;
             }
             else
             {
-                skillList.Add(prop);
+                skillList.Add(prop,1);
                 //返回成功并更新数据库
                 return;
             }
@@ -86,7 +86,7 @@ namespace AscensionServer
         /// </summary>
         public static void RemoveSkill( Cricket cricket)
         {
-            var skillList = Utility.Json.ToObject<List<int>>(cricket.SkillList);
+            var skillList = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SpecialDict);
 
             if (skillList.Count>0)
             {
