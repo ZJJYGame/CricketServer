@@ -337,6 +337,7 @@ namespace AscensionServer
         {
             battleTransferDTO.RoleOneData = new BattleRoleData()
             {
+                CricketId = playerOne.RoleId,
                 MaxHealth = playerOne.roleBattleData.MaxHealth,
                 Health = playerOne.roleBattleData.Health,
                 MaxEndurance = playerOne.roleBattleData.MaxEndurance,
@@ -346,6 +347,7 @@ namespace AscensionServer
             };
             battleTransferDTO.RoleTwoData = new BattleRoleData()
             {
+                CricketId = playerTwo.RoleId,
                 MaxHealth = playerTwo.roleBattleData.MaxHealth,
                 Health = playerTwo.roleBattleData.Health,
                 MaxEndurance = playerTwo.roleBattleData.MaxEndurance,
