@@ -23,6 +23,7 @@ namespace AscensionServer
             Map(x => x.ReduceAtk).Column("reduceatk");
             Map(x => x.ReduceDef).Column("reducedef");
             Map(x => x.Atk).Column("atk");
+            Map(x => x.Speed).Column("speed");
             Table("cricket_status");
 
         }

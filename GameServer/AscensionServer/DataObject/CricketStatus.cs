@@ -21,6 +21,7 @@ namespace AscensionServer
         public virtual int ReduceDef { set; get; }
         public virtual int Rebound { set; get; }
         public virtual int Eva { set; get; }
+        public virtual int Speed { set; get; }
         public CricketStatus()
         {
             Atk = 10;
@@ -35,6 +36,7 @@ namespace AscensionServer
             ReduceDef = 0;
             Rebound = 0;
             Eva = 0;
+            Speed = 2000;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace AscensionServer
             Reset=13,
         }
 
-        public static void DifferentiateGlobal(int propid)
+        public static void DifferentiateGlobal(int propid,int roleid)
         {
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var propDataDict);
 
@@ -71,27 +71,29 @@ namespace AscensionServer
         /// <summary>
         /// 区分加成物品
         /// </summary>
-        public static CricketAptitude AptitudeProp(PropData propData,CricketAptitude cricketAptitude)
+        public static CricketAptitude AptitudeProp(PropData propData,int cricketid)
         {
+            var nHCriteriaAptitude = xRCommon.xRNHCriteria("CricketID", cricketid);
+            var crickets = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
             switch ((PropType)propData.PropType)
             {
                 case PropType.AddStr:
-                    cricketAptitude.Str += propData.AddNumber;
+                    crickets.Str += propData.AddNumber;
                     break;
                 case PropType.AddCon:
-                    cricketAptitude.Con += propData.AddNumber;
+                    crickets.Con += propData.AddNumber;
                     break;
                 case PropType.AddDef:
-                    cricketAptitude.Def += propData.AddNumber;
+                    crickets.Def += propData.AddNumber;
                     break;
                 case PropType.AddDex:
-                    cricketAptitude.Dex += propData.AddNumber;
+                    crickets.Dex += propData.AddNumber;
                     break;
                 default:
                     break;
             }
 
-            return cricketAptitude;
+            return crickets;
         }
         /// <summary>
         /// 区分属性加成
@@ -142,5 +144,6 @@ namespace AscensionServer
                     break;
             }
         }
+
     }
 }

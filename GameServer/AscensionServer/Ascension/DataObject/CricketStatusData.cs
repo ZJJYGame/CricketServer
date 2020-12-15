@@ -23,5 +23,6 @@ namespace AscensionServer
         public int ReduceDef { set; get; }
         public int Rebound { set; get; }
         public int Eva { set; get; }
+        public int Speed { set; get; }
     }
 }

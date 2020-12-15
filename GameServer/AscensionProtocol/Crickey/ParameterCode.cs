@@ -52,5 +52,9 @@
         Role = 20,
         RoleInventory =21,
         RoleTask = 22,
+        /// <summary>
+        /// 背包使用物品
+        /// </summary>
+        UseItem=23,
     }
 }

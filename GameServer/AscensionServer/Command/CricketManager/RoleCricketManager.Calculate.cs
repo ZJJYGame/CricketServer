@@ -28,6 +28,9 @@ namespace AscensionServer
         /// </summary>
         public static void CalculateStutas()
         {
+            CricketAptitude cricketAptitude = new CricketAptitude();
+            CricketStatus cricketStatus = new CricketStatus();
+            CricketPoint cricketPoint = new CricketPoint();
 
         }
         /// <summary>
@@ -68,18 +71,28 @@ namespace AscensionServer
         /// </summary>
         public static void  StudySkill(int prop,Cricket cricket)
         {
-            var skillList = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SpecialDict);
-            if (skillList.ContainsKey(prop))
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var propDict);
+
+            if (propDict.ContainsKey(prop))
             {
-                //返回失败
-                return;
+                #region 
+                var skills = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SpecialDict);
+                if (skills.ContainsKey(propDict[prop].SkillID))
+                {
+                    //返回失败
+                    return;
+                }
+                else
+                {
+                    skills.Add(propDict[prop].SkillID, 1);
+                    //返回成功并更新数据库
+                    cricket.SpecialDict = Utility.Json.ToJson(skills);
+                    NHibernateQuerier.Update(cricket);
+                    return;
+                }
+                #endregion
             }
-            else
-            {
-                skillList.Add(prop,1);
-                //返回成功并更新数据库
-                return;
-            }
+
         }
         /// <summary>
         /// 删除技能
@@ -102,6 +115,33 @@ namespace AscensionServer
                 return;
             }
         }
+        /// <summary>
+        /// 添加特殊技能
+        /// </summary>
+        /// <param name="skillid"></param>
+        /// <param name="roleid"></param>
+        public static void AddSpecialSkill(int skillid,int level,int roleid)
+        {
+            var nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", roleid);
+            var cricket = xRCommon.xRCriteria<Cricket>(nHCriteriaRole);
+
+            var skills = Utility.Json.ToObject<Dictionary<int,int>>(cricket.SpecialDict);
+
+            if (!skills.ContainsKey(skillid))
+            {
+                skills.Add(skillid, level);
+            }
+            else
+            {
+                skills[skillid] += level;
+            }
+
+            cricket.SpecialDict = Utility.Json.ToJson(skills);
+
+            NHibernateQuerier.Update(cricket);
+        }
+
+
 
     }
 }
