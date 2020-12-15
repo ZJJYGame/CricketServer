@@ -32,6 +32,7 @@ namespace AscensionServer
             CricketStatus cricketStatus = new CricketStatus();
             CricketPoint cricketPoint = new CricketPoint();
 
+     
         }
         /// <summary>
         /// 获取资质等随机随机
