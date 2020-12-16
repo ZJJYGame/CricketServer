@@ -39,6 +39,7 @@ namespace AscensionProtocol
         /// 同步任务
         /// </summary>
         SyncTask = 9,
+        SyncExploration = 10,
         /// <summary>
         /// 测试消息队列
         /// </summary>

@@ -50,6 +50,7 @@
     <Compile Include="DTO\CricketDTO.cs" />
     <Compile Include="DTO\CricketPointDTO.cs" />
     <Compile Include="DTO\CricketStatusDTO.cs" />
+    <Compile Include="DTO\ExplorationDTO.cs" />
     <Compile Include="DTO\InventoryDTO.cs" />
     <Compile Include="DTO\RoleAssetsDTO.cs" />
     <Compile Include="DTO\RoleCricketDTO.cs" />
