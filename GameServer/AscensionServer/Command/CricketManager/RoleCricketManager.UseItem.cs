@@ -81,6 +81,7 @@ namespace AscensionServer
             var nHCriteriaAptitude = xRCommon.xRNHCriteria("CricketID", cricketid);
             var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
+            var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriaAptitude);
             if (point != null || aptitude != null)
             {
                 switch ((PropType)propData.PropType)
@@ -100,7 +101,7 @@ namespace AscensionServer
                     default:
                         break;
                 }
-                var status = CalculateStutas(aptitude, point);
+                var status = CalculateStutas(aptitude, point, addition);
                 status.CricketID = aptitude.CricketID;
                 var data = xRCommon.xRS2CParams();
                 data.Add((byte)ParameterCode.CricketStatus, status);
@@ -131,7 +132,7 @@ namespace AscensionServer
             var nHCriteriaAptitude = xRCommon.xRNHCriteria("CricketID", cricketid);
             var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
-
+            var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriaAptitude);
             if (true)
             {
                 //switch ((PropType)propData.PropType)
@@ -156,7 +157,7 @@ namespace AscensionServer
                 //}
             }
 
-            var status = CalculateStutas(aptitude, point);
+            var status = CalculateStutas(aptitude, point, addition);
         }
         /// <summary>
         /// 区分消耗物品

@@ -29,6 +29,7 @@ namespace AscensionServer
             var cricketStatus = new CricketStatus();
             var cricketAptitude = new CricketAptitude();
             var cricketPoint = new CricketPoint();
+            var cricketAddition = new CricketAddition();
             if (!isExist)
             {
                 userObj = NHibernateQuerier.Insert(userObj);
@@ -52,6 +53,8 @@ namespace AscensionServer
                 NHibernateQuerier.Insert(cricketAptitude);
                 cricketPoint.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketPoint);
+                cricketAddition.CricketID = cricket.ID;
+                NHibernateQuerier.Insert(cricketAddition);
                 #endregion
                 #region 插入背包和每日任务
                 NHibernateQuerier.Insert(new Inventory() { RoleID = role.RoleID });

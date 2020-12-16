@@ -26,17 +26,17 @@ namespace AscensionServer
         /// <summary>
         /// 计算属性加成
         /// </summary>
-        public static CricketStatus CalculateStutas(CricketAptitude cricketAptitude, CricketPoint cricketPoint)
+        public static CricketStatus CalculateStutas(CricketAptitude cricketAptitude, CricketPoint cricketPoint,CricketAddition cricketAddition)
         {
             //TODO补充技能的加成
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketStatusData>>(out var StatusDict);
             CricketStatus cricketStatus = new CricketStatus();
 
-            cricketStatus.Atk = StatusDict[1].Atk+(int)((cricketAptitude.Str + cricketPoint.Str) * (cricketAptitude.StrAptitude + 100) * 0.01f);
-            cricketStatus.Defense = StatusDict[1].Defense+(int)((cricketAptitude.Def + cricketPoint.Def) * (cricketAptitude.DefAptitude + 100) * 0.01f);
-            cricketStatus.Hp = StatusDict[1].Hp + (int)((cricketAptitude.Con + cricketPoint.Con) * (cricketAptitude.ConAptitude + 100) * 0.01f);
-            cricketStatus.Mp = StatusDict[1].Mp + (int)(cricketStatus.Hp/200) +(cricketStatus.Mp);
-            cricketStatus.MpReply = StatusDict[1].MpReply + (int)(cricketStatus.Mp /10)+ cricketStatus.MpReply;
+            cricketStatus.Atk = cricketAddition.Atk+ StatusDict[1].Atk+(int)((cricketAptitude.Str + cricketPoint.Str) * (cricketAptitude.StrAptitude + 100) * 0.01f);
+            cricketStatus.Defense = cricketAddition.Defense + StatusDict[1].Defense+(int)((cricketAptitude.Def + cricketPoint.Def) * (cricketAptitude.DefAptitude + 100) * 0.01f);
+            cricketStatus.Hp = cricketAddition.Hp + StatusDict[1].Hp + (int)((cricketAptitude.Con + cricketPoint.Con) * (cricketAptitude.ConAptitude + 100) * 0.01f);
+            cricketStatus.Mp = cricketAddition.Mp + StatusDict[1].Mp + (int)(cricketStatus.Hp/200) +(cricketStatus.Mp);
+            cricketStatus.MpReply = cricketAddition.MpReply + StatusDict[1].MpReply + (int)(cricketStatus.Mp /10)+ cricketStatus.MpReply;
             cricketStatus.Crt = (cricketAptitude.Dex+ cricketPoint.Dex)*(300-(2*(100- cricketAptitude.DexAptitude)))/1000000;
             cricketStatus.Eva = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000;
             cricketStatus.Speed = StatusDict[1].Speed + cricketStatus.Speed + (cricketAptitude.Dex*1.5f-(0.01*(100- cricketAptitude.DefAptitude)));

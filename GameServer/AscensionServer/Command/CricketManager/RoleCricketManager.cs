@@ -95,6 +95,9 @@ namespace AscensionServer
                     NHibernateQuerier.Insert(cricketStatus);
                     cricketAptitude.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketAptitude);
+                    var cricketAddition = new CricketAddition();
+                    cricketAddition.CricketID = cricket.ID;
+                    NHibernateQuerier.Insert(cricketAddition);
                     var cricketPoint = new CricketPoint();
                     cricketPoint.FreePoint = cricketLevelDict[cricket.LevelID].AssignPoint;
                     cricketPoint.CricketID = cricket.ID;
