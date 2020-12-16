@@ -26,13 +26,25 @@ namespace AscensionServer
         /// <summary>
         /// 计算属性加成
         /// </summary>
-        public static void CalculateStutas()
+        public static CricketStatus CalculateStutas(CricketAptitude cricketAptitude, CricketPoint cricketPoint)
         {
-            CricketAptitude cricketAptitude = new CricketAptitude();
+            //TODO补充技能的加成
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketStatusData>>(out var StatusDict);
             CricketStatus cricketStatus = new CricketStatus();
-            CricketPoint cricketPoint = new CricketPoint();
 
-     
+            cricketStatus.Atk = StatusDict[1].Atk+(int)((cricketAptitude.Str + cricketPoint.Str) * (cricketAptitude.StrAptitude + 100) * 0.01f);
+            cricketStatus.Defense = StatusDict[1].Defense+(int)((cricketAptitude.Def + cricketPoint.Def) * (cricketAptitude.DefAptitude + 100) * 0.01f);
+            cricketStatus.Hp = StatusDict[1].Hp + (int)((cricketAptitude.Con + cricketPoint.Con) * (cricketAptitude.ConAptitude + 100) * 0.01f);
+            cricketStatus.Mp = StatusDict[1].Mp + (int)(cricketStatus.Hp/200) +(cricketStatus.Mp);
+            cricketStatus.MpReply = StatusDict[1].MpReply + (int)(cricketStatus.Mp /10)+ cricketStatus.MpReply;
+            cricketStatus.Crt = (cricketAptitude.Dex+ cricketPoint.Dex)*(300-(2*(100- cricketAptitude.DexAptitude)))/1000000;
+            cricketStatus.Eva = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000;
+            cricketStatus.Speed = StatusDict[1].Speed + cricketStatus.Speed + (cricketAptitude.Dex*1.5f-(0.01*(100- cricketAptitude.DefAptitude)));
+            cricketStatus.ReduceAtk = StatusDict[1].ReduceAtk ;
+            cricketStatus.ReduceDef = StatusDict[1].ReduceDef;
+            cricketStatus.Rebound = StatusDict[1].Rebound;
+
+            return cricketStatus;
         }
         /// <summary>
         /// 获取资质等随机随机
@@ -50,8 +62,12 @@ namespace AscensionServer
         /// <summary>
         /// 加经验升级
         /// </summary>
-        public static Cricket UpdateLevel(Cricket cricket,int exp)
+        public static Cricket UpdateLevel(int cricketid, int exp)
         {
+            var nHCriteria = xRCommon.xRNHCriteria("CricketID", cricketid);
+            var cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
+            var point = xRCommon.xRCriteria<CricketPoint>(nHCriteria);
+
             int addtion = cricket.Exp + exp;
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketLevel>>(out var cricketLevelDict);
 
@@ -59,12 +75,13 @@ namespace AscensionServer
             {
                 cricket.Exp = addtion - cricketLevelDict[cricket.LevelID].ExpUP;
                 cricket.LevelID += 1;
+                point.FreePoint += cricketLevelDict[cricket.LevelID].AssignPoint;
             }
             else
             {
                 cricket.Exp = addtion;
             }
-
+            //TODO返回提升等级和加点
             return cricket;
         }
         /// <summary>
@@ -141,7 +158,6 @@ namespace AscensionServer
 
             NHibernateQuerier.Update(cricket);
         }
-
 
 
     }

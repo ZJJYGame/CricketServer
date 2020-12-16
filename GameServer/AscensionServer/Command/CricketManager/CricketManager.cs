@@ -54,7 +54,7 @@ namespace AscensionServer
                         RoleCricketManager.RmvTempCricket(roleObj.RoleID, cricket.CricketID);
                         break;
                     case CricketOperateType.UseItem:
-                       var prop = Utility.Json.ToObject<RoleShopDTO>(dict[(byte)ParameterCode.UseItem].ToString());
+                       var prop = Utility.Json.ToObject<RolepPropDTO>(dict[(byte)ParameterCode.UseItem].ToString());
                      //   RoleCricketManager.DifferentiateGlobal(prop.PropID);
                         break;
                     case CricketOperateType.EnlargeNest:

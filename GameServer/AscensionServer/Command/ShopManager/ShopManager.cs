@@ -27,7 +27,7 @@ namespace AscensionServer
                 switch ((ShopOperate)item.Key)
                 {
                     case ShopOperate.Buy:
-                        var prop = Utility.Json.ToObject<RoleShopDTO>(propData[(byte)ParameterCode.RoleAsset].ToString());
+                        var prop = Utility.Json.ToObject<RolepPropDTO>(propData[(byte)ParameterCode.RoleAsset].ToString());
                         BuyPropManager.BuyProp(prop);
                         break;
                     default:

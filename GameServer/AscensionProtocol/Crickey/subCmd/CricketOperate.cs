@@ -13,11 +13,13 @@ namespace AscensionProtocol
         GetCricket = 2,
         GetTempCricket=3,
         RemoveCricket = 4,
-        AddPoint=5,
+        AddPoint=5,//单个蛐蛐的所有数值
         RmvTempCricket = 6,
         UseItem = 7,
         UpdCricket = 8,
         UpdTempCricket =9,
-        EnlargeNest=10,
+        EnlargeNest=10,//扩充窝
+        LevelUp=11,
+        UpdateSkill=12
     }
 }

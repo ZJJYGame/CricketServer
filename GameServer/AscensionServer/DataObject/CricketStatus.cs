@@ -21,7 +21,7 @@ namespace AscensionServer
         public virtual int ReduceDef { set; get; }
         public virtual int Rebound { set; get; }
         public virtual int Eva { set; get; }
-        public virtual int Speed { set; get; }
+        public virtual double Speed { set; get; }
         public CricketStatus()
         {
             Atk = 10;
