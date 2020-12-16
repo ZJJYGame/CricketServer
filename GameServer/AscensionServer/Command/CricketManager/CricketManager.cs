@@ -30,15 +30,15 @@ namespace AscensionServer
                 {
                     case CricketOperateType.AddCricket:
                         var cricket = Utility.Json.ToObject<Cricket>(dict[(byte)ParameterCode.Cricket].ToString());
-                        Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID + "蛐蛐id" + cricket.CricketID);
+                        //Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID + "蛐蛐id" + cricket.CricketID);
                         RoleCricketManager.InsteadOfPos(cricket.CricketID, roleObj.RoleID);
                         break;
                     case CricketOperateType.GetCricket:
-                        Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID);
+                        //Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID);
                         RoleCricketManager.GetRoleCricket(roleObj.RoleID,CricketOperateType.GetCricket);
                         break;
                     case CricketOperateType.GetTempCricket:
-                        Utility.Debug.LogInfo("yzqData获得临时蛐蛐:" + roleObj.RoleID);
+                        //Utility.Debug.LogInfo("yzqData获得临时蛐蛐:" + roleObj.RoleID);
                         RoleCricketManager.GetTempCricket(roleObj.RoleID,CricketOperateType.GetTempCricket);
                         break;
                     case CricketOperateType.RemoveCricket:
@@ -55,7 +55,8 @@ namespace AscensionServer
                         break;
                     case CricketOperateType.UseItem:
                        var prop = Utility.Json.ToObject<RolepPropDTO>(dict[(byte)ParameterCode.UseItem].ToString());
-                     //   RoleCricketManager.DifferentiateGlobal(prop.PropID);
+                        Utility.Debug.LogInfo("yzqData使用物品:" + Utility.Json.ToJson(prop));
+                        RoleCricketManager.DifferentiateGlobal(prop.PropID, roleObj.RoleID, prop.CricketID);
                         break;
                     case CricketOperateType.EnlargeNest:
                         RoleCricketManager.EnlargeNest(roleObj.RoleID);

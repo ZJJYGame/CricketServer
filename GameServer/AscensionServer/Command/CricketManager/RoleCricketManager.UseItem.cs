@@ -81,7 +81,7 @@ namespace AscensionServer
             var nHCriteriaAptitude = xRCommon.xRNHCriteria("CricketID", cricketid);
             var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
-            if (point == null || aptitude == null)
+            if (point != null || aptitude != null)
             {
                 switch ((PropType)propData.PropType)
                 {
@@ -125,29 +125,38 @@ namespace AscensionServer
         /// </summary>
         /// <param name="propData"></param>
         /// <param name="cricketStatus"></param>
-        public static CricketStatus StatusProp(PropData propData, CricketStatus cricketStatus)
+        public static void StatusProp(int roleid, PropData propData, int cricketid)
         {
-            switch ((PropType)propData.PropType)
+
+            var nHCriteriaAptitude = xRCommon.xRNHCriteria("CricketID", cricketid);
+            var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
+            var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
+
+            if (true)
             {
-                case PropType.AddAtk:
-                    cricketStatus.Atk += propData.AddNumber;
-                    break;
-                case PropType.AddDefense:
-                    cricketStatus.Defense += propData.AddNumber;
-                    break;
-                case PropType.AddHp:
-                    cricketStatus.Hp += propData.AddNumber;
-                    break;
-                case PropType.AddMp:
-                    cricketStatus.Mp += propData.AddNumber;
-                    break;
-                case PropType.AddMpReply:
-                    cricketStatus.MpReply += propData.AddNumber;
-                    break;
-                default:
-                    break;
+                //switch ((PropType)propData.PropType)
+                //{
+                //    case PropType.AddAtk:
+                //        cricketStatus.Atk += propData.AddNumber;
+                //        break;
+                //    case PropType.AddDefense:
+                //        cricketStatus.Defense += propData.AddNumber;
+                //        break;
+                //    case PropType.AddHp:
+                //        cricketStatus.Hp += propData.AddNumber;
+                //        break;
+                //    case PropType.AddMp:
+                //        cricketStatus.Mp += propData.AddNumber;
+                //        break;
+                //    case PropType.AddMpReply:
+                //        cricketStatus.MpReply += propData.AddNumber;
+                //        break;
+                //    default:
+                //        break;
+                //}
             }
-            return cricketStatus;
+
+            var status = CalculateStutas(aptitude, point);
         }
         /// <summary>
         /// 区分消耗物品
@@ -160,8 +169,10 @@ namespace AscensionServer
 
                     break;         
                 case PropType.DeleteSkill:
+
                     break;              
                 case PropType.Skill:
+
                     break;
                 case PropType.Reset:
                     break;
