@@ -243,6 +243,7 @@ namespace AscensionServer
             if (battleSkill != null)
             {
                 battleDamageData.skillId = battleSkill.SkillId;
+                battleDamageData.endurenceReply = -battleSkill.EnduranceCost;
                 int atk = (int)(attackPlayerData.Attack * battleSkill.DamagePercentValue / 100f);
                 int normalDamage = (int)((defendPlayerData.ReceiveDamage / 100f) * (atk - defendPlayerData.Defence * (100 - attackPlayerData.Pierce) / 100f)) + battleSkill.DamageFixedValue;
                 int critDamage = (int)((defendPlayerData.ReceiveDamage / 100f) * ((atk + atk * attackPlayerData.CritDamage * (100 - defendPlayerData.CritResistance) / 10000f) - defendPlayerData.Defence * (100 - attackPlayerData.Pierce) / 100f)) + battleSkill.DamageFixedValue;
@@ -311,7 +312,9 @@ namespace AscensionServer
             if (isCrash)
             {
                 BattleDamageData defendDamageData = battleDamageDataList[1];
+                Utility.Debug.LogError("耐力消耗=>" + defendDamageData.endurenceReply);
                 BattleActionData defendBattleActionData = battleRoleActionData.DefendBattleActionData;
+                defendBattleActionData.EndurenceReply = defendDamageData.endurenceReply;
                 defendBattleActionData.RoleId = roleIdList[1];
                 defendBattleActionData.SkillId = defendDamageData.skillId;
                 for (int i = 0; i < defendDamageData.damageNumList.Count; i++)
