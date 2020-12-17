@@ -56,5 +56,6 @@
         /// 背包使用物品
         /// </summary>
         UseItem=23,
+        RoleExploration = 24,
     }
 }

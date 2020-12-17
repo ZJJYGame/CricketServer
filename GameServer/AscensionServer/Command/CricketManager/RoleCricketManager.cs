@@ -43,7 +43,8 @@ namespace AscensionServer
                             Exp = crickets.Exp,
                             LevelID = crickets.LevelID,
                             RankID = crickets.RankID,
-                            SkillDict = Utility.Json.ToObject<Dictionary<int, int>>(crickets.SkillDict)
+                            SkillDict = Utility.Json.ToObject<Dictionary<int, int>>(crickets.SkillDict),
+                            SpecialDict = Utility.Json.ToObject<Dictionary<int, int>>(crickets.SpecialDict)
                         };
                         cricketsDict.Add(crickets.ID, cricketDTO);
                         statusDict.Add(crickets.ID, xRCommon.xRCriteria<CricketStatus>(nHCriteriastatus));
@@ -94,6 +95,9 @@ namespace AscensionServer
                     NHibernateQuerier.Insert(cricketStatus);
                     cricketAptitude.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketAptitude);
+                    var cricketAddition = new CricketAddition();
+                    cricketAddition.CricketID = cricket.ID;
+                    NHibernateQuerier.Insert(cricketAddition);
                     var cricketPoint = new CricketPoint();
                     cricketPoint.FreePoint = cricketLevelDict[cricket.LevelID].AssignPoint;
                     cricketPoint.CricketID = cricket.ID;
@@ -245,6 +249,8 @@ namespace AscensionServer
                     var dataDict = xRCommon.xRS2CSub();
                     var cricketPointDict = xRCommon.xRS2CParams();
                     cricketPointDict.Add((byte)ParameterCode.CricketPoint, cricketPoint);
+                    cricketPointDict.Add((byte)ParameterCode.CricketAptitude, cricketPoint);
+                    cricketPointDict.Add((byte)ParameterCode.CricketStatus, cricketPoint);
                     dataDict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(cricketPointDict));
                     xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, dataDict);
 

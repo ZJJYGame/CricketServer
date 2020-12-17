@@ -50,11 +50,12 @@
     <Compile Include="DTO\CricketDTO.cs" />
     <Compile Include="DTO\CricketPointDTO.cs" />
     <Compile Include="DTO\CricketStatusDTO.cs" />
+    <Compile Include="DTO\ExplorationDTO.cs" />
     <Compile Include="DTO\InventoryDTO.cs" />
     <Compile Include="DTO\RoleAssetsDTO.cs" />
     <Compile Include="DTO\RoleCricketDTO.cs" />
     <Compile Include="DTO\RoleDTO.cs" />
-    <Compile Include="DTO\RoleShopDTO.cs" />
+    <Compile Include="DTO\RolepPropDTO.cs" />
     <Compile Include="DTO\xRTaskDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="ErrorCode.cs" />

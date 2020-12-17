@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cosmos;
+using AscensionProtocol;
 using Protocol;
 namespace AscensionServer
 {
@@ -27,7 +28,7 @@ namespace AscensionServer
             Reset=13,
         }
 
-        public static void DifferentiateGlobal(int propid,int roleid)
+        public static void DifferentiateGlobal(int propid,int roleid,int cricketid)
         {
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var propDataDict);
 
@@ -37,28 +38,40 @@ namespace AscensionServer
                 switch ((PropType)propData.PropType)
                 {
                     case PropType.AddExp:
+                        ConsumeProp(cricketid, propData, roleid);
                         break;
                     case PropType.AddStr:
+                        AptitudeProp(roleid, propData, cricketid);
                         break;
                     case PropType.AddCon:
+                        AptitudeProp(roleid, propData, cricketid);
                         break;
                     case PropType.AddDef:
+                        AptitudeProp(roleid, propData, cricketid);
                         break;
                     case PropType.AddDex:
+                        AptitudeProp(roleid, propData, cricketid);
                         break;
                     case PropType.DeleteSkill:
+                        ConsumeProp(cricketid, propData, roleid);
                         break;
                     case PropType.AddAtk:
+                        StatusProp(roleid, propData, cricketid);
                         break;
                     case PropType.AddDefense:
+                        StatusProp(roleid, propData, cricketid);
                         break;
                     case PropType.AddHp:
+                        StatusProp(roleid, propData, cricketid);
                         break;
                     case PropType.AddMp:
+                        StatusProp(roleid, propData, cricketid);
                         break;
                     case PropType.AddMpReply:
+                        StatusProp(roleid, propData, cricketid);
                         break;
                     case PropType.Skill:
+                        ConsumeProp(cricketid, propData, roleid);
                         break;
                     case PropType.Reset:
                         break;
@@ -71,72 +84,124 @@ namespace AscensionServer
         /// <summary>
         /// 区分加成物品
         /// </summary>
-        public static CricketAptitude AptitudeProp(PropData propData,int cricketid)
+        public static void  AptitudeProp(int roleid,PropData propData,int cricketid)
         {
             var nHCriteriaAptitude = xRCommon.xRNHCriteria("CricketID", cricketid);
-            var crickets = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
-            switch ((PropType)propData.PropType)
+            var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
+            var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
+            var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriaAptitude);
+            if (point != null && aptitude != null)
             {
-                case PropType.AddStr:
-                    crickets.Str += propData.AddNumber;
-                    break;
-                case PropType.AddCon:
-                    crickets.Con += propData.AddNumber;
-                    break;
-                case PropType.AddDef:
-                    crickets.Def += propData.AddNumber;
-                    break;
-                case PropType.AddDex:
-                    crickets.Dex += propData.AddNumber;
-                    break;
-                default:
-                    break;
+                switch ((PropType)propData.PropType)
+                {
+                    case PropType.AddStr:
+                        aptitude.Str += propData.AddNumber;
+                        break;
+                    case PropType.AddCon:
+                        aptitude.Con += propData.AddNumber;
+                        break;
+                    case PropType.AddDef:
+                        aptitude.Def += propData.AddNumber;
+                        break;
+                    case PropType.AddDex:
+                        aptitude.Dex += propData.AddNumber;
+                        break;
+                    default:
+                        break;
+                }
+                var status = CalculateStutas(aptitude, point, addition);
+                status.CricketID = aptitude.CricketID;
+                var data = xRCommon.xRS2CParams();
+                data.Add((byte)ParameterCode.CricketStatus, status);
+                data.Add((byte)ParameterCode.CricketAptitude, aptitude);
+                data.Add((byte)ParameterCode.CricketPoint, point);
+               var dict= xRCommon.xRS2CSub();
+                dict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(data));
+                xRCommon.xRS2CSend(roleid,(ushort)ATCmd.SyncCricket,(short)ReturnCode.Success, dict);
+                //TODO更新数据库并发送
+                NHibernateQuerier.Update(aptitude);
+                NHibernateQuerier.Update(status);
             }
-
-            return crickets;
+            else
+            {
+                //返回失败
+                xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
+                return;
+            }
         }
         /// <summary>
         /// 区分属性加成
         /// </summary>
         /// <param name="propData"></param>
         /// <param name="cricketStatus"></param>
-        public static CricketStatus StatusProp(PropData propData, CricketStatus cricketStatus)
+        public static void StatusProp(int roleid, PropData propData, int cricketid)
         {
-            switch ((PropType)propData.PropType)
+
+            var nHCriteriaAptitude = xRCommon.xRNHCriteria("CricketID", cricketid);
+            var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
+            var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
+            var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriaAptitude);
+            if (point!=null&& addition!=null&& aptitude!=null)
             {
-                case PropType.AddAtk:
-                    cricketStatus.Atk += propData.AddNumber;
-                    break;
-                case PropType.AddDefense:
-                    cricketStatus.Defense += propData.AddNumber;
-                    break;
-                case PropType.AddHp:
-                    cricketStatus.Hp += propData.AddNumber;
-                    break;
-                case PropType.AddMp:
-                    cricketStatus.Mp += propData.AddNumber;
-                    break;
-                case PropType.AddMpReply:
-                    cricketStatus.MpReply += propData.AddNumber;
-                    break;
-                default:
-                    break;
+                switch ((PropType)propData.PropType)
+                {
+                    case PropType.AddAtk:
+                        addition.Atk += propData.AddNumber;
+                        break;
+                    case PropType.AddDefense:
+                        addition.Defense += propData.AddNumber;
+                        break;
+                    case PropType.AddHp:
+                        addition.Hp += propData.AddNumber;
+                        break;
+                    case PropType.AddMp:
+                        addition.Mp += propData.AddNumber;
+                        break;
+                    case PropType.AddMpReply:
+                        addition.MpReply += propData.AddNumber;
+                        break;
+                    default:
+                        break;
+                }
             }
-            return cricketStatus;
+            var status = CalculateStutas(aptitude, point, addition);
+            status.CricketID = aptitude.CricketID;
+            var data = xRCommon.xRS2CParams();
+            data.Add((byte)ParameterCode.CricketStatus, status);
+            data.Add((byte)ParameterCode.CricketAptitude, aptitude);
+            data.Add((byte)ParameterCode.CricketPoint, point);
+            var dict = xRCommon.xRS2CSub();
+            dict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(data));
+            xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, dict);
+            //TODO更新数据库并发送
+            NHibernateQuerier.Update(addition);
+            NHibernateQuerier.Update(status);
         }
         /// <summary>
         /// 区分消耗物品
         /// </summary>
-        public static void ConsumeProp(PropData propData)
+        public static void ConsumeProp(int cricketid,PropData propData,int roleid)
         {
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var propDataDict);
+            if (!propDataDict.ContainsKey(propData.PropID))
+            {
+                xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
+                return;
+            }
+
             switch ((PropType)propData.PropType)
             {
                 case PropType.AddExp:
-
+                    Utility.Debug.LogInfo("YZQ增加经验的蛐蛐"+ cricketid);
+                        UpdateLevel(cricketid,propData.AddNumber,roleid);             
                     break;         
                 case PropType.DeleteSkill:
+                    Utility.Debug.LogInfo("YZQ删除技能的蛐蛐" + cricketid);
+                    RemoveSkill(propData.PropID, cricketid, roleid);
                     break;              
                 case PropType.Skill:
+                    Utility.Debug.LogInfo("YZQ学习技能的蛐蛐" + cricketid);
+                    StudySkill(propData.PropID, cricketid,roleid);
                     break;
                 case PropType.Reset:
                     break;

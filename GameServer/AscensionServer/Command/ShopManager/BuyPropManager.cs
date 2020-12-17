@@ -10,7 +10,7 @@ namespace AscensionServer
 {
    public static class BuyPropManager
     {
-        public static void BuyProp(RoleShopDTO roleShopDTO)
+        public static void BuyProp(RolepPropDTO roleShopDTO)
         {
             NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", roleShopDTO.RoleID);
             var roleAssets = xRCommon.xRCriteria<RoleAssets>(nHCriteria);

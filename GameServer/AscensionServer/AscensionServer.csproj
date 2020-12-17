@@ -186,6 +186,8 @@
     <Compile Include="Command\CricketManager\RoleCricketManager.Calculate.cs" />
     <Compile Include="Command\CricketManager\RoleCricketManager.cs" />
     <Compile Include="Command\CricketManager\RoleCricketManager.UseItem.cs" />
+    <Compile Include="Command\Exploration\ExplorationManager.Concreteness.cs" />
+    <Compile Include="Command\Exploration\ExplorationManager.cs" />
     <Compile Include="Command\Inventory\InventoryManager.Concreteness.cs" />
     <Compile Include="Command\Inventory\InventoryManager.cs" />
     <Compile Include="Command\Inventory\xRCommon.cs" />
@@ -198,10 +200,12 @@
     <Compile Include="Command\ShopManager\ShopManager.cs" />
     <Compile Include="Command\xRTask\TaskManager.Concreteness.cs" />
     <Compile Include="Command\xRTask\TaskManager.cs" />
+    <Compile Include="DataObjectMap\CricketAdditionMap.cs" />
     <Compile Include="DataObjectMap\CricketAptitudeMap.cs" />
     <Compile Include="DataObjectMap\CricketMap.cs" />
     <Compile Include="DataObjectMap\CricketPointMap.cs" />
     <Compile Include="DataObjectMap\CricketStatusMap.cs" />
+    <Compile Include="DataObjectMap\ExplorationMap.cs" />
     <Compile Include="DataObjectMap\InventoryMap.cs" />
     <Compile Include="DataObjectMap\RoleAssetsMap.cs" />
     <Compile Include="DataObjectMap\RoleCricketMap.cs" />
@@ -209,9 +213,11 @@
     <Compile Include="DataObjectMap\xRTaskMap.cs" />
     <Compile Include="DataObjectMap\UserMap.cs" />
     <Compile Include="DataObject\Cricket.cs" />
+    <Compile Include="DataObject\CricketAddition.cs" />
     <Compile Include="DataObject\CricketAptitude.cs" />
     <Compile Include="DataObject\CricketPoint.cs" />
     <Compile Include="DataObject\CricketStatus.cs" />
+    <Compile Include="DataObject\Exploration.cs" />
     <Compile Include="DataObject\Inventory.cs" />
     <Compile Include="DataObject\Role.cs" />
     <Compile Include="DataObject\RoleAssets.cs" />
