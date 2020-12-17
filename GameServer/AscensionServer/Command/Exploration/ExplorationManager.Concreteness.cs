@@ -152,7 +152,7 @@ namespace AscensionServer
                                     RoleCricketManager.AddCricket(xrDict[info.Key].GlobalId, roleId);
                                     break;
                                 case "GetSkill":
-                                    RoleCricketManager.AddSpecialSkill(setExploration[itemidInfo].SkillID,0,roleId);
+                                    //RoleCricketManager.AddSpecialSkill(setExploration[itemidInfo].SkillID,0,roleId);
                                     break;
                             }
                         }
