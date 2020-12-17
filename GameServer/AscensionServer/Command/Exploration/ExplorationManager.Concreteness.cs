@@ -106,37 +106,38 @@ namespace AscensionServer
                         //GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, BattleSkill>>(out var setExploration);
                         foreach (var itemidInfo in xrDict[info.Key].ItemId)
                         {
+                            var xrRandom = RandomManager(info.Key,setExploration[itemidInfo].Number[0], setExploration[itemidInfo].Number[1]);
                             switch (setExploration[itemidInfo].EventType)
                             {
                                 case "AddStr":
-                                    RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddStr, AddNumber = 1 }, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddStr, AddNumber = xrRandom }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddCon":
-                                    RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddCon, AddNumber = 1 }, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddCon, AddNumber = xrRandom }, xrDict[info.Key].CustomId);
                                     break; 
                                 case "AddDex":
-                                    RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddDex, AddNumber = 1 }, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddDex, AddNumber = xrRandom }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddDef":
-                                    RoleCricketManager.AptitudeProp(roleId, new PropData() {  PropType = (int)RoleCricketManager.PropType.AddDef, AddNumber = 1 }, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.AptitudeProp(roleId, new PropData() {  PropType = (int)RoleCricketManager.PropType.AddDef, AddNumber = xrRandom }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddAtk":
-                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddAtk, AddNumber = 1, }, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddAtk, AddNumber = xrRandom, }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddHp":
-                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddHp, AddNumber = 1, }, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddHp, AddNumber = xrRandom, }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddDefense":
-                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddDefense, AddNumber = 1, }, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddDefense, AddNumber = xrRandom, }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddMp":
-                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddMp, AddNumber = 1, }, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddMp, AddNumber = xrRandom, }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddMpReply":
-                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddMpReply, AddNumber = 1, }, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddMpReply, AddNumber = xrRandom, }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddExp":
-                                    RoleCricketManager.UpdateLevel(xrDict[info.Key].CustomId,1, roleId);
+                                    RoleCricketManager.UpdateLevel(xrDict[info.Key].CustomId, xrRandom, roleId);
                                     break;
                                 case "GetProp":
                                     Dictionary<int, ItemDTO> xrSet = new Dictionary<int, ItemDTO>();
@@ -145,13 +146,13 @@ namespace AscensionServer
                                     InventoryManager.xRAddInventory(roleId, xrSet);
                                     break;
                                 case "GetMoney":
-                                    BuyPropManager.UpdateRoleAssets(roleId,1);
+                                    BuyPropManager.UpdateRoleAssets(roleId, xrRandom);
                                     break;
                                 case "GetCricket"://全局id
                                     RoleCricketManager.AddCricket(xrDict[info.Key].GlobalId, roleId);
                                     break;
                                 case "GetSkill":
-                                    //RoleCricketManager.AddSpecialSkill(setExploration[itemidInfo].SkillID,,roleId);
+                                    RoleCricketManager.AddSpecialSkill(setExploration[itemidInfo].SkillID,0,roleId);
                                     break;
                             }
                         }
@@ -161,6 +162,19 @@ namespace AscensionServer
                 }
                 xRGetExploration(roleId);
             }
+        }
+
+        /// <summary>
+        /// 针对战斗中的随机数
+        /// </summary>
+        /// <param name="ov"></param>
+        /// <param name="minValue"></param>
+        /// <param name="maxValue"></param>
+        /// <returns></returns>
+        public static int RandomManager(int ov, int minValue, int maxValue)
+        {
+            var targetValue = new Random((int)DateTime.Now.Ticks + ov).Next(minValue, maxValue);
+            return targetValue;
         }
 
     }
