@@ -119,7 +119,7 @@ namespace AscensionServer
                             defendTriggerSkillList.Add(defendBattleSkillList[i].SkillId);
                     }
 
-                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData }, null, defendTriggerSkillList, new List<int>() { attackPlayer.RoleId }, false));
+                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData }, null, defendBattleSkillList, new List<int>() { attackPlayer.RoleId }, false));
 
                     crashColdTime -= offestTime;
                 }
@@ -145,7 +145,7 @@ namespace AscensionServer
                             attackTriggerSkillList.Add(attackBattleSkillList[i].SkillId);
                     }
 
-                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData, defendBattleDamageData }, attackTriggerSkillList, defendTriggerSkillList, new List<int>() { attackPlayer.RoleId,defendPlayer.RoleId }, true));
+                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData, defendBattleDamageData }, attackBattleSkillList, defendBattleSkillList, new List<int>() { attackPlayer.RoleId,defendPlayer.RoleId }, true));
 
                     crashNum += 1;
                     crashColdTime = 5000;
@@ -288,7 +288,7 @@ namespace AscensionServer
             return battleDamageData;
         }
         //设置一次行为的传输数据
-        BattleRoleActionData GetTransferData(List<BattleDamageData> battleDamageDataList,List<int> attackTriggerSkillList,List<int> defendTriggerList,List<int> roleIdList,bool isCrash)
+        BattleRoleActionData GetTransferData(List<BattleDamageData> battleDamageDataList,List<BattleSkill> attackTriggerSkillList,List<BattleSkill> defendTriggerList,List<int> roleIdList,bool isCrash)
         {
             BattleRoleActionData battleRoleActionData = new BattleRoleActionData();
             battleRoleActionData.Time = nowTime;
@@ -308,7 +308,17 @@ namespace AscensionServer
                 attackBattleActionData.ReturnDamageList.Add(attackDamageData.returnDamageNumList[i]);
             for (int i = 0; i < attackDamageData.battleSkillAddBuffList.Count; i++)
                 attackBattleActionData.AddBuffList.Add(attackDamageData.battleSkillAddBuffList[i].BuffId);
-            attackBattleActionData.TriggerSkillList = defendTriggerList;
+            if (defendTriggerList != null)
+            {
+                for (int i = 0; i < defendTriggerList.Count; i++)
+                {
+                    if (defendTriggerList[i] != null)
+                    {
+                        attackBattleActionData.TriggerSkillList.Add(defendTriggerList[i].SkillId);
+                        attackBattleActionData.TriggerSkillEnduranceCost.Add(defendTriggerList[i].EnduranceCost);
+                    }
+                }
+            }
             if (isCrash)
             {
                 BattleDamageData defendDamageData = battleDamageDataList[1];
@@ -327,7 +337,17 @@ namespace AscensionServer
                     defendBattleActionData.ReturnDamageList.Add(defendDamageData.returnDamageNumList[i]);
                 for (int i = 0; i < defendDamageData.battleSkillAddBuffList.Count; i++)
                     defendBattleActionData.AddBuffList.Add(defendDamageData.battleSkillAddBuffList[i].BuffId);
-                defendBattleActionData.TriggerSkillList = attackTriggerSkillList;
+                if (attackTriggerSkillList != null)
+                {
+                    for (int i = 0; i < attackTriggerSkillList.Count; i++)
+                    {
+                        if (attackTriggerSkillList[i] != null)
+                        {
+                            defendBattleActionData.TriggerSkillList.Add(attackTriggerSkillList[i].SkillId);
+                            defendBattleActionData.TriggerSkillEnduranceCost.Add(attackTriggerSkillList[i].EnduranceCost);
+                        }
+                    }
+                }
             }
             else
             {
