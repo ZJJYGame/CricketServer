@@ -77,14 +77,91 @@ namespace AscensionServer
                         return;
                     else
                     {
-                        xrDict[info.Key] = info.Value;
+                        xrDict[info.Key].TimeType -= info.Value.TimeType;
                     }
                     NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict) });
                 }
                 xRGetExploration(roleId);
             }
         }
-
+        /// <summary>
+        /// 移除探索
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <param name="ItemInfo"></param>
+        public static void xRRemoveExploration(int roleId, Dictionary<int, ExplorationItemDTO> ItemInfo)
+        {
+            var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
+            if (xRCommon.xRVerify<Role>(nHcriteria))
+            {
+                var xRserver = xRCommon.xRCriteria<Exploration>(nHcriteria);
+                var xrDict = Utility.Json.ToObject<Dictionary<int, ExplorationItemDTO>>(xRserver.ExplorationItemDict);
+                foreach (var info in ItemInfo)
+                {
+                    if (!xrDict.ContainsKey(info.Key))
+                        return;
+                    else
+                    {
+                        GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, ExplorationData>>(out var setExploration);
+                        //GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, BattleSkill>>(out var setExploration);
+                        foreach (var itemidInfo in xrDict[info.Key].ItemId)
+                        {
+                            switch (setExploration[itemidInfo].EventType)
+                            {
+                                case "AddStr":
+                                    RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddStr, AddNumber = 1 }, xrDict[info.Key].CustomId);
+                                    break;
+                                case "AddCon":
+                                    RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddCon, AddNumber = 1 }, xrDict[info.Key].CustomId);
+                                    break; 
+                                case "AddDex":
+                                    RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddDex, AddNumber = 1 }, xrDict[info.Key].CustomId);
+                                    break;
+                                case "AddDef":
+                                    RoleCricketManager.AptitudeProp(roleId, new PropData() {  PropType = (int)RoleCricketManager.PropType.AddDef, AddNumber = 1 }, xrDict[info.Key].CustomId);
+                                    break;
+                                case "AddAtk":
+                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddAtk, AddNumber = 1, }, xrDict[info.Key].CustomId);
+                                    break;
+                                case "AddHp":
+                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddHp, AddNumber = 1, }, xrDict[info.Key].CustomId);
+                                    break;
+                                case "AddDefense":
+                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddDefense, AddNumber = 1, }, xrDict[info.Key].CustomId);
+                                    break;
+                                case "AddMp":
+                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddMp, AddNumber = 1, }, xrDict[info.Key].CustomId);
+                                    break;
+                                case "AddMpReply":
+                                    RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddMpReply, AddNumber = 1, }, xrDict[info.Key].CustomId);
+                                    break;
+                                case "AddExp":
+                                    RoleCricketManager.UpdateLevel(xrDict[info.Key].CustomId,1, roleId);
+                                    break;
+                                case "GetProp":
+                                    Dictionary<int, ItemDTO> xrSet = new Dictionary<int, ItemDTO>();
+                                    foreach (var infoProp in setExploration[itemidInfo].PropID)
+                                        xrSet.Add(infoProp, new ItemDTO() { ItemAmount = 1 });
+                                    InventoryManager.xRAddInventory(roleId, xrSet);
+                                    break;
+                                case "GetMoney":
+                                    BuyPropManager.UpdateRoleAssets(roleId,1);
+                                    break;
+                                case "GetCricket"://全局id
+                                    RoleCricketManager.AddCricket(xrDict[info.Key].GlobalId, roleId);
+                                    break;
+                                case "GetSkill":
+                                    //RoleCricketManager.AddSpecialSkill(setExploration[itemidInfo].SkillID,,roleId);
+                                    break;
+                            }
+                        }
+                        xrDict.Remove(info.Key);
+                        NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict) });
+                    }
+                }
+                xRGetExploration(roleId);
+            }
+        }
 
     }
 }

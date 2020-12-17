@@ -19,6 +19,7 @@ namespace AscensionProtocol
         public List<int> ItemId { get; set; }
         public DateTime DateTime { get; set; }
         public int TimeType { get; set; }
-
+        public int CustomId { get; set; }
+        public int GlobalId { get; set; }
     }
 }
