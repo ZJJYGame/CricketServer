@@ -10,5 +10,7 @@
 {"PropID":1009,"PropPrice":1000},
 {"PropID":1901,"PropPrice":100},
 {"PropID":1902,"PropPrice":300},
-{"PropID":1903,"PropPrice":500}
+{"PropID":1903,"PropPrice":500},
+{"PropID":1201,"PropPrice":50},
+{"PropID":1202,"PropPrice":50}
 ]
