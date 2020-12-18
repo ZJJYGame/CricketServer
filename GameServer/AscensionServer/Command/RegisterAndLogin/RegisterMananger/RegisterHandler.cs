@@ -63,7 +63,7 @@ namespace AscensionServer
                 darilyDict.Add(302, new TaskItemDTO() { taskStatus = false, taskProgress = 0, taskTarget = 2, taskManoy = 140 });
                 darilyDict.Add(303, new TaskItemDTO() { taskStatus = false, taskProgress = 0, taskTarget = 3, taskManoy = 140 });
                 NHibernateQuerier.Insert(new xRTask() { RoleID = role.RoleID, taskDict = Utility.Json.ToJson(darilyDict) });
-                NHibernateQuerier.Insert(new ExplorationDTO() { RoleID = role.RoleID });
+                NHibernateQuerier.Insert(new Exploration() { RoleID = role.RoleID });
                 #endregion
                 OperationData operationData = new OperationData();
                 operationData.DataMessage = Utility.Json.ToJson(role);
