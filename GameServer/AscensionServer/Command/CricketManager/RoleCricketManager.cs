@@ -78,7 +78,6 @@ namespace AscensionServer
 
             RoleCricketDTO roleCricketDTO = new RoleCricketDTO();
             roleCricketDTO.RoleID = roleCricket.RoleID;
-            roleCricketDTO.CricketList = Utility.Json.ToObject<List<int>>(roleCricket.CricketList);
             roleCricketDTO.TemporaryCrickets = Utility.Json.ToObject<List<int>>(roleCricket.TemporaryCrickets);
 
             for (int i = 0; i < roleCricketDTO.TemporaryCrickets.Count; i++)
@@ -105,13 +104,14 @@ namespace AscensionServer
                     cricketPoint.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketPoint);
 
-                    roleCricketDTO.TemporaryCrickets[roleCricketDTO.TemporaryCrickets[i]] = cricket.ID;
+                    Utility.Debug.LogInfo("YZQ" + roleCricketDTO.TemporaryCrickets[i]);
+                    roleCricketDTO.TemporaryCrickets[i] = cricket.ID;
                     break;
                 }
             }
 
-            roleCricket.CricketList = Utility.Json.ToJson(roleCricketDTO.TemporaryCrickets);
-            NHibernateQuerier.Insert(roleCricket);
+            roleCricket.TemporaryCrickets = Utility.Json.ToJson(roleCricketDTO.TemporaryCrickets);
+            NHibernateQuerier.Update(roleCricket);
         }
         /// <summary>
         /// 放生小屋蟋蟀
