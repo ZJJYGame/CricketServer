@@ -27,7 +27,7 @@ namespace AscensionServer
             if (roleCricket != null)
             {
                 var cricketDict = Utility.Json.ToObject<List<int>>(roleCricket.CricketList);
-
+                Utility.Debug.LogInfo("yzqData获取蛐蛐属性:" + Utility.Json.ToJson(cricketDict));
                 for (int i = 0; i < cricketDict.Count; i++)
                 {
                     if (cricketDict[i] != -1)
@@ -59,7 +59,9 @@ namespace AscensionServer
                 dataDict.Add((byte)ParameterCode.CricketAptitude, aptitudeDict);
                 var messageDict = xRCommon.xRS2CSub();
                 messageDict.Add((byte)opType, Utility.Json.ToJson(dataDict));
+                Utility.Debug.LogInfo("yzqData发送所有蛐蛐属性:" + Utility.Json.ToJson(dataDict));
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, messageDict);
+                Utility.Debug.LogInfo("yzqData发送所有蛐蛐属性:" + Utility.Json.ToJson(dataDict)+"角色id"+ roleid);
             }
         }
         /// <summary>

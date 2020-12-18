@@ -273,9 +273,9 @@ namespace AscensionServer
         /// <param name="roleid"></param>
         /// <param name="propData"></param>
         /// <param name="cricket"></param>
-        public static void UpdateCricketSkill(int roleid,int propid,int cricketid)
+        public static void UpdateCricketSkill(int roleid,RolepPropDTO rolepPropDTO,int cricketid)
         {
-           var result= VerifyProp(propid,PropType.Skill,out var prop);
+           var result= VerifyProp(rolepPropDTO.PropID, PropType.Skill,out var prop);
             if (result)
             {
                 var nHCriteriacricket = xRCommon.xRNHCriteria("ID", cricketid);
@@ -290,10 +290,27 @@ namespace AscensionServer
                    var exits=  skillDict.TryGetValue(prop.SkillID, out int level);
                     if (exits)
                     {
+                        if (level < 10 && (level + 1) == rolepPropDTO.PropNum)
+                        {
+                            level += 1;
+                            skillDict[prop.SkillID] = level;
 
+                            cricket.SkillDict = Utility.Json.ToJson(skillDict);
+                            NHibernateQuerier.Update(cricket);
+                            var data = xRCommon.xRS2CParams();
+                            data.Add((byte)ParameterCode.Cricket, SetCricketValue(cricket));
+                            data.Add((byte)ParameterCode.Cricket, cricketstatus);
+                            var dict = xRCommon.xRS2CSub();
+                            dict.Add((byte)CricketOperateType.UpdateSkill, Utility.Json.ToJson(data));
+                            xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Success, dict);
+                        }
+                        else
+                            xRCommon.xRS2CSend(roleid,(ushort)ATCmd.SyncCricket,(short)ReturnCode.Fail,xRCommonTip.xR_err_Verify);
                     }
-                }
-            }
+                }else
+                    xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
+            }else
+                xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
         }
     }
 }

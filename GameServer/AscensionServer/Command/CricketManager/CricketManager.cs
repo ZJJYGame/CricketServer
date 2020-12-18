@@ -62,7 +62,8 @@ namespace AscensionServer
                         RoleCricketManager.EnlargeNest(roleObj.RoleID);
                         break;
                     case CricketOperateType.UpdateSkill:
-
+                        var tempprop = Utility.Json.ToObject<RolepPropDTO>(dict[(byte)ParameterCode.UseItem].ToString());
+                        RoleCricketManager.UpdateCricketSkill(roleObj.RoleID, tempprop, tempprop.CricketID);
                         break;
                     default:
                         break;
