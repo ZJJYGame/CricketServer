@@ -36,6 +36,7 @@ namespace AscensionServer
                     ExplorationManager.xRRemoveExploration(roleSet[(byte)ParameterCode.RoleExploration].RoleID, roleSet[(byte)ParameterCode.RoleExploration].ExplorationItemDict);
                     break;
                 case SubOperationCode.Verify:
+                    ExplorationManager.xRVerifyExploration(roleSet[(byte)ParameterCode.RoleExploration].RoleID, roleSet[(byte)ParameterCode.RoleExploration].UnLockDict);
                     break;
             }
 

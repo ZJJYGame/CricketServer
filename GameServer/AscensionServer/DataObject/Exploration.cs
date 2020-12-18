@@ -10,11 +10,12 @@ namespace AscensionServer
     {
         public virtual int RoleID { get; set; }
         public virtual string ExplorationItemDict { get; set; }
-
+        public virtual string UnLockDict { get; set; }
         public Exploration()
         {
             RoleID = -1;
             ExplorationItemDict = "{}";
+            UnLockDict = "{}";
         }
     }
 }

@@ -13,6 +13,7 @@ namespace AscensionServer
         {
             Id(x => x.RoleID).GeneratedBy.Assigned().Column("roleid");
             Map(x => x.ExplorationItemDict).Column("explorationitemdict");
+            Map(x => x.UnLockDict).Column("unlockDict");
             Table("exploration");
         }
     }
