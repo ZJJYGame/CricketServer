@@ -40,7 +40,11 @@ namespace AscensionServer
 
         }
 
-
+        /// <summary>
+        /// 玩家获得金币
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <param name="gold"></param>
         public static void UpdateRoleAssets(int roleid,int gold)
         {
             NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", roleid);
@@ -57,6 +61,26 @@ namespace AscensionServer
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncShop, (byte)ReturnCode.Success, dict);
             }
         }
-
+        /// <summary>
+        /// 玩家消耗金币
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <param name="gold"></param>
+        public static void ExpenseRoleAssets(int roleid, int gold)
+        {
+            NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", roleid);
+            var roleAssets = xRCommon.xRCriteria<RoleAssets>(nHCriteria);
+            if (gold > 0)
+            {
+                roleAssets.RoleGold -= gold;
+                NHibernateQuerier.Update(roleAssets);
+                var dataDict = xRCommon.xRS2CParams();
+                dataDict.Add((byte)ParameterCode.RoleAsset, roleAssets);
+                var dict = xRCommon.xRS2CSub();
+                dict.Add((byte)ShopOperate.Buy, Utility.Json.ToJson(dataDict));
+                Utility.Debug.LogInfo("YZQData" + Utility.Json.ToJson(dataDict));
+                xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncShop, (byte)ReturnCode.Success, dict);
+            }
+        }
     }
 }

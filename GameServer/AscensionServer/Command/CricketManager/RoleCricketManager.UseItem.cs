@@ -210,5 +210,28 @@ namespace AscensionServer
             }
         }
 
+        /// <summary>
+        /// 验证物品及类型是否存在
+        /// </summary>
+        /// <param name="propid"></param>
+        /// <param name="propType"></param>
+        /// <param name="propData"></param>
+        /// <returns></returns>
+        public static bool VerifyProp(int propid,PropType propType,out PropData propData)
+        {
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var cricketLevelDict);
+            var result = cricketLevelDict.TryGetValue(propid, out  propData);
+            if (result)
+            {
+                if (propData.PropType == (int)propType)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
     }
 }
