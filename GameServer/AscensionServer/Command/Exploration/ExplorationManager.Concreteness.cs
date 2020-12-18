@@ -190,7 +190,7 @@ namespace AscensionServer
                         xrDict[info.Key] = true;
                         xrDict[info.Key + 1] = false;
                     }
-                    BuyPropManager.UpdateRoleAssets(roleId, 1000);
+                    BuyPropManager.ExpenseRoleAssets(roleId, 1000);
                     NHibernateQuerier.Update(new Exploration() { RoleID = roleId,  ExplorationItemDict = xRserver.ExplorationItemDict,  UnLockDict = Utility.Json.ToJson(xrDict) });
                 }
                 xRGetExploration(roleId);
