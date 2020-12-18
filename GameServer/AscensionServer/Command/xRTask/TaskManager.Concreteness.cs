@@ -74,16 +74,6 @@ namespace AscensionServer
                         if (xrDict[info.Key].taskProgress>=xrDict[info.Key].taskTarget)
                             continue;
                         xrDict[info.Key].taskProgress += info.Value.taskProgress;
-                        if (xrDict[info.Key].taskProgress >= xrDict[info.Key].taskTarget)
-                        {
-                            xrDict[info.Key].taskStatus = true;
-                            //xRRemove(roleId, info.Key);
-                            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int,TaskData>>(out var setTask);
-                            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var setProp);
-                            if (setTask[info.Key].PropID != 0)
-                                InventoryManager.xRUpdateInventory(roleId, new Dictionary<int, ItemDTO> { { setProp[setTask[info.Key].PropID].PropID, new ItemDTO() { ItemAmount = 1 } } });
-                            BuyPropManager.UpdateRoleAssets(roleId, xrDict[info.Key].taskManoy);
-                        }
                     }
                     NHibernateQuerier.Update(new xRTask() { RoleID = roleId,  taskDict = Utility.Json.ToJson(xrDict) });
                 }
@@ -95,7 +85,7 @@ namespace AscensionServer
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="ItemInfo"></param>
-        public static void xRRemove(int roleId, int  taskId)
+        public static void xRRemoveTask(int roleId, int  taskId)
         {
             var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
             if (xRCommon.xRVerify<Role>(nHcriteria))
@@ -105,6 +95,42 @@ namespace AscensionServer
                 if (xrDict.ContainsKey(taskId))
                 {
                     xrDict.Remove(taskId);
+                    NHibernateQuerier.Update(new xRTask() { RoleID = roleId, taskDict = Utility.Json.ToJson(xrDict) });
+                }
+                xRGetTask(roleId);
+            }
+        }
+
+
+        /// <summary>
+        /// 领取任务奖励
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <param name="ItemInfo"></param>
+        public static void xRVerifyTask(int roleId, Dictionary<int, TaskItemDTO> ItemInfo)
+        {
+            var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
+            if (xRCommon.xRVerify<Role>(nHcriteria))
+            {
+                var xRserver = xRCommon.xRCriteria<xRTask>(nHcriteria);
+                var xrDict = Utility.Json.ToObject<Dictionary<int, TaskItemDTO>>(xRserver.taskDict);
+                foreach (var info in ItemInfo)
+                {
+                    if (!xrDict.ContainsKey(info.Key))
+                        continue;
+                    else
+                    {
+                        if (xrDict[info.Key].taskProgress >= xrDict[info.Key].taskTarget)
+                        {
+                            xrDict[info.Key].taskStatus = true;
+                            //xRRemove(roleId, info.Key);
+                            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, TaskData>>(out var setTask);
+                            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var setProp);
+                            if (setTask[info.Key].PropID != 0)
+                                InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO> { { setProp[setTask[info.Key].PropID].PropID, new ItemDTO() { ItemAmount = 1 } } });
+                            BuyPropManager.UpdateRoleAssets(roleId, xrDict[info.Key].taskManoy);
+                        }
+                    }
                     NHibernateQuerier.Update(new xRTask() { RoleID = roleId, taskDict = Utility.Json.ToJson(xrDict) });
                 }
                 xRGetTask(roleId);
