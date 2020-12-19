@@ -11,7 +11,9 @@ namespace AscensionServer
     [CustomeModule]
    public  partial class TaskManager:Module<TaskManager>
     {
+        Dictionary<int, TaskItemDTO> darilyDict = new Dictionary<int, TaskItemDTO>();
         public override void OnPreparatory() => CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncTask, C2STask);
+        
         private void C2STask(OperationData opData)
         {
             Utility.Debug.LogInfo("老陆==>" + (opData.DataMessage.ToString()));
@@ -20,6 +22,8 @@ namespace AscensionServer
             switch ((subTaskOp)data.Keys.ToList()[0])
             {
                 case subTaskOp.Get:
+                    if (darilyDict.Count !=3)
+                        SetTaskAtFixedTime(roleSet[(byte)ParameterCode.RoleTask].RoleID);
                     xRGetTask(roleSet[(byte)ParameterCode.RoleTask].RoleID);
                     break;
                 case subTaskOp.Add:
@@ -35,6 +39,37 @@ namespace AscensionServer
                     xRVerifyTask(roleSet[(byte)ParameterCode.RoleTask].RoleID, roleSet[(byte)ParameterCode.RoleTask].taskDict);
                     break;
             }
+        }
+        public override void OnRefresh()
+        {
+            base.OnRefresh();
+            DateTime now = DateTime.Now;
+            if (now.Hour == 14&&now.Minute ==20)
+                darilyDict.Clear();
+        }
+        private void SetTaskAtFixedTime(int roleId)
+        {
+            DateTime now = DateTime.Now;
+            DateTime oneClock = DateTime.Today.AddHours(14.15);//凌晨一点 
+            if (now>oneClock)
+                TimeSetTask(roleId);
+        }
+
+        public void TimeSetTask(int roleId)
+        {
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, TaskData>>(out var setTask);
+            int index = 0;
+            while (darilyDict.Count !=3)
+            {
+                if (darilyDict.Count == 3)
+                    break;
+                var xrtaskId =  ExplorationManager.RandomManager(index++, 0,setTask.Count);
+                if (!darilyDict.ContainsKey(setTask.Keys.ToList()[xrtaskId]))
+                {
+                    darilyDict[setTask.Keys.ToList()[xrtaskId]] = new TaskItemDTO() { taskStatus = false, taskProgress = 0, taskTarget = setTask.Values.ToList()[xrtaskId].TaskTarget, taskManoy = 100 };
+                }
+            }
+            NHibernateQuerier.Update(new xRTask() { RoleID = roleId, taskDict = Utility.Json.ToJson(darilyDict) });
         }
     }
 }
