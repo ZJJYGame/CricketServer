@@ -307,7 +307,10 @@ namespace AscensionServer
             for (int i = 0; i < attackDamageData.returnDamageNumList.Count; i++)
                 attackBattleActionData.ReturnDamageList.Add(attackDamageData.returnDamageNumList[i]);
             for (int i = 0; i < attackDamageData.battleSkillAddBuffList.Count; i++)
+            {
                 attackBattleActionData.AddBuffList.Add(attackDamageData.battleSkillAddBuffList[i].BuffId);
+                attackBattleActionData.AddBuffDurationTime.Add(attackDamageData.battleSkillAddBuffList[i].DurationTime);
+            }
             if (defendTriggerList != null)
             {
                 for (int i = 0; i < defendTriggerList.Count; i++)
@@ -336,7 +339,10 @@ namespace AscensionServer
                 for (int i = 0; i < defendDamageData.returnDamageNumList.Count; i++)
                     defendBattleActionData.ReturnDamageList.Add(defendDamageData.returnDamageNumList[i]);
                 for (int i = 0; i < defendDamageData.battleSkillAddBuffList.Count; i++)
+                {
                     defendBattleActionData.AddBuffList.Add(defendDamageData.battleSkillAddBuffList[i].BuffId);
+                    defendBattleActionData.AddBuffDurationTime.Add(defendDamageData.battleSkillAddBuffList[i].DurationTime);
+                }
                 if (attackTriggerSkillList != null)
                 {
                     for (int i = 0; i < attackTriggerSkillList.Count; i++)
