@@ -44,13 +44,13 @@ namespace AscensionServer
         {
             base.OnRefresh();
             DateTime now = DateTime.Now;
-            if (now.Hour == 14&&now.Minute ==20)
+            if (now.Hour == 16&&now.Minute ==45)
                 darilyDict.Clear();
         }
         private void SetTaskAtFixedTime(int roleId)
         {
             DateTime now = DateTime.Now;
-            DateTime oneClock = DateTime.Today.AddHours(14.15);//凌晨一点 
+            DateTime oneClock = DateTime.Today.AddHours(16.43);//凌晨一点 
             if (now>oneClock)
                 TimeSetTask(roleId);
         }

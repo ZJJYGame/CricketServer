@@ -94,10 +94,13 @@ namespace AscensionServer
                         return;
                     else
                     {
-                        if (xrDict[info.Key].ItemAmount > 0 &&xrDict[info.Key].ItemAmount >= info.Value.ItemAmount)
+                        if (xrDict[info.Key].ItemAmount > 0 && xrDict[info.Key].ItemAmount >= info.Value.ItemAmount)
+                        {
                             xrDict[info.Key].ItemAmount -= info.Value.ItemAmount;
-                        else
-                            xrDict.Remove(info.Key);
+                            if (xrDict[info.Key].ItemAmount<= 0)
+                                xrDict.Remove(info.Key);
+                        }
+                           
                     }
                     NHibernateQuerier.Update(new Inventory() { RoleID = roleId, ItemDict = Utility.Json.ToJson(xrDict) });
                 }
