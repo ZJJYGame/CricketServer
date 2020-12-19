@@ -330,8 +330,13 @@ namespace AscensionServer
                         if (normalDict[i] == -1)
                         {
                             normalDict[i] = cricketid;
-                            tempDict.Remove(cricketid);
-                            tempDict.Add(-1);
+                            Utility.Debug.LogInfo("YZQ替换成功" + tempDict.IndexOf(cricketid));
+                            var num = tempDict.IndexOf(cricketid);
+                            tempDict.RemoveAt(num);
+                            if (tempDict.Count<3)
+                            {
+                                tempDict.Add(-1);
+                            }
                             break;
                         }
                     }
@@ -340,6 +345,7 @@ namespace AscensionServer
                     NHibernateQuerier.Update(roleCricket);
                     GetRoleCricket(roleid,CricketOperateType.UpdCricket);
                     GetTempCricket(roleid, CricketOperateType.UpdTempCricket);
+
                 }
                 else
                     xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Fail, xRCommonTip.xR_err_ReLogin);

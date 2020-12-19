@@ -30,8 +30,8 @@ namespace AscensionServer
                 {
                     case CricketOperateType.AddCricket:
                         var cricket = Utility.Json.ToObject<Cricket>(dict[(byte)ParameterCode.Cricket].ToString());
-                        //Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID + "蛐蛐id" + cricket.CricketID);
-                        RoleCricketManager.InsteadOfPos(cricket.CricketID, roleObj.RoleID);
+                        Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID + "蛐蛐id" + cricket.ID);
+                        RoleCricketManager.InsteadOfPos(cricket.ID, roleObj.RoleID);
                         break;
                     case CricketOperateType.GetCricket:
                         //Utility.Debug.LogInfo("yzqData添加蛐蛐:" + roleObj.RoleID);
