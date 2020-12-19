@@ -138,7 +138,7 @@ namespace AscensionServer
                                     RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddMpReply, AddNumber = xrRandom, }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddExp":
-                                    RoleCricketManager.UpdateLevel(xrDict[info.Key].CustomId, xrRandom, roleId);
+                                    RoleCricketManager.UpdateLevel(xrDict[info.Key].CustomId, new PropData() { PropID =-1, AddNumber = xrRandom, }, roleId);
                                     break;
                                 case "GetProp":
                                     Dictionary<int, ItemDTO> xrSet = new Dictionary<int, ItemDTO>();

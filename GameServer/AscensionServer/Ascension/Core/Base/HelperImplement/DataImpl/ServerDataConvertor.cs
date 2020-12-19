@@ -54,9 +54,13 @@ namespace AscensionServer
                 var battleAttackSkillDataDict = TransObject<List<BattleAttackSkillData>>(battleAttackSkillDataData).ToDictionary(key => key.skillId, value => value);
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(BattleBuffData).Name, out var battleBuffDataData);
                 var battleBuffDataDict= TransObject<List<BattleBuffData>>(battleBuffDataData).ToDictionary(key => key.buffId, value => value);
+
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(ADAward).Name, out var aDAwardData);
+                var aDAwardDict = TransObject<List<ADAward>>(aDAwardData).ToDictionary(key => key.PropID, value => value);
                 #endregion
 
                 #region 储存方式 
+                GameManager.CustomeModule<DataManager>().TryAdd(aDAwardDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(explorationDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(taskDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(shopDict);

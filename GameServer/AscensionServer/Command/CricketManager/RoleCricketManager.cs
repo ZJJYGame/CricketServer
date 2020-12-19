@@ -103,8 +103,6 @@ namespace AscensionServer
                     cricketPoint.FreePoint = cricketLevelDict[cricket.LevelID].AssignPoint;
                     cricketPoint.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketPoint);
-
-                    Utility.Debug.LogInfo("YZQ" + roleCricketDTO.TemporaryCrickets[i]);
                     roleCricketDTO.TemporaryCrickets[i] = cricket.ID;
                     break;
                 }

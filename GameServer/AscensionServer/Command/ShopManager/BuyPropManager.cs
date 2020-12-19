@@ -14,7 +14,7 @@ namespace AscensionServer
         {
             NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", roleShopDTO.RoleID);
             var roleAssets = xRCommon.xRCriteria<RoleAssets>(nHCriteria);
-
+            Utility.Debug.LogInfo("YZQ數據庫映射"+Utility.Json.ToJson(roleAssets));
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, Shop>>(out var shopDict);
 
             Utility.Debug.LogInfo("YZQData" + Utility.Json.ToJson(roleShopDTO));

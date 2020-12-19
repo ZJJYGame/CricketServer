@@ -74,6 +74,7 @@ namespace AscensionServer
                         ConsumeProp(cricketid, propData, roleid);
                         break;
                     case PropType.Reset:
+                        ConsumeProp(cricketid, propData, roleid);
                         break;
                     default:
                         break;
@@ -90,7 +91,7 @@ namespace AscensionServer
             var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
             var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriaAptitude);
-            if (point != null && aptitude != null)
+            if (point != null && aptitude != null&& addition!=null)
             {
                 switch ((PropType)propData.PropType)
                 {
@@ -118,6 +119,8 @@ namespace AscensionServer
                var dict= xRCommon.xRS2CSub();
                 dict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(data));
                 xRCommon.xRS2CSend(roleid,(ushort)ATCmd.SyncCricket,(short)ReturnCode.Success, dict);
+                //更新背包
+                InventoryManager.xRUpdateInventory(roleid, new Dictionary<int, ItemDTO> { { propData.PropID, new ItemDTO() { ItemAmount = 1 } } });
                 //TODO更新数据库并发送
                 NHibernateQuerier.Update(aptitude);
                 NHibernateQuerier.Update(status);
@@ -173,6 +176,8 @@ namespace AscensionServer
             var dict = xRCommon.xRS2CSub();
             dict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(data));
             xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, dict);
+            //更新背包
+            InventoryManager.xRUpdateInventory(roleid, new Dictionary<int, ItemDTO> { { propData.PropID, new ItemDTO() { ItemAmount = 1 } } });
             //TODO更新数据库并发送
             NHibernateQuerier.Update(addition);
             NHibernateQuerier.Update(status);
@@ -183,17 +188,17 @@ namespace AscensionServer
         public static void ConsumeProp(int cricketid,PropData propData,int roleid)
         {
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var propDataDict);
+            //是否存在该物品
             if (!propDataDict.ContainsKey(propData.PropID))
             {
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
                 return;
             }
-
             switch ((PropType)propData.PropType)
             {
                 case PropType.AddExp:
                     Utility.Debug.LogInfo("YZQ增加经验的蛐蛐"+ cricketid);
-                        UpdateLevel(cricketid,propData.AddNumber,roleid);             
+                        UpdateLevel(cricketid,propData,roleid);             
                     break;         
                 case PropType.DeleteSkill:
                     Utility.Debug.LogInfo("YZQ删除技能的蛐蛐" + cricketid);
@@ -204,6 +209,8 @@ namespace AscensionServer
                     StudySkill(propData.PropID, cricketid,roleid);
                     break;
                 case PropType.Reset:
+                    Utility.Debug.LogInfo("YZQ重置加点的蛐蛐" + cricketid);
+                    ReSetPoint(roleid,cricketid, propData.PropID);
                     break;
                 default:
                     break;
