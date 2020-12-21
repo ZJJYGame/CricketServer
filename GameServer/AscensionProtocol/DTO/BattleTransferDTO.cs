@@ -49,8 +49,8 @@ namespace AscensionProtocol
         public List<int> ReturnDamageList { get; set; }
         public List<int> AddBuffList { get; set; }
         public List<int> AddBuffDurationTime { get; set; }
-        public List<int> TriggerSkillList { get; set; }
-        public List<int> TriggerSkillEnduranceCost { get; set; }
+        public List<TriggerSkillData> TriggerSkillList { get; set; }
+
         public BattleActionData()
         {
             DamageList = new List<int>();
@@ -59,8 +59,22 @@ namespace AscensionProtocol
             ReturnDamageList = new List<int>();
             AddBuffList = new List<int>();
             AddBuffDurationTime = new List<int>();
-            TriggerSkillList = new List<int>();
-            TriggerSkillEnduranceCost = new List<int>();
+            TriggerSkillList = new List<TriggerSkillData>();
+        }
+    }
+
+    public class TriggerSkillData
+    {
+        public int SkillId { get; set; }
+        public int EnduranceCost { get; set; }
+        public List<int> AddBuffId { get; set; }
+        public List<int> DurationTime { get; set; }
+
+        public TriggerSkillData()
+        {
+            AddBuffId = new List<int>();
+            DurationTime = new List<int>();
+           
         }
     }
 

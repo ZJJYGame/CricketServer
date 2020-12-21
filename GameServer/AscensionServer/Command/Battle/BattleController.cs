@@ -317,8 +317,15 @@ namespace AscensionServer
                 {
                     if (defendTriggerList[i] != null)
                     {
-                        attackBattleActionData.TriggerSkillList.Add(defendTriggerList[i].SkillId);
-                        attackBattleActionData.TriggerSkillEnduranceCost.Add(defendTriggerList[i].EnduranceCost);
+                        TriggerSkillData triggerSkillData = new TriggerSkillData();
+                        triggerSkillData.SkillId = defendTriggerList[i].SkillId;
+                        triggerSkillData.EnduranceCost = defendTriggerList[i].EnduranceCost;
+                        for (int j = 0; j < defendTriggerList[i].BattleSkillAddBuffList.Count; j++)
+                        {
+                            triggerSkillData.AddBuffId.Add(defendTriggerList[i].BattleSkillAddBuffList[j].BuffId);
+                            triggerSkillData.DurationTime.Add(defendTriggerList[i].BattleSkillAddBuffList[j].DurationTime);
+                        }
+                        attackBattleActionData.TriggerSkillList.Add(triggerSkillData);
                     }
                 }
             }
@@ -349,8 +356,15 @@ namespace AscensionServer
                     {
                         if (attackTriggerSkillList[i] != null)
                         {
-                            defendBattleActionData.TriggerSkillList.Add(attackTriggerSkillList[i].SkillId);
-                            defendBattleActionData.TriggerSkillEnduranceCost.Add(attackTriggerSkillList[i].EnduranceCost);
+                            TriggerSkillData triggerSkillData = new TriggerSkillData();
+                            triggerSkillData.SkillId = attackTriggerSkillList[i].SkillId;
+                            triggerSkillData.EnduranceCost = attackTriggerSkillList[i].EnduranceCost;
+                            for (int j = 0; j < attackTriggerSkillList[i].BattleSkillAddBuffList.Count; j++)
+                            {
+                                triggerSkillData.AddBuffId.Add(attackTriggerSkillList[i].BattleSkillAddBuffList[j].BuffId);
+                                triggerSkillData.DurationTime.Add(attackTriggerSkillList[i].BattleSkillAddBuffList[j].DurationTime);
+                            }
+                            defendBattleActionData.TriggerSkillList.Add(triggerSkillData); 
                         }
                     }
                 }
