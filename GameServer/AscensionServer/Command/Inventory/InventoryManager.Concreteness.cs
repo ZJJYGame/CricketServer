@@ -100,7 +100,6 @@ namespace AscensionServer
                             if (xrDict[info.Key].ItemAmount<= 0)
                                 xrDict.Remove(info.Key);
                         }
-                           
                     }
                     NHibernateQuerier.Update(new Inventory() { RoleID = roleId, ItemDict = Utility.Json.ToJson(xrDict) });
                 }

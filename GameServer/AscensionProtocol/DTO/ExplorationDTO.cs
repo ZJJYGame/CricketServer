@@ -19,7 +19,7 @@ namespace AscensionProtocol
     [Serializable]
     public class ExplorationItemDTO
     {
-        public List<int> ItemId { get; set; }
+        public Dictionary<int,int> ItemId { get; set; }
         public DateTime DateTime { get; set; }
         public int TimeType { get; set; }
         public int CustomId { get; set; }
