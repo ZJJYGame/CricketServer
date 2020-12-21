@@ -17,7 +17,7 @@ namespace AscensionServer
             Utility.Debug.LogInfo("YZQ數據庫映射"+Utility.Json.ToJson(roleAssets));
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, Shop>>(out var shopDict);
 
-            Utility.Debug.LogInfo("YZQData" + Utility.Json.ToJson(roleShopDTO));
+            Utility.Debug.LogInfo("YZQData" + Utility.Json.ToJson(roleShopDTO)+"商店数据"+Utility.Json.ToJson(shopDict));
             if (roleAssets.RoleGold >= (shopDict[roleShopDTO.PropID].PropPrice* roleShopDTO.PropNum))
             {
                 roleAssets.RoleGold -= (shopDict[roleShopDTO.PropID].PropPrice * roleShopDTO.PropNum);
