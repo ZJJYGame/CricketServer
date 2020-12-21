@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
+    <OutputPath>..\..\..\..\Localphotonserver\Criket\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -170,6 +170,7 @@
     <Compile Include="Ascension\DataObject\CricketStatusData.cs" />
     <Compile Include="Ascension\DataObject\ExplorationData.cs" />
     <Compile Include="Ascension\DataObject\NestLevel.cs" />
+    <Compile Include="Ascension\DataObject\PassiveSkill.cs" />
     <Compile Include="Ascension\DataObject\PropData.cs" />
     <Compile Include="Ascension\DataObject\Shop.cs" />
     <Compile Include="Ascension\DataObject\TaskData.cs" />
@@ -260,6 +261,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="JsonData\ADAward.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\PassiveSkill.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />

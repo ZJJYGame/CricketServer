@@ -72,7 +72,8 @@ namespace AscensionServer
             cricketStatus.ReduceAtk = StatusDict[1].ReduceAtk;
             cricketStatus.ReduceDef = StatusDict[1].ReduceDef;
             cricketStatus.Rebound = StatusDict[1].Rebound;
-
+            Utility.Debug.LogInfo("攻击" + cricketStatus.Atk + "防御" + cricketStatus.Defense + "血量" + cricketStatus.Hp);
+            Utility.Debug.LogInfo("攻击" +(cricketAddition.Atk + StatusDict[1].Atk) + "防御" + (cricketAptitude.Str + cricketPoint.Str) + "血量" + (cricketAptitude.StrAptitude + 100) * 0.01f);
             return cricketStatus;
         }
         /// <summary>
@@ -260,7 +261,7 @@ namespace AscensionServer
                 data.Add((byte)ParameterCode.CricketStatus, status);
                 data.Add((byte)ParameterCode.Cricket, SetCricketValue(cricket));
                 var dict = xRCommon.xRS2CSub();
-                dict.Add((byte)CricketOperateType.UpdateSkill, Utility.Json.ToJson(dict));
+                dict.Add((byte)CricketOperateType.UpdateSkill, Utility.Json.ToJson(data));
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, dict);
             }
             else

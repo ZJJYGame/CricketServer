@@ -116,7 +116,8 @@ namespace AscensionServer
                 data.Add((byte)ParameterCode.CricketStatus, status);
                 data.Add((byte)ParameterCode.CricketAptitude, aptitude);
                 data.Add((byte)ParameterCode.CricketPoint, point);
-               var dict= xRCommon.xRS2CSub();
+                NHibernateQuerier.Update(status);
+                var dict= xRCommon.xRS2CSub();
                 dict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(data));
                 xRCommon.xRS2CSend(roleid,(ushort)ATCmd.SyncCricket,(short)ReturnCode.Success, dict);
                 //更新背包
@@ -173,6 +174,7 @@ namespace AscensionServer
             data.Add((byte)ParameterCode.CricketStatus, status);
             data.Add((byte)ParameterCode.CricketAptitude, aptitude);
             data.Add((byte)ParameterCode.CricketPoint, point);
+            NHibernateQuerier.Update(status);
             var dict = xRCommon.xRS2CSub();
             dict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(data));
             xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, dict);

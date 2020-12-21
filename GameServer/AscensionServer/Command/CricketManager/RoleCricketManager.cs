@@ -122,7 +122,7 @@ namespace AscensionServer
             var roleCricket = xRCommon.xRCriteria<RoleCricket>(nHCriteriaRole);
 
             var crickets = Utility.Json.ToObject<List<int>>(roleCricket.CricketList);
-            if (crickets.Contains(cricketid) && cricketid != -1)
+            if (crickets.Contains(cricketid) && cricketid != -1&& crickets.Count>1)
             {
                 Utility.Debug.LogInfo("YZQData" + cricketid);
                 NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);
@@ -148,14 +148,16 @@ namespace AscensionServer
                 {
                     NHibernateQuerier.Delete(cricketPoint);
                 }
-                crickets.Remove(cricketid);
+                crickets.RemoveAt(crickets.IndexOf(cricketid));
                 crickets.Add(-1);
                 roleCricket.CricketList = Utility.Json.ToJson(crickets);
                 NHibernateQuerier.Update(roleCricket);
 
                 GetRoleCricket(roleid,CricketOperateType.UpdCricket);
 
-            }
+            }else
+                xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Fail, xRCommonTip.xR_err_VerifyCricket);
+
         }
         /// <summary>
         /// 放生临时槽位
@@ -229,6 +231,8 @@ namespace AscensionServer
         {
             NHCriteria nHCriteria = xRCommon.xRNHCriteria("CricketID", cricketid);
             var cricketPoint = xRCommon.xRCriteria<CricketPoint>(nHCriteria);
+            var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteria);
+            var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteria);
             if (cricketPoint!=null)
             {
                 if ((cricketPointDTO.Dex + cricketPointDTO.Def + cricketPointDTO.Con + cricketPointDTO.Str) > cricketPoint.FreePoint)
@@ -248,9 +252,12 @@ namespace AscensionServer
 
                     var dataDict = xRCommon.xRS2CSub();
                     var cricketPointDict = xRCommon.xRS2CParams();
+                    var status = CalculateStutas(aptitude, cricketPoint, addition);
+                    status.CricketID = cricketPoint.CricketID;
                     cricketPointDict.Add((byte)ParameterCode.CricketPoint, cricketPoint);
-                    cricketPointDict.Add((byte)ParameterCode.CricketAptitude, cricketPoint);
-                    cricketPointDict.Add((byte)ParameterCode.CricketStatus, cricketPoint);
+                    cricketPointDict.Add((byte)ParameterCode.CricketAptitude, aptitude);
+                    cricketPointDict.Add((byte)ParameterCode.CricketStatus, status);
+                    NHibernateQuerier.Update(status);
                     dataDict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(cricketPointDict));
                     xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, dataDict);
 

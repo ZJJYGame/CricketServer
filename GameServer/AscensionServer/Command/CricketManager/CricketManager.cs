@@ -43,7 +43,7 @@ namespace AscensionServer
                         break;
                     case CricketOperateType.RemoveCricket:
                          cricket = Utility.Json.ToObject<Cricket>(dict[(byte)ParameterCode.Cricket].ToString());
-                        RoleCricketManager.RemoveCricket(roleObj.RoleID, cricket.CricketID);
+                        RoleCricketManager.RemoveCricket(roleObj.RoleID, cricket.ID);
                         break;
                     case CricketOperateType.AddPoint:
                         var pointObj = Utility.Json.ToObject<CricketPointDTO>(dict[(byte)ParameterCode.CricketPoint].ToString());
@@ -51,7 +51,7 @@ namespace AscensionServer
                         break;
                     case CricketOperateType.RmvTempCricket:
                         cricket = Utility.Json.ToObject<Cricket>(dict[(byte)ParameterCode.Cricket].ToString());
-                        RoleCricketManager.RmvTempCricket(roleObj.RoleID, cricket.CricketID);
+                        RoleCricketManager.RmvTempCricket(roleObj.RoleID, cricket.ID);
                         break;
                     case CricketOperateType.UseItem:
                        var prop = Utility.Json.ToObject<RolepPropDTO>(dict[(byte)ParameterCode.UseItem].ToString());
