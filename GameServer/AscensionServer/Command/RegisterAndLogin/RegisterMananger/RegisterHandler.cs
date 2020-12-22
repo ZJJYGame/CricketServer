@@ -83,9 +83,6 @@ namespace AscensionServer
             }
         }
 
-        public static void InitRole()
-        {
-
-        }
+  
     }
 }

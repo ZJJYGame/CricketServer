@@ -338,6 +338,8 @@ namespace AscensionServer
                             level += 1;
                             skillDict[prop.SkillID] = level;
 
+                            InventoryManager.xRUpdateInventory(roleid, new Dictionary<int, ItemDTO> { { rolepPropDTO.PropID, new ItemDTO() { ItemAmount = rolepPropDTO.PropNum } } });
+
                             cricket.SkillDict = Utility.Json.ToJson(skillDict);
                             NHibernateQuerier.Update(cricket);
                             var data = xRCommon.xRS2CParams();
@@ -347,7 +349,6 @@ namespace AscensionServer
                             dict.Add((byte)CricketOperateType.UpdateSkill, Utility.Json.ToJson(data));
                             xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Success, dict);
 
-                            InventoryManager.xRUpdateInventory(roleid, new Dictionary<int, ItemDTO> { { rolepPropDTO.PropID, new ItemDTO() { ItemAmount = rolepPropDTO.PropNum } } });
                         }
                         else
                             xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
@@ -358,13 +359,15 @@ namespace AscensionServer
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
         }
 
-        public static void SkillAdditionStatus(Dictionary<int,int> skills,  CricketStatus cricketStatus)
+        public static void SkillAdditionStatus(Dictionary<int,int> skills, Cricket  cricket,CricketStatus cricketStatus, CricketAptitude cricketAptitude, CricketPoint cricketPoint, CricketAddition cricketAddition)
         {
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PassiveSkill>>(out var passiveSkill);
 
             var  pointFixed = new CricketPoint();
-            var pointPercentage = new CricketPoint();
             var statusPercentage = new CricketStatus();
+            var statusFixed = new CricketStatus();
+            Dictionary<int, int> pairs = new Dictionary<int, int>();
+    
 
             foreach (var item in skills)
             {
@@ -376,56 +379,81 @@ namespace AscensionServer
                         switch ((SkillAdditionType)passive.Attribute[i])
                         {
                             case SkillAdditionType.Str:
-                                pointFixed.Str += passive.Fixed[i];
-                               // pointPercentage.
+                                pointFixed.Str += passive.Fixed[i] + passive.LevelFixed[i]* cricket.LevelID;
                                 break;
                             case SkillAdditionType.Con:
-                                pointFixed.Con += passive.Fixed[i];
+                                pointFixed.Con += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.Dex:
-                                pointFixed.Dex += passive.Fixed[i];
+                                pointFixed.Dex += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.Def:
-                                pointFixed.Def += passive.Fixed[i];
+                                pointFixed.Def += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.Atk:
-                                cricketStatus.Atk += passive.Fixed[i];
+                                cricketStatus.Atk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Atk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Atk+= passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.Hp:
-                                cricketStatus.Hp += passive.Fixed[i];
+                                cricketStatus.Hp += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Hp += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Hp += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.Defense:
-                                cricketStatus.Defense += passive.Fixed[i];
+                                cricketStatus.Defense += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Defense += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Defense += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.Mp:
-                                cricketStatus.Mp += passive.Fixed[i];
+                                cricketStatus.Mp += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Mp += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Mp += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.MpReply:
-                                cricketStatus.MpReply += passive.Fixed[i];
+                                cricketStatus.MpReply += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.MpReply += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.MpReply += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.Speed:
-                                cricketStatus.Speed += passive.Fixed[i];
+                                cricketStatus.Speed += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Speed += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Speed += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.Crt:
-                                cricketStatus.Crt += passive.Fixed[i];
+                                cricketStatus.Crt += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Crt += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Crt += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.Eva:
-                                cricketStatus.Eva += passive.Fixed[i];
+                                cricketStatus.Eva += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Eva += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Eva += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.ReduceAtk:
-                                cricketStatus.ReduceAtk += passive.Fixed[i];
+                                cricketStatus.ReduceAtk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.ReduceAtk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.ReduceAtk += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.ReduceDef:
-                                cricketStatus.ReduceDef += passive.Fixed[i];
+                                cricketStatus.ReduceDef += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.ReduceDef += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.ReduceDef += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.Rebound:
-                                cricketStatus.Rebound += passive.Fixed[i];
+                                cricketStatus.Rebound += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Rebound += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Rebound += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.CrtAtk:
-                                cricketStatus.CrtAtk += passive.Fixed[i];
+                                cricketStatus.CrtAtk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.CrtAtk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.CrtAtk += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             case SkillAdditionType.CrtDef:
-                                cricketStatus.CrtDef += passive.Fixed[i];
+                                cricketStatus.CrtDef += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.CrtDef += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.CrtDef += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
                                 break;
                             default:
                                 break;
@@ -435,51 +463,9 @@ namespace AscensionServer
             }
 
 
+
         }
 
-        //public static void Skilldifferentiate(CricketPoint cricketPoint, CricketStatus cricketStatus, PassiveSkill passiveSkill)
-        //{
-        //    switch ((SkillAdditionType)attribute)
-        //    {
-        //        case SkillAdditionType.Str:
-        //            cricketPoint.Str+= passiveSkill.Attribute.
-        //            break;
-        //        case SkillAdditionType.Con:
-        //            break;
-        //        case SkillAdditionType.Dex:
-        //            break;
-        //        case SkillAdditionType.Def:
-        //            break;
-        //        case SkillAdditionType.Atk:
-        //            break;
-        //        case SkillAdditionType.Hp:
-        //            break;
-        //        case SkillAdditionType.Defense:
-        //            break;
-        //        case SkillAdditionType.Mp:
-        //            break;
-        //        case SkillAdditionType.MpReply:
-        //            break;
-        //        case SkillAdditionType.Speed:
-        //            break;
-        //        case SkillAdditionType.Crt:
-        //            break;
-        //        case SkillAdditionType.Eva:
-        //            break;
-        //        case SkillAdditionType.ReduceAtk:
-        //            break;
-        //        case SkillAdditionType.ReduceDef:
-        //            break;
-        //        case SkillAdditionType.Rebound:
-        //            break;
-        //        case SkillAdditionType.CrtAtk:
-        //            break;
-        //        case SkillAdditionType.CrtDef:
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
 
 
         public enum SkillAdditionType

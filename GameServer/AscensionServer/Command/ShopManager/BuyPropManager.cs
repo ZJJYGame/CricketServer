@@ -36,7 +36,7 @@ namespace AscensionServer
                 Utility.Debug.LogInfo("YZQData"+Utility.Json.ToJson(dataDict));
                 xRCommon.xRS2CSend(roleShopDTO.RoleID,(ushort)ATCmd.SyncShop,(byte)ReturnCode.Success, dict);
             }else
-                xRCommon.xRS2CSend(roleShopDTO.RoleID, (ushort)ATCmd.SyncShop, (byte)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
+                xRCommon.xRS2CSend(roleShopDTO.RoleID, (ushort)ATCmd.SyncShop, (byte)ReturnCode.Fail, xRCommonTip.xR_err_VerifyAssets);
 
         }
 
@@ -70,7 +70,7 @@ namespace AscensionServer
         {
             NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", roleid);
             var roleAssets = xRCommon.xRCriteria<RoleAssets>(nHCriteria);
-            if (gold > 0)
+            if (gold > 0&& roleAssets.RoleGold >= gold)
             {
                 roleAssets.RoleGold -= gold;
                 NHibernateQuerier.Update(roleAssets);
@@ -80,7 +80,8 @@ namespace AscensionServer
                 dict.Add((byte)ShopOperate.Buy, Utility.Json.ToJson(dataDict));
                 Utility.Debug.LogInfo("YZQData" + Utility.Json.ToJson(dataDict));
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncShop, (byte)ReturnCode.Success, dict);
-            }
+            }else
+                xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncShop, (byte)ReturnCode.Fail,xRCommonTip.xR_err_VerifyAssets);
         }
     }
 }
