@@ -12,6 +12,6 @@ namespace AscensionProtocol
         public int RoleID { get; set; }
         public string RoleName { get; set; }
         public string CricketName { get; set; }
-        public string Duanwei { get; set; }
+        public int Duanwei { get; set; }
     }
 }
