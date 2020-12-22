@@ -140,18 +140,18 @@ namespace AscensionServer
 
         public RoleBattleData(IRoleBattleData buffRoleBattleData)
         {
-            attack = 30;
+            attack = 10;
             maxHealth = 500;
             health = 500;
             defence =5;
-            maxEndurance = 200;
-            endurance = 200;
-            enduranceReply = 100;
-            actionBar = 1000;
-            critProp = 25;
-            dodgeProp = 25;
+            maxEndurance = 100;
+            endurance = 100;
+            enduranceReply = 50;
+            actionBar = 2000;
+            critProp = 20;
+            dodgeProp = 20;
             receiveDamage = 100;
-            pierce = 10;
+            pierce = 50;
             reboundDamage = 10;
             critDamage = 150;
             critResistance = 0;
@@ -159,18 +159,18 @@ namespace AscensionServer
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, BattleAttackSkillData>>(out var tempSkillDict);
             BattleAttackSkillList = new List<BattleSkill>();
             BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[3001],1));
-            BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[3002],1));
-            BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[3003],1));
-            BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[3004],1));
+            //BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[3002],1));
+            //BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[3003],1));
+            //BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[3004],1));
             for (int i = 0; i < BattleAttackSkillList.Count; i++)
             {
                 AllAttackSkillProp += BattleAttackSkillList[i].TriggerProb;
             }
 
             BattleDefendSkillList = new List<BattleSkill>();
-            BattleDefendSkillList.Add(new BattleSkill(tempSkillDict[3010], 1));
-            BattleDefendSkillList.Add(new BattleSkill(tempSkillDict[3011], 1));
-            BattleDefendSkillList.Add(new BattleSkill(tempSkillDict[3017], 1));
+            //BattleDefendSkillList.Add(new BattleSkill(tempSkillDict[3010], 1));
+            //BattleDefendSkillList.Add(new BattleSkill(tempSkillDict[3011], 1));
+            //BattleDefendSkillList.Add(new BattleSkill(tempSkillDict[3017], 1));
             for (int i = 0; i < BattleDefendSkillList.Count; i++)
             {
                 AllDefendSkillProp += BattleDefendSkillList[i].TriggerProb;

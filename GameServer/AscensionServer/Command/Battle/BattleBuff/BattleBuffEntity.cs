@@ -81,7 +81,7 @@ namespace AscensionServer
                 return;
             Utility.Debug.LogWarning("remainTime=>" + remainTime + ",changeTime" + changeTime);
             remainTime -= changeTime;
-            if (remainTime <= 0)
+            if (remainTime < 0)
             {
                 Utility.Debug.LogWarning("buff时间到了");
                 int tempId = Convert.ToInt32(buffId.ToString() + sourceSkillId.ToString());

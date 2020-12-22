@@ -10,7 +10,7 @@
             "triggerProbChangeEachLevel": 1,
             "battleSkillDamageData": {
                 "fixedValue": 0,
-                "percentValue": 90,
+                "percentValue": 100,
                 "attackNumber": 1,
                 "fixedValueChangeEachLevel": 0,
                 "percentValueChangeEachLevel": 1
