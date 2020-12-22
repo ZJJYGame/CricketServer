@@ -91,6 +91,7 @@ namespace AscensionServer
                     cricketAptitude.DefAptitude = RandomNum(1, 101);
                     cricketAptitude.DexAptitude = RandomNum(1, 101);
                     var cricket = new Cricket();
+                    cricket.Roleid = roleid;
                     cricket = NHibernateQuerier.Insert(cricket);
                     cricketStatus.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketStatus);

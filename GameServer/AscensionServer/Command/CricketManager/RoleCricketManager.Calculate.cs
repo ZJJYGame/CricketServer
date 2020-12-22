@@ -72,8 +72,8 @@ namespace AscensionServer
             cricketStatus.ReduceAtk = StatusDict[1].ReduceAtk;
             cricketStatus.ReduceDef = StatusDict[1].ReduceDef;
             cricketStatus.Rebound = StatusDict[1].Rebound;
-            Utility.Debug.LogInfo("攻击" + cricketStatus.Atk + "防御" + cricketStatus.Defense + "血量" + cricketStatus.Hp);
-            Utility.Debug.LogInfo("攻击" +(cricketAddition.Atk + StatusDict[1].Atk) + "防御" + (cricketAptitude.Str + cricketPoint.Str) + "血量" + (cricketAptitude.StrAptitude + 100) * 0.01f);
+            //Utility.Debug.LogInfo("攻击" + cricketStatus.Atk + "防御" + cricketStatus.Defense + "血量" + cricketStatus.Hp);
+            //Utility.Debug.LogInfo("攻击" +(cricketAddition.Atk + StatusDict[1].Atk) + "防御" + (cricketAptitude.Str + cricketPoint.Str) + "血量" + (cricketAptitude.StrAptitude + 100) * 0.01f);
             return cricketStatus;
         }
         /// <summary>
@@ -338,6 +338,8 @@ namespace AscensionServer
                             level += 1;
                             skillDict[prop.SkillID] = level;
 
+                            InventoryManager.xRUpdateInventory(roleid, new Dictionary<int, ItemDTO> { { rolepPropDTO.PropID, new ItemDTO() { ItemAmount = rolepPropDTO.PropNum } } });
+
                             cricket.SkillDict = Utility.Json.ToJson(skillDict);
                             NHibernateQuerier.Update(cricket);
                             var data = xRCommon.xRS2CParams();
@@ -347,7 +349,6 @@ namespace AscensionServer
                             dict.Add((byte)CricketOperateType.UpdateSkill, Utility.Json.ToJson(data));
                             xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Success, dict);
 
-                            InventoryManager.xRUpdateInventory(roleid, new Dictionary<int, ItemDTO> { { rolepPropDTO.PropID, new ItemDTO() { ItemAmount = rolepPropDTO.PropNum } } });
                         }
                         else
                             xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
@@ -358,12 +359,134 @@ namespace AscensionServer
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
         }
 
-        public static void SkillAdditionStatus(List<int> skills)
+        public static void SkillAdditionStatus(Dictionary<int,int> skills, Cricket  cricket,CricketStatus cricketStatus, CricketAptitude cricketAptitude, CricketPoint cricketPoint, CricketAddition cricketAddition)
         {
-            for (int i = 0; i < skills.Count; i++)
-            {
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PassiveSkill>>(out var passiveSkill);
 
+            var  pointFixed = new CricketPoint();
+            var statusPercentage = new CricketStatus();
+            var statusFixed = new CricketStatus();
+            Dictionary<int, int> pairs = new Dictionary<int, int>();
+    
+
+            foreach (var item in skills)
+            {
+                var result = passiveSkill.TryGetValue(item.Key, out var passive);
+                if (result)
+                {
+                    for (int i = 0; i < passive.Attribute.Count; i++)
+                    {
+                        switch ((SkillAdditionType)passive.Attribute[i])
+                        {
+                            case SkillAdditionType.Str:
+                                pointFixed.Str += passive.Fixed[i] + passive.LevelFixed[i]* cricket.LevelID;
+                                break;
+                            case SkillAdditionType.Con:
+                                pointFixed.Con += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.Dex:
+                                pointFixed.Dex += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.Def:
+                                pointFixed.Def += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.Atk:
+                                cricketStatus.Atk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Atk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Atk+= passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.Hp:
+                                cricketStatus.Hp += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Hp += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Hp += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.Defense:
+                                cricketStatus.Defense += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Defense += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Defense += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.Mp:
+                                cricketStatus.Mp += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Mp += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Mp += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.MpReply:
+                                cricketStatus.MpReply += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.MpReply += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.MpReply += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.Speed:
+                                cricketStatus.Speed += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Speed += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Speed += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.Crt:
+                                cricketStatus.Crt += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Crt += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Crt += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.Eva:
+                                cricketStatus.Eva += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Eva += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Eva += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.ReduceAtk:
+                                cricketStatus.ReduceAtk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.ReduceAtk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.ReduceAtk += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.ReduceDef:
+                                cricketStatus.ReduceDef += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.ReduceDef += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.ReduceDef += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.Rebound:
+                                cricketStatus.Rebound += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.Rebound += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.Rebound += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.CrtAtk:
+                                cricketStatus.CrtAtk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.CrtAtk += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.CrtAtk += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            case SkillAdditionType.CrtDef:
+                                cricketStatus.CrtDef += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusFixed.CrtDef += passive.Fixed[i] + passive.LevelFixed[i] * cricket.LevelID;
+                                statusPercentage.CrtDef += passive.Percentage[i] + passive.LevelPercentage[i] * cricket.LevelID;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
             }
-        } 
+
+
+
+        }
+
+
+
+        public enum SkillAdditionType
+        {
+            Str=1,
+            Con=2,
+            Dex =3,
+            Def=4,
+            Atk=5,
+            Hp=6,
+            Defense=7,
+            Mp=8,
+            MpReply=9,
+            Speed=10,
+            Crt=11,
+            Eva=12,
+            ReduceAtk=13,
+            ReduceDef=14,
+            Rebound=15,
+            CrtAtk=16,
+            CrtDef=17
+        }
     }
 }

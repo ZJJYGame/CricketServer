@@ -97,6 +97,20 @@ namespace AscensionServer
             }
         }
         /// <summary>
+        /// 获取整个表格的数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static ICollection<T> GetTable<T>()
+        {
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                ICriteria criteria = session.CreateCriteria(typeof(T));
+                return criteria.List<T>();
+            }
+        }
+
+        /// <summary>
         /// 多条件验证，SQL语句为Equal
         /// </summary>
         /// <typeparam name="T">需要验证的类型</typeparam>

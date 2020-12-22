@@ -52,6 +52,7 @@
     <Compile Include="DTO\CricketStatusDTO.cs" />
     <Compile Include="DTO\ExplorationDTO.cs" />
     <Compile Include="DTO\InventoryDTO.cs" />
+    <Compile Include="DTO\RankDTO.cs" />
     <Compile Include="DTO\RoleAssetsDTO.cs" />
     <Compile Include="DTO\RoleCricketDTO.cs" />
     <Compile Include="DTO\RoleDTO.cs" />
