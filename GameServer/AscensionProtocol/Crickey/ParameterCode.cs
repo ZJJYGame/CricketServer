@@ -57,6 +57,7 @@
         /// </summary>
         UseItem=23,
         RoleExploration = 24,
-        RoleExplorationUnlock  =25
+        RoleExplorationUnlock  =25,
+        RoleRank = 26,
     }
 }

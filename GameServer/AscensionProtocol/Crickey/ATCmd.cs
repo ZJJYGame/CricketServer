@@ -40,6 +40,8 @@ namespace AscensionProtocol
         /// </summary>
         SyncTask = 9,
         SyncExploration = 10,
+        SyncRank = 11,
+
         /// <summary>
         /// 测试消息队列
         /// </summary>
