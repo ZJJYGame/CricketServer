@@ -18,6 +18,7 @@ namespace AscensionServer
             Map(x => x.SkillDict).Column("skill_list");
             Map(x => x.SpecialDict).Column("special_skills");
             Map(x => x.Exp).Column("exp");
+            Map(x => x.Roleid).Column("roleid");
             Table("cricket");
         }
     }

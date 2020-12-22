@@ -41,6 +41,7 @@ namespace AscensionServer
                 roleAsset.RoleID = role.RoleID;
                 NHibernateQuerier.Insert(roleAsset);
                 #region 待换
+                cricket.Roleid= role.RoleID;
                 cricket = NHibernateQuerier.Insert(cricket);
                 roleCricketObj.CricketList[0] = cricket.ID;
                 roleCricket.RoleID = role.RoleID;

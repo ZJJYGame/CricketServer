@@ -173,6 +173,7 @@
     <Compile Include="Ascension\DataObject\PassiveSkill.cs" />
     <Compile Include="Ascension\DataObject\PropData.cs" />
     <Compile Include="Ascension\DataObject\Shop.cs" />
+    <Compile Include="Ascension\DataObject\SpreadCode.cs" />
     <Compile Include="Ascension\DataObject\TaskData.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffController.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffEntity.cs" />
