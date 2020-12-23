@@ -57,6 +57,7 @@
     <Compile Include="DTO\RoleCricketDTO.cs" />
     <Compile Include="DTO\RoleDTO.cs" />
     <Compile Include="DTO\RolepPropDTO.cs" />
+    <Compile Include="DTO\SpreaCodeDTO.cs" />
     <Compile Include="DTO\xRTaskDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="ErrorCode.cs" />
