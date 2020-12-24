@@ -13,10 +13,8 @@ namespace AscensionServer
             Id(x => x.RoleID).GeneratedBy.Assigned().Column("roleid");
             Map(x => x.CodeID).Column("codeid");
             Map(x => x.SpreaNum).Column("spreanum");
-            Map(x => x.SpreaPlayers).Column("spreaplayers");
+            Map(x => x.SpreaLevel).Column("sprealevel");
             Table("spreacode");
-
         }
-
     }
 }

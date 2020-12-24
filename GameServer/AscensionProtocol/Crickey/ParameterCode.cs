@@ -59,5 +59,6 @@
         RoleExploration = 24,
         RoleExplorationUnlock  =25,
         RoleRank = 26,
+        SpreaCode=27
     }
 }

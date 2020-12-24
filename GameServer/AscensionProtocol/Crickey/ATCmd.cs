@@ -41,7 +41,10 @@ namespace AscensionProtocol
         SyncTask = 9,
         SyncExploration = 10,
         SyncRank = 11,
-
+        /// <summary>
+        /// 同步邀请码数据
+        /// </summary>
+        SyncSpreaCode = 12,
         /// <summary>
         /// 测试消息队列
         /// </summary>

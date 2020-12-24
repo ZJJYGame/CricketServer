@@ -30,6 +30,7 @@ namespace AscensionServer
             var cricketAptitude = new CricketAptitude();
             var cricketPoint = new CricketPoint();
             var cricketAddition = new CricketAddition();
+            var spreacode = new SpreaCode();
             if (!isExist)
             {
                 userObj = NHibernateQuerier.Insert(userObj);
