@@ -16,7 +16,7 @@ namespace AscensionServer
         //来源技能id
         int sourceSkillId;
         //buff持续时间
-        int remainTime;
+        public int RemainTime { get; private set; }
         //是否无限时间
         bool isInfiniteTime;
         int buffValue;
@@ -37,7 +37,7 @@ namespace AscensionServer
             buffValue = battleSkillAddBuff.BuffValue;
             if (battleSkillAddBuff.DurationTime > 0)
             {
-                remainTime = battleSkillAddBuff.DurationTime;
+                RemainTime = battleSkillAddBuff.DurationTime;
                 isInfiniteTime = false;
             }
             else
@@ -57,31 +57,59 @@ namespace AscensionServer
 
         public void OnTrigger(IRoleBattleData roleBattleData)
         {
-            if (hasTrigger)
-                return;
-            int healthPercent = roleBattleData.Health * 100 / roleBattleData.MaxHealth;
+            //if (hasTrigger)
+            //    return;
+            int healthPercent = (int)(roleBattleData.Health * 100 / (float)roleBattleData.MaxHealth);
+            Utility.Debug.LogError("生命值百分比=>" + healthPercent);
             if (isUp)
             {
-                if (healthPercent <= limitValue)
-                    return;
+                if (healthPercent <= limitValue)//不满足条件
+                {
+                    Utility.Debug.LogError("不满足触发条件");
+                    if (hasTrigger)//触发过了，移除触发事件
+                    {
+                        Utility.Debug.LogError("不满足触发条件，触发过了，移除事件");
+                        battleBuffController.ChangeProperty(battleBuffEffectProperty, -buffValue);
+                    }
+                }
+                else//满足触发条件
+                {
+                    Utility.Debug.LogError("满足触发条件");
+                    if (!hasTrigger)//未触发，触发事件
+                    {
+                        Utility.Debug.LogError("满足触发条件，未触发，触发事件");
+                        battleBuffController.ChangeProperty(battleBuffEffectProperty, buffValue);
+                        hasTrigger = true;
+                    }
+                }
             }
             else
             {
-                if (healthPercent > limitValue)
-                    return;
+                if (healthPercent > limitValue)//不满足条件
+                {
+                    if (hasTrigger)//触发过了，移除触发事件
+                    {
+                        battleBuffController.ChangeProperty(battleBuffEffectProperty, -buffValue);
+                    }
+                }
+                else//满足触发条件
+                {
+                    if (!hasTrigger)//未触发，触发事件
+                    {
+                        battleBuffController.ChangeProperty(battleBuffEffectProperty, buffValue);
+                        hasTrigger = true;
+                    }
+                }
             }
-            //修改属性
-            battleBuffController.ChangeProperty(battleBuffEffectProperty, buffValue);
-            hasTrigger = true;
         }
 
         void OnTImeUpdate(int changeTime)
         {
             if (isInfiniteTime)
                 return;
-            Utility.Debug.LogWarning("remainTime=>" + remainTime + ",changeTime" + changeTime);
-            remainTime -= changeTime;
-            if (remainTime < 0)
+            Utility.Debug.LogWarning("remainTime=>" + RemainTime + ",changeTime" + changeTime);
+            RemainTime -= changeTime;
+            if (RemainTime < 0)
             {
                 Utility.Debug.LogWarning("buff时间到了");
                 int tempId = Convert.ToInt32(buffId.ToString() + sourceSkillId.ToString());
@@ -104,7 +132,7 @@ namespace AscensionServer
         {
             buffId = 0;
             sourceSkillId = 0;
-            remainTime = 0;
+            RemainTime = 0;
             battleBuffController.BuffTriggerEvent -= OnTrigger;
             battleBuffController.BuffTimeUpdateEvent -= OnTImeUpdate;
         }

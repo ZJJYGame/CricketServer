@@ -110,7 +110,7 @@ namespace AscensionServer
                 if (!isCrash)
                 {
                     List<BattleSkill> defendBattleSkillList = new List<BattleSkill>();
-                    PlayerAction(attackPlayer, defendPlayer, defendBattleSkillList,out var attackBattleDamageData,isCrash);
+                    PlayerAction(attackPlayer, defendPlayer, defendBattleSkillList,out var attackBattleDamageData,out var defendBattleDamageDataList, isCrash);
 
                     List<int> defendTriggerSkillList = new List<int>();
                     for (int i = 0; i < defendBattleSkillList.Count; i++)
@@ -122,11 +122,13 @@ namespace AscensionServer
                     battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData }, null, defendBattleSkillList, new List<int>() { attackPlayer.RoleId }, false));
 
                     crashColdTime -= offestTime;
+
+                    AddAllBuff(attackBattleDamageData, attackPlayer, defendPlayer, defendBattleDamageDataList);
                 }
                 else//碰撞
                 {
                     List<BattleSkill> defendBattleSkillList = new List<BattleSkill>();
-                    PlayerAction(attackPlayer, defendPlayer, defendBattleSkillList, out var attackBattleDamageData,isCrash);
+                    PlayerAction(attackPlayer, defendPlayer, defendBattleSkillList, out var attackBattleDamageData,out  var attackDefendBattleDamageDataList, isCrash);
 
                     List<int> defendTriggerSkillList = new List<int>();
                     for (int i = 0; i < defendBattleSkillList.Count; i++)
@@ -136,7 +138,7 @@ namespace AscensionServer
                     }
 
                     List<BattleSkill> attackBattleSkillList = new List<BattleSkill>();
-                    PlayerAction(defendPlayer, attackPlayer, attackBattleSkillList, out var defendBattleDamageData,isCrash);
+                    PlayerAction(defendPlayer, attackPlayer, attackBattleSkillList, out var defendBattleDamageData,out var defendAttackBattleDamageDataList, isCrash);
 
                     List<int> attackTriggerSkillList = new List<int>();
                     for (int i = 0; i < attackBattleSkillList.Count; i++)
@@ -149,7 +151,14 @@ namespace AscensionServer
 
                     crashNum += 1;
                     crashColdTime = 5000;
+
+                    AddAllBuff(attackBattleDamageData, attackPlayer, defendPlayer, attackDefendBattleDamageDataList);
+                    AddAllBuff(defendBattleDamageData, defendPlayer, attackPlayer, defendAttackBattleDamageDataList);
                 }
+                //触发buff
+                attackPlayer.battleBuffController.TriggerBuff();
+                defendPlayer.battleBuffController.TriggerBuff();
+
                 Utility.Debug.LogError("当前时间=>" + nowTime + (isCrash ? "，发生碰撞" : "，没有碰撞") + ",碰撞冷却=>" + crashColdTime);
             }
             Utility.Debug.LogInfo("战斗传输数据=>" + Utility.Json.ToJson(battleRoleActionDataList));
@@ -164,13 +173,13 @@ namespace AscensionServer
         /// <param name="defendPlayer"></param>
         /// <param name="defendBattleSkillList">受击技能列表</param>
         /// <param name="attackBattleDamageData">攻击者技能伤害信息</param>
-        void PlayerAction(BattleCharacterEntity attackPlayer,BattleCharacterEntity defendPlayer, List<BattleSkill> defendBattleSkillList,out BattleDamageData attackBattleDamageData,bool isCrash)
+        void PlayerAction(BattleCharacterEntity attackPlayer,BattleCharacterEntity defendPlayer, List<BattleSkill> defendBattleSkillList,out BattleDamageData attackBattleDamageData,out List<BattleDamageData> defendBattleDamageDataList, bool isCrash)
         {
             BattleSkill attackBattleSkill = attackPlayer.RandomSkill(true);
             if (attackBattleSkill == null)
                 attackPlayer.roleBattleData.OnEnduranceReply();
             attackBattleDamageData = GetDamageData(attackBattleSkill, attackPlayer, defendPlayer, !isCrash,true);
-            List<BattleDamageData> defendBattleDamageDataList = new List<BattleDamageData>();
+             defendBattleDamageDataList = new List<BattleDamageData>();
             for (int i = 0; i < attackBattleDamageData.isDodgeList.Count; i++)
             {
                 if (!attackBattleDamageData.isDodgeList[i])
@@ -200,7 +209,14 @@ namespace AscensionServer
                 else
                     Utility.Debug.LogInfo("造成了" + attackBattleDamageData.damageNumList[i] + "点伤害" + (attackBattleDamageData.isCritList[i] ? "暴击" : "没有暴击"));
             }
-            //添加buff
+
+
+            //恢复进度条
+            attackPlayer.TryRestartActionBar();
+        }
+
+        void AddAllBuff(BattleDamageData attackBattleDamageData, BattleCharacterEntity attackPlayer, BattleCharacterEntity defendPlayer,List<BattleDamageData> defendBattleDamageDataList)
+        {
             for (int i = 0; i < attackBattleDamageData.battleSkillAddBuffList.Count; i++)
             {
                 if (attackBattleDamageData.battleSkillAddBuffList[i].TargetSelf)//对自己
@@ -226,12 +242,6 @@ namespace AscensionServer
                     }
                 }
             }
-            //触发buff
-            attackPlayer.battleBuffController.TriggerBuff();
-            defendPlayer.battleBuffController.TriggerBuff();
-
-            //恢复进度条
-            attackPlayer.TryRestartActionBar();
         }
 
         //获取伤害数据
@@ -246,7 +256,9 @@ namespace AscensionServer
                 battleDamageData.endurenceReply = -battleSkill.EnduranceCost;
                 int atk = (int)(attackPlayerData.Attack * battleSkill.DamagePercentValue / 100f);
                 int normalDamage = (int)((defendPlayerData.ReceiveDamage / 100f) * (atk - defendPlayerData.Defence * (100 - attackPlayerData.Pierce) / 100f)) + battleSkill.DamageFixedValue;
-                int critDamage = (int)((defendPlayerData.ReceiveDamage / 100f) * ((atk + atk * attackPlayerData.CritDamage * (100 - defendPlayerData.CritResistance) / 10000f) - defendPlayerData.Defence * (100 - attackPlayerData.Pierce) / 100f)) + battleSkill.DamageFixedValue;
+
+                int critDamage = (int)((defendPlayerData.ReceiveDamage / 100f) * (atk+(atk * attackPlayerData.CritDamage * (100 - defendPlayerData.CritResistance) / 10000f) - defendPlayerData.Defence * (100 - attackPlayerData.Pierce) / 100f)) + battleSkill.DamageFixedValue;
+
                 for (int i = 0; i < battleSkill.AttackNumber; i++)
                 {
                     int dodgeRandomIndex = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, 101);
@@ -375,6 +387,8 @@ namespace AscensionServer
             }
             return battleRoleActionData;
         }
+
+
 
         public void SetTransferRoleData()
         {

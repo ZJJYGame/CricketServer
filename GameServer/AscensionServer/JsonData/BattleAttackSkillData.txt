@@ -3,10 +3,10 @@
             "name": "保守攻击",
             "skillId": 3001,
             "isAttackSkill": true,
-            "describe": "以90%的攻击力对敌方发动一次攻击",
+            "describe": "以100%的攻击力对敌方发动一次攻击",
             "enduranceCost": 15,
             "triggerProb": 10,
-            "enduranceCostChangeEachLevel": 0,
+            "enduranceCostChangeEachLevel": 1,
             "triggerProbChangeEachLevel": 1,
             "battleSkillDamageData": {
                 "fixedValue": 0,
@@ -18,17 +18,71 @@
             "battleSkillAddBuffDataList": []
         },
         {
-            "name": "撕咬",
+            "name": "重击",
             "skillId": 3002,
             "isAttackSkill": true,
-            "describe": "以80%的攻击力对敌方发动2次攻击",
+            "describe": "以150%的攻击力对敌方发动一次攻击",
+            "enduranceCost": 40,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 150,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": []
+        },
+        {
+            "name": "挥舞大牙",
+            "skillId": 3003,
+            "isAttackSkill": true,
+            "describe": "以120%的攻击力对敌方发动一次攻击",
             "enduranceCost": 30,
             "triggerProb": 10,
             "enduranceCostChangeEachLevel": 0,
             "triggerProbChangeEachLevel": 1,
             "battleSkillDamageData": {
                 "fixedValue": 0,
-                "percentValue": 80,
+                "percentValue": 120,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": []
+        },
+        {
+            "name": "追求完美",
+            "skillId": 3004,
+            "isAttackSkill": true,
+            "describe": "以200%的攻击力对敌方发动一次攻击",
+            "enduranceCost": 100,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 200,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 10
+            },
+            "battleSkillAddBuffDataList": []
+        },
+        {
+            "name": "撕咬",
+            "skillId": 3005,
+            "isAttackSkill": true,
+            "describe": "以90%的攻击力对敌方发动2次攻击",
+            "enduranceCost": 30,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 90,
                 "attackNumber": 2,
                 "fixedValueChangeEachLevel": 0,
                 "percentValueChangeEachLevel": 1
@@ -36,17 +90,35 @@
             "battleSkillAddBuffDataList": []
         },
         {
-            "name": "兴奋",
-            "skillId": 3003,
+            "name": "爆发 ",
+            "skillId": 3006,
             "isAttackSkill": true,
-            "describe": "以90%的攻击力对敌方发动一次攻击 攻击后增加减伤20%，持续3秒",
-            "enduranceCost": 40,
+            "describe": "以120%的攻击力对敌方发动3次攻击",
+            "enduranceCost": 80,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 2,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 120,
+                "attackNumber": 3,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 3
+            },
+            "battleSkillAddBuffDataList": []
+        },
+        {
+            "name": "神勇 ",
+            "skillId": 3007,
+            "isAttackSkill": true,
+            "describe": "以100%的攻击力对敌方发动一次攻击 攻击后增加减伤10%，持续2秒",
+            "enduranceCost": 50,
             "triggerProb": 10,
             "enduranceCostChangeEachLevel": 1,
             "triggerProbChangeEachLevel": 1,
             "battleSkillDamageData": {
                 "fixedValue": 0,
-                "percentValue": 90,
+                "percentValue": 100,
                 "attackNumber": 1,
                 "fixedValueChangeEachLevel": 0,
                 "percentValueChangeEachLevel": 1
@@ -54,29 +126,29 @@
             "battleSkillAddBuffDataList": [
                 {
                     "buffId": 4006,
-                    "buffValue": 20,
+                    "buffValue": 10,
                     "buffLimitValue": 0,
                     "isUp": true,
-                    "durationTime": 3,
-                    "buffValueChangeEachLevel": 1,
-                    "durationTimeChangeEachLevel": 0,
+                    "durationTime": 2000,
+                    "buffValueChangeEachLevel": 0,
+                    "durationTimeChangeEachLevel": 1000,
                     "buffLimitValueChangeEachLevel": 0,
                     "TargetIsSelf": true
                 }
             ]
         },
         {
-            "name": "反击",
-            "skillId": 3004,
+            "name": "专注 ",
+            "skillId": 3008,
             "isAttackSkill": true,
-            "describe": "以80%的攻击力对敌方发动一次攻击 攻击后增加反伤20%，持续3秒",
-            "enduranceCost": 40,
+            "describe": "以100%的攻击力对敌方发动一次攻击 攻击后增加反伤10%，持续2秒",
+            "enduranceCost": 50,
             "triggerProb": 10,
             "enduranceCostChangeEachLevel": 1,
             "triggerProbChangeEachLevel": 1,
             "battleSkillDamageData": {
                 "fixedValue": 0,
-                "percentValue": 80,
+                "percentValue": 100,
                 "attackNumber": 1,
                 "fixedValueChangeEachLevel": 0,
                 "percentValueChangeEachLevel": 1
@@ -84,29 +156,29 @@
             "battleSkillAddBuffDataList": [
                 {
                     "buffId": 4008,
-                    "buffValue": 20,
+                    "buffValue": 10,
                     "buffLimitValue": 0,
                     "isUp": true,
-                    "durationTime": 3,
-                    "buffValueChangeEachLevel": 1,
-                    "durationTimeChangeEachLevel": 0,
+                    "durationTime": 2000,
+                    "buffValueChangeEachLevel": 0,
+                    "durationTimeChangeEachLevel": 1000,
                     "buffLimitValueChangeEachLevel": 0,
                     "TargetIsSelf": true
                 }
             ]
         },
         {
-            "name": "攻击强化",
-            "skillId": 3005,
+            "name": "鼓舞·攻 ",
+            "skillId": 3009,
             "isAttackSkill": true,
-            "describe": "以70%的攻击力对敌方发动一次攻击 攻击后增加30%攻击力，持续3秒",
-            "enduranceCost": 30,
+            "describe": "以100%的攻击力对敌方发动一次攻击 攻击后增加自身10%的攻击力，持续2秒",
+            "enduranceCost": 50,
             "triggerProb": 10,
             "enduranceCostChangeEachLevel": 1,
             "triggerProbChangeEachLevel": 1,
             "battleSkillDamageData": {
                 "fixedValue": 0,
-                "percentValue": 70,
+                "percentValue": 100,
                 "attackNumber": 1,
                 "fixedValueChangeEachLevel": 0,
                 "percentValueChangeEachLevel": 1
@@ -114,29 +186,29 @@
             "battleSkillAddBuffDataList": [
                 {
                     "buffId": 4001,
-                    "buffValue": 30,
+                    "buffValue": 10,
                     "buffLimitValue": 0,
                     "isUp": true,
-                    "durationTime": 3,
-                    "buffValueChangeEachLevel": 1,
-                    "durationTimeChangeEachLevel": 0,
+                    "durationTime": 2000,
+                    "buffValueChangeEachLevel": 0,
+                    "durationTimeChangeEachLevel": 1000,
                     "buffLimitValueChangeEachLevel": 0,
                     "TargetIsSelf": true
                 }
             ]
         },
         {
-            "name": "防御强化",
-            "skillId": 3006,
+            "name": "鼓舞·防",
+            "skillId": 3010,
             "isAttackSkill": true,
-            "describe": "以70%的攻击力对敌方发动一次攻击 攻击后增加30%的防御力，持续3秒",
-            "enduranceCost": 30,
+            "describe": "以100%的攻击力对敌方发动一次攻击 攻击后增加自身10%的防御力，持续2秒",
+            "enduranceCost": 50,
             "triggerProb": 10,
             "enduranceCostChangeEachLevel": 1,
             "triggerProbChangeEachLevel": 1,
             "battleSkillDamageData": {
                 "fixedValue": 0,
-                "percentValue": 70,
+                "percentValue": 100,
                 "attackNumber": 1,
                 "fixedValueChangeEachLevel": 0,
                 "percentValueChangeEachLevel": 1
@@ -144,29 +216,29 @@
             "battleSkillAddBuffDataList": [
                 {
                     "buffId": 4002,
-                    "buffValue": 30,
+                    "buffValue": 10,
                     "buffLimitValue": 0,
                     "isUp": true,
-                    "durationTime": 3,
-                    "buffValueChangeEachLevel": 1,
-                    "durationTimeChangeEachLevel": 0,
+                    "durationTime": 2000,
+                    "buffValueChangeEachLevel": 0,
+                    "durationTimeChangeEachLevel": 1000,
                     "buffLimitValueChangeEachLevel": 0,
                     "TargetIsSelf": true
                 }
             ]
         },
         {
-            "name": "弱点攻击",
-            "skillId": 3007,
+            "name": "看破 ",
+            "skillId": 3011,
             "isAttackSkill": true,
-            "describe": "以90%的攻击力对敌方发动一次攻击 攻击后增加穿透20%，持续3秒",
-            "enduranceCost": 35,
+            "describe": "以100%的攻击力对敌方发动一次攻击 攻击后增加穿透10%，持续2秒",
+            "enduranceCost": 50,
             "triggerProb": 10,
             "enduranceCostChangeEachLevel": 1,
             "triggerProbChangeEachLevel": 1,
             "battleSkillDamageData": {
                 "fixedValue": 0,
-                "percentValue": 90,
+                "percentValue": 100,
                 "attackNumber": 1,
                 "fixedValueChangeEachLevel": 0,
                 "percentValueChangeEachLevel": 1
@@ -174,29 +246,29 @@
             "battleSkillAddBuffDataList": [
                 {
                     "buffId": 4007,
-                    "buffValue": 20,
+                    "buffValue": 10,
                     "buffLimitValue": 0,
                     "isUp": true,
-                    "durationTime": 3,
-                    "buffValueChangeEachLevel": 1,
-                    "durationTimeChangeEachLevel": 0,
+                    "durationTime": 2000,
+                    "buffValueChangeEachLevel": 0,
+                    "durationTimeChangeEachLevel": 1000,
                     "buffLimitValueChangeEachLevel": 0,
                     "TargetIsSelf": true
                 }
             ]
         },
         {
-            "name": "破坏",
-            "skillId": 3008,
+            "name": "恐吓",
+            "skillId": 3012,
             "isAttackSkill": true,
-            "describe": "以80%的攻击力对敌方发动一次攻击 攻击后减少对方20%的攻击力，持续3秒",
-            "enduranceCost": 35,
+            "describe": "以100%的攻击力对敌方发动一次攻击 并且减少对方10%的攻击力，持续2秒",
+            "enduranceCost": 50,
             "triggerProb": 10,
             "enduranceCostChangeEachLevel": 1,
             "triggerProbChangeEachLevel": 1,
             "battleSkillDamageData": {
                 "fixedValue": 0,
-                "percentValue": 80,
+                "percentValue": 100,
                 "attackNumber": 1,
                 "fixedValueChangeEachLevel": 0,
                 "percentValueChangeEachLevel": 1
@@ -204,29 +276,29 @@
             "battleSkillAddBuffDataList": [
                 {
                     "buffId": 4001,
-                    "buffValue": -20,
+                    "buffValue": -10,
                     "buffLimitValue": 0,
                     "isUp": true,
-                    "durationTime": 3,
-                    "buffValueChangeEachLevel": 1,
-                    "durationTimeChangeEachLevel": 0,
+                    "durationTime": 2000,
+                    "buffValueChangeEachLevel": 0,
+                    "durationTimeChangeEachLevel": 1000,
                     "buffLimitValueChangeEachLevel": 0,
                     "TargetIsSelf": false
                 }
             ]
         },
         {
-            "name": "粉碎",
-            "skillId": 3009,
+            "name": "破甲",
+            "skillId": 3013,
             "isAttackSkill": true,
-            "describe": "以80%的攻击力对敌方发动一次攻击 并且减少对方20%的防御力，持续3秒",
-            "enduranceCost": 35,
+            "describe": "以100%的攻击力对敌方发动一次攻击 并且减少对方10%的防御力，持续2秒",
+            "enduranceCost": 50,
             "triggerProb": 10,
             "enduranceCostChangeEachLevel": 1,
             "triggerProbChangeEachLevel": 1,
             "battleSkillDamageData": {
                 "fixedValue": 0,
-                "percentValue": 80,
+                "percentValue": 100,
                 "attackNumber": 1,
                 "fixedValueChangeEachLevel": 0,
                 "percentValueChangeEachLevel": 1
@@ -234,22 +306,112 @@
             "battleSkillAddBuffDataList": [
                 {
                     "buffId": 4002,
-                    "buffValue": -20,
+                    "buffValue": -10,
                     "buffLimitValue": 0,
                     "isUp": true,
-                    "durationTime": 3,
-                    "buffValueChangeEachLevel": 1,
-                    "durationTimeChangeEachLevel": 0,
+                    "durationTime": 2000,
+                    "buffValueChangeEachLevel": 0,
+                    "durationTimeChangeEachLevel": 1000,
                     "buffLimitValueChangeEachLevel": 0,
                     "TargetIsSelf": false
                 }
             ]
         },
         {
+            "name": "精准",
+            "skillId": 3014,
+            "isAttackSkill": true,
+            "describe": "以100%的攻击力对敌方发动一次攻击 攻击后增加5%暴击率，持续2秒",
+            "enduranceCost": 50,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 100,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4005,
+                    "buffValue": 10,
+                    "buffLimitValue": 0,
+                    "isUp": true,
+                    "durationTime": 2000,
+                    "buffValueChangeEachLevel": 0,
+                    "durationTimeChangeEachLevel": 1000,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "伤害加深",
+            "skillId": 3015,
+            "isAttackSkill": true,
+            "describe": "以100%的攻击力对敌方发动一次攻击 攻击后增加20%暴击伤害，持续2秒",
+            "enduranceCost": 50,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 100,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4009,
+                    "buffValue": 20,
+                    "buffLimitValue": 0,
+                    "isUp": true,
+                    "durationTime": 2000,
+                    "buffValueChangeEachLevel": 0,
+                    "durationTimeChangeEachLevel": 1000,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "防备",
+            "skillId": 3016,
+            "isAttackSkill": true,
+            "describe": "以100%的攻击力对敌方发动一次攻击 攻击后增加20%暴击抗性，持续2秒",
+            "enduranceCost": 50,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 1,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 100,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 1
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4010,
+                    "buffValue": 10,
+                    "buffLimitValue": 0,
+                    "isUp": true,
+                    "durationTime": 2000,
+                    "buffValueChangeEachLevel": 0,
+                    "durationTimeChangeEachLevel": 1000,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
             "name": "激怒",
-            "skillId": 3010,
+            "skillId": 3327,
             "isAttackSkill": false,
-            "describe": "受到攻击后，攻击力增加10%，持续2秒",
+            "describe": "受到攻击后，暴击伤害增加10%，持续3秒",
             "enduranceCost": 5,
             "triggerProb": 5,
             "enduranceCostChangeEachLevel": 0,
@@ -263,12 +425,12 @@
             },
             "battleSkillAddBuffDataList": [
                 {
-                    "buffId": 4001,
+                    "buffId": 4009,
                     "buffValue": 10,
                     "buffLimitValue": 0,
                     "isUp": true,
-                    "durationTime": 2,
-                    "buffValueChangeEachLevel": 0,
+                    "durationTime": 3000,
+                    "buffValueChangeEachLevel": 1,
                     "durationTimeChangeEachLevel": 0,
                     "buffLimitValueChangeEachLevel": 0,
                     "TargetIsSelf": true
@@ -277,129 +439,9 @@
         },
         {
             "name": "石肤",
-            "skillId": 3011,
+            "skillId": 3328,
             "isAttackSkill": false,
-            "describe": "受到攻击后，防御力增加10%，持续2秒",
-            "enduranceCost": 5,
-            "triggerProb": 5,
-            "enduranceCostChangeEachLevel": 0,
-            "triggerProbChangeEachLevel": 0,
-            "battleSkillDamageData": {
-                "fixedValue": 0,
-                "percentValue": 0,
-                "attackNumber": 0,
-                "fixedValueChangeEachLevel": 0,
-                "percentValueChangeEachLevel": 0
-            },
-            "battleSkillAddBuffDataList": [
-                {
-                    "buffId": 4002,
-                    "buffValue": 10,
-                    "buffLimitValue": 0,
-                    "isUp": true,
-                    "durationTime": 2,
-                    "buffValueChangeEachLevel": 0,
-                    "durationTimeChangeEachLevel": 0,
-                    "buffLimitValueChangeEachLevel": 0,
-                    "TargetIsSelf": true
-                }
-            ]
-        },
-        {
-            "name": "招架",
-            "skillId": 3012,
-            "isAttackSkill": false,
-            "describe": "受到攻击后，减伤增加10%，持续2秒",
-            "enduranceCost": 5,
-            "triggerProb": 5,
-            "enduranceCostChangeEachLevel": 0,
-            "triggerProbChangeEachLevel": 0,
-            "battleSkillDamageData": {
-                "fixedValue": 0,
-                "percentValue": 0,
-                "attackNumber": 0,
-                "fixedValueChangeEachLevel": 0,
-                "percentValueChangeEachLevel": 0
-            },
-            "battleSkillAddBuffDataList": [
-                {
-                    "buffId": 4005,
-                    "buffValue": 10,
-                    "buffLimitValue": 0,
-                    "isUp": true,
-                    "durationTime": 2,
-                    "buffValueChangeEachLevel": 0,
-                    "durationTimeChangeEachLevel": 0,
-                    "buffLimitValueChangeEachLevel": 0,
-                    "TargetIsSelf": true
-                }
-            ]
-        },
-        {
-            "name": "以眼还眼",
-            "skillId": 3013,
-            "isAttackSkill": false,
-            "describe": "受到攻击后，反伤增加10%，持续2秒",
-            "enduranceCost": 5,
-            "triggerProb": 5,
-            "enduranceCostChangeEachLevel": 0,
-            "triggerProbChangeEachLevel": 0,
-            "battleSkillDamageData": {
-                "fixedValue": 0,
-                "percentValue": 0,
-                "attackNumber": 0,
-                "fixedValueChangeEachLevel": 0,
-                "percentValueChangeEachLevel": 0
-            },
-            "battleSkillAddBuffDataList": [
-                {
-                    "buffId": 4008,
-                    "buffValue": 10,
-                    "buffLimitValue": 0,
-                    "isUp": true,
-                    "durationTime": 2,
-                    "buffValueChangeEachLevel": 0,
-                    "durationTimeChangeEachLevel": 0,
-                    "buffLimitValueChangeEachLevel": 0,
-                    "TargetIsSelf": true
-                }
-            ]
-        },
-        {
-            "name": "锋芒",
-            "skillId": 3014,
-            "isAttackSkill": false,
-            "describe": "受到攻击后，穿透增加10%，持续2秒",
-            "enduranceCost": 5,
-            "triggerProb": 5,
-            "enduranceCostChangeEachLevel": 0,
-            "triggerProbChangeEachLevel": 0,
-            "battleSkillDamageData": {
-                "fixedValue": 0,
-                "percentValue": 0,
-                "attackNumber": 0,
-                "fixedValueChangeEachLevel": 0,
-                "percentValueChangeEachLevel": 0
-            },
-            "battleSkillAddBuffDataList": [
-                {
-                    "buffId": 4007,
-                    "buffValue": 10,
-                    "buffLimitValue": 0,
-                    "isUp": true,
-                    "durationTime": 2,
-                    "buffValueChangeEachLevel": 0,
-                    "durationTimeChangeEachLevel": 0,
-                    "buffLimitValueChangeEachLevel": 0,
-                    "TargetIsSelf": true
-                }
-            ]
-        },
-        {
-            "name": "暴击格挡",
-            "skillId": 3015,
-            "isAttackSkill": false,
-            "describe": "受到攻击后，暴击抗性10%，持续2秒",
+            "describe": "受到攻击后，暴击抗性增加10%，持续3秒",
             "enduranceCost": 5,
             "triggerProb": 5,
             "enduranceCostChangeEachLevel": 0,
@@ -417,8 +459,8 @@
                     "buffValue": 10,
                     "buffLimitValue": 0,
                     "isUp": true,
-                    "durationTime": 2,
-                    "buffValueChangeEachLevel": 0,
+                    "durationTime": 3000,
+                    "buffValueChangeEachLevel": 1,
                     "durationTimeChangeEachLevel": 0,
                     "buffLimitValueChangeEachLevel": 0,
                     "TargetIsSelf": true
@@ -426,10 +468,10 @@
             ]
         },
         {
-            "name": "伤害加深",
-            "skillId": 3016,
+            "name": "以眼还眼",
+            "skillId": 3329,
             "isAttackSkill": false,
-            "describe": "受到攻击后，暴击伤害10%，持续2秒",
+            "describe": "受到攻击后，暴击率增加10%，持续3秒",
             "enduranceCost": 5,
             "triggerProb": 5,
             "enduranceCostChangeEachLevel": 0,
@@ -443,12 +485,12 @@
             },
             "battleSkillAddBuffDataList": [
                 {
-                    "buffId": 4009,
+                    "buffId": 4005,
                     "buffValue": 10,
                     "buffLimitValue": 0,
                     "isUp": true,
-                    "durationTime": 2,
-                    "buffValueChangeEachLevel": 0,
+                    "durationTime": 3000,
+                    "buffValueChangeEachLevel": 1,
                     "durationTimeChangeEachLevel": 0,
                     "buffLimitValueChangeEachLevel": 0,
                     "TargetIsSelf": true
@@ -456,10 +498,10 @@
             ]
         },
         {
-            "name": "精准",
-            "skillId": 3017,
+            "name": "战意 ",
+            "skillId": 3330,
             "isAttackSkill": false,
-            "describe": "受到攻击后，暴击率10%，持续2秒",
+            "describe": "受到攻击后，攻击力增加5%，持续3秒",
             "enduranceCost": 5,
             "triggerProb": 5,
             "enduranceCostChangeEachLevel": 0,
@@ -473,12 +515,383 @@
             },
             "battleSkillAddBuffDataList": [
                 {
-                    "buffId": 4009,
-                    "buffValue": 10,
+                    "buffId": 4001,
+                    "buffValue": 5,
                     "buffLimitValue": 0,
                     "isUp": true,
-                    "durationTime": 2,
-                    "buffValueChangeEachLevel": 0,
+                    "durationTime": 3000,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "硬化 ",
+            "skillId": 3331,
+            "isAttackSkill": false,
+            "describe": "受到攻击后，防御力增加5%，持续3秒 ",
+            "enduranceCost": 5,
+            "triggerProb": 5,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4002,
+                    "buffValue": 5,
+                    "buffLimitValue": 0,
+                    "isUp": true,
+                    "durationTime": 3000,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "格挡",
+            "skillId": 3332,
+            "isAttackSkill": false,
+            "describe": "受到攻击后，减伤增加5%，持续3秒",
+            "enduranceCost": 5,
+            "triggerProb": 5,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4006,
+                    "buffValue": 5,
+                    "buffLimitValue": 0,
+                    "isUp": true,
+                    "durationTime": 3000,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "以牙还牙",
+            "skillId": 3333,
+            "isAttackSkill": false,
+            "describe": "受到攻击后，反伤增加5%，持续3秒",
+            "enduranceCost": 5,
+            "triggerProb": 5,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4008,
+                    "buffValue": 5,
+                    "buffLimitValue": 0,
+                    "isUp": true,
+                    "durationTime": 3000,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "锋利",
+            "skillId": 3334,
+            "isAttackSkill": false,
+            "describe": "受到攻击后，穿透增加5%，持续3秒",
+            "enduranceCost": 5,
+            "triggerProb": 5,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4007,
+                    "buffValue": 5,
+                    "buffLimitValue": 0,
+                    "isUp": true,
+                    "durationTime": 3000,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "稳扎稳打",
+            "skillId": 3335,
+            "isAttackSkill": false,
+            "describe": "生命值大于等于*%，攻击力增加*%生命值小于等于*%，防御力增加*%",
+            "enduranceCost": 0,
+            "triggerProb": 0,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4001,
+                    "buffValue": 1,
+                    "buffLimitValue": 50,
+                    "isUp": true,
+                    "durationTime": -1,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                },
+                {
+                    "buffId": 4002,
+                    "buffValue": 1,
+                    "buffLimitValue": 50,
+                    "isUp": false,
+                    "durationTime": -1,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "背水一战",
+            "skillId": 3336,
+            "isAttackSkill": false,
+            "describe": "生命值小于20%、攻击力增加10%",
+            "enduranceCost": 0,
+            "triggerProb": 0,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4001,
+                    "buffValue": 10,
+                    "buffLimitValue": 20,
+                    "isUp": false,
+                    "durationTime": -1,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "优先权",
+            "skillId": 3337,
+            "isAttackSkill": false,
+            "describe": "生命值等于100%，攻击力增加20%",
+            "enduranceCost": 0,
+            "triggerProb": 0,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4001,
+                    "buffValue": 20,
+                    "buffLimitValue": 90,
+                    "isUp": true,
+                    "durationTime": 2000,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "殊死一博",
+            "skillId": 3338,
+            "isAttackSkill": false,
+            "describe": "生命值小于5%，攻击力增加20%",
+            "enduranceCost": 0,
+            "triggerProb": 0,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4001,
+                    "buffValue": 20,
+                    "buffLimitValue": 5,
+                    "isUp": false,
+                    "durationTime": -1,
+                    "buffValueChangeEachLevel": 5,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "不屈",
+            "skillId": 3339,
+            "isAttackSkill": false,
+            "describe": "生命值小于10%，防御力增加20%",
+            "enduranceCost": 0,
+            "triggerProb": 0,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4002,
+                    "buffValue": 20,
+                    "buffLimitValue": 10,
+                    "isUp": false,
+                    "durationTime": -1,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "荆棘",
+            "skillId": 3340,
+            "isAttackSkill": false,
+            "describe": "生命值小于30%，反伤增加1%",
+            "enduranceCost": 0,
+            "triggerProb": 0,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4008,
+                    "buffValue": 1,
+                    "buffLimitValue": 30,
+                    "isUp": false,
+                    "durationTime": -1,
+                    "buffValueChangeEachLevel": 1,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "死里逃生",
+            "skillId": 3341,
+            "isAttackSkill": false,
+            "describe": "生命值小于5%，减伤增加60%",
+            "enduranceCost": 0,
+            "triggerProb": 0,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4006,
+                    "buffValue": 60,
+                    "buffLimitValue": 5,
+                    "isUp": false,
+                    "durationTime": -1,
+                    "buffValueChangeEachLevel": 2,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": true
+                }
+            ]
+        },
+        {
+            "name": "乘胜追击",
+            "skillId": 3342,
+            "isAttackSkill": false,
+            "describe": "生命值大于60%，穿透增加1%",
+            "enduranceCost": 0,
+            "triggerProb": 0,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 0,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 0,
+                "attackNumber": 0,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 0
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4007,
+                    "buffValue": 1,
+                    "buffLimitValue": 60,
+                    "isUp": true,
+                    "durationTime": -1,
+                    "buffValueChangeEachLevel": 1,
                     "durationTimeChangeEachLevel": 0,
                     "buffLimitValueChangeEachLevel": 0,
                     "TargetIsSelf": true

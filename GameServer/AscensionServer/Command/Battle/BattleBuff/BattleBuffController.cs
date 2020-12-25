@@ -42,6 +42,8 @@ namespace AscensionServer
         public int CritResistance { get; private set; }
         #endregion
 
+        public int BuffCount { get { return buffEntityDict.Count; } }
+
         Dictionary<int, BattleBuffEntity> buffEntityDict = new Dictionary<int, BattleBuffEntity>();
 
         public IRoleBattleData roleBattleData;
@@ -64,16 +66,16 @@ namespace AscensionServer
             switch (battleBuffEffectProperty)
             {
                 case BattleBuffEffectProperty.Attack:
-                    Attack += (int)(roleBattleData.Attack * changeValue / 100f);
+                    Attack += (int)((roleBattleData.Attack-Attack) * changeValue / 100f);
                     break;
                 case BattleBuffEffectProperty.Defense:
-                    Defence += (int)(roleBattleData.Defence * changeValue / 100f);
+                    Defence += (int)((roleBattleData.Defence-Defence) * changeValue / 100f);
                     break;
                 case BattleBuffEffectProperty.Endurance:
-                    Endurance += (int)(roleBattleData.Endurance * changeValue / 100f);
+                    Endurance += (int)((roleBattleData.Endurance-Endurance) * changeValue / 100f);
                     break;
                 case BattleBuffEffectProperty.EnduranceReply:
-                    EnduranceReply += (int)(roleBattleData.EnduranceReply * changeValue / 100f);
+                    EnduranceReply += (int)((roleBattleData.EnduranceReply-EnduranceReply) * changeValue / 100f);
                     break;
                 case BattleBuffEffectProperty.CritProp:
                     CritProp += changeValue;
@@ -105,12 +107,12 @@ namespace AscensionServer
                 buffEntityDict[id].OnRemove();
                 GameManager.ReferencePoolManager.Despawn(buffEntityDict[id]);
                 buffEntityDict[id] = battleBuffEntity;
+                buffEntityDict[id].OnTrigger(roleBattleData);
             }
             else
             {
                 buffEntityDict.Add(id, battleBuffEntity);
             }
-            buffEntityDict[id].OnTrigger(roleBattleData);
         }
 
         public void RemoveBuff(int id)
@@ -123,6 +125,7 @@ namespace AscensionServer
         public void TriggerBuff()
         {
             buffTriggerEvent?.Invoke(roleBattleData);
+
         }
         public void UpdateBuffTime(int time)
         {
