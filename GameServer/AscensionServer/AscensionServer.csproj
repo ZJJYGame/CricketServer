@@ -173,6 +173,7 @@
     <Compile Include="Ascension\DataObject\PassiveSkill.cs" />
     <Compile Include="Ascension\DataObject\PropData.cs" />
     <Compile Include="Ascension\DataObject\Shop.cs" />
+    <Compile Include="Ascension\DataObject\SpreaAward.cs" />
     <Compile Include="Ascension\DataObject\TaskData.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffController.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffEntity.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Command\Inventory\InventoryManager.cs" />
     <Compile Include="Command\Inventory\xRCommon.cs" />
     <Compile Include="Command\Inventory\xRCommonTip.cs" />
+    <Compile Include="Command\Match\MatchManager.cs" />
     <Compile Include="Command\Rank\RankManager.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginHandler.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginManager.cs" />
@@ -202,6 +204,8 @@
     <Compile Include="Command\RegisterAndLogin\RegisterMananger\RegisterMananger.cs" />
     <Compile Include="Command\ShopManager\BuyPropManager.cs" />
     <Compile Include="Command\ShopManager\ShopManager.cs" />
+    <Compile Include="Command\SpreaCodeManager\SpreaCodeManager.Calculate.cs" />
+    <Compile Include="Command\SpreaCodeManager\SpreaCodeManager.cs" />
     <Compile Include="Command\xRTask\TaskManager.Concreteness.cs" />
     <Compile Include="Command\xRTask\TaskManager.cs" />
     <Compile Include="DataObjectMap\CricketAdditionMap.cs" />
@@ -214,6 +218,7 @@
     <Compile Include="DataObjectMap\RoleAssetsMap.cs" />
     <Compile Include="DataObjectMap\RoleCricketMap.cs" />
     <Compile Include="DataObjectMap\RoleMap.cs" />
+    <Compile Include="DataObjectMap\SpreaCodeMap.cs" />
     <Compile Include="DataObjectMap\xRTaskMap.cs" />
     <Compile Include="DataObjectMap\UserMap.cs" />
     <Compile Include="DataObject\Cricket.cs" />
@@ -226,6 +231,7 @@
     <Compile Include="DataObject\Role.cs" />
     <Compile Include="DataObject\RoleAssets.cs" />
     <Compile Include="DataObject\RoleCricket.cs" />
+    <Compile Include="DataObject\SpreaCode.cs" />
     <Compile Include="DataObject\xRTask.cs" />
     <Compile Include="DataObject\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -265,6 +271,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="JsonData\PassiveSkill.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\SpreaAward.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />

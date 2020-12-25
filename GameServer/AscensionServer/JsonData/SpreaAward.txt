@@ -1,0 +1,11 @@
+﻿[
+{"GiftID":6001,"Money":1000,"Cricket":70,"PropID":[1001],"PropNumber":[1],"AwardState":-1,"AwardType":0},
+{"GiftID":6002,"Money":10000,"Cricket":95,"PropID":[1009,1003,1016],"PropNumber":[10,20,1],"AwardState":-1,"AwardType":1},
+{"GiftID":6003,"Money":30000,"Cricket":97,"PropID":[1001],"PropNumber":[1],"AwardState":-1,"AwardType":1},
+{"GiftID":6004,"Money":50000,"Cricket":100,"PropID":[1002],"PropNumber":[1],"AwardState":-1,"AwardType":1},
+{"GiftID":6005,"Money":100000,"Cricket":100,"PropID":[1003],"PropNumber":[1],"AwardState":-1,"AwardType":1},
+{"GiftID":6006,"Money":0,"Cricket":100,"PropID":[1004],"PropNumber":[1],"AwardState":-1,"AwardType":2},
+{"GiftID":6007,"Money":0,"Cricket":100,"PropID":[1005],"PropNumber":[1],"AwardState":-1,"AwardType":2},
+{"GiftID":6008,"Money":0,"Cricket":100,"PropID":[1006],"PropNumber":[1],"AwardState":-1,"AwardType":2},
+{"GiftID":6009,"Money":0,"Cricket":100,"PropID":[1007],"PropNumber":[1],"AwardState":-1,"AwardType":3}
+]

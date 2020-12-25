@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Crickey\subCmd\CricketOperate.cs" />
     <Compile Include="Crickey\subCmd\ShopOperate.cs" />
+    <Compile Include="Crickey\subCmd\SpreaCodeOperate.cs" />
     <Compile Include="Crickey\subCmd\subTaskOp.cs" />
     <Compile Include="DTO\BattleTransferDTO.cs" />
     <Compile Include="Crickey\subCmd\subInventoryOp.cs" />
@@ -52,11 +53,13 @@
     <Compile Include="DTO\CricketStatusDTO.cs" />
     <Compile Include="DTO\ExplorationDTO.cs" />
     <Compile Include="DTO\InventoryDTO.cs" />
+    <Compile Include="DTO\MatchDTO.cs" />
     <Compile Include="DTO\RankDTO.cs" />
     <Compile Include="DTO\RoleAssetsDTO.cs" />
     <Compile Include="DTO\RoleCricketDTO.cs" />
     <Compile Include="DTO\RoleDTO.cs" />
     <Compile Include="DTO\RolepPropDTO.cs" />
+    <Compile Include="DTO\SpreaCodeDTO.cs" />
     <Compile Include="DTO\xRTaskDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="ErrorCode.cs" />

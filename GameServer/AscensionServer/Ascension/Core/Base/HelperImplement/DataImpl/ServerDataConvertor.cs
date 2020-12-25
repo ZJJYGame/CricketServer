@@ -58,12 +58,16 @@ namespace AscensionServer
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(ADAward).Name, out var aDAwardData);
                 var aDAwardDict = TransObject<List<ADAward>>(aDAwardData).ToDictionary(key => key.PropID, value => value);
 
-
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(PassiveSkill).Name, out var passiveSkill);
                 var passiveSkillDict = TransObject<List<PassiveSkill>>(passiveSkill).ToDictionary(key => key.SkillID, value => value);
+
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(SpreaAward).Name, out var spreaAward);
+                var spreaAwardDict = TransObject<List<SpreaAward>>(spreaAward).ToDictionary(key => key.GiftID, value => value);
+
                 #endregion
 
                 #region 储存方式 
+                GameManager.CustomeModule<DataManager>().TryAdd(spreaAwardDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(passiveSkillDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(aDAwardDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(explorationDict);

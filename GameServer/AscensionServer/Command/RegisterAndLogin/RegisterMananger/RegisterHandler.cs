@@ -14,7 +14,7 @@ namespace AscensionServer
         public static void RegisterRole(string account,string password,object peer)
         {
             NHCriteria nHCriteriaAccount = xRCommon.xRNHCriteria("Account", account);
-            Utility.Debug.LogInfo("yzqData发送失败" + nHCriteriaAccount.Value.ToString());
+            //Utility.Debug.LogInfo("yzqData发送失败" + nHCriteriaAccount.Value.ToString());
 
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketStatus>>(out var cricketStatusDict);
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, Cricket>>(out var cricketDict);
@@ -30,6 +30,7 @@ namespace AscensionServer
             var cricketAptitude = new CricketAptitude();
             var cricketPoint = new CricketPoint();
             var cricketAddition = new CricketAddition();
+            var spreacode = new SpreaCode();
             if (!isExist)
             {
                 userObj = NHibernateQuerier.Insert(userObj);
@@ -65,6 +66,17 @@ namespace AscensionServer
                 darilyDict.Add(303, new TaskItemDTO() { taskStatus = false, taskProgress = 0, taskTarget = 3, taskManoy = 140 });
                 NHibernateQuerier.Insert(new xRTask() { RoleID = role.RoleID, taskDict = Utility.Json.ToJson(darilyDict) });
                 NHibernateQuerier.Insert(new Exploration() { RoleID = role.RoleID });
+                #endregion
+                #region 推广初始化
+                spreacode.RoleID = role.RoleID;
+                spreacode.CodeID = GameManager.CustomeModule<SpreaCodeManager>().RandomCodeID(role.RoleID);
+                var dict = new Dictionary<int, int>() { };
+                dict.Add(6002, -1);
+                dict.Add(6003, -1);
+                dict.Add(6004, -1);
+                dict.Add(6005, -1);
+                spreacode.SpreaPlayers = Utility.Json.ToJson(dict);
+                NHibernateQuerier.Insert(spreacode);
                 #endregion
                 OperationData operationData = new OperationData();
                 operationData.DataMessage = Utility.Json.ToJson(role);

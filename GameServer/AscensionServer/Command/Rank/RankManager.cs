@@ -40,13 +40,26 @@ namespace AscensionServer
 
         public void xrGetRank(int roleId)
         {
-            //var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
-            //var xRserver = xRCommon.xRCriteria<Role>(nHcriteria);
-            var d = NHibernateQuerier.GetTable<Role>();
-            foreach (var item in d)
+            //rankDict.Clear();
+            if (rankDict.Count == 0)
             {
-                Utility.Debug.LogInfo("个人信息" + item.RoleName + item.RoleID);
+                //var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
+                //var xRserver = xRCommon.xRCriteria<Role>(nHcriteria);
+                var tableRole = NHibernateQuerier.GetTable<Role>();
+                var tableCricket = NHibernateQuerier.GetTable<Cricket>();
+                tableCricket = tableCricket.OrderByDescending(o => o.RankID).ToList();//降序
+                foreach (var info in tableCricket)//tableCricket.Count > 100 ? 100 : tableCricket.Count
+                {
+                    if (rankDict.Count > 100)
+                        break;
+                    rankDict[info.ID] = new RankDTO { RoleID = info.Roleid, CricketName = info.CricketName, Duanwei = info.RankID };
+                }
             }
+            var pareams = xRCommon.xRS2CParams();
+            pareams.Add((byte)ParameterCode.RoleRank, Utility.Json.ToJson(rankDict));
+            var subOp = xRCommon.xRS2CSub();
+            subOp.Add((byte)SubOperationCode.Get, pareams);
+            xRCommon.xRS2CSend(roleId, (byte)ATCmd.SyncRank, (byte)ReturnCode.Success, subOp);
         }
     }
 }
