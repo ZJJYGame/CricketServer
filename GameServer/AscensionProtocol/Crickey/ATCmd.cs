@@ -45,6 +45,8 @@ namespace AscensionProtocol
         /// 同步邀请码数据
         /// </summary>
         SyncSpreaCode = 12,
+        SyncMatch = 13,
+
         /// <summary>
         /// 测试消息队列
         /// </summary>
