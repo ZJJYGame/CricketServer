@@ -85,13 +85,6 @@ namespace AscensionServer
                 #region 获取方式
                 //GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, MonsterDatas>>(out var set);
                 //Utility.Debug.LogInfo("<DataManager> 测试 TryGetValue " + skillGongFaDict[21001].Skill_Describe);
-                //Dictionary<int, List<int>> valuePairs = new Dictionary<int, List<int>>();
-                //valuePairs.Add(6002, -1);
-                //valuePairs.Add(6003, -1);
-                //valuePairs.Add(6004, -1);
-                //valuePairs.Add(6005, -1);
-                //Utility.Debug.LogError(Utility.Json.ToJson(valuePairs));
-               // GameManager.CustomeModule<SpreaCodeManager>() .GetSpreaCode(2);
                 #endregion
             }
             catch (Exception e)

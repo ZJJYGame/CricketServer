@@ -14,6 +14,7 @@ namespace AscensionServer
             Map(x => x.CodeID).Column("codeid");
             Map(x => x.SpreaNum).Column("spreanum");
             Map(x => x.SpreaLevel).Column("sprealevel");
+            Map(x => x.SpreaPlayers).Column("spreaplayers");
             Table("spreacode");
         }
     }
