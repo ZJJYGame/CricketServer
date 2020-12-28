@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using AscensionProtocol;
 using Cosmos;
 using Protocol;
@@ -76,6 +77,9 @@ namespace AscensionServer
                     }
                     matchSetDict.Remove(setData);
                     matchSetDict.Remove(match);
+                    //TODO
+                    MatchManager matchManager = new MatchManager(1500);
+                    BattleStartTimer();
                 }
                 else
                 {
@@ -101,7 +105,9 @@ namespace AscensionServer
         /// </summary>
         public void StartMatch(MatchDTO match)
         {
-            matchSetDict.Remove(match);
+            var xrRemove = matchSetDict.Find(x => x.RoleId == match.RoleId);
+            if (xrRemove != null)
+                matchSetDict.Remove(xrRemove);
             MatchDTO matchDto = new MatchDTO();
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, MachineData>>(out var machineData);
             var setData = machineData[match.selfCricketData.RankID];
@@ -114,7 +120,59 @@ namespace AscensionServer
             var subOp = xRCommon.xRS2CSub();
             subOp.Add((byte)SubOperationCode.Get, pareams);
             xRCommon.xRS2CSend(matchDto.selfData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
+
+            //TODO
+            MatchManager matchManager = new MatchManager(1500);
+            BattleStartTimer();
+
         }
+
+
+        #region 开启倒计时
+
+        /// <summary>
+        /// 倒计时开始针对的是进入战斗
+        /// </summary>
+        public delegate void BattleStartDelegateHandle();
+
+        public BattleStartDelegateHandle startDelegateHandle;
+
+        System.Timers.Timer Mytimer;
+        public MatchManager(int second)
+        {
+            Mytimer = new System.Timers.Timer(second);
+        }
+
+
+        public void BattleStartTimer()
+        {
+            Mytimer.Enabled = true;
+            Mytimer.Start();
+            Mytimer.Elapsed += new ElapsedEventHandler(StartBattleMethodCallBack);
+            Mytimer.AutoReset = false;
+        }
+
+        public void StartBattleMethodCallBack(object sender, ElapsedEventArgs args)
+        {
+            startDelegateHandle += BattleStartCallBackMethod;
+            startDelegateHandle?.Invoke();
+        }
+
+        /// <summary>
+        /// 倒计时回调
+        /// </summary>
+        private void BattleStartCallBackMethod()
+        {
+
+        }
+
+        public void BattleStartStopTimer()
+        {
+            startDelegateHandle -= BattleStartCallBackMethod;
+            Mytimer.Stop();
+        }
+        #endregion
+
     }
 
 }
