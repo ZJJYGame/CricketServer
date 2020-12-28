@@ -21,4 +21,16 @@ namespace AscensionServer
         public int TaskTarget { get; set; }
         public int TaskMoneySet { get; set; }
     }
+
+    public enum taskType
+    {
+        EnterBattle = 1,
+        WinBattle,
+        ShopBuyProp,
+        EnterExpration,
+        FriendBattle,
+        ViewAdvertising,
+        ViewRank,
+        UserProp
+    }
 }

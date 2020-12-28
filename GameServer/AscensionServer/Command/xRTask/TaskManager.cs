@@ -22,7 +22,7 @@ namespace AscensionServer
             switch ((subTaskOp)data.Keys.ToList()[0])
             {
                 case subTaskOp.Get:
-                    if (darilyDict.Count !=3)
+                    if (darilyDict.Count != 3)
                         SetTaskAtFixedTime(roleSet[(byte)ParameterCode.RoleTask].RoleID);
                     xRGetTask(roleSet[(byte)ParameterCode.RoleTask].RoleID);
                     break;
@@ -44,7 +44,7 @@ namespace AscensionServer
         {
             base.OnRefresh();
             DateTime now = DateTime.Now;
-            if (now.Hour == 16&&now.Minute ==45)
+            if (now.Hour == 16&&(now.Minute ==45&& now.Second ==59))
                 darilyDict.Clear();
         }
         private void SetTaskAtFixedTime(int roleId)
