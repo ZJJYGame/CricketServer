@@ -78,8 +78,8 @@ namespace AscensionServer
                     matchSetDict.Remove(setData);
                     matchSetDict.Remove(match);
                     //TODO
-                    MatchManager matchManager = new MatchManager(1500);
-                    BattleStartTimer();
+                    TimerManager matchManager = new TimerManager(1500);
+                    matchManager.BattleStartTimer();
                 }
                 else
                 {
@@ -122,56 +122,13 @@ namespace AscensionServer
             xRCommon.xRS2CSend(matchDto.selfData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
 
             //TODO
-            MatchManager matchManager = new MatchManager(1500);
-            BattleStartTimer();
+            TimerManager matchManager = new TimerManager(1500);
+            matchManager.BattleStartTimer();
 
         }
 
 
-        #region 开启倒计时
-
-        /// <summary>
-        /// 倒计时开始针对的是进入战斗
-        /// </summary>
-        public delegate void BattleStartDelegateHandle();
-
-        public BattleStartDelegateHandle startDelegateHandle;
-
-        System.Timers.Timer Mytimer;
-        public MatchManager(int second)
-        {
-            Mytimer = new System.Timers.Timer(second);
-        }
-
-
-        public void BattleStartTimer()
-        {
-            Mytimer.Enabled = true;
-            Mytimer.Start();
-            Mytimer.Elapsed += new ElapsedEventHandler(StartBattleMethodCallBack);
-            Mytimer.AutoReset = false;
-        }
-
-        public void StartBattleMethodCallBack(object sender, ElapsedEventArgs args)
-        {
-            startDelegateHandle += BattleStartCallBackMethod;
-            startDelegateHandle?.Invoke();
-        }
-
-        /// <summary>
-        /// 倒计时回调
-        /// </summary>
-        private void BattleStartCallBackMethod()
-        {
-
-        }
-
-        public void BattleStartStopTimer()
-        {
-            startDelegateHandle -= BattleStartCallBackMethod;
-            Mytimer.Stop();
-        }
-        #endregion
+       
 
     }
 
