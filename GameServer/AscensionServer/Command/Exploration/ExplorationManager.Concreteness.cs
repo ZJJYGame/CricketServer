@@ -51,7 +51,13 @@ namespace AscensionServer
                         GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, ExplorationData>>(out var setExploration);
                         for (int propInfo = 0; propInfo < xrDict[info.Key].ItemId.Count; propInfo++)
                         {
-                            var xrRandom = RandomManager(info.Key, setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0], setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[1]);
+
+                            int xrRandom = 1;
+                            if (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number.Count == 2)
+                            {
+
+                                xrRandom = RandomManager(info.Key, setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0], setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[1]);
+                            }
                             xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = xrRandom;
                             switch (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].EventType)
                             {
@@ -59,6 +65,15 @@ namespace AscensionServer
                                 case "GetCricket"://全局id
                                 case "GetSkill":
                                     xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = 1;
+                                    break;
+                                case "AddExp":
+                                    var nHcriteriaID = xRCommon.xRNHCriteria("ID", info.Value.CustomId);
+                                    var xRserverGrade = xRCommon.xRCriteria<Cricket>(nHcriteriaID);
+                                    var gradeValue = info.Key == 0 ? 100 : info.Key == 1 ? 400 : info.Key == 2 ? 800 : 1600;
+                                    var percentValue = setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0];
+                                    var levbelValue = xRserverGrade.LevelID* xRserverGrade.LevelID;
+                                    var expValue = info.Key == 0 ? levbelValue*6*percentValue: info.Key == 1 ? levbelValue*12 : info.Key == 2 ? levbelValue*18 : levbelValue*24;
+                                    xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = expValue / 100 < gradeValue ? gradeValue : expValue / 100;
                                     break;
                             }
                         }

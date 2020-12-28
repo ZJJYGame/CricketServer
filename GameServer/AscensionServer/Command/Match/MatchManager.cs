@@ -23,7 +23,7 @@ namespace AscensionServer
 
         private void C2SMatch(OperationData opData)
         {
-            Utility.Debug.LogInfo("老陆排行榜==>" + (opData.DataMessage.ToString()));
+            Utility.Debug.LogInfo("进行匹配==>" + (opData.DataMessage.ToString()));
             var data = Utility.Json.ToObject<Dictionary<byte, object>>(opData.DataMessage.ToString());
             var roleSet = Utility.Json.ToObject<Dictionary<byte, MatchDTO>>(data.Values.ToList()[0].ToString());
             switch ((SubOperationCode)data.Keys.ToList()[0])
@@ -36,6 +36,7 @@ namespace AscensionServer
                 case SubOperationCode.Add:
                     break;
                 case SubOperationCode.Update:
+                    StartMatch(roleSet[(byte)ParameterCode.RoleMatch]);
                     break;
                 case SubOperationCode.Remove:
                     break;
@@ -80,7 +81,6 @@ namespace AscensionServer
                 {
                     Utility.Debug.LogInfo("没有匹配成功！！！");
                 }
-                //matchSet = matchDto;
             }
             else
             {
@@ -96,9 +96,24 @@ namespace AscensionServer
             }
         }
 
-        public void StartMatch()
-        { 
-
+        /// <summary>
+        /// 开始匹配人机
+        /// </summary>
+        public void StartMatch(MatchDTO match)
+        {
+            matchSetDict.Remove(match);
+            MatchDTO matchDto = new MatchDTO();
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, MachineData>>(out var machineData);
+            var setData = machineData[match.selfCricketData.RankID];
+            matchDto.selfData = match.selfData;
+            matchDto.selfCricketData = match.selfCricketData;
+            matchDto.otherData = new RoleDTO() { RoleName = setData.UserName };
+            matchDto.otherCricketData = new CricketDTO() { CricketName = setData.CricketName, RankID = setData.RankID };
+            var pareams = xRCommon.xRS2CParams();
+            pareams.Add((byte)ParameterCode.RoleMatch, Utility.Json.ToJson(matchDto));
+            var subOp = xRCommon.xRS2CSub();
+            subOp.Add((byte)SubOperationCode.Get, pareams);
+            xRCommon.xRS2CSend(matchDto.selfData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
         }
     }
 
