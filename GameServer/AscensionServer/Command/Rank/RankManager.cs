@@ -50,7 +50,7 @@ namespace AscensionServer
                 tableCricket = tableCricket.OrderByDescending(o => o.RankID).ToList();//降序
                 foreach (var info in tableCricket)//tableCricket.Count > 100 ? 100 : tableCricket.Count
                 {
-                    if (rankDict.Count > 100)
+                    if (rankDict.Count >= 100)
                         break;
                     rankDict[info.ID] = new RankDTO { RoleID = info.Roleid, CricketName = info.CricketName, Duanwei = info.RankID };
                 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using AscensionProtocol;
 using Cosmos;
 using Protocol;
@@ -18,6 +19,33 @@ namespace AscensionServer
         public List<MatchDTO> matchSetDict = new List<MatchDTO>();
 
         public MatchDTO matchSet;
+
+        public override void OnPreparatory() => CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncMatch, C2SMatch);
+
+        private void C2SMatch(OperationData opData)
+        {
+            Utility.Debug.LogInfo("进行匹配==>" + (opData.DataMessage.ToString()));
+            var data = Utility.Json.ToObject<Dictionary<byte, object>>(opData.DataMessage.ToString());
+            var roleSet = Utility.Json.ToObject<Dictionary<byte, MatchDTO>>(data.Values.ToList()[0].ToString());
+            switch ((SubOperationCode)data.Keys.ToList()[0])
+            {
+                case SubOperationCode.None:
+                    break;
+                case SubOperationCode.Get:
+                    InitMatch(roleSet[(byte)ParameterCode.RoleMatch]);
+                    break;
+                case SubOperationCode.Add:
+                    break;
+                case SubOperationCode.Update:
+                    StartMatch(roleSet[(byte)ParameterCode.RoleMatch]);
+                    break;
+                case SubOperationCode.Remove:
+                    break;
+                case SubOperationCode.Verify:
+                    break;
+            }
+        }
+
         /// <summary>
         /// 初始化
         /// </summary>
@@ -35,17 +63,28 @@ namespace AscensionServer
                     matchDto.otherData = setData.selfData;
                     matchDto.otherCricketData = setData.selfCricketData;
 
-                    //var pareams = xRCommon.xRS2CParams();
-                    //pareams.Add((byte)ParameterCode.RoleRank, Utility.Json.ToJson(rankDict));
-                    //var subOp = xRCommon.xRS2CSub();
-                    //subOp.Add((byte)SubOperationCode.Get, pareams);
-                    //xRCommon.xRS2CSend(roleId, (byte)ATCmd.SyncRank, (byte)ReturnCode.Success, subOp);
+                    Utility.Debug.LogInfo("匹配id！！！"+ matchDto.selfData.RoleID+""+ matchDto.otherData.RoleID);
+                    var pareams = xRCommon.xRS2CParams();
+                    pareams.Add((byte)ParameterCode.RoleMatch, Utility.Json.ToJson(matchDto));
+                    var subOp = xRCommon.xRS2CSub();
+                    subOp.Add((byte)SubOperationCode.Get, pareams);
+                    for (int ov = 0; ov < 2; ov++)
+                    {
+                        if (ov==0)
+                            xRCommon.xRS2CSend(matchDto.selfData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
+                        if (ov ==1)
+                            xRCommon.xRS2CSend(matchDto.otherData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
+                    }
+                    matchSetDict.Remove(setData);
+                    matchSetDict.Remove(match);
+                    //TODO
+                    TimerManager matchManager = new TimerManager(1500);
+                    matchManager.BattleStartTimer();
                 }
                 else
                 {
                     Utility.Debug.LogInfo("没有匹配成功！！！");
                 }
-                //matchSet = matchDto;
             }
             else
             {
@@ -61,10 +100,36 @@ namespace AscensionServer
             }
         }
 
-        public void StartMatch()
-        { 
+        /// <summary>
+        /// 开始匹配人机
+        /// </summary>
+        public void StartMatch(MatchDTO match)
+        {
+            var xrRemove = matchSetDict.Find(x => x.RoleId == match.RoleId);
+            if (xrRemove != null)
+                matchSetDict.Remove(xrRemove);
+            MatchDTO matchDto = new MatchDTO();
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, MachineData>>(out var machineData);
+            var setData = machineData[match.selfCricketData.RankID];
+            matchDto.selfData = match.selfData;
+            matchDto.selfCricketData = match.selfCricketData;
+            matchDto.otherData = new RoleDTO() { RoleName = setData.UserName };
+            matchDto.otherCricketData = new CricketDTO() { CricketName = setData.CricketName, RankID = setData.RankID };
+            var pareams = xRCommon.xRS2CParams();
+            pareams.Add((byte)ParameterCode.RoleMatch, Utility.Json.ToJson(matchDto));
+            var subOp = xRCommon.xRS2CSub();
+            subOp.Add((byte)SubOperationCode.Get, pareams);
+            xRCommon.xRS2CSend(matchDto.selfData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
+
+            //TODO
+            TimerManager matchManager = new TimerManager(1500);
+            matchManager.BattleStartTimer();
 
         }
+
+
+       
+
     }
 
 }

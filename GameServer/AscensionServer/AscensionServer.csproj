@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\Localphotonserver\Criket\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
+    <OutputPath>..\..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -169,6 +169,7 @@
     <Compile Include="Ascension\DataObject\CricketLevel.cs" />
     <Compile Include="Ascension\DataObject\CricketStatusData.cs" />
     <Compile Include="Ascension\DataObject\ExplorationData.cs" />
+    <Compile Include="Ascension\DataObject\MachineData.cs" />
     <Compile Include="Ascension\DataObject\NestLevel.cs" />
     <Compile Include="Ascension\DataObject\PassiveSkill.cs" />
     <Compile Include="Ascension\DataObject\PropData.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Command\Inventory\xRCommon.cs" />
     <Compile Include="Command\Inventory\xRCommonTip.cs" />
     <Compile Include="Command\Match\MatchManager.cs" />
+    <Compile Include="Command\Match\TimerManager.cs" />
     <Compile Include="Command\Rank\RankManager.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginHandler.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginManager.cs" />
@@ -274,6 +276,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="JsonData\SpreaAward.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\MachineData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />
