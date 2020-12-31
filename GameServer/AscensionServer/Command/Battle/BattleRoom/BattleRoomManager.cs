@@ -43,14 +43,21 @@ namespace AscensionServer
         /// 战斗房间实体字典，key=>房间Id,value=>房间实体对象
         Dictionary<int, BattleRoomEntity> battleRoomEntityDict=new Dictionary<int, BattleRoomEntity>();
 
+        #region json数据
+        public Dictionary<int, BattleAttackSkillData> battleAttackSkillDataDict;
+        #endregion
+
         public override void OnInitialization()
         {
             CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncBattle, EnterBattleHandler);
+
         }
         public override void OnPreparatory()
         {
-            //Utility.Debug.LogInfo("开始创建房间");
-            //CreateRoom(111, 222);
+            #region json数据读取
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, BattleAttackSkillData>>(out var BattleAttackSkillDataDict);
+            battleAttackSkillDataDict = BattleAttackSkillDataDict;
+            #endregion
         }
 
         void EnterBattleHandler(OperationData OpData)

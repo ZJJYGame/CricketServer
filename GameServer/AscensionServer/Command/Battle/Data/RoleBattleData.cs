@@ -149,14 +149,16 @@ namespace AscensionServer
             enduranceReply = 200;
             actionBar = 2000;
             critProp = 20;
-            dodgeProp = 0;
+            dodgeProp = 20;
             receiveDamage = 100;
             pierce = 30;
             reboundDamage = 10;
             critDamage = 50;
             critResistance = 0;
             this.buffRoleBattleData = buffRoleBattleData;
-            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, BattleAttackSkillData>>(out var tempSkillDict);
+            Dictionary<int, BattleAttackSkillData> tempSkillDict = GameManager.CustomeModule<BattleRoomManager>().battleAttackSkillDataDict;
+            Utility.Debug.LogError("battleroomManager的字典数量=>" + GameManager.CustomeModule<BattleRoomManager>().battleAttackSkillDataDict.Values.Count);
+            Utility.Debug.LogError("adaggsfaffg=>" + tempSkillDict.Values.Count);
             List<BattleAttackSkillData> tempSkillList = tempSkillDict.Values.ToList();
             BattleAttackSkillList = new List<BattleSkill>();
             //for (int i = 0; i < tempSkillList.Count; i++)
@@ -164,7 +166,7 @@ namespace AscensionServer
             //    if (tempSkillList[i].isAttackSkill)
             //        BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[tempSkillList[i].skillId], 1));
             //}
-            BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[3009], 1));
+            BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[3005], 1));
             for (int i = 0; i < BattleAttackSkillList.Count; i++)
             {
                 AllAttackSkillProp += BattleAttackSkillList[i].TriggerProb;
