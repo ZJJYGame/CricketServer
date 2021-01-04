@@ -47,13 +47,17 @@ namespace AscensionServer
                 }
             }
         }
-
-        public  void InitCode()
+        /// <summary>
+        /// 初始拿到数据库储存的邀请码
+        /// </summary>
+        public void InitCode()
         {
             var obj = NHibernateQuerier.GetTable<SpreaCode>();
-            //var codes=  obj.OrderByDescending(o => o.CodeID).ToDictionary(key=>key.CodeID,value=>value.RoleID);
-            SpreaCode = obj.OrderByDescending(o => o.CodeID).ToDictionary(key => key.CodeID, value => value.RoleID);
-            Utility.Debug.LogError("YZQ获得的数据库邀请码"+ Utility.Json.ToJson(SpreaCode));
+            if (obj!=null)
+            {
+                SpreaCode = obj.OrderByDescending(o => o.CodeID).ToDictionary(key => key.CodeID, value => value.RoleID);
+            }
+            Utility.Debug.LogError("YZQ获得的数据库邀请码" + Utility.Json.ToJson(SpreaCode));
         }
         /// <summary>
         /// 验证邀请码是否存在
@@ -61,7 +65,7 @@ namespace AscensionServer
         /// <param name="codeid"></param>
         /// <param name="roleid"></param>
         /// <returns></returns>
-        public  bool VerifyCode(int codeid, out int roleid)
+        public bool VerifyCode(int codeid, out int roleid)
         {
             var result = SpreaCode.TryGetValue(codeid, out roleid);
             if (result)
@@ -70,8 +74,7 @@ namespace AscensionServer
             }
             return false;
         }
-
-        public  bool VerifyCode(int codeid, int roleid)
+        public bool VerifyCode(int codeid, int roleid)
         {
             {
                 return SpreaCode.TryAdd(codeid, roleid);
@@ -81,7 +84,7 @@ namespace AscensionServer
         /// 得到随机邀请码
         /// </summary>
         /// <returns></returns>
-        public  int RandomCodeID(int roleid)
+        public int RandomCodeID(int roleid)
         {
             var num = new Random(Guid.NewGuid().GetHashCode()).Next(100000, 999999);
             if (VerifyCode(num, roleid))
@@ -91,7 +94,7 @@ namespace AscensionServer
             return num;
         }
 
-        
+
 
     }
 }

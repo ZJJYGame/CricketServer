@@ -49,6 +49,8 @@ namespace AscensionServer
                 roleCricket.CricketList = Utility.Json.ToJson(roleCricketObj.CricketList);
                 roleCricket.TemporaryCrickets = Utility.Json.ToJson(roleCricketObj.TemporaryCrickets);
                 NHibernateQuerier.Insert(roleCricket);
+                cricketStatus= RoleCricketManager.CalculateStutas(cricketAptitude, cricketPoint, cricketAddition);
+                Utility.Debug.LogInfo("yzqData发送成功"+ Utility.Json.ToJson(cricketStatus));
                 cricketStatus.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketStatus);
                 cricketAptitude.CricketID = cricket.ID;
@@ -71,10 +73,10 @@ namespace AscensionServer
                 spreacode.RoleID = role.RoleID;
                 spreacode.CodeID = GameManager.CustomeModule<SpreaCodeManager>().RandomCodeID(role.RoleID);
                 var dict = new Dictionary<int, int>() { };
-                dict.Add(6002, -1);
-                dict.Add(6003, -1);
-                dict.Add(6004, -1);
-                dict.Add(6005, -1);
+                dict.Add(6002, -1);//10人奖励
+                dict.Add(6003, -1);//30人奖励
+                dict.Add(6004, -1);//50人奖励
+                dict.Add(6005, -1);//100人奖励
                 spreacode.SpreaPlayers = Utility.Json.ToJson(dict);
                 NHibernateQuerier.Insert(spreacode);
                 #endregion
@@ -82,7 +84,6 @@ namespace AscensionServer
                 operationData.DataMessage = Utility.Json.ToJson(role);
                 operationData.ReturnCode = (byte)ReturnCode.Success;
                 operationData.OperationCode = (ushort)ATCmd.Register;
-                Utility.Debug.LogInfo("yzqData发送成功");
                 GameManager.CustomeModule<PeerManager>().SendMessage((peer as IPeerEntity).SessionId, operationData);
             }
             else

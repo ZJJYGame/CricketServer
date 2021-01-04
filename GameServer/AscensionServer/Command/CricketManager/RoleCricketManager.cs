@@ -27,7 +27,6 @@ namespace AscensionServer
             if (roleCricket != null)
             {
                 var cricketDict = Utility.Json.ToObject<List<int>>(roleCricket.CricketList);
-                Utility.Debug.LogInfo("yzqData获取蛐蛐属性:" + Utility.Json.ToJson(cricketDict));
                 for (int i = 0; i < cricketDict.Count; i++)
                 {
                     if (cricketDict[i] != -1)
@@ -35,17 +34,9 @@ namespace AscensionServer
                         var nHCriteriaCricket = xRCommon.xRNHCriteria("ID", cricketDict[i]);
                         var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", cricketDict[i]);
                         var crickets = xRCommon.xRCriteria<Cricket>(nHCriteriaCricket);
-                        CricketDTO cricketDTO = new CricketDTO()
-                        {
-                            ID = crickets.ID,
-                            CricketID = crickets.CricketID,
-                            CricketName = crickets.CricketName,
-                            Exp = crickets.Exp,
-                            LevelID = crickets.LevelID,
-                            RankID = crickets.RankID,
-                            SkillDict = Utility.Json.ToObject<Dictionary<int, int>>(crickets.SkillDict),
-                            SpecialDict = Utility.Json.ToObject<Dictionary<int, int>>(crickets.SpecialDict)
-                        };
+                        Utility.Debug.LogInfo("yzqData获取蛐蛐属性:" + Utility.Json.ToJson(crickets));
+                        CricketDTO cricketDTO = SetCricketValue(crickets);
+
                         cricketsDict.Add(crickets.ID, cricketDTO);
                         statusDict.Add(crickets.ID, xRCommon.xRCriteria<CricketStatus>(nHCriteriastatus));
                         pointDict.Add(crickets.ID, xRCommon.xRCriteria<CricketPoint>(nHCriteriastatus));
@@ -59,9 +50,7 @@ namespace AscensionServer
                 dataDict.Add((byte)ParameterCode.CricketAptitude, aptitudeDict);
                 var messageDict = xRCommon.xRS2CSub();
                 messageDict.Add((byte)opType, Utility.Json.ToJson(dataDict));
-                Utility.Debug.LogInfo("yzqData发送所有蛐蛐属性:" + Utility.Json.ToJson(dataDict));
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, messageDict);
-                Utility.Debug.LogInfo("yzqData发送所有蛐蛐属性:" + Utility.Json.ToJson(dataDict)+"角色id"+ roleid);
             }
         }
         /// <summary>
@@ -82,7 +71,7 @@ namespace AscensionServer
 
             for (int i = 0; i < roleCricketDTO.TemporaryCrickets.Count; i++)
             {
-                if (roleCricketDTO.TemporaryCrickets[i] != 0)
+                if (roleCricketDTO.TemporaryCrickets[i] ==-1)
                 {
                     var cricketStatus = new CricketStatus();
                     var cricketAptitude = new CricketAptitude();
@@ -93,8 +82,6 @@ namespace AscensionServer
                     var cricket = new Cricket();
                     cricket.Roleid = roleid;
                     cricket = NHibernateQuerier.Insert(cricket);
-                    cricketStatus.CricketID = cricket.ID;
-                    NHibernateQuerier.Insert(cricketStatus);
                     cricketAptitude.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketAptitude);
                     var cricketAddition = new CricketAddition();
@@ -104,13 +91,17 @@ namespace AscensionServer
                     cricketPoint.FreePoint = cricketLevelDict[cricket.LevelID].AssignPoint;
                     cricketPoint.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketPoint);
+                    cricketStatus = RoleCricketManager.CalculateStutas(cricketAptitude, cricketPoint, cricketAddition);
+                    cricketStatus.CricketID = cricket.ID;
+                    NHibernateQuerier.Insert(cricketStatus);
                     roleCricketDTO.TemporaryCrickets[i] = cricket.ID;
                     break;
                 }
             }
-
             roleCricket.TemporaryCrickets = Utility.Json.ToJson(roleCricketDTO.TemporaryCrickets);
             NHibernateQuerier.Update(roleCricket);
+            Utility.Debug.LogInfo("YZQ添加新的临时蛐蛐进来了" + cricketid);
+            GetTempCricket(roleid, CricketOperateType.UpdTempCricket);
         }
         /// <summary>
         /// 放生小屋蟋蟀
@@ -173,7 +164,6 @@ namespace AscensionServer
             var crickets = Utility.Json.ToObject<List<int>>(roleCricket.TemporaryCrickets);
             if (crickets.Contains(cricketid) && cricketid != -1)
             {
-                Utility.Debug.LogInfo("YZQData" + cricketid);
                 NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);
                 var cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
                 if (cricket != null)
@@ -199,10 +189,10 @@ namespace AscensionServer
                 }
                 crickets.Remove(cricketid);
                 crickets.Add(-1);
-                roleCricket.CricketList = Utility.Json.ToJson(crickets);
+                roleCricket.TemporaryCrickets = Utility.Json.ToJson(crickets);
                 NHibernateQuerier.Update(roleCricket);
-
-                GetRoleCricket(roleid, CricketOperateType.UpdTempCricket);
+                Utility.Debug.LogInfo("YZQData放生临时蛐蛐" + Utility.Json.ToJson(crickets));
+                GetTempCricket(roleid, CricketOperateType.UpdTempCricket);
 
             }
         }
@@ -281,6 +271,7 @@ namespace AscensionServer
             Dictionary<int, CricketDTO> cricketsDict = new Dictionary<int, CricketDTO>();
             Dictionary<int, CricketStatus> statusDict = new Dictionary<int, CricketStatus>();
             Dictionary<int, CricketAptitude> aptitudeDict = new Dictionary<int, CricketAptitude>();
+
             var dataDict = xRCommon.xRS2CParams();
             if (roleCricket != null)
             {
@@ -293,16 +284,9 @@ namespace AscensionServer
                         var nHCriteriaCricket = xRCommon.xRNHCriteria("ID", cricketDict[i]);
                         var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", cricketDict[i]);
                         var crickets = xRCommon.xRCriteria<Cricket>(nHCriteriaCricket);
-                        CricketDTO cricketDTO = new CricketDTO()
-                        {
-                            ID = crickets.ID,
-                            CricketID = crickets.CricketID,
-                            CricketName = crickets.CricketName,
-                            Exp = crickets.Exp,
-                            LevelID = crickets.LevelID,
-                            RankID = crickets.RankID,
-                            SkillDict = Utility.Json.ToObject<Dictionary<int, int>>(crickets.SkillDict)
-                        };
+                        Utility.Debug.LogInfo("yzqData获取临时的蛐蛐:" + Utility.Json.ToJson(crickets));
+                        CricketDTO cricketDTO= SetCricketValue(crickets);
+                       
                         cricketsDict.Add(cricketDict[i], cricketDTO);
                         statusDict.Add(cricketDict[i], xRCommon.xRCriteria<CricketStatus>(nHCriteriastatus));
                         aptitudeDict.Add(cricketDict[i], xRCommon.xRCriteria<CricketAptitude>(nHCriteriastatus));
@@ -315,6 +299,7 @@ namespace AscensionServer
                 var messageDict = xRCommon.xRS2CSub();
                 messageDict.Add((byte)opType, Utility.Json.ToJson(dataDict));
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, messageDict);
+                Utility.Debug.LogInfo("YZQ发送临时蛐蛐进来了Yzq");
             }
         }
         /// <summary>

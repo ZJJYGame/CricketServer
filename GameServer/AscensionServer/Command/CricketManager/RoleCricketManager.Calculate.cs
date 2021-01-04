@@ -62,17 +62,17 @@ namespace AscensionServer
             CricketStatus cricketStatus = new CricketStatus();
 
             cricketStatus.Atk = cricketAddition.Atk + StatusDict[1].Atk + (int)((cricketAptitude.Str + cricketPoint.Str) * (cricketAptitude.StrAptitude + 100) * 0.01f);
-            cricketStatus.Defense = cricketAddition.Defense + StatusDict[1].Defense + (int)((cricketAptitude.Def + cricketPoint.Def) * (cricketAptitude.DefAptitude + 100) * 0.01f);
-            cricketStatus.Hp = cricketAddition.Hp + StatusDict[1].Hp + (int)((cricketAptitude.Con + cricketPoint.Con) * (cricketAptitude.ConAptitude + 100) * 0.01f);
-            cricketStatus.Mp = cricketAddition.Mp + StatusDict[1].Mp + (int)(cricketStatus.Hp / 200) + (cricketStatus.Mp);
+            cricketStatus.Defense = cricketAddition.Defense + StatusDict[1].Defense + (int)((cricketAptitude.Def + cricketPoint.Def) * (cricketAptitude.DefAptitude + 100) * 0.005f);
+            cricketStatus.Hp = cricketAddition.Hp + StatusDict[1].Hp + (int)((cricketAptitude.Con + cricketPoint.Con) * (cricketAptitude.ConAptitude + 100) * 0.05f);
+            cricketStatus.Mp = cricketAddition.Mp + StatusDict[1].Mp + (int)(cricketStatus.Hp / 100) + (cricketStatus.Mp);
             cricketStatus.MpReply = cricketAddition.MpReply + StatusDict[1].MpReply + (int)(cricketStatus.Mp / 10) + cricketStatus.MpReply;
-            cricketStatus.Crt = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000;
-            cricketStatus.Eva = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000;
-            cricketStatus.Speed = StatusDict[1].Speed + cricketStatus.Speed + (cricketAptitude.Dex * 1.5f - (0.01 * (100 - cricketAptitude.DefAptitude)));
+            cricketStatus.Crt = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
+            cricketStatus.Eva = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
+            cricketStatus.Speed = StatusDict[1].Speed -  ((cricketAptitude.Dex + cricketPoint .Dex) * (1.5f - (0.01 * (100 - cricketAptitude.DefAptitude))));
             cricketStatus.ReduceAtk = StatusDict[1].ReduceAtk;
             cricketStatus.ReduceDef = StatusDict[1].ReduceDef;
             cricketStatus.Rebound = StatusDict[1].Rebound;
-            //Utility.Debug.LogInfo("攻击" + cricketStatus.Atk + "防御" + cricketStatus.Defense + "血量" + cricketStatus.Hp);
+            Utility.Debug.LogInfo("闪避固定值" + (cricketAptitude.Dex + cricketPoint.Dex) +"资质"+ cricketAptitude.DexAptitude+"值"+ (300 - (2 * (100f - cricketAptitude.DexAptitude))) / 1000000f+"计算值"+ cricketStatus.Eva);
             //Utility.Debug.LogInfo("攻击" +(cricketAddition.Atk + StatusDict[1].Atk) + "防御" + (cricketAptitude.Str + cricketPoint.Str) + "血量" + (cricketAptitude.StrAptitude + 100) * 0.01f);
             return cricketStatus;
         }
@@ -230,6 +230,7 @@ namespace AscensionServer
         /// <param name="roleid"></param>
         public static void AddSpecialSkill(int skillid, int level, int roleid, int cricketid)
         {
+            Utility.Json.ToJson("添加的特殊技能为" + skillid+"蛐蛐id为"+ cricketid);
             var nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);
             var nHCriteriacricket = xRCommon.xRNHCriteria("CricketID", cricketid);
             var cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
@@ -247,11 +248,18 @@ namespace AscensionServer
                 {
                     if (skills[skillid] < 10)
                     {
-                        skills[skillid] += level;
+                        if (skills[skillid] + level < 10)
+                        {
+                            skills[skillid] += level;
+                        }
+                        else
+                            skills[skillid] = 10;
+
                     }
                 }
 
                 cricket.SpecialDict = Utility.Json.ToJson(skills);
+                Utility.Json.ToJson("添加的特殊技能为"+ skillid);
                 var status = CalculateStutas(aptitude, point, addition);
                 status.CricketID = cricket.ID;
                 NHibernateQuerier.Update(cricket);
@@ -265,7 +273,7 @@ namespace AscensionServer
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, dict);
             }
             else
-                xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, xRCommonTip.xR_err_Verify);
+                xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
 
         }
         /// <summary>
@@ -291,17 +299,17 @@ namespace AscensionServer
         /// <returns></returns>
         public static CricketDTO SetCricketValue(Cricket cricket)
         {
-            CricketDTO cricketDTO = new CricketDTO()
-            {
-                ID = cricket.ID,
-                CricketID = cricket.CricketID,
-                CricketName = cricket.CricketName,
-                Exp = cricket.Exp,
-                LevelID = cricket.LevelID,
-                RankID = cricket.RankID,
-                SkillDict = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SkillDict),
-                SpecialDict = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SpecialDict)
-            };
+            CricketDTO cricketDTO = new CricketDTO();
+
+            cricketDTO.ID = cricket.ID;
+            cricketDTO.CricketID = cricket.CricketID;
+            cricketDTO.CricketName = cricket.CricketName;
+            cricketDTO.Exp = cricket.Exp;
+            cricketDTO.LevelID = cricket.LevelID;
+            cricketDTO.RankID = cricket.RankID;
+            cricketDTO.SkillDict = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SkillDict);
+            cricketDTO.SpecialDict = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SpecialDict);
+
             return cricketDTO;
         }
         /// <summary>
@@ -465,9 +473,6 @@ namespace AscensionServer
 
 
         }
-
-
-
         public enum SkillAdditionType
         {
             Str=1,

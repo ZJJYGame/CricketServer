@@ -24,9 +24,9 @@ namespace AscensionServer
                 {
                     _sessionFactory = Fluently.Configure().
                         Database(MySQLConfiguration.Standard.
-                                                                                                //ConnectionString(db => db.Server("127.0.0.1").Database("jygame").Username("root").Password("jieyougamePWD"))).//公网
-                                                                                                ConnectionString(db => db.Server("192.168.0.117").Database("cricket").Username("jieyou").Password("jieyougamePWD"))).//内网
-                                                                                                                                                                                                                     //ConnectionString(db => db.Server("121.196.189.220").Database("cricket").Username("root").Password("yingduan"))).//内网
+                           //ConnectionString(db => db.Server("127.0.0.1").Database("cricket").Username("root").Password("jieyougamePWD"))).//公网
+                          ConnectionString(db => db.Server("192.168.0.117").Database("cricket").Username("jieyou").Password("jieyougamePWD"))).//内网
+                           //ConnectionString(db => db.Server("121.196.189.220").Database("cricket").Username("root").Password("yingduan"))).//内网
                         Mappings(x => { x.FluentMappings.AddFromAssemblyOf<NHibernateHelper>(); }).
                         BuildSessionFactory();
                 }

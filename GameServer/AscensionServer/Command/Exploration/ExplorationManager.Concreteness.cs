@@ -122,6 +122,7 @@ namespace AscensionServer
             {
                 var xRserver = xRCommon.xRCriteria<Exploration>(nHcriteria);
                 var xrDict = Utility.Json.ToObject<Dictionary<int, ExplorationItemDTO>>(xRserver.ExplorationItemDict);
+                Utility.Debug.LogError("gsgssgssgsssg" + Utility.Json.ToJson(ItemInfo));
                 foreach (var info in ItemInfo)
                 {
                     if (!xrDict.ContainsKey(info.Key))

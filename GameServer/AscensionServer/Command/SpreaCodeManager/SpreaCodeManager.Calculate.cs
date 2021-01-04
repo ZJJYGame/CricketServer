@@ -195,7 +195,9 @@ namespace AscensionServer
                     return;
                 }
             }
-
+            spreaCode.SpreaLevel = Utility.Json.ToJson(levelDict);
+            spreaCode.SpreaPlayers = Utility.Json.ToJson(numDict);
+            NHibernateQuerier.Update(spreaCode);
             var spreaCodeObj = GiveValue(spreaCode, numDict, levelDict);
             var data = xRCommon.xRS2CParams();
             data.Add((byte)SpreaCodeOperateType.Get, Utility.Json.ToJson(spreaCodeObj));
@@ -223,15 +225,15 @@ namespace AscensionServer
                         levelDict[item.Key][spreaCodeDTO.AwardID] = 1;
                         if (spreaCodeDTO.AwardID == 0)
                         {
-                            spreaCodeDTO.AwardID = 6006;
+                            spreaCodeDTO.AwardID = 6006;//推广玩家等级10级奖励
                         }
                         if (spreaCodeDTO.AwardID == 1)
                         {
-                            spreaCodeDTO.AwardID = 6007;
+                            spreaCodeDTO.AwardID = 6007;//推广玩家等级20级奖励
                         }
                         if (spreaCodeDTO.AwardID == 2)
                         {
-                            spreaCodeDTO.AwardID = 6008;
+                            spreaCodeDTO.AwardID = 6008;//推广玩家等级30级奖励
                         }
                         var result = spreaAwardDict.TryGetValue(spreaCodeDTO.AwardID, out var spreaAward);
                         for (int i = 0; i < spreaAward.PropID.Count; i++)
@@ -242,6 +244,9 @@ namespace AscensionServer
                     }
                 }
             }
+            spreaCode.SpreaLevel = Utility.Json.ToJson(levelDict);
+            spreaCode.SpreaPlayers = Utility.Json.ToJson(numDict);
+            NHibernateQuerier.Update(spreaCode);
             var spreaCodeObj = GiveValue(spreaCode, numDict, levelDict);
             var data = xRCommon.xRS2CParams();
             data.Add((byte)SpreaCodeOperateType.Get, Utility.Json.ToJson(spreaCodeObj));
