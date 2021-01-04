@@ -149,7 +149,7 @@ namespace AscensionServer
             enduranceReply = 200;
             actionBar = 2000;
             critProp = 20;
-            dodgeProp = 20;
+            dodgeProp = 50;
             receiveDamage = 100;
             pierce = 30;
             reboundDamage = 10;
