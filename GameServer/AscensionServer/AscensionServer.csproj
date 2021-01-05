@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\Localphotonserver\Criket\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
+    <OutputPath>..\..\..\..\Localphotonserver\Criket\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\Cache\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -199,6 +199,7 @@
     <Compile Include="Command\Inventory\xRCommonTip.cs" />
     <Compile Include="Command\Match\MatchManager.cs" />
     <Compile Include="Command\Match\TimerManager.cs" />
+    <Compile Include="Command\NoviceGuideManager\NoviceGuideManager.cs" />
     <Compile Include="Command\Rank\RankManager.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginHandler.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginManager.cs" />

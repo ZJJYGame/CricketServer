@@ -13,5 +13,6 @@ namespace AscensionProtocol
         public virtual int PropID { set; get; }
         public virtual int PropNum { set; get; }
         public virtual int CricketID { set; get; }
+        public virtual int PropType { set; get; }
     }
 }

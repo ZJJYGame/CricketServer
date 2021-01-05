@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace AscensionProtocol
 {
-   public enum ShopOperate
+   public enum GuideOperateType
     {
-        Buy=1,
-        ADAward=2//领取广告奖励
+        Update=1,
     }
 }

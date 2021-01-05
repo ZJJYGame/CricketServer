@@ -58,7 +58,7 @@ namespace AscensionServer
         /// </summary>
         /// <param name="cricketid"></param>
         /// <param name="roleid"></param>
-        public static void AddCricket(int cricketid, int roleid)
+        public static void AddCricket(int cricketid, int roleid,List<int> aptitudes=null)
         {
             var nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", roleid);
             var roleCricket = xRCommon.xRCriteria<RoleCricket>(nHCriteriaRole);
@@ -75,10 +75,13 @@ namespace AscensionServer
                 {
                     var cricketStatus = new CricketStatus();
                     var cricketAptitude = new CricketAptitude();
-                    cricketAptitude.ConAptitude = RandomNum(1, 101);
-                    cricketAptitude.StrAptitude = RandomNum(1, 101);
-                    cricketAptitude.DefAptitude = RandomNum(1, 101);
-                    cricketAptitude.DexAptitude = RandomNum(1, 101);
+                    if (aptitudes==null)
+                    {
+                        cricketAptitude.ConAptitude = RandomNum(1, 101);
+                        cricketAptitude.StrAptitude = RandomNum(1, 101);
+                        cricketAptitude.DefAptitude = RandomNum(1, 101);
+                        cricketAptitude.DexAptitude = RandomNum(1, 101);
+                    }
                     var cricket = new Cricket();
                     cricket.Roleid = roleid;
                     cricket = NHibernateQuerier.Insert(cricket);

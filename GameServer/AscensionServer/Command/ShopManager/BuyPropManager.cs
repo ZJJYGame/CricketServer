@@ -84,5 +84,93 @@ namespace AscensionServer
             }else
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncShop, (byte)ReturnCode.Fail,xRCommonTip.xR_err_VerifyAssets);
         }
+
+        public static void GetAwarad(RolepPropDTO roleShopDTO)
+        {
+            //GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, ADAward>>(out var adAwardDict);
+            switch ((ADAwardType)roleShopDTO.PropType)
+            {
+                case ADAwardType.gold:
+                    GoldAward(roleShopDTO);
+                    break;
+                case ADAwardType.SkillBook:
+                    SkillAward(roleShopDTO);
+                    break;
+                case ADAwardType.Prop:
+                    break;
+                case ADAwardType.Cricket:
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
+        /// 领取金币广告奖励
+        /// </summary>
+        /// <param name="roleShopDTO"></param>
+        public static void GoldAward(RolepPropDTO roleShopDTO)
+        {
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, ADAward>>(out var adAwardDict);
+            var result = adAwardDict.TryGetValue(roleShopDTO.PropID,out var aDAward);
+            if (result)
+            {
+                Random random = new Random();
+                var num = random.Next(aDAward.AddNumber[0], aDAward.AddNumber[0] + 1);
+                UpdateRoleAssets(roleShopDTO.RoleID, num);
+            }
+            else
+            {
+                xRCommon.xRS2CSend(roleShopDTO.RoleID, (ushort)ATCmd.SyncShop, (byte)ReturnCode.Fail, xRCommonTip.xR_err_VerifyAwardType);
+            }
+        }
+        /// <summary>
+        /// 领取技能广告奖励
+        /// </summary>
+        /// <param name="roleShopDTO"></param>
+        public static void SkillAward(RolepPropDTO roleShopDTO)
+        {
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, ADAward>>(out var adAwardDict);
+            var result = adAwardDict.TryGetValue(roleShopDTO.PropID, out var aDAward);
+            if (result)
+            {
+                Random random = new Random();
+                var num = random.Next(aDAward.AddNumber[0], aDAward.AddNumber[0] + 1);
+                InventoryManager.xRAddInventory(roleShopDTO.RoleID,new Dictionary<int, ItemDTO>() { { num, new ItemDTO() {ItemAmount=1 } } });
+            }
+            else
+            {
+                xRCommon.xRS2CSend(roleShopDTO.RoleID, (ushort)ATCmd.SyncShop, (byte)ReturnCode.Fail, xRCommonTip.xR_err_VerifyAwardType);
+            }
+        }
+        /// <summary>
+        /// 领取道具奖励
+        /// </summary>
+        /// <param name="roleShopDTO"></param>
+        public static void PropAward(RolepPropDTO roleShopDTO)
+        {
+            Random random = new Random();
+            var num = random.Next(0,1001);
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, ADAward>>(out var adAwardDict);
+            if (num<=400)
+            {
+              num=  random.Next(adAwardDict[1703].AddNumber[0], adAwardDict[1703].AddNumber[1]);
+                InventoryManager.xRAddInventory(roleShopDTO.RoleID, new Dictionary<int, ItemDTO>() { { num, new ItemDTO() { ItemAmount = 1 } } });
+            }
+        }
+        /// <summary>
+        /// 领取蛐蛐奖励
+        /// </summary>
+        /// <param name="roleShopDTO"></param>
+        public static void CricketAward(RolepPropDTO roleShopDTO)
+        {
+
+        }
+        public enum ADAwardType
+        {
+            gold=1,
+            SkillBook=2,
+            Prop=3,
+            Cricket=4
+        }
     }
 }
