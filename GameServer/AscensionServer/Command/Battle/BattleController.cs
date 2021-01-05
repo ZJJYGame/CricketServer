@@ -119,7 +119,7 @@ namespace AscensionServer
                             defendTriggerSkillList.Add(defendBattleSkillList[i].SkillId);
                     }
 
-                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData }, null, defendBattleSkillList, new List<int>() { attackPlayer.RoleId }, false));
+                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData }, null, defendBattleSkillList, new List<int>() { attackPlayer.CricketID }, false));
 
                     crashColdTime -= offestTime;
 
@@ -147,7 +147,7 @@ namespace AscensionServer
                             attackTriggerSkillList.Add(attackBattleSkillList[i].SkillId);
                     }
 
-                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData, defendBattleDamageData }, attackBattleSkillList, defendBattleSkillList, new List<int>() { attackPlayer.RoleId,defendPlayer.RoleId }, true));
+                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData, defendBattleDamageData }, attackBattleSkillList, defendBattleSkillList, new List<int>() { attackPlayer.CricketID,defendPlayer.CricketID }, true));
 
                     crashNum += 1;
                     crashColdTime = 5000;
@@ -163,8 +163,8 @@ namespace AscensionServer
             }
             Utility.Debug.LogInfo("战斗传输数据=>" + Utility.Json.ToJson(battleRoleActionDataList));
             battleTransferDTO.BattleRoleActionDataList = battleRoleActionDataList;
-            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerOne.RoleId, battleTransferDTO);
-            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerTwo.RoleId, battleTransferDTO);
+            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerOne.RoleID, battleTransferDTO);
+            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerTwo.RoleID, battleTransferDTO);
         }
         /// <summary>
         /// 
@@ -201,7 +201,7 @@ namespace AscensionServer
             }
             //显示
             if(attackBattleSkill!=null)
-            Utility.Debug.LogInfo(attackPlayer.RoleId + "使用技能" + attackBattleSkill.SkillId + "攻击了" + defendPlayer.RoleId);
+            Utility.Debug.LogInfo(attackPlayer.CricketID + "使用技能" + attackBattleSkill.SkillId + "攻击了" + defendPlayer.CricketID);
             for (int i = 0; i < attackBattleDamageData.damageNumList.Count; i++)
             {
                 if (attackBattleDamageData.isDodgeList[i])
@@ -394,7 +394,9 @@ namespace AscensionServer
         {
             battleTransferDTO.RoleOneData = new BattleRoleData()
             {
-                CricketId = playerOne.RoleId,
+                RoleID = playerOne.RoleID,
+                RoleName=playerOne.RoleName,
+                CricketId = playerOne.CricketID,
                 MaxHealth = playerOne.roleBattleData.MaxHealth,
                 Health = playerOne.roleBattleData.Health,
                 MaxEndurance = playerOne.roleBattleData.MaxEndurance,
@@ -404,7 +406,9 @@ namespace AscensionServer
             };
             battleTransferDTO.RoleTwoData = new BattleRoleData()
             {
-                CricketId = playerTwo.RoleId,
+                RoleID = playerTwo.RoleID,
+                RoleName = playerTwo.RoleName,
+                CricketId = playerTwo.CricketID,
                 MaxHealth = playerTwo.roleBattleData.MaxHealth,
                 Health = playerTwo.roleBattleData.Health,
                 MaxEndurance = playerTwo.roleBattleData.MaxEndurance,

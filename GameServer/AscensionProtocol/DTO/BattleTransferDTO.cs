@@ -16,6 +16,8 @@ namespace AscensionProtocol
 
     public class BattleRoleData
     {
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
         public int CricketId { get; set; }
         public int MaxHealth { get; set; }
         public int Health { get; set; }

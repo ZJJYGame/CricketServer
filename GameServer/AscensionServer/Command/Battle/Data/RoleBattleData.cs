@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cosmos;
+using AscensionProtocol;
 
 namespace AscensionServer
 {
@@ -157,8 +158,6 @@ namespace AscensionServer
             critResistance = 0;
             this.buffRoleBattleData = buffRoleBattleData;
             Dictionary<int, BattleAttackSkillData> tempSkillDict = GameManager.CustomeModule<BattleRoomManager>().battleAttackSkillDataDict;
-            Utility.Debug.LogError("battleroomManager的字典数量=>" + GameManager.CustomeModule<BattleRoomManager>().battleAttackSkillDataDict.Values.Count);
-            Utility.Debug.LogError("adaggsfaffg=>" + tempSkillDict.Values.Count);
             List<BattleAttackSkillData> tempSkillList = tempSkillDict.Values.ToList();
             BattleAttackSkillList = new List<BattleSkill>();
             //for (int i = 0; i < tempSkillList.Count; i++)
@@ -179,6 +178,71 @@ namespace AscensionServer
             //        BattleDefendSkillList.Add(new BattleSkill(tempSkillDict[tempSkillList[i].skillId], 1));
             //}
             //BattleDefendSkillList.Add(new BattleSkill(tempSkillDict[3337], 1));
+            for (int i = 0; i < BattleDefendSkillList.Count; i++)
+            {
+                AllDefendSkillProp += BattleDefendSkillList[i].TriggerProb;
+            }
+        }
+        public RoleBattleData(IRoleBattleData buffRoleBattleData,RoleDTO roleDTO,CricketDTO cricketDTO)
+        {
+            Utility.Debug.LogError("战斗匹配蛐蛐ID"+Utility.Json.ToJson(cricketDTO));
+            var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", cricketDTO.ID);
+            var cricketstatus = xRCommon.xRCriteria<CricketStatus>(nHCriteriastatus);
+            attack = (int)cricketstatus.Atk;
+            maxHealth = (int)cricketstatus.Hp;
+            health = (int)cricketstatus.Hp;
+            defence = (int)cricketstatus.Defense;
+            maxEndurance = (int)cricketstatus.Mp;
+            endurance = (int)cricketstatus.Mp;
+            enduranceReply = (int)cricketstatus.MpReply;
+            actionBar = (int)cricketstatus.Speed;
+            critProp = (int)cricketstatus.Crt;
+            dodgeProp = (int)cricketstatus.Eva;
+            receiveDamage = 100 - (int)cricketstatus.ReduceAtk;
+            pierce = (int)cricketstatus.ReduceDef;
+            reboundDamage = (int)cricketstatus.Rebound;
+            critDamage = (int)cricketstatus.CrtAtk-100;
+            critResistance = (int)cricketstatus.CrtDef;
+            this.buffRoleBattleData = buffRoleBattleData;
+            Dictionary<int, BattleAttackSkillData> tempAttackSkillDict = GameManager.CustomeModule<BattleRoomManager>().battleAttackSkillDataDict;
+            List<BattleAttackSkillData> tempAttackSkillList = tempAttackSkillDict.Values.ToList();
+
+            BattleAttackSkillList = new List<BattleSkill>();
+            BattleAttackSkillList.Add(new BattleSkill(tempAttackSkillDict[4000],1));
+            BattleDefendSkillList = new List<BattleSkill>();
+
+            var tempSkillIdList = cricketDTO.SkillDict.Values.ToList();
+            var tempSpecialSkillIdList = cricketDTO.SpecialDict.Values.ToList();
+            for (int i = 0; i < tempSkillIdList.Count; i++)
+            {
+                //攻击受击技能添加
+                if (tempAttackSkillDict.ContainsKey(tempSkillIdList[i]))
+                {
+                    BattleAttackSkillData battleAttackSkillData = tempAttackSkillDict[tempSkillIdList[i]];
+                    if (battleAttackSkillData.isAttackSkill)
+                        BattleAttackSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSkillIdList[i]]));
+                    else
+                        BattleDefendSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSkillIdList[i]]));
+                }
+            }
+            for (int i = 0; i < tempSpecialSkillIdList.Count; i++)
+            {
+                //攻击受击技能添加
+                if (tempAttackSkillDict.ContainsKey(tempSpecialSkillIdList[i]))
+                {
+                    BattleAttackSkillData battleAttackSkillData = tempAttackSkillDict[tempSpecialSkillIdList[i]];
+                    if (battleAttackSkillData.isAttackSkill)
+                        BattleAttackSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSpecialSkillIdList[i]]));
+                    else
+                        BattleDefendSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSpecialSkillIdList[i]]));
+                }
+            }
+
+            //总概率计算
+            for (int i = 0; i < BattleAttackSkillList.Count; i++)
+            {
+                AllAttackSkillProp += BattleAttackSkillList[i].TriggerProb;
+            }
             for (int i = 0; i < BattleDefendSkillList.Count; i++)
             {
                 AllDefendSkillProp += BattleDefendSkillList[i].TriggerProb;

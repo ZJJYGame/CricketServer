@@ -78,6 +78,8 @@ namespace AscensionServer
                     matchSetDict.Remove(setData);
                     matchSetDict.Remove(match);
                     //TODO
+                    GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto);
+
                     TimerManager matchManager = new TimerManager(1500);
                     matchManager.BattleStartTimer();
                 }

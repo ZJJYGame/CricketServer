@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cosmos;
+using AscensionProtocol;
 
 namespace AscensionServer
 {
     public class BattleCharacterEntity : IReference
     {
-        public int RoleId { get; private set; }
+        public int RoleID { get; private set; }
+        public string RoleName { get; private set; }
+        public int CricketID { get; private set; }
         public int RemainActionBar { get; private set; }
 
         public RoleBattleData roleBattleData;
@@ -18,9 +21,19 @@ namespace AscensionServer
 
         public void Init(int roleId)
         {
-            this.RoleId = roleId;
+            this.CricketID = roleId;
             battleBuffController = new BattleBuffController(roleBattleData);
             roleBattleData = GetRoleBattleData(roleId);
+            RemainActionBar = roleBattleData.ActionBar;
+            battleBuffController.roleBattleData = roleBattleData;
+        }
+        public void Init(RoleDTO roleDTO,CricketDTO cricketDTO)
+        {
+            RoleID = roleDTO.RoleID;
+            RoleName = roleDTO.RoleName;
+            CricketID = cricketDTO.ID;
+            battleBuffController = new BattleBuffController(roleBattleData);
+            roleBattleData = GetRoleBattleData(roleDTO, cricketDTO);
             RemainActionBar = roleBattleData.ActionBar;
             battleBuffController.roleBattleData = roleBattleData;
         }
@@ -75,6 +88,11 @@ namespace AscensionServer
         RoleBattleData GetRoleBattleData(int roleId)
         {
             RoleBattleData roleBattleData = new RoleBattleData(battleBuffController) { };
+            return roleBattleData;
+        }
+        RoleBattleData GetRoleBattleData(RoleDTO roleDTO,CricketDTO cricketDTO)
+        {
+            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController, roleDTO, cricketDTO) { };
             return roleBattleData;
         }
 
