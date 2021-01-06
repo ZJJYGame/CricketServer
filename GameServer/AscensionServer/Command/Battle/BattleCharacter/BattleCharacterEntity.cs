@@ -14,6 +14,7 @@ namespace AscensionServer
         public string RoleName { get; private set; }
         public int CricketID { get; private set; }
         public int RemainActionBar { get; private set; }
+        public bool IsRobot { get; private set; }
 
         public RoleBattleData roleBattleData;
 
@@ -26,6 +27,7 @@ namespace AscensionServer
             roleBattleData = GetRoleBattleData(roleId);
             RemainActionBar = roleBattleData.ActionBar;
             battleBuffController.roleBattleData = roleBattleData;
+            IsRobot = false;
         }
         public void Init(RoleDTO roleDTO,CricketDTO cricketDTO)
         {
@@ -36,8 +38,20 @@ namespace AscensionServer
             roleBattleData = GetRoleBattleData(roleDTO, cricketDTO);
             RemainActionBar = roleBattleData.ActionBar;
             battleBuffController.roleBattleData = roleBattleData;
+            IsRobot = false;
         }
-
+        //机器人
+        public void Init(RoleDTO roleDTO, CricketDTO cricketDTO,MachineData machineData)
+        {
+            //todo机器人RoleID
+            RoleName = machineData.UserName;
+            //todo蛐蛐唯一ID
+            battleBuffController = new BattleBuffController(roleBattleData);
+            roleBattleData = GetRoleBattleData(machineData);
+            RemainActionBar = roleBattleData.ActionBar;
+            battleBuffController.roleBattleData = roleBattleData;
+            IsRobot = false;
+        }
         /// <summary>
         /// 随机使用一个技能
         /// </summary>
@@ -93,6 +107,11 @@ namespace AscensionServer
         RoleBattleData GetRoleBattleData(RoleDTO roleDTO,CricketDTO cricketDTO)
         {
             RoleBattleData roleBattleData = new RoleBattleData(battleBuffController, roleDTO, cricketDTO) { };
+            return roleBattleData;
+        }
+        RoleBattleData GetRoleBattleData(MachineData machineData)
+        {
+            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController,machineData) { };
             return roleBattleData;
         }
 

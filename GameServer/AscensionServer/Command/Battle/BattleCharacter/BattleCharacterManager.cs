@@ -37,6 +37,18 @@ namespace AscensionServer
             battleCharacterEntityDict.Add(battleCharacterEntity.RoleID, battleCharacterEntity);
             return battleCharacterEntity;
         }
+        public BattleCharacterEntity CreateCharacter(RoleDTO roleDTO, CricketDTO cricketDTO,MachineData machineData)
+        {
+            BattleCharacterEntity battleCharacterEntity = GameManager.ReferencePoolManager.Spawn<BattleCharacterEntity>();
+            battleCharacterEntity.Init(roleDTO, cricketDTO,machineData);
+            if (battleCharacterEntityDict.ContainsKey(battleCharacterEntity.RoleID))
+            {
+                GameManager.ReferencePoolManager.Despawn(battleCharacterEntityDict[battleCharacterEntity.RoleID]);
+                battleCharacterEntityDict.Remove(battleCharacterEntity.RoleID);
+            }
+            battleCharacterEntityDict.Add(battleCharacterEntity.RoleID, battleCharacterEntity);
+            return battleCharacterEntity;
+        }
 
         public void RemoveCharacter(int roleId)
         {

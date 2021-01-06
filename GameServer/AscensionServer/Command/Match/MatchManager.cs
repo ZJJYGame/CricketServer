@@ -124,6 +124,7 @@ namespace AscensionServer
             xRCommon.xRS2CSend(matchDto.selfData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
 
             //TODO
+            GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto, setData);
             TimerManager matchManager = new TimerManager(1500);
             matchManager.BattleStartTimer();
 

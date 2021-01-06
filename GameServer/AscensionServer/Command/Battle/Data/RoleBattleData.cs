@@ -248,5 +248,54 @@ namespace AscensionServer
                 AllDefendSkillProp += BattleDefendSkillList[i].TriggerProb;
             }
         }
+        public RoleBattleData(IRoleBattleData buffRoleBattleData,MachineData machineData)
+        {
+            attack = machineData.Atk;
+            maxHealth = machineData.Hp;
+            health = machineData.Hp;
+            defence = machineData.Defense;
+            maxEndurance = machineData.Mp;
+            endurance = machineData.Mp;
+            enduranceReply = machineData.MpReply;
+            actionBar = machineData.Speed;
+            critProp = machineData.Crt;
+            dodgeProp = machineData.Eva;
+            receiveDamage = 100 - machineData.ReduceAtk;
+            pierce = machineData.ReduceDef;
+            reboundDamage = machineData.Rebound;
+            critDamage = machineData.CrtAtk;
+            critResistance = machineData.CrtDef;
+            this.buffRoleBattleData = buffRoleBattleData;
+
+            Dictionary<int, BattleAttackSkillData> tempAttackSkillDict = GameManager.CustomeModule<BattleRoomManager>().battleAttackSkillDataDict;
+            List<BattleAttackSkillData> tempAttackSkillList = tempAttackSkillDict.Values.ToList();
+
+            BattleAttackSkillList = new List<BattleSkill>();
+            BattleAttackSkillList.Add(new BattleSkill(tempAttackSkillDict[4000], 1));
+            BattleDefendSkillList = new List<BattleSkill>();
+
+            for (int i = 0; i < machineData.SkillPool.Count; i++)
+            {
+                //攻击受击技能添加
+                if (tempAttackSkillDict.ContainsKey(machineData.SkillPool[i]))
+                {
+                    BattleAttackSkillData battleAttackSkillData = tempAttackSkillDict[machineData.SkillPool[i]];
+                    if (battleAttackSkillData.isAttackSkill)
+                        BattleAttackSkillList.Add(new BattleSkill(battleAttackSkillData, 1));
+                    else
+                        BattleDefendSkillList.Add(new BattleSkill(battleAttackSkillData, 1));
+                }
+            }
+
+            //总概率计算
+            for (int i = 0; i < BattleAttackSkillList.Count; i++)
+            {
+                AllAttackSkillProp += BattleAttackSkillList[i].TriggerProb;
+            }
+            for (int i = 0; i < BattleDefendSkillList.Count; i++)
+            {
+                AllDefendSkillProp += BattleDefendSkillList[i].TriggerProb;
+            }
+        }
     }
 }

@@ -36,6 +36,16 @@ namespace AscensionServer
             battleController.InitController(battleCharacterEntity_one, battleCharacterEntity_Two);
             battleController.StartBattle();
         }
+        //一个是机器人
+        public void Init(int roomId, MatchDTO matchDTO,MachineData machineData)
+        {
+            this.roomId = roomId;
+            battleCharacterEntity_one = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(matchDTO.selfData, matchDTO.selfCricketData);
+            battleCharacterEntity_Two = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(matchDTO.otherData, matchDTO.otherCricketData,machineData);
+            battleController = new BattleController();
+            battleController.InitController(battleCharacterEntity_one, battleCharacterEntity_Two);
+            battleController.StartBattle();
+        }
 
         public void Clear()
         {

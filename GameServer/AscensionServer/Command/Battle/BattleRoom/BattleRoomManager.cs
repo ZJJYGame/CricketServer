@@ -90,6 +90,14 @@ namespace AscensionServer
             int roomId = GetRoomId();
             battleRoomEntity.Init(roomId, matchDTO);
         }
+        //创建机器人房间
+        public void CreateRoom(MatchDTO matchDTO,MachineData machineData)
+        {
+            BattleRoomEntity battleRoomEntity = GameManager.ReferencePoolManager.Spawn<BattleRoomEntity>();
+            int roomId = GetRoomId();
+            battleRoomEntity.Init(roomId, matchDTO, machineData);
+        }
+
         /// <summary>
         /// 销毁房间
         /// </summary>
