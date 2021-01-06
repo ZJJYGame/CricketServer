@@ -30,6 +30,10 @@ namespace AscensionServer
                         var prop = Utility.Json.ToObject<RolepPropDTO>(propData[(byte)ParameterCode.RoleAsset].ToString());
                         BuyPropManager.BuyProp(prop);
                         break;
+                    case ShopOperate.ADAward:
+                        prop = Utility.Json.ToObject<RolepPropDTO>(propData[(byte)ParameterCode.RoleAsset].ToString());
+                        BuyPropManager.BuyProp(prop);
+                        break;
                     default:
                         break;
                 }

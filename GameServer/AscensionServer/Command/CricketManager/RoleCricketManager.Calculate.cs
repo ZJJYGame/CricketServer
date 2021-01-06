@@ -37,6 +37,8 @@ namespace AscensionServer
                 point.Con = 0;
                 NHibernateQuerier.Update(point);
                 var status = CalculateStutas(aptitude, point, addition);
+                status.CricketID = cricketid;
+                NHibernateQuerier.Update(status);
                 var data = xRCommon.xRS2CParams();
                 data.Add((byte)ParameterCode.CricketAptitude, aptitude);
                 data.Add((byte)ParameterCode.CricketStatus, status);
@@ -246,16 +248,12 @@ namespace AscensionServer
                 }
                 else
                 {
-                    if (skills[skillid] < 10)
+                    if (skills[skillid] + level < 10)
                     {
-                        if (skills[skillid] + level < 10)
-                        {
-                            skills[skillid] += level;
-                        }
-                        else
-                            skills[skillid] = 10;
-
+                        skills[skillid] += level;
                     }
+                    else
+                        skills[skillid] = 10;
                 }
 
                 cricket.SpecialDict = Utility.Json.ToJson(skills);
