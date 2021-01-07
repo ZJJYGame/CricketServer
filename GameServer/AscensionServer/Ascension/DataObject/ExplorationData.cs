@@ -12,12 +12,15 @@ namespace AscensionServer
     {
         public int EventID { get; set; }
         public string EventDescribe { get; set; }
-        public int Probability { get; set; }
+        public List<int> Probability { get; set; }
         public string EventType { get; set; }
         public List<int> PropID { get; set; }
         public int SkillID { get; set; }
         public List<int> Number { get; set; }
         public List<int> GradeRange { get; set; }
         public int EventRace { get; set; }
+        public List<int> EventA { get; set; }
+        public List<int> EventB { get; set; }
+        public List<int> EventC { get; set; }
     }
 }

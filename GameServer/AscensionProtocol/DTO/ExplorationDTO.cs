@@ -10,11 +10,9 @@ namespace AscensionProtocol
     public class ExplorationDTO
     {
         public int RoleID { get; set; }
-
         public Dictionary<int, ExplorationItemDTO> ExplorationItemDict { get; set; }
-
         public Dictionary<int,bool> UnLockDict { get; set; }
-
+        public Dictionary<int,int> CatchPropAndTimeProp { get; set; }
     }
     [Serializable]
     public class ExplorationItemDTO

@@ -30,7 +30,7 @@ namespace AscensionServer
                     ExplorationManager.xRAddExploration(roleSet[(byte)ParameterCode.RoleExploration].RoleID, roleSet[(byte)ParameterCode.RoleExploration].ExplorationItemDict);
                     break;
                 case SubOperationCode.Update:
-                    ExplorationManager.xRUpdateExploration(roleSet[(byte)ParameterCode.RoleExploration].RoleID, roleSet[(byte)ParameterCode.RoleExploration].ExplorationItemDict);
+                    ExplorationManager.xRUpdateExploration(roleSet[(byte)ParameterCode.RoleExploration].RoleID, roleSet[(byte)ParameterCode.RoleExploration].ExplorationItemDict, roleSet[(byte)ParameterCode.RoleExploration].CatchPropAndTimeProp);
                     break;
                 case SubOperationCode.Remove:
                     ExplorationManager.xRRemoveExploration(roleSet[(byte)ParameterCode.RoleExploration].RoleID, roleSet[(byte)ParameterCode.RoleExploration].ExplorationItemDict);

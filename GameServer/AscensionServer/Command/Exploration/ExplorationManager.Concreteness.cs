@@ -25,6 +25,7 @@ namespace AscensionServer
                 var pareams = xRCommon.xRS2CParams();
                 pareams.Add((byte)ParameterCode.RoleExploration, xRserver.ExplorationItemDict);
                 pareams.Add((byte)ParameterCode.RoleExplorationUnlock, xRserver.UnLockDict);
+                pareams.Add((byte)ParameterCode.RoleExlorationProp, xRserver.CatchAndTimeDict);
                 var subOp = xRCommon.xRS2CSub();
                 subOp.Add((byte)SubOperationCode.Get, pareams);
                 xRCommon.xRS2CSend(roleId, (byte)ATCmd.SyncExploration, (byte)ReturnCode.Success, subOp);
@@ -36,13 +37,14 @@ namespace AscensionServer
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="ItemInfo"></param>
-        public static void xRAddExploration (int roleId, Dictionary<int, ExplorationItemDTO> ItemInfo)
+        public static void xRAddExploration (int roleId, Dictionary<int, ExplorationItemDTO> ItemInfo,Dictionary<int,int> TimeAndCatchpropInfo=null)
         {
             var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
             if (xRCommon.xRVerify<Role>(nHcriteria))
             {
                 var xRserver = xRCommon.xRCriteria<Exploration>(nHcriteria);
                 var xrDict = Utility.Json.ToObject<Dictionary<int, ExplorationItemDTO>>(xRserver.ExplorationItemDict);
+                var xrPropDict = Utility.Json.ToObject<Dictionary<int, int>>(xRserver.CatchAndTimeDict);
                 foreach (var info in ItemInfo)
                 {
                     if (!xrDict.ContainsKey(info.Key))
@@ -78,8 +80,21 @@ namespace AscensionServer
                             }
                         }
                     }
-                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId,  ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict });
+                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId,  ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict , CatchAndTimeDict = xRserver.CatchAndTimeDict});
                 }
+
+                if (TimeAndCatchpropInfo != null)
+                {
+                    foreach (var prop in TimeAndCatchpropInfo)
+                    {
+                        if (!xrPropDict.ContainsKey(prop.Key))
+                            xrPropDict[prop.Key] = prop.Value;
+                        else
+                            xrPropDict[prop.Key] += prop.Value;
+                        NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = Utility.Json.ToJson(xrPropDict) });
+                    }
+                }
+
                 xRGetExploration(roleId);
             }
         }
@@ -90,22 +105,28 @@ namespace AscensionServer
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="ItemInfo"></param>
-        public static void xRUpdateExploration(int roleId, Dictionary<int, ExplorationItemDTO> ItemInfo)
+        public static void xRUpdateExploration(int roleId, Dictionary<int, ExplorationItemDTO> ItemInfo,Dictionary<int,int> propInfo)
         {
             var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
             if (xRCommon.xRVerify<Role>(nHcriteria))
             {
                 var xRserver = xRCommon.xRCriteria<Exploration>(nHcriteria);
                 var xrDict = Utility.Json.ToObject<Dictionary<int, ExplorationItemDTO>>(xRserver.ExplorationItemDict);
+                var xrPropDict = Utility.Json.ToObject<Dictionary<int, int>>(xRserver.CatchAndTimeDict);
                 foreach (var info in ItemInfo)
                 {
                     if (!xrDict.ContainsKey(info.Key))
-                        return;
-                    else
-                    {
-                        xrDict[info.Key].TimeType -= info.Value.TimeType;
-                    }
-                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict),  UnLockDict = xRserver.UnLockDict });
+                        continue;
+                    xrDict[info.Key].TimeType -= info.Value.TimeType;
+                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict),  UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = xRserver.CatchAndTimeDict });
+                }
+
+                foreach (var prop in propInfo)
+                {
+                    if (!xrPropDict.ContainsKey(prop.Key)) continue;
+                    if (xrPropDict[prop.Key] > 0)
+                        xrPropDict[prop.Key] -= 1;
+                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = Utility.Json.ToJson(xrPropDict) });
                 }
                 xRGetExploration(roleId);
             }
@@ -122,7 +143,6 @@ namespace AscensionServer
             {
                 var xRserver = xRCommon.xRCriteria<Exploration>(nHcriteria);
                 var xrDict = Utility.Json.ToObject<Dictionary<int, ExplorationItemDTO>>(xRserver.ExplorationItemDict);
-                Utility.Debug.LogError("gsgssgssgsssg" + Utility.Json.ToJson(ItemInfo));
                 foreach (var info in ItemInfo)
                 {
                     if (!xrDict.ContainsKey(info.Key))
@@ -183,7 +203,7 @@ namespace AscensionServer
                             }
                         }
                         xrDict.Remove(info.Key);
-                        NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict =xRserver.UnLockDict });
+                        NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict =xRserver.UnLockDict, CatchAndTimeDict = xRserver.CatchAndTimeDict });
                     }
                 }
                 xRGetExploration(roleId);
@@ -216,7 +236,7 @@ namespace AscensionServer
                         xrDict[info.Key + 1] = false;
                     }
                     BuyPropManager.ExpenseRoleAssets(roleId, 1000);
-                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId,  ExplorationItemDict = xRserver.ExplorationItemDict,  UnLockDict = Utility.Json.ToJson(xrDict) });
+                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId,  ExplorationItemDict = xRserver.ExplorationItemDict,  UnLockDict = Utility.Json.ToJson(xrDict), CatchAndTimeDict = xRserver.CatchAndTimeDict });
                 }
                 xRGetExploration(roleId);
             }

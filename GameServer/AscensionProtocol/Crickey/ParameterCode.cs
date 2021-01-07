@@ -61,5 +61,6 @@
         RoleRank = 26,
         SpreaCode=27,
         RoleMatch =28,
+        RoleExlorationProp=29,
     }
 }

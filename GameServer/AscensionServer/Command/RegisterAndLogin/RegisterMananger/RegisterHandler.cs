@@ -62,12 +62,14 @@ namespace AscensionServer
                 #endregion
                 #region 插入背包和每日任务 以及探索
                 NHibernateQuerier.Insert(new Inventory() { RoleID = role.RoleID });
+                InventoryManager.xRAddInventory(role.RoleID,new Dictionary<int, ItemDTO> { {1201, new ItemDTO() { ItemAmount =1 } }, { 1001, new ItemDTO() { ItemAmount = 1 } } });
                 Dictionary<int, TaskItemDTO> darilyDict = new Dictionary<int, TaskItemDTO>();
                 darilyDict.Add(301, new TaskItemDTO() { taskStatus = false, taskProgress = 0, taskTarget = 1, taskManoy = 90 });
                 darilyDict.Add(302, new TaskItemDTO() { taskStatus = false, taskProgress = 0, taskTarget = 2, taskManoy = 140 });
                 darilyDict.Add(303, new TaskItemDTO() { taskStatus = false, taskProgress = 0, taskTarget = 3, taskManoy = 140 });
                 NHibernateQuerier.Insert(new xRTask() { RoleID = role.RoleID, taskDict = Utility.Json.ToJson(darilyDict) });
                 NHibernateQuerier.Insert(new Exploration() { RoleID = role.RoleID });
+                ExplorationManager.xRAddExploration(role.RoleID, new Dictionary<int, ExplorationItemDTO>(), new Dictionary<int, int> { { 1901, 1 }, { 1902, 1 },{ 1903, 1 },{ 1801,10},{ 1802,10},{1803,10 },{1804,2 } });
                 #endregion
                 #region 推广初始化
                 spreacode.RoleID = role.RoleID;

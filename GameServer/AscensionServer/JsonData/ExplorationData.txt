@@ -1,3764 +1,3502 @@
 [
-  {
-    "EventID": 2001,
-    "EventDescribe": "在太阳下睡了一觉，经验值增加了*",
-    "Probability": 60,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2002,
-    "EventDescribe": "长途跋涉过后经验值增加了*",
-    "Probability": 50,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      5
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2003,
-    "EventDescribe": "参加大胃王比赛后，经验值增加了*",
-    "Probability": 40,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      6
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2004,
-    "EventDescribe": "前方发现马拉松队伍，决定加入他们，经验值增加了*",
-    "Probability": 40,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      7
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2005,
-    "EventDescribe": "路过健身房，锻炼一番，经验值增加了*",
-    "Probability": 30,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      8
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2006,
-    "EventDescribe": "在夜晚看到流星，许愿自己变得更强，经验值增加了*",
-    "Probability": 30,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      9
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2007,
-    "EventDescribe": "又一次蜕皮了，蜕皮次数越多就会变得越强，经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      10
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2008,
-    "EventDescribe": "前方出现巨大的瀑布，决定在瀑布下进行修炼，经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      15
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2009,
-    "EventDescribe": "被世外高人指点了一番，有所感悟，经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      17
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2010,
-    "EventDescribe": "集齐7颗龙珠、许下了获得变强的愿望。经验值增加了*",
-    "Probability": 10,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      20
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2011,
-    "EventDescribe": "发现地上有少数掉落的金币，获得*枚金币",
-    "Probability": 60,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1,
-      20
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2012,
-    "EventDescribe": "在回收站卖掉了一路上收集到的废品，获得*枚金币",
-    "Probability": 50,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      5,
-      25
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2013,
-    "EventDescribe": "在小店旁看到老虎机，上去玩了一把结果在只中了安慰奖，获得*枚金币",
-    "Probability": 40,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      10,
-      30
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2014,
-    "EventDescribe": "发现废弃的矿洞，探索一番只找到一些老旧的金币，获得*枚金币",
-    "Probability": 40,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      10,
-      30
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2015,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第三名，获得*枚金币",
-    "Probability": 30,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      20,
-      40
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2016,
-    "EventDescribe": "当一段时间的信差，赚了一点小钱，获得*枚金币",
-    "Probability": 30,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      25,
-      45
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2017,
-    "EventDescribe": "安全护送商人到达指定地点，获得*枚金币",
-    "Probability": 20,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      30,
-      50
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2018,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了一箱金币，获得获得*枚金币",
-    "Probability": 20,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      50,
-      70
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2019,
-    "EventDescribe": "意外获得藏宝图，一路跟随藏宝图的指引最终发现了宝藏！获得*枚金币",
-    "Probability": 20,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      60,
-      80
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2020,
-    "EventDescribe": "集齐7颗龙珠、许下了获得很多金币的愿望。获得获得*枚金币",
-    "Probability": 10,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      90,
-      110
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2021,
-    "EventDescribe": "报名参加了武术课程，学习后变得更强了，力量增加了*",
-    "Probability": 8,
-    "EventType": "AddStr",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2022,
-    "EventDescribe": "又一次蜕皮了，蜕皮次数越多就会变得越强，体质增加了*",
-    "Probability": 8,
-    "EventType": "AddCon",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2023,
-    "EventDescribe": "花了一段时间保养自身的甲壳，防御增加了*",
-    "Probability": 8,
-    "EventType": "AddDef",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2024,
-    "EventDescribe": "进行了一天的梅花桩修炼，身手似乎变得更加轻盈，敏捷增加了*",
-    "Probability": 6,
-    "EventType": "AddDex",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2025,
-    "EventDescribe": "向牙医请教了保养牙齿的方法，攻击力增加了*",
-    "Probability": 13,
-    "EventType": "AddAtk",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2026,
-    "EventDescribe": "在搏击俱乐部中训练了一天的抗击打能力，防御力增加了*",
-    "Probability": 13,
-    "EventType": "AddDefense",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2027,
-    "EventDescribe": "在大胃王比赛中海吃胡喝，生命值增加了*",
-    "Probability": 14,
-    "EventType": "AddHp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      5,
-      10
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2028,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了绳子×*",
-    "Probability": 10,
-    "EventType": "GetProp",
-    "PropID": [
-      1901
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2029,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了网罩×*",
-    "Probability": 7,
-    "EventType": "GetProp",
-    "PropID": [
-      1902
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2030,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了道具包×*",
-    "Probability": 3,
-    "EventType": "GetProp",
-    "PropID": [
-      1903
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2031,
-    "EventDescribe": "夜晚睡觉着凉，不小心感冒了，获得技能感冒",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3601,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2032,
-    "EventDescribe": "走在路上被绊倒，然后发现躺着也挺不错的，不想起来了，获得技能懒惰",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3602,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2033,
-    "EventDescribe": "路过女巫小屋时,被女巫投掷不明药剂，获得技能迟钝",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3603,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2034,
-    "EventDescribe": "路过女巫小屋时,被女巫投掷不明药剂，获得技能笨拙",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3604,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2035,
-    "EventDescribe": "从游乐园的鬼屋出来后就变得胆小了，获得技能胆小",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3605,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2036,
-    "EventDescribe": "路过女巫小屋时,被女巫投掷不明药剂，获得技能大块头",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3606,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2037,
-    "EventDescribe": "在大胃王比赛中吃坏肚子了，获得技能虚弱",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3607,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2038,
-    "EventDescribe": "前方有异教徒在招揽新的教徒，打算进去看看就立马离开，但是在听完异教徒的演讲后一切都晚了，获得技能异教徒",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3608,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2039,
-    "EventDescribe": "前方有异教徒在招揽新的教徒，打算进去看看就立马离开，在听完异教徒的演讲后打算离开时被异教徒诅咒了，获得技能渎神",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3609,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2040,
-    "EventDescribe": "在夜晚看到流星，正打算许愿，结果流星又飞回去了，对自己产生了怀疑，获得技能自我否定",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3610,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2041,
-    "EventDescribe": "看到一只蛐蛐，打斗一番将他捆起来了，获得蛐蛐一只",
-    "Probability": 5,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      20,
-      50
-    ],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2042,
-    "EventDescribe": "使用陷阱抓到一只蛐蛐了，获得蛐蛐一只",
-    "Probability": 3,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      30,
-      60
-    ],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2043,
-    "EventDescribe": "发现一只需要帮助的蛐蛐，救助蛐蛐后，蛐蛐决定跟你混了，获得蛐蛐一只",
-    "Probability": 2,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      40,
-      70
-    ],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2044,
-    "EventDescribe": "走了很久啥也没发现",
-    "Probability": 5,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2045,
-    "EventDescribe": "看到老虎机后上去玩了一把，什么也没有得到",
-    "Probability": 5,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2046,
-    "EventDescribe": "集齐7颗龙珠、许下了要更多愿望的愿望，结果什么也没有得到。",
-    "Probability": 5,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2047,
-    "EventDescribe": "路过女巫小屋时,被女巫投掷不明药剂，获得技能精神抖擞",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3343,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2048,
-    "EventDescribe": "在路边商店购买了盲盒，获得了超级蛐蛐血清一份，获得技能队长",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3345,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2049,
-    "EventDescribe": "从游乐园的鬼屋出来后变得更加勇敢了，获得技能无畏",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3341,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2050,
-    "EventDescribe": "前方有蛐蛐正在欺负弱小，你上前教训了他一顿，获得技能正义",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3340,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2051,
-    "EventDescribe": "在竞技场中勇敢的面对比自身强大的对方，虽败犹荣，获得技能挑战者",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3342,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2052,
-    "EventDescribe": "再一次蜕皮，这次蜕皮似乎有些异常，获得技能变异",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3344,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2053,
-    "EventDescribe": "前方有异教徒在招揽新的教徒，看到后立马离开了，获得技能警惕",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3346,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2054,
-    "EventDescribe": "在一个溶洞中发现了时间胶囊，获得道具时间胶囊C×*",
-    "Probability": 3,
-    "EventType": "GetProp",
-    "PropID": [
-      1801
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2055,
-    "EventDescribe": "路过集市时，拿着5本破烂书籍的乞丐冒了出来，抱着打法的心态买了一本就走了,获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2056,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第一名，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2057,
-    "EventDescribe": "在小店旁看到老虎机，上去玩了一把，中了特等奖，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2058,
-    "EventDescribe": "发现废弃的矿洞，探索一番找到沾满灰尘的书籍，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2059,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第二名，获得道具大肉包子×*",
-    "Probability": 20,
-    "EventType": "GetProp",
-    "PropID": [
-      1001
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2060,
-    "EventDescribe": "路见不平拔刀相助，作为回报获得了道具腊八粥×*",
-    "Probability": 15,
-    "EventType": "GetProp",
-    "PropID": [
-      1002
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2061,
-    "EventDescribe": "在路边商店购买了盲盒，获得道具龙须面×*",
-    "Probability": 10,
-    "EventType": "GetProp",
-    "PropID": [
-      1003
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2062,
-    "EventDescribe": "在一处山洞中发现了隐藏的宝箱，获得道具黄金蛋炒饭×*",
-    "Probability": 4,
-    "EventType": "GetProp",
-    "PropID": [
-      1004
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2063,
-    "EventDescribe": "在小店旁看到老虎机，上去玩了一把结果中了大奖，获得道具满汉全席×*",
-    "Probability": 1,
-    "EventType": "GetProp",
-    "PropID": [
-      1015
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 0,
-   
-  },
-  {
-    "EventID": 2101,
-    "EventDescribe": "每天坚持锻炼，才能变的更强，经验值增加了*",
-    "Probability": 60,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2102,
-    "EventDescribe": "早睡早起、定时吃饭，身体才是一切的根本，经验值增加了*",
-    "Probability": 50,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      5
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2103,
-    "EventDescribe": "在一处安静的地方，回顾了之前的战斗后似乎有所感悟，经验值增加了*",
-    "Probability": 40,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      6
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2104,
-    "EventDescribe": "长途跋涉过后经验值增加了*",
-    "Probability": 40,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      7
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2105,
-    "EventDescribe": "参加大胃王比赛后，经验值增加了*",
-    "Probability": 30,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      8
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2106,
-    "EventDescribe": "在夜晚看到流星，许愿自己变得更强，经验值增加了*",
-    "Probability": 30,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      9
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2107,
-    "EventDescribe": "又一次蜕皮了，蜕皮次数越多就会变得越强，经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      10
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2108,
-    "EventDescribe": "前方出现巨大的瀑布，决定在瀑布下进行修炼，经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      15
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2109,
-    "EventDescribe": "被世外高人指点了一番，有所感悟，经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      17
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2110,
-    "EventDescribe": "集齐7颗龙珠、许下了获得变强的愿望。经验值增加了*",
-    "Probability": 10,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      20
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2111,
-    "EventDescribe": "发现地上有少数掉落的金币，获得*枚金币",
-    "Probability": 60,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      10,
-      30
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2112,
-    "EventDescribe": "在股市中，选中了一支好股，赚了一点小钱，获得*枚金币",
-    "Probability": 50,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      20,
-      40
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2113,
-    "EventDescribe": "加油吧打工人！当了一天的临时工，获得*枚金币",
-    "Probability": 40,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      30,
-      50
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2114,
-    "EventDescribe": "发现废弃的矿洞，探索一番只找到一些老旧的金币，获得*枚金币",
-    "Probability": 40,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      30,
-      50
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2115,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第三名，获得*枚金币",
-    "Probability": 30,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      50,
-      70
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2116,
-    "EventDescribe": "当一段时间的信差，赚了一点小钱，获得*枚金币",
-    "Probability": 30,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      60,
-      80
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2117,
-    "EventDescribe": "安全护送商人到达指定地点，获得*枚金币",
-    "Probability": 20,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      70,
-      90
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2118,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了一箱金币，获得获得*枚金币",
-    "Probability": 20,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      110,
-      130
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2119,
-    "EventDescribe": "意外获得藏宝图，一路跟随藏宝图的指引最终发现了宝藏！获得*枚金币",
-    "Probability": 20,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      130,
-      150
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2120,
-    "EventDescribe": "集齐7颗龙珠、许下了获得很多金币的愿望。获得获得*枚金币",
-    "Probability": 10,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      190,
-      210
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2121,
-    "EventDescribe": "报名参加了武术课程，学习后变得更强了，力量增加了*",
-    "Probability": 8,
-    "EventType": "AddStr",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2122,
-    "EventDescribe": "又一次蜕皮了，蜕皮次数越多就会变得越强，体质增加了*",
-    "Probability": 8,
-    "EventType": "AddCon",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2123,
-    "EventDescribe": "花了一段时间保养自身的甲壳，防御增加了*",
-    "Probability": 8,
-    "EventType": "AddDef",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2124,
-    "EventDescribe": "进行了一天的梅花桩修炼，身手似乎变得更加轻盈，敏捷增加了*",
-    "Probability": 6,
-    "EventType": "AddDex",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2125,
-    "EventDescribe": "向牙医请教了保养牙齿的方法，攻击力增加了*",
-    "Probability": 13,
-    "EventType": "AddAtk",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      2,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2126,
-    "EventDescribe": "在搏击俱乐部中训练了一天的抗击打能力，防御力增加了*",
-    "Probability": 13,
-    "EventType": "AddDefense",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      2,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2127,
-    "EventDescribe": "在大胃王比赛中海吃胡喝，生命值增加了*",
-    "Probability": 14,
-    "EventType": "AddHp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      10,
-      15
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2128,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了绳子×*",
-    "Probability": 10,
-    "EventType": "GetProp",
-    "PropID": [
-      1901
-    ],
-    "SkillID": 0,
-    "Number": [
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2129,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了网罩×*",
-    "Probability": 7,
-    "EventType": "GetProp",
-    "PropID": [
-      1902
-    ],
-    "SkillID": 0,
-    "Number": [
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2130,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了道具包×*",
-    "Probability": 3,
-    "EventType": "GetProp",
-    "PropID": [
-      1903
-    ],
-    "SkillID": 0,
-    "Number": [
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2131,
-    "EventDescribe": "夜晚睡觉着凉，不小心感冒了，获得技能感冒",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3601,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2132,
-    "EventDescribe": "走在路上被绊倒，然后发现躺着也挺不错的，不想起来了，获得技能懒惰",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3602,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2133,
-    "EventDescribe": "在一家赌场中，本打算赢了就走，结果在一次次的失败中失去了理智，获得技能赌徒",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3612,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2134,
-    "EventDescribe": "每天坚持100个俯卧撑、100个仰卧起坐，结果实力没有变强，但是开始掉发了，获得技能掉发危机",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3611,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2135,
-    "EventDescribe": "从游乐园的鬼屋出来后就变得胆小了，获得技能胆小",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3605,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2136,
-    "EventDescribe": "在品尝到酒的味道后，似乎一发不可收拾，不分时间不分场地的酗酒，获得技能酒鬼",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3613,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2137,
-    "EventDescribe": "在大胃王比赛中吃坏肚子了，获得技能虚弱",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3607,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2138,
-    "EventDescribe": "前方有异教徒在招揽新的教徒，打算进去看看就立马离开，但是在听完异教徒的演讲后一切都晚了，获得技能异教徒",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3608,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2139,
-    "EventDescribe": "前方有异教徒在招揽新的教徒，打算进去看看就立马离开，在听完异教徒的演讲后打算离开时被异教徒诅咒了，获得技能渎神",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3609,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2140,
-    "EventDescribe": "在夜晚看到流星，正打算许愿，结果流星又飞回去了，对自己产生了怀疑，获得技能自我否定",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3610,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2141,
-    "EventDescribe": "看到一只蛐蛐，打斗一番将他捆起来了，获得蛐蛐一只",
-    "Probability": 5,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      30,
-      60
-    ],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2142,
-    "EventDescribe": "使用陷阱抓到一只蛐蛐了，获得蛐蛐一只",
-    "Probability": 3,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      40,
-      70
-    ],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2143,
-    "EventDescribe": "发现一只需要帮助的蛐蛐，救助蛐蛐后，蛐蛐决定跟你混了，获得蛐蛐一只",
-    "Probability": 2,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      50,
-      80
-    ],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2144,
-    "EventDescribe": "走了很久啥也没发现",
-    "Probability": 6,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2145,
-    "EventDescribe": "看到老虎机后上去玩了一把，什么也没有得到",
-    "Probability": 6,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2146,
-    "EventDescribe": "集齐7颗龙珠、许下了要更多愿望的愿望，结果什么也没有得到。",
-    "Probability": 6,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2147,
-    "EventDescribe": "发现一家不正规的赌场后果断举报，获得技能优秀公民",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3347,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2148,
-    "EventDescribe": "在路边商店购买了盲盒，获得了超级蛐蛐血清一份，获得技能队长",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3345,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2149,
-    "EventDescribe": "前方有蛐蛐正在欺负弱小，你上前教训了他一顿，获得技能正义",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3340,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2150,
-    "EventDescribe": "在竞技场中勇敢的面对比自身强大的对方，虽败犹荣，获得技能挑战者",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3342,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2151,
-    "EventDescribe": "再一次蜕皮，这次蜕皮似乎有些异常，获得技能变异",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3344,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2152,
-    "EventDescribe": "前方有异教徒在招揽新的教徒，看到后立马离开了，获得技能警惕",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3346,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2153,
-    "EventDescribe": "在老旧的茶馆中找到一袋茶叶，获得道具天山绿茶×*",
-    "Probability": 3,
-    "EventType": "GetProp",
-    "PropID": [
-      1014
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2154,
-    "EventDescribe": "在一个溶洞中发现了时间胶囊，获得道具时间胶囊B×*",
-    "Probability": 3,
-    "EventType": "GetProp",
-    "PropID": [
-      1802
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2155,
-    "EventDescribe": "路过集市时，拿着5本破烂书籍的乞丐冒了出来，抱着打法的心态买了一本就走了,获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2156,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第一名，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2157,
-    "EventDescribe": "在小店旁看到老虎机，上去玩了一把，中了特等奖，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2158,
-    "EventDescribe": "发现废弃的矿洞，探索一番找到沾满灰尘的书籍，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2159,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第二名，获得道具大肉包子×*",
-    "Probability": 20,
-    "EventType": "GetProp",
-    "PropID": [
-      1001
-    ],
-    "SkillID": 0,
-    "Number": [
-      4
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2160,
-    "EventDescribe": "路见不平拔刀相助，作为回报获得了道具腊八粥×*",
-    "Probability": 15,
-    "EventType": "GetProp",
-    "PropID": [
-      1002
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2161,
-    "EventDescribe": "在路边商店购买了盲盒，获得道具龙须面×*",
-    "Probability": 10,
-    "EventType": "GetProp",
-    "PropID": [
-      1003
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2162,
-    "EventDescribe": "在一处山洞中发现了隐藏的宝箱，获得道具黄金蛋炒饭×*",
-    "Probability": 4,
-    "EventType": "GetProp",
-    "PropID": [
-      1004
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2163,
-    "EventDescribe": "在小店旁看到老虎机，上去玩了一把结果中了大奖，获得道具满汉全席×*",
-    "Probability": 1,
-    "EventType": "GetProp",
-    "PropID": [
-      1015
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 1,
-   
-  },
-  {
-    "EventID": 2201,
-    "EventDescribe": "每天坚持锻炼，才能变的更强，经验值增加了*",
-    "Probability": 60,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2202,
-    "EventDescribe": "早睡早起、定时吃饭，身体才是一切的根本，经验值增加了*",
-    "Probability": 50,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      5
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2203,
-    "EventDescribe": "在一处安静的地方，回顾了之前的战斗后似乎有所感悟，经验值增加了*",
-    "Probability": 40,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      6
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2204,
-    "EventDescribe": "在黑森林中突然被一只实力强劲的蛐蛐挑战，打斗一番后并没有分出胜负，对方表面只是切除一下然后就离开了，经验值增加了*",
-    "Probability": 40,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      7
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2205,
-    "EventDescribe": "在夜晚看到流星，许愿自己变得更强，经验值增加了*",
-    "Probability": 30,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      8
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2206,
-    "EventDescribe": "又一次蜕皮了，蜕皮次数越多就会变得越强，经验值增加了*",
-    "Probability": 30,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      9
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2207,
-    "EventDescribe": "前方出现巨大的瀑布，决定在瀑布下进行修炼，经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      10
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2208,
-    "EventDescribe": "被世外高人指点了一番，有所感悟，经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      15
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2209,
-    "EventDescribe": "集齐7颗龙珠、许下了获得变强的愿望。经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      17
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2210,
-    "EventDescribe": "跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，受到了亚特兰蒂斯人民的款待和祝福后，经验值增加了*",
-    "Probability": 10,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      20
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2211,
-    "EventDescribe": "在一个把瓶盖当作货币的小镇中，有瓶盖换取了一些金币，获得*枚金币",
-    "Probability": 60,
-    "EventType": "AddMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      20,
-      40
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2212,
-    "EventDescribe": "在股市中，选中了一支好股，赚了一点小钱，获得*枚金币",
-    "Probability": 50,
-    "EventType": "AddMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      30,
-      50
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2213,
-    "EventDescribe": "加油吧打工人！当了一天的临时工，获得*枚金币",
-    "Probability": 40,
-    "EventType": "AddMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      40,
-      60
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2214,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第三名，获得*枚金币",
-    "Probability": 40,
-    "EventType": "AddMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      60,
-      80
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2215,
-    "EventDescribe": "当一段时间的信差，赚了一点小钱，获得*枚金币",
-    "Probability": 30,
-    "EventType": "AddMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      80,
-      100
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2216,
-    "EventDescribe": "安全护送商人到达指定地点，获得*枚金币",
-    "Probability": 30,
-    "EventType": "AddMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      100,
-      120
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2217,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了一箱金币，获得获得*枚金币",
-    "Probability": 20,
-    "EventType": "AddMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      110,
-      130
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2218,
-    "EventDescribe": "意外获得藏宝图，一路跟随藏宝图的指引最终发现了宝藏！获得*枚金币",
-    "Probability": 20,
-    "EventType": "AddMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      170,
-      190
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2219,
-    "EventDescribe": "集齐7颗龙珠、许下了获得很多金币的愿望。获得获得*枚金币",
-    "Probability": 20,
-    "EventType": "AddMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      200,
-      220
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2220,
-    "EventDescribe": "跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，在拿上少部分值钱的东西就离开了，获得*枚金币",
-    "Probability": 10,
-    "EventType": "AddMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      290,
-      310
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2221,
-    "EventDescribe": "报名参加了武术课程，学习后变得更强了，力量增加了*",
-    "Probability": 8,
-    "EventType": "AddStr",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2222,
-    "EventDescribe": "又一次蜕皮了，蜕皮次数越多就会变得越强，体质增加了*",
-    "Probability": 8,
-    "EventType": "AddCon",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2223,
-    "EventDescribe": "花了一段时间保养自身的甲壳，防御增加了*",
-    "Probability": 8,
-    "EventType": "AddDef",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2224,
-    "EventDescribe": "进行了一天的梅花桩修炼，身手似乎变得更加轻盈，敏捷增加了*",
-    "Probability": 6,
-    "EventType": "AddDex",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2225,
-    "EventDescribe": "向牙医请教了保养牙齿的方法，攻击力增加了*",
-    "Probability": 13,
-    "EventType": "AddAtk",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      2,
-      4
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2226,
-    "EventDescribe": "在搏击俱乐部中训练了一天的抗击打能力，防御力增加了*",
-    "Probability": 13,
-    "EventType": "AddDefense",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      2,
-      4
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2227,
-    "EventDescribe": "在大胃王比赛中海吃胡喝，生命值增加了*",
-    "Probability": 14,
-    "EventType": "AddHp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      15,
-      20
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2228,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了绳子×*",
-    "Probability": 10,
-    "EventType": "GetProp",
-    "PropID": [
-      1901
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2229,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了网罩×*",
-    "Probability": 7,
-    "EventType": "GetProp",
-    "PropID": [
-      1902
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2230,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了道具包×*",
-    "Probability": 3,
-    "EventType": "GetProp",
-    "PropID": [
-      1903
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2231,
-    "EventDescribe": "在游乐园玩耍，被黑衣人注射了神秘药剂，醒来后发现身体变小了，获得技能微观世界",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3614,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2232,
-    "EventDescribe": "在命运骰子游戏中摇到了点数1，结果在那之后就一直很倒霉，获得技能倒霉蛋",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3615,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2233,
-    "EventDescribe": "在一家赌场中，本打算赢了就走，结果在一次次的失败中失去了理智，获得技能赌徒",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3612,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2234,
-    "EventDescribe": "每天坚持100个俯卧撑、100个仰卧起坐，结果实力没有变强，但是开始掉发了，获得技能掉发危机",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3611,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2235,
-    "EventDescribe": "跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，拿走了大量值钱的东西后，被亚特兰蒂斯人民诅咒了，并且在离开亚特兰蒂斯时物品都变成了石头！获得技能古老诅咒",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3618,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2236,
-    "EventDescribe": "在品尝到酒的味道后，似乎一发不可收拾，不分时间不分场地的酗酒，获得技能酒鬼",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3613,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2237,
-    "EventDescribe": "走在路上被绊倒，然后发现躺着也挺不错的，不想起来了，获得技能懒惰",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3602,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2238,
-    "EventDescribe": "前方有异教徒在招揽新的教徒，打算进去看看就立马离开，但是在听完异教徒的演讲后一切都晚了，获得技能异教徒",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3608,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2239,
-    "EventDescribe": "前方有异教徒在招揽新的教徒，打算进去看看就立马离开，在听完异教徒的演讲后打算离开时被异教徒诅咒了，获得技能渎神",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3609,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2240,
-    "EventDescribe": "在夜晚看到流星，正打算许愿，结果流星又飞回去了，对自己产生了怀疑，获得技能自我否定",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3610,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2241,
-    "EventDescribe": "看到一只蛐蛐，打斗一番将他捆起来了，获得蛐蛐一只",
-    "Probability": 5,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      40,
-      70
-    ],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2242,
-    "EventDescribe": "使用陷阱抓到一只蛐蛐了，获得蛐蛐一只",
-    "Probability": 3,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      50,
-      80
-    ],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2243,
-    "EventDescribe": "发现一只需要帮助的蛐蛐，救助蛐蛐后，蛐蛐决定跟你混了，获得蛐蛐一只",
-    "Probability": 2,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      60,
-      90
-    ],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2244,
-    "EventDescribe": "走了很久啥也没发现",
-    "Probability": 7,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2245,
-    "EventDescribe": "看到老虎机后上去玩了一把，什么也没有得到",
-    "Probability": 7,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2246,
-    "EventDescribe": "集齐7颗龙珠、许下了要更多愿望的愿望，结果什么也没有得到。",
-    "Probability": 7,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2247,
-    "EventDescribe": "发现一家不正规的赌场后果断举报，获得技能优秀公民",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3347,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2248,
-    "EventDescribe": "在路边商店购买了盲盒，获得了超级蛐蛐血清一份，获得技能队长",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3345,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2249,
-    "EventDescribe": "在命运骰子游戏中摇到了点数6，结果在那之后运气一直很好，获得技能幸运儿",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3339,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2250,
-    "EventDescribe": "在一个溶洞中发现了时间胶囊，获得道具时间胶囊A×*",
-    "Probability": 6,
-    "EventType": "GetProp",
-    "PropID": [
-      1803
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2251,
-    "EventDescribe": "再一次蜕皮，这次蜕皮似乎有些异常，获得技能变异",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3344,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2252,
-    "EventDescribe": "前方有异教徒在招揽新的教徒，看到后立马离开了，获得技能警惕",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3346,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2253,
-    "EventDescribe": "在老旧的茶馆中找到一袋茶叶，获得道具天山绿茶×*",
-    "Probability": 3,
-    "EventType": "GetProp",
-    "PropID": [
-      1014
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2254,
-    "EventDescribe": "路过集市时，拿着5本破烂书籍的乞丐冒了出来，抱着打法的心态买了一本就走了,获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2255,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第一名，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2256,
-    "EventDescribe": "在小店旁看到老虎机，上去玩了一把，中了特等奖，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2257,
-    "EventDescribe": "发现废弃的矿洞，探索一番找到沾满灰尘的书籍，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2258,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第二名，获得道具大肉包子×*",
-    "Probability": 20,
-    "EventType": "GetProp",
-    "PropID": [
-      1001
-    ],
-    "SkillID": 0,
-    "Number": [
-      10
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2259,
-    "EventDescribe": "路见不平拔刀相助，作为回报获得了道具腊八粥×*",
-    "Probability": 15,
-    "EventType": "GetProp",
-    "PropID": [
-      1002
-    ],
-    "SkillID": 0,
-    "Number": [
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2260,
-    "EventDescribe": "在路边商店购买了盲盒，获得道具龙须面×*",
-    "Probability": 10,
-    "EventType": "GetProp",
-    "PropID": [
-      1003
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2261,
-    "EventDescribe": "在一处山洞中发现了隐藏的宝箱，获得道具黄金蛋炒饭×*",
-    "Probability": 4,
-    "EventType": "GetProp",
-    "PropID": [
-      1004
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2262,
-    "EventDescribe": "在小店旁看到老虎机，上去玩了一把结果中了大奖，获得道具满汉全席×*",
-    "Probability": 1,
-    "EventType": "GetProp",
-    "PropID": [
-      1015
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 2,
-   
-  },
-  {
-    "EventID": 2301,
-    "EventDescribe": "每天坚持锻炼，才能变的更强，经验值增加了*",
-    "Probability": 60,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2302,
-    "EventDescribe": "早睡早起、定时吃饭，身体才是一切的根本，经验值增加了*",
-    "Probability": 50,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      5
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2303,
-    "EventDescribe": "在一处安静的地方，回顾了之前的战斗后似乎有所感悟，经验值增加了*",
-    "Probability": 40,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      6
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2304,
-    "EventDescribe": "在黑森林中突然被一只实力强劲的蛐蛐挑战，打斗一番后并没有分出胜负，对方表示只是切除一下然后就离开了，经验值增加了*",
-    "Probability": 40,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      7
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2305,
-    "EventDescribe": "在夜晚看到流星，许愿自己变得更强，经验值增加了*",
-    "Probability": 30,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      8
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2306,
-    "EventDescribe": "又一次蜕皮了，蜕皮次数越多就会变得越强，经验值增加了*",
-    "Probability": 30,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      9
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2307,
-    "EventDescribe": "在参加里彻山脉的魔鬼训练营后，实力变的更强了，经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      10
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2308,
-    "EventDescribe": "在探索山脉时发现了许多从未见过的东西，经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      15
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2309,
-    "EventDescribe": "集齐7颗龙珠、许下了获得变强的愿望。经验值增加了*",
-    "Probability": 20,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      17
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2310,
-    "EventDescribe": "跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，受到了亚特兰蒂斯人民的款待和祝福后，经验值增加了*",
-    "Probability": 10,
-    "EventType": "AddExp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      20
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2311,
-    "EventDescribe": "在一个把瓶盖当作货币的小镇中，有瓶盖换取了一些金币，获得*枚金币",
-    "Probability": 60,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      40,
-      60
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2312,
-    "EventDescribe": "在股市中，选中了一支好股，赚了一点小钱，获得*枚金币",
-    "Probability": 50,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      60,
-      80
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2313,
-    "EventDescribe": "加油吧打工人！当了一天的临时工，获得*枚金币",
-    "Probability": 40,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      70,
-      90
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2314,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第三名，获得*枚金币",
-    "Probability": 40,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      90,
-      110
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2315,
-    "EventDescribe": "遇到了悬赏令上的大盗，打斗一番将其逮捕，得到悬赏令上的赏金，获得*枚金币",
-    "Probability": 30,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      110,
-      130
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2316,
-    "EventDescribe": "在搏击比赛中赢得几场胜利后获得了奖金，获得*枚金币",
-    "Probability": 30,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      130,
-      150
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2317,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了一箱金币，获得获得*枚金币",
-    "Probability": 20,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      140,
-      160
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2318,
-    "EventDescribe": "意外获得藏宝图，一路跟随藏宝图的指引最终发现了宝藏！获得*枚金币",
-    "Probability": 20,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      190,
-      210
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2319,
-    "EventDescribe": "集齐7颗龙珠、许下了获得很多金币的愿望。获得获得*枚金币",
-    "Probability": 20,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      290,
-      310
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2320,
-    "EventDescribe": "跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，在拿上少部分值钱的东西就离开了，获得*枚金币",
-    "Probability": 10,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      390,
-      410
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2321,
-    "EventDescribe": "发现有人在果园里肆意破坏，果断上前将其打跑，得到了农场主的馈赠，获得道具蓝莓×*",
-    "Probability": 8,
-    "EventType": "GetProp",
-    "PropID": [
-      1018
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2322,
-    "EventDescribe": "在探索山脉时发现了无花果树，获得道具无花果×*",
-    "Probability": 8,
-    "EventType": "GetProp",
-    "PropID": [
-      1019
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2323,
-    "EventDescribe": "发现有人在果园里肆意破坏，果断上前将其打跑，得到了农场主的馈赠，获得道具卷心菜×*",
-    "Probability": 8,
-    "EventType": "GetProp",
-    "PropID": [
-      1020
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2324,
-    "EventDescribe": "在探索山脉时发现了苹果树，获得道具苹果×*",
-    "Probability": 6,
-    "EventType": "GetProp",
-    "PropID": [
-      1021
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2325,
-    "EventDescribe": "向牙医请教了保养牙齿的方法，攻击力增加了*",
-    "Probability": 13,
-    "EventType": "AddAtk",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      3,
-      5
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2326,
-    "EventDescribe": "在搏击俱乐部中训练了一天的抗击打能力，防御力增加了*",
-    "Probability": 13,
-    "EventType": "AddDefense",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      3,
-      5
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2327,
-    "EventDescribe": "在大胃王比赛中海吃胡喝，生命值增加了*",
-    "Probability": 14,
-    "EventType": "AddHp",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      20,
-      25
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2328,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了绳子×*",
-    "Probability": 10,
-    "EventType": "GetProp",
-    "PropID": [
-      1901
-    ],
-    "SkillID": 0,
-    "Number": [
-      4
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2329,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了网罩×*",
-    "Probability": 7,
-    "EventType": "GetProp",
-    "PropID": [
-      1902
-    ],
-    "SkillID": 0,
-    "Number": [
-      4
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2330,
-    "EventDescribe": "路过河边，开始钓鱼，居然钓到了道具包×*",
-    "Probability": 3,
-    "EventType": "GetProp",
-    "PropID": [
-      1903
-    ],
-    "SkillID": 0,
-    "Number": [
-      4
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2331,
-    "EventDescribe": "每天坚持100个俯卧撑、100个仰卧起坐，结果实力没有变强，但是开始掉发了，获得技能掉发危机",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3611,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2332,
-    "EventDescribe": "在命运骰子游戏中摇到了点数1，结果在那之后就一直很倒霉，获得技能倒霉蛋",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3615,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2333,
-    "EventDescribe": "在一家赌场中，本打算赢了就走，结果在一次次的失败中失去了理智，获得技能赌徒",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3612,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2334,
-    "EventDescribe": "走在路上突然被一道神秘的射线照射到，结果体型一直在增加似乎有些不妙，获得技能极大化",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3616,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2335,
-    "EventDescribe": "跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，拿走了大量值钱的东西后，被亚特兰蒂斯人民诅咒了，并且在离开亚特兰蒂斯时物品都变成了石头！获得技能古老诅咒",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3618,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2336,
-    "EventDescribe": "在品尝到酒的味道后，似乎一发不可收拾，不分时间不分场地的酗酒，获得技能酒鬼",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3613,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2337,
-    "EventDescribe": "在山脉中看到了无法用言语形容的存在，在那之后似乎变的有些疯狂，获得技能接收者",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3617,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2338,
-    "EventDescribe": "前方有异教徒在招揽新的教徒，打算进去看看就立马离开，但是在听完异教徒的演讲后一切都晚了，获得技能异教徒",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3608,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2339,
-    "EventDescribe": "前方有异教徒在招揽新的教徒，打算进去看看就立马离开，在听完异教徒的演讲后打算离开时被异教徒诅咒了，获得技能渎神",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3609,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2340,
-    "EventDescribe": "在夜晚看到流星，正打算许愿，结果流星又飞回去了，对自己产生了怀疑，获得技能自我否定",
-    "Probability": 5,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3610,
-    "Number": [
-      1,
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2341,
-    "EventDescribe": "看到一只蛐蛐，打斗一番将他捆起来了，获得蛐蛐一只",
-    "Probability": 5,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      50,
-      80
-    ],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2342,
-    "EventDescribe": "使用陷阱抓到一只蛐蛐了，获得蛐蛐一只",
-    "Probability": 3,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      60,
-      90
-    ],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2343,
-    "EventDescribe": "发现一只需要帮助的蛐蛐，救助蛐蛐后，蛐蛐决定跟你混了，获得蛐蛐一只",
-    "Probability": 2,
-    "EventType": "GetCricket",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [
-      70,
-      100
-    ],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2344,
-    "EventDescribe": "走了很久啥也没发现",
-    "Probability": 7,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2345,
-    "EventDescribe": "看到老虎机后上去玩了一把，什么也没有得到",
-    "Probability": 7,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2346,
-    "EventDescribe": "集齐7颗龙珠、许下了要更多愿望的愿望，结果什么也没有得到。",
-    "Probability": 7,
-    "EventType": "GetMoney",
-    "PropID": [],
-    "SkillID": 0,
-    "Number": [],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2347,
-    "EventDescribe": "发现一家不正规的赌场后果断举报，获得技能优秀公民",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3347,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2348,
-    "EventDescribe": "在路边商店购买了盲盒，获得了超级蛐蛐血清一份，获得技能队长",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3345,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2349,
-    "EventDescribe": "在命运骰子游戏中摇到了点数6，结果在那之后运气一直很好，获得技能幸运儿",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3339,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2350,
-    "EventDescribe": "在一个溶洞中发现了时间胶囊，获得道具时间胶囊S×*",
-    "Probability": 3,
-    "EventType": "GetProp",
-    "PropID": [
-      1804
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2351,
-    "EventDescribe": "再一次蜕皮，这次蜕皮似乎有些异常，获得技能变异",
-    "Probability": 6,
-    "EventType": "GetSkill",
-    "PropID": [],
-    "SkillID": 3344,
-    "Number": [
-      1,
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2352,
-    "EventDescribe": "在路过西红柿田时，被田地主人赠送了一个，获得道具西红柿×*",
-    "Probability": 6,
-    "EventType": "GetProp",
-    "PropID": [
-      1013
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2353,
-    "EventDescribe": "在老旧的茶馆中找到一袋茶叶，获得道具天山绿茶×*",
-    "Probability": 6,
-    "EventType": "GetProp",
-    "PropID": [
-      1014
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2354,
-    "EventDescribe": "路过集市时，拿着5本破烂书籍的乞丐冒了出来，抱着打法的心态买了一本就走了,获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2355,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第一名，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2356,
-    "EventDescribe": "在小店旁看到老虎机，上去玩了一把，中了特等奖，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2357,
-    "EventDescribe": "发现废弃的矿洞，探索一番找到沾满灰尘的书籍，获得技能书*×*",
-    "Probability": 25,
-    "EventType": "GetProp",
-    "PropID": [
-      1201,
-      1247
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2358,
-    "EventDescribe": "发现集市正在比赛，参与比赛后，获得了第二名，获得道具大肉包子×*",
-    "Probability": 15,
-    "EventType": "GetProp",
-    "PropID": [
-      1001
-    ],
-    "SkillID": 0,
-    "Number": [
-      20
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2359,
-    "EventDescribe": "路见不平拔刀相助，作为回报获得了道具腊八粥×*",
-    "Probability": 10,
-    "EventType": "GetProp",
-    "PropID": [
-      1002
-    ],
-    "SkillID": 0,
-    "Number": [
-      5
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2360,
-    "EventDescribe": "在路边商店购买了盲盒，获得道具龙须面×*",
-    "Probability": 10,
-    "EventType": "GetProp",
-    "PropID": [
-      1003
-    ],
-    "SkillID": 0,
-    "Number": [
-      3
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2361,
-    "EventDescribe": "在一处山洞中发现了隐藏的宝箱，获得道具黄金蛋炒饭×*",
-    "Probability": 10,
-    "EventType": "GetProp",
-    "PropID": [
-      1004
-    ],
-    "SkillID": 0,
-    "Number": [
-      2
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  },
-  {
-    "EventID": 2362,
-    "EventDescribe": "在小店旁看到老虎机，上去玩了一把结果中了大奖，获得道具满汉全席×*",
-    "Probability": 5,
-    "EventType": "GetProp",
-    "PropID": [
-      1015
-    ],
-    "SkillID": 0,
-    "Number": [
-      1
-    ],
-    "GradeRange": [],
-    "EventRace": 3,
-   
-  }
+	{
+		"EventID":2001,
+		"EventDescribe":"在太阳下睡了一觉，经验值增加了*",
+		"Probability":[1,60],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[1,25],
+		"EventB":[1,50],
+		"EventC":[1,22]
+	},
+	{
+		"EventID":2002,
+		"EventDescribe":"长途跋涉过后经验值增加了*",
+		"Probability":[61,110],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[5],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[26,75],
+		"EventB":[51,90],
+		"EventC":[23,72]
+	},
+	{
+		"EventID":2003,
+		"EventDescribe":"参加大胃王比赛后，经验值增加了*",
+		"Probability":[111,150],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[6],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[76,115],
+		"EventB":[91,120],
+		"EventC":[73,112]
+	},
+	{
+		"EventID":2004,
+		"EventDescribe":"前方发现马拉松队伍，决定加入他们，经验值增加了*",
+		"Probability":[151,190],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[7],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[116,155],
+		"EventB":[121,150],
+		"EventC":[113,152]
+	},
+	{
+		"EventID":2005,
+		"EventDescribe":"路过健身房，锻炼一番，经验值增加了*",
+		"Probability":[191,220],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[8],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[156,185],
+		"EventB":[151,170],
+		"EventC":[153,182]
+	},
+	{
+		"EventID":2006,
+		"EventDescribe":"在夜晚看到流星，许愿自己变得更强，经验值增加了*",
+		"Probability":[221,250],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[9],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[186,215],
+		"EventB":[171,200],
+		"EventC":[183,212]
+	},
+	{
+		"EventID":2007,
+		"EventDescribe":"又一次蜕皮了，蜕皮次数越多就会变得越强，经验值增加了*",
+		"Probability":[251,270],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[10],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[216,235],
+		"EventB":[201,220],
+		"EventC":[213,232]
+	},
+	{
+		"EventID":2008,
+		"EventDescribe":"前方出现巨大的瀑布，决定在瀑布下进行修炼，经验值增加了*",
+		"Probability":[271,290],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[15],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[236,255],
+		"EventB":[221,240],
+		"EventC":[233,252]
+	},
+	{
+		"EventID":2009,
+		"EventDescribe":"被世外高人指点了一番，有所感悟，经验值增加了*",
+		"Probability":[291,310],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[17],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[256,275],
+		"EventB":[241,260],
+		"EventC":[253,272]
+	},
+	{
+		"EventID":2010,
+		"EventDescribe":"集齐7颗龙珠、许下了获得变强的愿望。经验值增加了*",
+		"Probability":[311,320],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[20],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[276,285],
+		"EventB":[261,270],
+		"EventC":[273,282]
+	},
+	{
+		"EventID":2011,
+		"EventDescribe":"发现地上有少数掉落的金币，获得*枚金币",
+		"Probability":[321,380],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1,20],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[286,345],
+		"EventB":[271,330],
+		"EventC":[283,342]
+	},
+	{
+		"EventID":2012,
+		"EventDescribe":"在回收站卖掉了一路上收集到的废品，获得*枚金币",
+		"Probability":[381,430],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[5,25],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[346,395],
+		"EventB":[331,380],
+		"EventC":[343,392]
+	},
+	{
+		"EventID":2013,
+		"EventDescribe":"在小店旁看到老虎机，上去玩了一把结果在只中了安慰奖，获得*枚金币",
+		"Probability":[431,470],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[10,30],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[396,435],
+		"EventB":[381,420],
+		"EventC":[393,432]
+	},
+	{
+		"EventID":2014,
+		"EventDescribe":"发现废弃的矿洞，探索一番只找到一些老旧的金币，获得*枚金币",
+		"Probability":[471,510],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[10,30],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[436,475],
+		"EventB":[421,460],
+		"EventC":[433,472]
+	},
+	{
+		"EventID":2015,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第三名，获得*枚金币",
+		"Probability":[511,540],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[20,40],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[476,505],
+		"EventB":[461,490],
+		"EventC":[473,502]
+	},
+	{
+		"EventID":2016,
+		"EventDescribe":"当一段时间的信差，赚了一点小钱，获得*枚金币",
+		"Probability":[541,570],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[25,45],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[506,535],
+		"EventB":[491,520],
+		"EventC":[503,532]
+	},
+	{
+		"EventID":2017,
+		"EventDescribe":"安全护送商人到达指定地点，获得*枚金币",
+		"Probability":[571,590],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[30,50],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[536,555],
+		"EventB":[521,540],
+		"EventC":[533,552]
+	},
+	{
+		"EventID":2018,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了一箱金币，获得获得*枚金币",
+		"Probability":[591,610],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[50,70],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[556,575],
+		"EventB":[541,560],
+		"EventC":[553,572]
+	},
+	{
+		"EventID":2019,
+		"EventDescribe":"意外获得藏宝图，一路跟随藏宝图的指引最终发现了宝藏！获得*枚金币",
+		"Probability":[611,630],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[60,80],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[576,595],
+		"EventB":[561,580],
+		"EventC":[573,592]
+	},
+	{
+		"EventID":2020,
+		"EventDescribe":"集齐7颗龙珠、许下了获得很多金币的愿望。获得获得*枚金币",
+		"Probability":[631,640],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[90,110],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[596,605],
+		"EventB":[581,590],
+		"EventC":[593,602]
+	},
+	{
+		"EventID":2021,
+		"EventDescribe":"报名参加了武术课程，学习后变得更强了，力量增加了*",
+		"Probability":[641,648],
+		"EventType":"AddStr",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[606,613],
+		"EventB":[591,598],
+		"EventC":[603,610]
+	},
+	{
+		"EventID":2022,
+		"EventDescribe":"又一次蜕皮了，蜕皮次数越多就会变得越强，体质增加了*",
+		"Probability":[649,656],
+		"EventType":"AddCon",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[614,621],
+		"EventB":[599,606],
+		"EventC":[611,618]
+	},
+	{
+		"EventID":2023,
+		"EventDescribe":"花了一段时间保养自身的甲壳，防御增加了*",
+		"Probability":[657,664],
+		"EventType":"AddDef",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[622,629],
+		"EventB":[607,614],
+		"EventC":[619,626]
+	},
+	{
+		"EventID":2024,
+		"EventDescribe":"进行了一天的梅花桩修炼，身手似乎变得更加轻盈，敏捷增加了*",
+		"Probability":[665,670],
+		"EventType":"AddDex",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[630,635],
+		"EventB":[615,620],
+		"EventC":[627,632]
+	},
+	{
+		"EventID":2025,
+		"EventDescribe":"向牙医请教了保养牙齿的方法，攻击力增加了*",
+		"Probability":[671,683],
+		"EventType":"AddAtk",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[636,648],
+		"EventB":[621,633],
+		"EventC":[633,645]
+	},
+	{
+		"EventID":2026,
+		"EventDescribe":"在搏击俱乐部中训练了一天的抗击打能力，防御力增加了*",
+		"Probability":[684,696],
+		"EventType":"AddDefense",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[649,661],
+		"EventB":[634,646],
+		"EventC":[646,658]
+	},
+	{
+		"EventID":2027,
+		"EventDescribe":"在大胃王比赛中海吃胡喝，生命值增加了*",
+		"Probability":[697,710],
+		"EventType":"AddHp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[5,10],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[662,675],
+		"EventB":[647,660],
+		"EventC":[659,672]
+	},
+	{
+		"EventID":2028,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子×*",
+		"Probability":[711,720],
+		"EventType":"GetProp",
+		"PropID":[1901],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[676,685],
+		"EventB":[661,670],
+		"EventC":[673,682]
+	},
+	{
+		"EventID":2029,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩×*",
+		"Probability":[721,727],
+		"EventType":"GetProp",
+		"PropID":[1902],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[686,692],
+		"EventB":[671,677],
+		"EventC":[683,689]
+	},
+	{
+		"EventID":2030,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包×*",
+		"Probability":[728,730],
+		"EventType":"GetProp",
+		"PropID":[1903],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[693,695],
+		"EventB":[678,680],
+		"EventC":[690,692]
+	},
+	{
+		"EventID":2031,
+		"EventDescribe":"夜晚睡觉着凉，不小心感冒了，获得技能感冒",
+		"Probability":[731,735],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3601,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[696,700],
+		"EventB":[681,685],
+		"EventC":[693,697]
+	},
+	{
+		"EventID":2032,
+		"EventDescribe":"走在路上被绊倒，然后发现躺着也挺不错的，不想起来了，获得技能懒惰",
+		"Probability":[736,740],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3602,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[701,705],
+		"EventB":[686,690],
+		"EventC":[698,702]
+	},
+	{
+		"EventID":2033,
+		"EventDescribe":"路过女巫小屋时,被女巫投掷不明药剂，获得技能迟钝",
+		"Probability":[741,745],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3603,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[706,710],
+		"EventB":[691,695],
+		"EventC":[703,707]
+	},
+	{
+		"EventID":2034,
+		"EventDescribe":"路过女巫小屋时,被女巫投掷不明药剂，获得技能笨拙",
+		"Probability":[746,750],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3604,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[711,715],
+		"EventB":[696,700],
+		"EventC":[708,712]
+	},
+	{
+		"EventID":2035,
+		"EventDescribe":"从游乐园的鬼屋出来后就变得胆小了，获得技能胆小",
+		"Probability":[751,755],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3605,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[716,720],
+		"EventB":[701,705],
+		"EventC":[713,717]
+	},
+	{
+		"EventID":2036,
+		"EventDescribe":"路过女巫小屋时,被女巫投掷不明药剂，获得技能大块头",
+		"Probability":[756,760],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3606,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[721,725],
+		"EventB":[706,710],
+		"EventC":[718,722]
+	},
+	{
+		"EventID":2037,
+		"EventDescribe":"在大胃王比赛中吃坏肚子了，获得技能虚弱",
+		"Probability":[761,765],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3607,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[726,730],
+		"EventB":[711,715],
+		"EventC":[723,727]
+	},
+	{
+		"EventID":2038,
+		"EventDescribe":"前方有异教徒在招揽新的教徒，打算进去看看就立马离开，但是在听完异教徒的演讲后一切都晚了，获得技能异教徒",
+		"Probability":[766,770],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3608,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[731,735],
+		"EventB":[716,720],
+		"EventC":[728,732]
+	},
+	{
+		"EventID":2039,
+		"EventDescribe":"前方有异教徒在招揽新的教徒，打算进去看看就立马离开，在听完异教徒的演讲后打算离开时被异教徒诅咒了，获得技能渎神",
+		"Probability":[771,775],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3609,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[736,740],
+		"EventB":[721,725],
+		"EventC":[733,737]
+	},
+	{
+		"EventID":2040,
+		"EventDescribe":"在夜晚看到流星，正打算许愿，结果流星又飞回去了，对自己产生了怀疑，获得技能自我否定",
+		"Probability":[776,780],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3610,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[741,745],
+		"EventB":[726,730],
+		"EventC":[738,742]
+	},
+	{
+		"EventID":2041,
+		"EventDescribe":"看到一只蛐蛐，打斗一番将他捆起来了，获得蛐蛐一只",
+		"Probability":[781,785],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[20,50],
+		"EventRace":0,
+		"EventA":[746,785],
+		"EventB":[731,760],
+		"EventC":[743,747]
+	},
+	{
+		"EventID":2042,
+		"EventDescribe":"使用陷阱抓到一只蛐蛐了，获得蛐蛐一只",
+		"Probability":[786,788],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[30,60],
+		"EventRace":0,
+		"EventA":[786,788],
+		"EventB":[761,780],
+		"EventC":[748,750]
+	},
+	{
+		"EventID":2043,
+		"EventDescribe":"发现一只需要帮助的蛐蛐，救助蛐蛐后，蛐蛐决定跟你混了，获得蛐蛐一只",
+		"Probability":[789,790],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[40,70],
+		"EventRace":0,
+		"EventA":[789,790],
+		"EventB":[781,790],
+		"EventC":[751,790]
+	},
+	{
+		"EventID":2044,
+		"EventDescribe":"走了很久啥也没发现",
+		"Probability":[791,795],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[791,795],
+		"EventB":[791,795],
+		"EventC":[791,795]
+	},
+	{
+		"EventID":2045,
+		"EventDescribe":"看到老虎机后上去玩了一把，什么也没有得到",
+		"Probability":[796,800],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[796,800],
+		"EventB":[796,800],
+		"EventC":[796,800]
+	},
+	{
+		"EventID":2046,
+		"EventDescribe":"集齐7颗龙珠、许下了要更多愿望的愿望，结果什么也没有得到。",
+		"Probability":[801,805],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[801,805],
+		"EventB":[801,805],
+		"EventC":[801,805]
+	},
+	{
+		"EventID":2047,
+		"EventDescribe":"路过女巫小屋时,被女巫投掷不明药剂，获得技能精神抖擞",
+		"Probability":[806,811],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3343,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[806,811],
+		"EventB":[806,811],
+		"EventC":[806,811]
+	},
+	{
+		"EventID":2048,
+		"EventDescribe":"在路边商店购买了盲盒，获得了超级蛐蛐血清一份，获得技能队长",
+		"Probability":[812,817],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3345,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[812,817],
+		"EventB":[812,817],
+		"EventC":[812,817]
+	},
+	{
+		"EventID":2049,
+		"EventDescribe":"从游乐园的鬼屋出来后变得更加勇敢了，获得技能无畏",
+		"Probability":[818,823],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3341,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[818,823],
+		"EventB":[818,823],
+		"EventC":[818,823]
+	},
+	{
+		"EventID":2050,
+		"EventDescribe":"前方有蛐蛐正在欺负弱小，你上前教训了他一顿，获得技能正义",
+		"Probability":[824,829],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3340,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[824,829],
+		"EventB":[824,829],
+		"EventC":[824,829]
+	},
+	{
+		"EventID":2051,
+		"EventDescribe":"在竞技场中勇敢的面对比自身强大的对方，虽败犹荣，获得技能挑战者",
+		"Probability":[830,835],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3342,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[830,835],
+		"EventB":[830,835],
+		"EventC":[830,835]
+	},
+	{
+		"EventID":2052,
+		"EventDescribe":"再一次蜕皮，这次蜕皮似乎有些异常，获得技能变异",
+		"Probability":[836,841],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3344,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[836,841],
+		"EventB":[836,841],
+		"EventC":[836,841]
+	},
+	{
+		"EventID":2053,
+		"EventDescribe":"前方有异教徒在招揽新的教徒，看到后立马离开了，获得技能警惕",
+		"Probability":[842,847],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3346,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[842,847],
+		"EventB":[842,847],
+		"EventC":[842,847]
+	},
+	{
+		"EventID":2054,
+		"EventDescribe":"在一个溶洞中发现了时间胶囊，获得道具时间胶囊C×*",
+		"Probability":[848,850],
+		"EventType":"GetProp",
+		"PropID":[1801],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[848,850],
+		"EventB":[848,850],
+		"EventC":[848,850]
+	},
+	{
+		"EventID":2055,
+		"EventDescribe":"路过集市时，拿着5本破烂书籍的乞丐冒了出来，抱着打法的心态买了一本就走了,获得技能书×*",
+		"Probability":[851,875],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[851,875],
+		"EventB":[851,875],
+		"EventC":[851,875]
+	},
+	{
+		"EventID":2056,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第一名，获得技能书×*",
+		"Probability":[876,900],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[876,900],
+		"EventB":[876,900],
+		"EventC":[876,900]
+	},
+	{
+		"EventID":2057,
+		"EventDescribe":"在小店旁看到老虎机，上去玩了一把，中了特等奖，获得技能书×*",
+		"Probability":[901,925],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[901,925],
+		"EventB":[901,925],
+		"EventC":[901,925]
+	},
+	{
+		"EventID":2058,
+		"EventDescribe":"发现废弃的矿洞，探索一番找到沾满灰尘的书籍，获得技能书×*",
+		"Probability":[926,950],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[926,950],
+		"EventB":[926,950],
+		"EventC":[926,950]
+	},
+	{
+		"EventID":2059,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第二名，获得道具大肉包子×*",
+		"Probability":[951,970],
+		"EventType":"GetProp",
+		"PropID":[1001],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[951,970],
+		"EventB":[951,970],
+		"EventC":[951,970]
+	},
+	{
+		"EventID":2060,
+		"EventDescribe":"路见不平拔刀相助，作为回报获得了道具腊八粥×*",
+		"Probability":[971,985],
+		"EventType":"GetProp",
+		"PropID":[1002],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[971,985],
+		"EventB":[971,985],
+		"EventC":[971,985]
+	},
+	{
+		"EventID":2061,
+		"EventDescribe":"在路边商店购买了盲盒，获得道具龙须面×*",
+		"Probability":[986,995],
+		"EventType":"GetProp",
+		"PropID":[1003],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[986,995],
+		"EventB":[986,995],
+		"EventC":[986,995]
+	},
+	{
+		"EventID":2062,
+		"EventDescribe":"在一处山洞中发现了隐藏的宝箱，获得道具黄金蛋炒饭×*",
+		"Probability":[996,999],
+		"EventType":"GetProp",
+		"PropID":[1004],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[996,999],
+		"EventB":[996,999],
+		"EventC":[996,999]
+	},
+	{
+		"EventID":2063,
+		"EventDescribe":"在小店旁看到老虎机，上去玩了一把结果中了大奖，获得道具满汉全席×*",
+		"Probability":[1000,1000],
+		"EventType":"GetProp",
+		"PropID":[1015],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":0,
+		"EventA":[1000,1000],
+		"EventB":[1000,1000],
+		"EventC":[1000,1000]
+	},
+	{
+		"EventID":2101,
+		"EventDescribe":"每天坚持锻炼，才能变的更强，经验值增加了*",
+		"Probability":[1,60],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[1,25],
+		"EventB":[1,50],
+		"EventC":[1,22]
+	},
+	{
+		"EventID":2102,
+		"EventDescribe":"早睡早起、定时吃饭，身体才是一切的根本，经验值增加了*",
+		"Probability":[61,110],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[5],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[26,75],
+		"EventB":[51,90],
+		"EventC":[23,72]
+	},
+	{
+		"EventID":2103,
+		"EventDescribe":"在一处安静的地方，回顾了之前的战斗后似乎有所感悟，经验值增加了*",
+		"Probability":[111,150],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[6],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[76,115],
+		"EventB":[91,120],
+		"EventC":[73,112]
+	},
+	{
+		"EventID":2104,
+		"EventDescribe":"长途跋涉过后经验值增加了*",
+		"Probability":[151,190],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[7],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[116,155],
+		"EventB":[121,150],
+		"EventC":[113,152]
+	},
+	{
+		"EventID":2105,
+		"EventDescribe":"参加大胃王比赛后，经验值增加了*",
+		"Probability":[191,220],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[8],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[156,185],
+		"EventB":[151,170],
+		"EventC":[153,182]
+	},
+	{
+		"EventID":2106,
+		"EventDescribe":"在夜晚看到流星，许愿自己变得更强，经验值增加了*",
+		"Probability":[221,250],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[9],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[186,215],
+		"EventB":[171,200],
+		"EventC":[183,212]
+	},
+	{
+		"EventID":2107,
+		"EventDescribe":"又一次蜕皮了，蜕皮次数越多就会变得越强，经验值增加了*",
+		"Probability":[251,270],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[10],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[216,235],
+		"EventB":[201,220],
+		"EventC":[213,232]
+	},
+	{
+		"EventID":2108,
+		"EventDescribe":"前方出现巨大的瀑布，决定在瀑布下进行修炼，经验值增加了*",
+		"Probability":[271,290],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[15],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[236,255],
+		"EventB":[221,240],
+		"EventC":[233,252]
+	},
+	{
+		"EventID":2109,
+		"EventDescribe":"被世外高人指点了一番，有所感悟，经验值增加了*",
+		"Probability":[291,310],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[17],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[256,275],
+		"EventB":[241,260],
+		"EventC":[253,272]
+	},
+	{
+		"EventID":2110,
+		"EventDescribe":"集齐7颗龙珠、许下了获得变强的愿望。经验值增加了*",
+		"Probability":[311,320],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[20],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[276,285],
+		"EventB":[261,270],
+		"EventC":[273,282]
+	},
+	{
+		"EventID":2111,
+		"EventDescribe":"发现地上有少数掉落的金币，获得*枚金币",
+		"Probability":[321,380],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[10,30],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[286,345],
+		"EventB":[271,330],
+		"EventC":[283,342]
+	},
+	{
+		"EventID":2112,
+		"EventDescribe":"在股市中，选中了一支好股，赚了一点小钱，获得*枚金币",
+		"Probability":[381,430],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[20,40],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[346,395],
+		"EventB":[331,380],
+		"EventC":[343,392]
+	},
+	{
+		"EventID":2113,
+		"EventDescribe":"加油吧打工人！当了一天的临时工，获得*枚金币",
+		"Probability":[431,470],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[30,50],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[396,435],
+		"EventB":[381,420],
+		"EventC":[393,432]
+	},
+	{
+		"EventID":2114,
+		"EventDescribe":"发现废弃的矿洞，探索一番只找到一些老旧的金币，获得*枚金币",
+		"Probability":[471,510],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[30,50],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[436,475],
+		"EventB":[421,460],
+		"EventC":[433,472]
+	},
+	{
+		"EventID":2115,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第三名，获得*枚金币",
+		"Probability":[511,540],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[50,70],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[476,505],
+		"EventB":[461,490],
+		"EventC":[473,502]
+	},
+	{
+		"EventID":2116,
+		"EventDescribe":"当一段时间的信差，赚了一点小钱，获得*枚金币",
+		"Probability":[541,570],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[60,80],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[506,535],
+		"EventB":[491,520],
+		"EventC":[503,532]
+	},
+	{
+		"EventID":2117,
+		"EventDescribe":"安全护送商人到达指定地点，获得*枚金币",
+		"Probability":[571,590],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[70,90],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[536,555],
+		"EventB":[521,540],
+		"EventC":[533,552]
+	},
+	{
+		"EventID":2118,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了一箱金币，获得获得*枚金币",
+		"Probability":[591,610],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[110,130],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[556,575],
+		"EventB":[541,560],
+		"EventC":[553,572]
+	},
+	{
+		"EventID":2119,
+		"EventDescribe":"意外获得藏宝图，一路跟随藏宝图的指引最终发现了宝藏！获得*枚金币",
+		"Probability":[611,630],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[130,150],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[576,595],
+		"EventB":[561,580],
+		"EventC":[573,592]
+	},
+	{
+		"EventID":2120,
+		"EventDescribe":"集齐7颗龙珠、许下了获得很多金币的愿望。获得获得*枚金币",
+		"Probability":[631,640],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[190,210],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[596,605],
+		"EventB":[581,590],
+		"EventC":[593,602]
+	},
+	{
+		"EventID":2121,
+		"EventDescribe":"报名参加了武术课程，学习后变得更强了，力量增加了*",
+		"Probability":[641,648],
+		"EventType":"AddStr",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[606,613],
+		"EventB":[591,598],
+		"EventC":[603,610]
+	},
+	{
+		"EventID":2122,
+		"EventDescribe":"又一次蜕皮了，蜕皮次数越多就会变得越强，体质增加了*",
+		"Probability":[649,656],
+		"EventType":"AddCon",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[614,621],
+		"EventB":[599,606],
+		"EventC":[611,618]
+	},
+	{
+		"EventID":2123,
+		"EventDescribe":"花了一段时间保养自身的甲壳，防御增加了*",
+		"Probability":[657,664],
+		"EventType":"AddDef",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[622,629],
+		"EventB":[607,614],
+		"EventC":[619,626]
+	},
+	{
+		"EventID":2124,
+		"EventDescribe":"进行了一天的梅花桩修炼，身手似乎变得更加轻盈，敏捷增加了*",
+		"Probability":[665,670],
+		"EventType":"AddDex",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[630,635],
+		"EventB":[615,620],
+		"EventC":[627,632]
+	},
+	{
+		"EventID":2125,
+		"EventDescribe":"向牙医请教了保养牙齿的方法，攻击力增加了*",
+		"Probability":[671,683],
+		"EventType":"AddAtk",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[2,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[636,648],
+		"EventB":[621,633],
+		"EventC":[633,645]
+	},
+	{
+		"EventID":2126,
+		"EventDescribe":"在搏击俱乐部中训练了一天的抗击打能力，防御力增加了*",
+		"Probability":[684,696],
+		"EventType":"AddDefense",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[2,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[649,661],
+		"EventB":[634,646],
+		"EventC":[646,658]
+	},
+	{
+		"EventID":2127,
+		"EventDescribe":"在大胃王比赛中海吃胡喝，生命值增加了*",
+		"Probability":[697,710],
+		"EventType":"AddHp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[10,15],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[662,675],
+		"EventB":[647,660],
+		"EventC":[659,672]
+	},
+	{
+		"EventID":2128,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子×*",
+		"Probability":[711,720],
+		"EventType":"GetProp",
+		"PropID":[1901],
+		"SkillID":0,
+		"Number":[2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[676,685],
+		"EventB":[661,670],
+		"EventC":[673,682]
+	},
+	{
+		"EventID":2129,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩×*",
+		"Probability":[721,727],
+		"EventType":"GetProp",
+		"PropID":[1902],
+		"SkillID":0,
+		"Number":[2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[686,692],
+		"EventB":[671,677],
+		"EventC":[683,689]
+	},
+	{
+		"EventID":2130,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包×*",
+		"Probability":[728,730],
+		"EventType":"GetProp",
+		"PropID":[1903],
+		"SkillID":0,
+		"Number":[2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[693,695],
+		"EventB":[678,680],
+		"EventC":[690,692]
+	},
+	{
+		"EventID":2131,
+		"EventDescribe":"夜晚睡觉着凉，不小心感冒了，获得技能感冒",
+		"Probability":[731,735],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3601,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[696,700],
+		"EventB":[681,685],
+		"EventC":[693,697]
+	},
+	{
+		"EventID":2132,
+		"EventDescribe":"走在路上被绊倒，然后发现躺着也挺不错的，不想起来了，获得技能懒惰",
+		"Probability":[736,740],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3602,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[701,705],
+		"EventB":[686,690],
+		"EventC":[698,702]
+	},
+	{
+		"EventID":2133,
+		"EventDescribe":"在一家赌场中，本打算赢了就走，结果在一次次的失败中失去了理智，获得技能赌徒",
+		"Probability":[741,745],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3612,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[706,710],
+		"EventB":[691,695],
+		"EventC":[703,707]
+	},
+	{
+		"EventID":2134,
+		"EventDescribe":"每天坚持100个俯卧撑、100个仰卧起坐，结果实力没有变强，但是开始掉发了，获得技能掉发危机",
+		"Probability":[746,750],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3611,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[711,715],
+		"EventB":[696,700],
+		"EventC":[708,712]
+	},
+	{
+		"EventID":2135,
+		"EventDescribe":"从游乐园的鬼屋出来后就变得胆小了，获得技能胆小",
+		"Probability":[751,755],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3605,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[716,720],
+		"EventB":[701,705],
+		"EventC":[713,717]
+	},
+	{
+		"EventID":2136,
+		"EventDescribe":"在品尝到酒的味道后，似乎一发不可收拾，不分时间不分场地的酗酒，获得技能酒鬼",
+		"Probability":[756,760],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3613,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[721,725],
+		"EventB":[706,710],
+		"EventC":[718,722]
+	},
+	{
+		"EventID":2137,
+		"EventDescribe":"在大胃王比赛中吃坏肚子了，获得技能虚弱",
+		"Probability":[761,765],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3607,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[726,730],
+		"EventB":[711,715],
+		"EventC":[723,727]
+	},
+	{
+		"EventID":2138,
+		"EventDescribe":"前方有异教徒在招揽新的教徒，打算进去看看就立马离开，但是在听完异教徒的演讲后一切都晚了，获得技能异教徒",
+		"Probability":[766,770],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3608,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[731,735],
+		"EventB":[716,720],
+		"EventC":[728,732]
+	},
+	{
+		"EventID":2139,
+		"EventDescribe":"前方有异教徒在招揽新的教徒，打算进去看看就立马离开，在听完异教徒的演讲后打算离开时被异教徒诅咒了，获得技能渎神",
+		"Probability":[771,775],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3609,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[736,740],
+		"EventB":[721,725],
+		"EventC":[733,737]
+	},
+	{
+		"EventID":2140,
+		"EventDescribe":"在夜晚看到流星，正打算许愿，结果流星又飞回去了，对自己产生了怀疑，获得技能自我否定",
+		"Probability":[776,780],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3610,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[741,745],
+		"EventB":[726,730],
+		"EventC":[738,742]
+	},
+	{
+		"EventID":2141,
+		"EventDescribe":"看到一只蛐蛐，打斗一番将他捆起来了，获得蛐蛐一只",
+		"Probability":[781,785],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[30,60],
+		"EventRace":1,
+		"EventA":[746,785],
+		"EventB":[731,760],
+		"EventC":[743,747]
+	},
+	{
+		"EventID":2142,
+		"EventDescribe":"使用陷阱抓到一只蛐蛐了，获得蛐蛐一只",
+		"Probability":[786,788],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[40,70],
+		"EventRace":1,
+		"EventA":[786,788],
+		"EventB":[761,780],
+		"EventC":[748,750]
+	},
+	{
+		"EventID":2143,
+		"EventDescribe":"发现一只需要帮助的蛐蛐，救助蛐蛐后，蛐蛐决定跟你混了，获得蛐蛐一只",
+		"Probability":[789,790],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[50,80],
+		"EventRace":1,
+		"EventA":[789,790],
+		"EventB":[781,790],
+		"EventC":[751,790]
+	},
+	{
+		"EventID":2144,
+		"EventDescribe":"走了很久啥也没发现",
+		"Probability":[791,796],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[791,796],
+		"EventB":[791,796],
+		"EventC":[791,796]
+	},
+	{
+		"EventID":2145,
+		"EventDescribe":"看到老虎机后上去玩了一把，什么也没有得到",
+		"Probability":[797,802],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[797,802],
+		"EventB":[797,802],
+		"EventC":[797,802]
+	},
+	{
+		"EventID":2146,
+		"EventDescribe":"集齐7颗龙珠、许下了要更多愿望的愿望，结果什么也没有得到。",
+		"Probability":[803,808],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[803,808],
+		"EventB":[803,808],
+		"EventC":[803,808]
+	},
+	{
+		"EventID":2147,
+		"EventDescribe":"发现一家不正规的赌场后果断举报，获得技能优秀公民",
+		"Probability":[809,814],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3347,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[809,814],
+		"EventB":[809,814],
+		"EventC":[809,814]
+	},
+	{
+		"EventID":2148,
+		"EventDescribe":"在路边商店购买了盲盒，获得了超级蛐蛐血清一份，获得技能队长",
+		"Probability":[815,820],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3345,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[815,820],
+		"EventB":[815,820],
+		"EventC":[815,820]
+	},
+	{
+		"EventID":2149,
+		"EventDescribe":"前方有蛐蛐正在欺负弱小，你上前教训了他一顿，获得技能正义",
+		"Probability":[821,826],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3340,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[821,826],
+		"EventB":[821,826],
+		"EventC":[821,826]
+	},
+	{
+		"EventID":2150,
+		"EventDescribe":"在竞技场中勇敢的面对比自身强大的对方，虽败犹荣，获得技能挑战者",
+		"Probability":[827,832],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3342,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[827,832],
+		"EventB":[827,832],
+		"EventC":[827,832]
+	},
+	{
+		"EventID":2151,
+		"EventDescribe":"再一次蜕皮，这次蜕皮似乎有些异常，获得技能变异",
+		"Probability":[833,838],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3344,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[833,838],
+		"EventB":[833,838],
+		"EventC":[833,838]
+	},
+	{
+		"EventID":2152,
+		"EventDescribe":"前方有异教徒在招揽新的教徒，看到后立马离开了，获得技能警惕",
+		"Probability":[839,844],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3346,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[839,844],
+		"EventB":[839,844],
+		"EventC":[839,844]
+	},
+	{
+		"EventID":2153,
+		"EventDescribe":"在老旧的茶馆中找到一袋茶叶，获得道具天山绿茶×*",
+		"Probability":[845,847],
+		"EventType":"GetProp",
+		"PropID":[1014],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[845,847],
+		"EventB":[845,847],
+		"EventC":[845,847]
+	},
+	{
+		"EventID":2154,
+		"EventDescribe":"在一个溶洞中发现了时间胶囊，获得道具时间胶囊B×*",
+		"Probability":[848,850],
+		"EventType":"GetProp",
+		"PropID":[1802],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[848,850],
+		"EventB":[848,850],
+		"EventC":[848,850]
+	},
+	{
+		"EventID":2155,
+		"EventDescribe":"路过集市时，拿着5本破烂书籍的乞丐冒了出来，抱着打法的心态买了一本就走了,获得技能书×*",
+		"Probability":[851,875],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[851,875],
+		"EventB":[851,875],
+		"EventC":[851,875]
+	},
+	{
+		"EventID":2156,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第一名，获得技能书×*",
+		"Probability":[876,900],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[876,900],
+		"EventB":[876,900],
+		"EventC":[876,900]
+	},
+	{
+		"EventID":2157,
+		"EventDescribe":"在小店旁看到老虎机，上去玩了一把，中了特等奖，获得技能书×*",
+		"Probability":[901,925],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[901,925],
+		"EventB":[901,925],
+		"EventC":[901,925]
+	},
+	{
+		"EventID":2158,
+		"EventDescribe":"发现废弃的矿洞，探索一番找到沾满灰尘的书籍，获得技能书×*",
+		"Probability":[926,950],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[2],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[926,950],
+		"EventB":[926,950],
+		"EventC":[926,950]
+	},
+	{
+		"EventID":2159,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第二名，获得道具大肉包子×*",
+		"Probability":[951,970],
+		"EventType":"GetProp",
+		"PropID":[1001],
+		"SkillID":0,
+		"Number":[4],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[951,970],
+		"EventB":[951,970],
+		"EventC":[951,970]
+	},
+	{
+		"EventID":2160,
+		"EventDescribe":"路见不平拔刀相助，作为回报获得了道具腊八粥×*",
+		"Probability":[971,985],
+		"EventType":"GetProp",
+		"PropID":[1002],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[971,985],
+		"EventB":[971,985],
+		"EventC":[971,985]
+	},
+	{
+		"EventID":2161,
+		"EventDescribe":"在路边商店购买了盲盒，获得道具龙须面×*",
+		"Probability":[986,995],
+		"EventType":"GetProp",
+		"PropID":[1003],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[986,995],
+		"EventB":[986,995],
+		"EventC":[986,995]
+	},
+	{
+		"EventID":2162,
+		"EventDescribe":"在一处山洞中发现了隐藏的宝箱，获得道具黄金蛋炒饭×*",
+		"Probability":[996,999],
+		"EventType":"GetProp",
+		"PropID":[1004],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[996,999],
+		"EventB":[996,999],
+		"EventC":[996,999]
+	},
+	{
+		"EventID":2163,
+		"EventDescribe":"在小店旁看到老虎机，上去玩了一把结果中了大奖，获得道具满汉全席×*",
+		"Probability":[1000,1000],
+		"EventType":"GetProp",
+		"PropID":[1015],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":1,
+		"EventA":[1000,1000],
+		"EventB":[1000,1000],
+		"EventC":[1000,1000]
+	},
+	{
+		"EventID":2201,
+		"EventDescribe":"每天坚持锻炼，才能变的更强，经验值增加了*",
+		"Probability":[1,60],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[1,25],
+		"EventB":[1,50],
+		"EventC":[1,22]
+	},
+	{
+		"EventID":2202,
+		"EventDescribe":"早睡早起、定时吃饭，身体才是一切的根本，经验值增加了*",
+		"Probability":[61,110],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[5],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[26,75],
+		"EventB":[51,90],
+		"EventC":[23,72]
+	},
+	{
+		"EventID":2203,
+		"EventDescribe":"在一处安静的地方，回顾了之前的战斗后似乎有所感悟，经验值增加了*",
+		"Probability":[111,150],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[6],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[76,115],
+		"EventB":[91,120],
+		"EventC":[73,112]
+	},
+	{
+		"EventID":2204,
+		"EventDescribe":"在黑森林中突然被一只实力强劲的蛐蛐挑战，打斗一番后并没有分出胜负，对方表面只是切除一下然后就离开了，经验值增加了*",
+		"Probability":[151,190],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[7],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[116,155],
+		"EventB":[121,150],
+		"EventC":[113,152]
+	},
+	{
+		"EventID":2205,
+		"EventDescribe":"在夜晚看到流星，许愿自己变得更强，经验值增加了*",
+		"Probability":[191,220],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[8],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[156,185],
+		"EventB":[151,170],
+		"EventC":[153,182]
+	},
+	{
+		"EventID":2206,
+		"EventDescribe":"又一次蜕皮了，蜕皮次数越多就会变得越强，经验值增加了*",
+		"Probability":[221,250],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[9],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[186,215],
+		"EventB":[171,200],
+		"EventC":[183,212]
+	},
+	{
+		"EventID":2207,
+		"EventDescribe":"前方出现巨大的瀑布，决定在瀑布下进行修炼，经验值增加了*",
+		"Probability":[251,270],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[10],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[216,235],
+		"EventB":[201,220],
+		"EventC":[213,232]
+	},
+	{
+		"EventID":2208,
+		"EventDescribe":"被世外高人指点了一番，有所感悟，经验值增加了*",
+		"Probability":[271,290],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[15],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[236,255],
+		"EventB":[221,240],
+		"EventC":[233,252]
+	},
+	{
+		"EventID":2209,
+		"EventDescribe":"集齐7颗龙珠、许下了获得变强的愿望。经验值增加了*",
+		"Probability":[291,310],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[17],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[256,275],
+		"EventB":[241,260],
+		"EventC":[253,272]
+	},
+	{
+		"EventID":2210,
+		"EventDescribe":"跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，受到了亚特兰蒂斯人民的款待和祝福后，经验值增加了*",
+		"Probability":[311,320],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[20],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[276,285],
+		"EventB":[261,270],
+		"EventC":[273,282]
+	},
+	{
+		"EventID":2211,
+		"EventDescribe":"在一个把瓶盖当作货币的小镇中，有瓶盖换取了一些金币，获得*枚金币",
+		"Probability":[321,380],
+		"EventType":"AddMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[20,40],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[286,345],
+		"EventB":[271,330],
+		"EventC":[283,342]
+	},
+	{
+		"EventID":2212,
+		"EventDescribe":"在股市中，选中了一支好股，赚了一点小钱，获得*枚金币",
+		"Probability":[381,430],
+		"EventType":"AddMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[30,50],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[346,395],
+		"EventB":[331,380],
+		"EventC":[343,392]
+	},
+	{
+		"EventID":2213,
+		"EventDescribe":"加油吧打工人！当了一天的临时工，获得*枚金币",
+		"Probability":[431,470],
+		"EventType":"AddMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[40,60],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[396,435],
+		"EventB":[381,420],
+		"EventC":[393,432]
+	},
+	{
+		"EventID":2214,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第三名，获得*枚金币",
+		"Probability":[471,510],
+		"EventType":"AddMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[60,80],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[436,475],
+		"EventB":[421,460],
+		"EventC":[433,472]
+	},
+	{
+		"EventID":2215,
+		"EventDescribe":"当一段时间的信差，赚了一点小钱，获得*枚金币",
+		"Probability":[511,540],
+		"EventType":"AddMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[80,100],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[476,505],
+		"EventB":[461,490],
+		"EventC":[473,502]
+	},
+	{
+		"EventID":2216,
+		"EventDescribe":"安全护送商人到达指定地点，获得*枚金币",
+		"Probability":[541,570],
+		"EventType":"AddMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[100,120],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[506,535],
+		"EventB":[491,520],
+		"EventC":[503,532]
+	},
+	{
+		"EventID":2217,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了一箱金币，获得获得*枚金币",
+		"Probability":[571,590],
+		"EventType":"AddMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[110,130],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[536,555],
+		"EventB":[521,540],
+		"EventC":[533,552]
+	},
+	{
+		"EventID":2218,
+		"EventDescribe":"意外获得藏宝图，一路跟随藏宝图的指引最终发现了宝藏！获得*枚金币",
+		"Probability":[591,610],
+		"EventType":"AddMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[170,190],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[556,575],
+		"EventB":[541,560],
+		"EventC":[553,572]
+	},
+	{
+		"EventID":2219,
+		"EventDescribe":"集齐7颗龙珠、许下了获得很多金币的愿望。获得获得*枚金币",
+		"Probability":[611,630],
+		"EventType":"AddMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[200,220],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[576,595],
+		"EventB":[561,580],
+		"EventC":[573,592]
+	},
+	{
+		"EventID":2220,
+		"EventDescribe":"跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，在拿上少部分值钱的东西就离开了，获得*枚金币",
+		"Probability":[631,640],
+		"EventType":"AddMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[290,310],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[596,605],
+		"EventB":[581,590],
+		"EventC":[593,602]
+	},
+	{
+		"EventID":2221,
+		"EventDescribe":"报名参加了武术课程，学习后变得更强了，力量增加了*",
+		"Probability":[641,648],
+		"EventType":"AddStr",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[606,613],
+		"EventB":[591,598],
+		"EventC":[603,610]
+	},
+	{
+		"EventID":2222,
+		"EventDescribe":"又一次蜕皮了，蜕皮次数越多就会变得越强，体质增加了*",
+		"Probability":[649,656],
+		"EventType":"AddCon",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[614,621],
+		"EventB":[599,606],
+		"EventC":[611,618]
+	},
+	{
+		"EventID":2223,
+		"EventDescribe":"花了一段时间保养自身的甲壳，防御增加了*",
+		"Probability":[657,664],
+		"EventType":"AddDef",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[622,629],
+		"EventB":[607,614],
+		"EventC":[619,626]
+	},
+	{
+		"EventID":2224,
+		"EventDescribe":"进行了一天的梅花桩修炼，身手似乎变得更加轻盈，敏捷增加了*",
+		"Probability":[665,670],
+		"EventType":"AddDex",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[630,635],
+		"EventB":[615,620],
+		"EventC":[627,632]
+	},
+	{
+		"EventID":2225,
+		"EventDescribe":"向牙医请教了保养牙齿的方法，攻击力增加了*",
+		"Probability":[671,683],
+		"EventType":"AddAtk",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[2,4],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[636,648],
+		"EventB":[621,633],
+		"EventC":[633,645]
+	},
+	{
+		"EventID":2226,
+		"EventDescribe":"在搏击俱乐部中训练了一天的抗击打能力，防御力增加了*",
+		"Probability":[684,696],
+		"EventType":"AddDefense",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[2,4],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[649,661],
+		"EventB":[634,646],
+		"EventC":[646,658]
+	},
+	{
+		"EventID":2227,
+		"EventDescribe":"在大胃王比赛中海吃胡喝，生命值增加了*",
+		"Probability":[697,710],
+		"EventType":"AddHp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[15,20],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[662,675],
+		"EventB":[647,660],
+		"EventC":[659,672]
+	},
+	{
+		"EventID":2228,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子×*",
+		"Probability":[711,720],
+		"EventType":"GetProp",
+		"PropID":[1901],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[676,685],
+		"EventB":[661,670],
+		"EventC":[673,682]
+	},
+	{
+		"EventID":2229,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩×*",
+		"Probability":[721,727],
+		"EventType":"GetProp",
+		"PropID":[1902],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[686,692],
+		"EventB":[671,677],
+		"EventC":[683,689]
+	},
+	{
+		"EventID":2230,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包×*",
+		"Probability":[728,730],
+		"EventType":"GetProp",
+		"PropID":[1903],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[693,695],
+		"EventB":[678,680],
+		"EventC":[690,692]
+	},
+	{
+		"EventID":2231,
+		"EventDescribe":"在游乐园玩耍，被黑衣人注射了神秘药剂，醒来后发现身体变小了，获得技能微观世界",
+		"Probability":[731,735],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3614,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[696,700],
+		"EventB":[681,685],
+		"EventC":[693,697]
+	},
+	{
+		"EventID":2232,
+		"EventDescribe":"在命运骰子游戏中摇到了点数1，结果在那之后就一直很倒霉，获得技能倒霉蛋",
+		"Probability":[736,740],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3615,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[701,705],
+		"EventB":[686,690],
+		"EventC":[698,702]
+	},
+	{
+		"EventID":2233,
+		"EventDescribe":"在一家赌场中，本打算赢了就走，结果在一次次的失败中失去了理智，获得技能赌徒",
+		"Probability":[741,745],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3612,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[706,710],
+		"EventB":[691,695],
+		"EventC":[703,707]
+	},
+	{
+		"EventID":2234,
+		"EventDescribe":"每天坚持100个俯卧撑、100个仰卧起坐，结果实力没有变强，但是开始掉发了，获得技能掉发危机",
+		"Probability":[746,750],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3611,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[711,715],
+		"EventB":[696,700],
+		"EventC":[708,712]
+	},
+	{
+		"EventID":2235,
+		"EventDescribe":"跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，拿走了大量值钱的东西后，被亚特兰蒂斯人民诅咒了，并且在离开亚特兰蒂斯时物品都变成了石头！获得技能古老诅咒",
+		"Probability":[751,755],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3618,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[716,720],
+		"EventB":[701,705],
+		"EventC":[713,717]
+	},
+	{
+		"EventID":2236,
+		"EventDescribe":"在品尝到酒的味道后，似乎一发不可收拾，不分时间不分场地的酗酒，获得技能酒鬼",
+		"Probability":[756,760],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3613,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[721,725],
+		"EventB":[706,710],
+		"EventC":[718,722]
+	},
+	{
+		"EventID":2237,
+		"EventDescribe":"走在路上被绊倒，然后发现躺着也挺不错的，不想起来了，获得技能懒惰",
+		"Probability":[761,765],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3602,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[726,730],
+		"EventB":[711,715],
+		"EventC":[723,727]
+	},
+	{
+		"EventID":2238,
+		"EventDescribe":"前方有异教徒在招揽新的教徒，打算进去看看就立马离开，但是在听完异教徒的演讲后一切都晚了，获得技能异教徒",
+		"Probability":[766,770],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3608,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[731,735],
+		"EventB":[716,720],
+		"EventC":[728,732]
+	},
+	{
+		"EventID":2239,
+		"EventDescribe":"前方有异教徒在招揽新的教徒，打算进去看看就立马离开，在听完异教徒的演讲后打算离开时被异教徒诅咒了，获得技能渎神",
+		"Probability":[771,775],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3609,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[736,740],
+		"EventB":[721,725],
+		"EventC":[733,737]
+	},
+	{
+		"EventID":2240,
+		"EventDescribe":"在夜晚看到流星，正打算许愿，结果流星又飞回去了，对自己产生了怀疑，获得技能自我否定",
+		"Probability":[776,780],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3610,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[741,745],
+		"EventB":[726,730],
+		"EventC":[738,742]
+	},
+	{
+		"EventID":2241,
+		"EventDescribe":"看到一只蛐蛐，打斗一番将他捆起来了，获得蛐蛐一只",
+		"Probability":[781,785],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[40,70],
+		"EventRace":2,
+		"EventA":[746,785],
+		"EventB":[731,760],
+		"EventC":[743,747]
+	},
+	{
+		"EventID":2242,
+		"EventDescribe":"使用陷阱抓到一只蛐蛐了，获得蛐蛐一只",
+		"Probability":[786,788],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[50,80],
+		"EventRace":2,
+		"EventA":[786,788],
+		"EventB":[761,780],
+		"EventC":[748,750]
+	},
+	{
+		"EventID":2243,
+		"EventDescribe":"发现一只需要帮助的蛐蛐，救助蛐蛐后，蛐蛐决定跟你混了，获得蛐蛐一只",
+		"Probability":[789,790],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[60,90],
+		"EventRace":2,
+		"EventA":[789,790],
+		"EventB":[781,790],
+		"EventC":[751,790]
+	},
+	{
+		"EventID":2244,
+		"EventDescribe":"走了很久啥也没发现",
+		"Probability":[791,797],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[791,797],
+		"EventB":[791,797],
+		"EventC":[791,797]
+	},
+	{
+		"EventID":2245,
+		"EventDescribe":"看到老虎机后上去玩了一把，什么也没有得到",
+		"Probability":[798,804],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[798,804],
+		"EventB":[798,804],
+		"EventC":[798,804]
+	},
+	{
+		"EventID":2246,
+		"EventDescribe":"集齐7颗龙珠、许下了要更多愿望的愿望，结果什么也没有得到。",
+		"Probability":[805,811],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[805,811],
+		"EventB":[805,811],
+		"EventC":[805,811]
+	},
+	{
+		"EventID":2247,
+		"EventDescribe":"发现一家不正规的赌场后果断举报，获得技能优秀公民",
+		"Probability":[812,817],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3347,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[812,817],
+		"EventB":[812,817],
+		"EventC":[812,817]
+	},
+	{
+		"EventID":2248,
+		"EventDescribe":"在路边商店购买了盲盒，获得了超级蛐蛐血清一份，获得技能队长",
+		"Probability":[818,823],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3345,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[818,823],
+		"EventB":[818,823],
+		"EventC":[818,823]
+	},
+	{
+		"EventID":2249,
+		"EventDescribe":"在命运骰子游戏中摇到了点数6，结果在那之后运气一直很好，获得技能幸运儿",
+		"Probability":[824,829],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3339,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[824,829],
+		"EventB":[824,829],
+		"EventC":[824,829]
+	},
+	{
+		"EventID":2250,
+		"EventDescribe":"在一个溶洞中发现了时间胶囊，获得道具时间胶囊A×*",
+		"Probability":[830,835],
+		"EventType":"GetProp",
+		"PropID":[1803],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[830,835],
+		"EventB":[830,835],
+		"EventC":[830,835]
+	},
+	{
+		"EventID":2251,
+		"EventDescribe":"再一次蜕皮，这次蜕皮似乎有些异常，获得技能变异",
+		"Probability":[836,841],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3344,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[836,841],
+		"EventB":[836,841],
+		"EventC":[836,841]
+	},
+	{
+		"EventID":2252,
+		"EventDescribe":"前方有异教徒在招揽新的教徒，看到后立马离开了，获得技能警惕",
+		"Probability":[842,847],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3346,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[842,847],
+		"EventB":[842,847],
+		"EventC":[842,847]
+	},
+	{
+		"EventID":2253,
+		"EventDescribe":"在老旧的茶馆中找到一袋茶叶，获得道具天山绿茶×*",
+		"Probability":[848,850],
+		"EventType":"GetProp",
+		"PropID":[1014],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[848,850],
+		"EventB":[848,850],
+		"EventC":[848,850]
+	},
+	{
+		"EventID":2254,
+		"EventDescribe":"路过集市时，拿着5本破烂书籍的乞丐冒了出来，抱着打法的心态买了一本就走了,获得技能书×*",
+		"Probability":[851,875],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[851,875],
+		"EventB":[851,875],
+		"EventC":[851,875]
+	},
+	{
+		"EventID":2255,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第一名，获得技能书×*",
+		"Probability":[876,900],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[876,900],
+		"EventB":[876,900],
+		"EventC":[876,900]
+	},
+	{
+		"EventID":2256,
+		"EventDescribe":"在小店旁看到老虎机，上去玩了一把，中了特等奖，获得技能书×*",
+		"Probability":[901,925],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[901,925],
+		"EventB":[901,925],
+		"EventC":[901,925]
+	},
+	{
+		"EventID":2257,
+		"EventDescribe":"发现废弃的矿洞，探索一番找到沾满灰尘的书籍，获得技能书×*",
+		"Probability":[926,950],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[926,950],
+		"EventB":[926,950],
+		"EventC":[926,950]
+	},
+	{
+		"EventID":2258,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第二名，获得道具大肉包子×*",
+		"Probability":[951,970],
+		"EventType":"GetProp",
+		"PropID":[1001],
+		"SkillID":0,
+		"Number":[10],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[951,970],
+		"EventB":[951,970],
+		"EventC":[951,970]
+	},
+	{
+		"EventID":2259,
+		"EventDescribe":"路见不平拔刀相助，作为回报获得了道具腊八粥×*",
+		"Probability":[971,985],
+		"EventType":"GetProp",
+		"PropID":[1002],
+		"SkillID":0,
+		"Number":[2],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[971,985],
+		"EventB":[971,985],
+		"EventC":[971,985]
+	},
+	{
+		"EventID":2260,
+		"EventDescribe":"在路边商店购买了盲盒，获得道具龙须面×*",
+		"Probability":[986,995],
+		"EventType":"GetProp",
+		"PropID":[1003],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[986,995],
+		"EventB":[986,995],
+		"EventC":[986,995]
+	},
+	{
+		"EventID":2261,
+		"EventDescribe":"在一处山洞中发现了隐藏的宝箱，获得道具黄金蛋炒饭×*",
+		"Probability":[996,999],
+		"EventType":"GetProp",
+		"PropID":[1004],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[996,999],
+		"EventB":[996,999],
+		"EventC":[996,999]
+	},
+	{
+		"EventID":2262,
+		"EventDescribe":"在小店旁看到老虎机，上去玩了一把结果中了大奖，获得道具满汉全席×*",
+		"Probability":[1000,1000],
+		"EventType":"GetProp",
+		"PropID":[1015],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":2,
+		"EventA":[1000,1000],
+		"EventB":[1000,1000],
+		"EventC":[1000,1000]
+	},
+	{
+		"EventID":2301,
+		"EventDescribe":"每天坚持锻炼，才能变的更强，经验值增加了*",
+		"Probability":[1,60],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[1,25],
+		"EventB":[1,50],
+		"EventC":[1,22]
+	},
+	{
+		"EventID":2302,
+		"EventDescribe":"早睡早起、定时吃饭，身体才是一切的根本，经验值增加了*",
+		"Probability":[61,110],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[5],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[26,75],
+		"EventB":[51,90],
+		"EventC":[23,72]
+	},
+	{
+		"EventID":2303,
+		"EventDescribe":"在一处安静的地方，回顾了之前的战斗后似乎有所感悟，经验值增加了*",
+		"Probability":[111,150],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[6],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[76,115],
+		"EventB":[91,120],
+		"EventC":[73,112]
+	},
+	{
+		"EventID":2304,
+		"EventDescribe":"在黑森林中突然被一只实力强劲的蛐蛐挑战，打斗一番后并没有分出胜负，对方表示只是切除一下然后就离开了，经验值增加了*",
+		"Probability":[151,190],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[7],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[116,155],
+		"EventB":[121,150],
+		"EventC":[113,152]
+	},
+	{
+		"EventID":2305,
+		"EventDescribe":"在夜晚看到流星，许愿自己变得更强，经验值增加了*",
+		"Probability":[191,220],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[8],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[156,185],
+		"EventB":[151,170],
+		"EventC":[153,182]
+	},
+	{
+		"EventID":2306,
+		"EventDescribe":"又一次蜕皮了，蜕皮次数越多就会变得越强，经验值增加了*",
+		"Probability":[221,250],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[9],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[186,215],
+		"EventB":[171,200],
+		"EventC":[183,212]
+	},
+	{
+		"EventID":2307,
+		"EventDescribe":"在参加里彻山脉的魔鬼训练营后，实力变的更强了，经验值增加了*",
+		"Probability":[251,270],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[10],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[216,235],
+		"EventB":[201,220],
+		"EventC":[213,232]
+	},
+	{
+		"EventID":2308,
+		"EventDescribe":"在探索山脉时发现了许多从未见过的东西，经验值增加了*",
+		"Probability":[271,290],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[15],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[236,255],
+		"EventB":[221,240],
+		"EventC":[233,252]
+	},
+	{
+		"EventID":2309,
+		"EventDescribe":"集齐7颗龙珠、许下了获得变强的愿望。经验值增加了*",
+		"Probability":[291,310],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[17],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[256,275],
+		"EventB":[241,260],
+		"EventC":[253,272]
+	},
+	{
+		"EventID":2310,
+		"EventDescribe":"跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，受到了亚特兰蒂斯人民的款待和祝福后，经验值增加了*",
+		"Probability":[311,320],
+		"EventType":"AddExp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[20],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[276,285],
+		"EventB":[261,270],
+		"EventC":[273,282]
+	},
+	{
+		"EventID":2311,
+		"EventDescribe":"在一个把瓶盖当作货币的小镇中，有瓶盖换取了一些金币，获得*枚金币",
+		"Probability":[321,380],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[40,60],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[286,345],
+		"EventB":[271,330],
+		"EventC":[283,342]
+	},
+	{
+		"EventID":2312,
+		"EventDescribe":"在股市中，选中了一支好股，赚了一点小钱，获得*枚金币",
+		"Probability":[381,430],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[60,80],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[346,395],
+		"EventB":[331,380],
+		"EventC":[343,392]
+	},
+	{
+		"EventID":2313,
+		"EventDescribe":"加油吧打工人！当了一天的临时工，获得*枚金币",
+		"Probability":[431,470],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[70,90],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[396,435],
+		"EventB":[381,420],
+		"EventC":[393,432]
+	},
+	{
+		"EventID":2314,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第三名，获得*枚金币",
+		"Probability":[471,510],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[90,110],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[436,475],
+		"EventB":[421,460],
+		"EventC":[433,472]
+	},
+	{
+		"EventID":2315,
+		"EventDescribe":"遇到了悬赏令上的大盗，打斗一番将其逮捕，得到悬赏令上的赏金，获得*枚金币",
+		"Probability":[511,540],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[110,130],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[476,505],
+		"EventB":[461,490],
+		"EventC":[473,502]
+	},
+	{
+		"EventID":2316,
+		"EventDescribe":"在搏击比赛中赢得几场胜利后获得了奖金，获得*枚金币",
+		"Probability":[541,570],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[130,150],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[506,535],
+		"EventB":[491,520],
+		"EventC":[503,532]
+	},
+	{
+		"EventID":2317,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了一箱金币，获得获得*枚金币",
+		"Probability":[571,590],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[140,160],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[536,555],
+		"EventB":[521,540],
+		"EventC":[533,552]
+	},
+	{
+		"EventID":2318,
+		"EventDescribe":"意外获得藏宝图，一路跟随藏宝图的指引最终发现了宝藏！获得*枚金币",
+		"Probability":[591,610],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[190,210],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[556,575],
+		"EventB":[541,560],
+		"EventC":[553,572]
+	},
+	{
+		"EventID":2319,
+		"EventDescribe":"集齐7颗龙珠、许下了获得很多金币的愿望。获得获得*枚金币",
+		"Probability":[611,630],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[290,310],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[576,595],
+		"EventB":[561,580],
+		"EventC":[573,592]
+	},
+	{
+		"EventID":2320,
+		"EventDescribe":"跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，在拿上少部分值钱的东西就离开了，获得*枚金币",
+		"Probability":[631,640],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[390,410],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[596,605],
+		"EventB":[581,590],
+		"EventC":[593,602]
+	},
+	{
+		"EventID":2321,
+		"EventDescribe":"发现有人在果园里肆意破坏，果断上前将其打跑，得到了农场主的馈赠，获得道具蓝莓×*",
+		"Probability":[641,648],
+		"EventType":"GetProp",
+		"PropID":[1018],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[606,613],
+		"EventB":[591,598],
+		"EventC":[603,610]
+	},
+	{
+		"EventID":2322,
+		"EventDescribe":"在探索山脉时发现了无花果树，获得道具无花果×*",
+		"Probability":[649,656],
+		"EventType":"GetProp",
+		"PropID":[1019],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[614,621],
+		"EventB":[599,606],
+		"EventC":[611,618]
+	},
+	{
+		"EventID":2323,
+		"EventDescribe":"发现有人在果园里肆意破坏，果断上前将其打跑，得到了农场主的馈赠，获得道具卷心菜×*",
+		"Probability":[657,664],
+		"EventType":"GetProp",
+		"PropID":[1020],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[622,629],
+		"EventB":[607,614],
+		"EventC":[619,626]
+	},
+	{
+		"EventID":2324,
+		"EventDescribe":"在探索山脉时发现了苹果树，获得道具苹果×*",
+		"Probability":[665,670],
+		"EventType":"GetProp",
+		"PropID":[1021],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[630,635],
+		"EventB":[615,620],
+		"EventC":[627,632]
+	},
+	{
+		"EventID":2325,
+		"EventDescribe":"向牙医请教了保养牙齿的方法，攻击力增加了*",
+		"Probability":[671,683],
+		"EventType":"AddAtk",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[3,5],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[636,648],
+		"EventB":[621,633],
+		"EventC":[633,645]
+	},
+	{
+		"EventID":2326,
+		"EventDescribe":"在搏击俱乐部中训练了一天的抗击打能力，防御力增加了*",
+		"Probability":[684,696],
+		"EventType":"AddDefense",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[3,5],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[649,661],
+		"EventB":[634,646],
+		"EventC":[646,658]
+	},
+	{
+		"EventID":2327,
+		"EventDescribe":"在大胃王比赛中海吃胡喝，生命值增加了*",
+		"Probability":[697,710],
+		"EventType":"AddHp",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[20,25],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[662,675],
+		"EventB":[647,660],
+		"EventC":[659,672]
+	},
+	{
+		"EventID":2328,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子×*",
+		"Probability":[711,720],
+		"EventType":"GetProp",
+		"PropID":[1901],
+		"SkillID":0,
+		"Number":[4],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[676,685],
+		"EventB":[661,670],
+		"EventC":[673,682]
+	},
+	{
+		"EventID":2329,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩×*",
+		"Probability":[721,727],
+		"EventType":"GetProp",
+		"PropID":[1902],
+		"SkillID":0,
+		"Number":[4],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[686,692],
+		"EventB":[671,677],
+		"EventC":[683,689]
+	},
+	{
+		"EventID":2330,
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包×*",
+		"Probability":[728,730],
+		"EventType":"GetProp",
+		"PropID":[1903],
+		"SkillID":0,
+		"Number":[4],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[693,695],
+		"EventB":[678,680],
+		"EventC":[690,692]
+	},
+	{
+		"EventID":2331,
+		"EventDescribe":"每天坚持100个俯卧撑、100个仰卧起坐，结果实力没有变强，但是开始掉发了，获得技能掉发危机",
+		"Probability":[731,735],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3611,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[696,700],
+		"EventB":[681,685],
+		"EventC":[693,697]
+	},
+	{
+		"EventID":2332,
+		"EventDescribe":"在命运骰子游戏中摇到了点数1，结果在那之后就一直很倒霉，获得技能倒霉蛋",
+		"Probability":[736,740],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3615,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[701,705],
+		"EventB":[686,690],
+		"EventC":[698,702]
+	},
+	{
+		"EventID":2333,
+		"EventDescribe":"在一家赌场中，本打算赢了就走，结果在一次次的失败中失去了理智，获得技能赌徒",
+		"Probability":[741,745],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3612,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[706,710],
+		"EventB":[691,695],
+		"EventC":[703,707]
+	},
+	{
+		"EventID":2334,
+		"EventDescribe":"走在路上突然被一道神秘的射线照射到，结果体型一直在增加似乎有些不妙，获得技能极大化",
+		"Probability":[746,750],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3616,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[711,715],
+		"EventB":[696,700],
+		"EventC":[708,712]
+	},
+	{
+		"EventID":2335,
+		"EventDescribe":"跟随探险队进入地底世界冒险，结果发现了失落大陆亚特兰蒂斯，拿走了大量值钱的东西后，被亚特兰蒂斯人民诅咒了，并且在离开亚特兰蒂斯时物品都变成了石头！获得技能古老诅咒",
+		"Probability":[751,755],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3618,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[716,720],
+		"EventB":[701,705],
+		"EventC":[713,717]
+	},
+	{
+		"EventID":2336,
+		"EventDescribe":"在品尝到酒的味道后，似乎一发不可收拾，不分时间不分场地的酗酒，获得技能酒鬼",
+		"Probability":[756,760],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3613,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[721,725],
+		"EventB":[706,710],
+		"EventC":[718,722]
+	},
+	{
+		"EventID":2337,
+		"EventDescribe":"在山脉中看到了无法用言语形容的存在，在那之后似乎变的有些疯狂，获得技能接收者",
+		"Probability":[761,765],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3617,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[726,730],
+		"EventB":[711,715],
+		"EventC":[723,727]
+	},
+	{
+		"EventID":2338,
+		"EventDescribe":"前方有异教徒在招揽新的教徒，打算进去看看就立马离开，但是在听完异教徒的演讲后一切都晚了，获得技能异教徒",
+		"Probability":[766,770],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3608,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[731,735],
+		"EventB":[716,720],
+		"EventC":[728,732]
+	},
+	{
+		"EventID":2339,
+		"EventDescribe":"前方有异教徒在招揽新的教徒，打算进去看看就立马离开，在听完异教徒的演讲后打算离开时被异教徒诅咒了，获得技能渎神",
+		"Probability":[771,775],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3609,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[736,740],
+		"EventB":[721,725],
+		"EventC":[733,737]
+	},
+	{
+		"EventID":2340,
+		"EventDescribe":"在夜晚看到流星，正打算许愿，结果流星又飞回去了，对自己产生了怀疑，获得技能自我否定",
+		"Probability":[776,780],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3610,
+		"Number":[1,3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[741,745],
+		"EventB":[726,730],
+		"EventC":[738,742]
+	},
+	{
+		"EventID":2341,
+		"EventDescribe":"看到一只蛐蛐，打斗一番将他捆起来了，获得蛐蛐一只",
+		"Probability":[781,785],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[50,80],
+		"EventRace":3,
+		"EventA":[746,785],
+		"EventB":[731,760],
+		"EventC":[743,747]
+	},
+	{
+		"EventID":2342,
+		"EventDescribe":"使用陷阱抓到一只蛐蛐了，获得蛐蛐一只",
+		"Probability":[786,788],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[60,90],
+		"EventRace":3,
+		"EventA":[786,788],
+		"EventB":[761,780],
+		"EventC":[748,750]
+	},
+	{
+		"EventID":2343,
+		"EventDescribe":"发现一只需要帮助的蛐蛐，救助蛐蛐后，蛐蛐决定跟你混了，获得蛐蛐一只",
+		"Probability":[789,790],
+		"EventType":"GetCricket",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[70,100],
+		"EventRace":3,
+		"EventA":[789,790],
+		"EventB":[781,790],
+		"EventC":[751,790]
+	},
+	{
+		"EventID":2344,
+		"EventDescribe":"走了很久啥也没发现",
+		"Probability":[791,797],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[791,797],
+		"EventB":[791,797],
+		"EventC":[791,797]
+	},
+	{
+		"EventID":2345,
+		"EventDescribe":"看到老虎机后上去玩了一把，什么也没有得到",
+		"Probability":[798,804],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[798,804],
+		"EventB":[798,804],
+		"EventC":[798,804]
+	},
+	{
+		"EventID":2346,
+		"EventDescribe":"集齐7颗龙珠、许下了要更多愿望的愿望，结果什么也没有得到。",
+		"Probability":[805,811],
+		"EventType":"GetMoney",
+		"PropID":[],
+		"SkillID":0,
+		"Number":[],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[805,811],
+		"EventB":[805,811],
+		"EventC":[805,811]
+	},
+	{
+		"EventID":2347,
+		"EventDescribe":"发现一家不正规的赌场后果断举报，获得技能优秀公民",
+		"Probability":[812,817],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3347,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[812,817],
+		"EventB":[812,817],
+		"EventC":[812,817]
+	},
+	{
+		"EventID":2348,
+		"EventDescribe":"在路边商店购买了盲盒，获得了超级蛐蛐血清一份，获得技能队长",
+		"Probability":[818,823],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3345,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[818,823],
+		"EventB":[818,823],
+		"EventC":[818,823]
+	},
+	{
+		"EventID":2349,
+		"EventDescribe":"在命运骰子游戏中摇到了点数6，结果在那之后运气一直很好，获得技能幸运儿",
+		"Probability":[824,829],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3339,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[824,829],
+		"EventB":[824,829],
+		"EventC":[824,829]
+	},
+	{
+		"EventID":2350,
+		"EventDescribe":"在一个溶洞中发现了时间胶囊，获得道具时间胶囊S×*",
+		"Probability":[830,832],
+		"EventType":"GetProp",
+		"PropID":[1804],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[830,832],
+		"EventB":[830,832],
+		"EventC":[830,832]
+	},
+	{
+		"EventID":2351,
+		"EventDescribe":"再一次蜕皮，这次蜕皮似乎有些异常，获得技能变异",
+		"Probability":[833,838],
+		"EventType":"GetSkill",
+		"PropID":[],
+		"SkillID":3344,
+		"Number":[1,2],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[833,838],
+		"EventB":[833,838],
+		"EventC":[833,838]
+	},
+	{
+		"EventID":2352,
+		"EventDescribe":"在路过西红柿田时，被田地主人赠送了一个，获得道具西红柿×*",
+		"Probability":[839,844],
+		"EventType":"GetProp",
+		"PropID":[1013],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[839,844],
+		"EventB":[839,844],
+		"EventC":[839,844]
+	},
+	{
+		"EventID":2353,
+		"EventDescribe":"在老旧的茶馆中找到一袋茶叶，获得道具天山绿茶×*",
+		"Probability":[845,850],
+		"EventType":"GetProp",
+		"PropID":[1014],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[845,850],
+		"EventB":[845,850],
+		"EventC":[845,850]
+	},
+	{
+		"EventID":2354,
+		"EventDescribe":"路过集市时，拿着5本破烂书籍的乞丐冒了出来，抱着打法的心态买了一本就走了,获得技能书×*",
+		"Probability":[851,875],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[851,875],
+		"EventB":[851,875],
+		"EventC":[851,875]
+	},
+	{
+		"EventID":2355,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第一名，获得技能书×*",
+		"Probability":[876,900],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[876,900],
+		"EventB":[876,900],
+		"EventC":[876,900]
+	},
+	{
+		"EventID":2356,
+		"EventDescribe":"在小店旁看到老虎机，上去玩了一把，中了特等奖，获得技能书×*",
+		"Probability":[901,925],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[901,925],
+		"EventB":[901,925],
+		"EventC":[901,925]
+	},
+	{
+		"EventID":2357,
+		"EventDescribe":"发现废弃的矿洞，探索一番找到沾满灰尘的书籍，获得技能书×*",
+		"Probability":[926,950],
+		"EventType":"GetProp",
+		"PropID":[1201,1247],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[926,950],
+		"EventB":[926,950],
+		"EventC":[926,950]
+	},
+	{
+		"EventID":2358,
+		"EventDescribe":"发现集市正在比赛，参与比赛后，获得了第二名，获得道具大肉包子×*",
+		"Probability":[951,965],
+		"EventType":"GetProp",
+		"PropID":[1001],
+		"SkillID":0,
+		"Number":[20],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[951,965],
+		"EventB":[951,965],
+		"EventC":[951,965]
+	},
+	{
+		"EventID":2359,
+		"EventDescribe":"路见不平拔刀相助，作为回报获得了道具腊八粥×*",
+		"Probability":[966,975],
+		"EventType":"GetProp",
+		"PropID":[1002],
+		"SkillID":0,
+		"Number":[5],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[966,975],
+		"EventB":[966,975],
+		"EventC":[966,975]
+	},
+	{
+		"EventID":2360,
+		"EventDescribe":"在路边商店购买了盲盒，获得道具龙须面×*",
+		"Probability":[976,985],
+		"EventType":"GetProp",
+		"PropID":[1003],
+		"SkillID":0,
+		"Number":[3],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[976,985],
+		"EventB":[976,985],
+		"EventC":[976,985]
+	},
+	{
+		"EventID":2361,
+		"EventDescribe":"在一处山洞中发现了隐藏的宝箱，获得道具黄金蛋炒饭×*",
+		"Probability":[986,995],
+		"EventType":"GetProp",
+		"PropID":[1004],
+		"SkillID":0,
+		"Number":[2],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[986,995],
+		"EventB":[986,995],
+		"EventC":[986,995]
+	},
+	{
+		"EventID":2362,
+		"EventDescribe":"在小店旁看到老虎机，上去玩了一把结果中了大奖，获得道具满汉全席×*",
+		"Probability":[996,1000],
+		"EventType":"GetProp",
+		"PropID":[1015],
+		"SkillID":0,
+		"Number":[1],
+		"GradeRange":[],
+		"EventRace":3,
+		"EventA":[996,1000],
+		"EventB":[996,1000],
+		"EventC":[996,1000]
+	}
 ]
