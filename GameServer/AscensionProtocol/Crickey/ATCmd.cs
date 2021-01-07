@@ -46,7 +46,7 @@ namespace AscensionProtocol
         /// </summary>
         SyncSpreaCode = 12,
         SyncMatch = 13,
-
+        SyncGuide=14,
         /// <summary>
         /// 测试消息队列
         /// </summary>

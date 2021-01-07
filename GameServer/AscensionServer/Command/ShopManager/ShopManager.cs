@@ -22,7 +22,6 @@ namespace AscensionServer
             Utility.Debug.LogInfo("yzqData购物数据:" + Utility.Json.ToJson(data));
             foreach (var item in data)
             {
-                var dict = Utility.Json.ToObject<Dictionary<byte, object>>(item.Value.ToString());
                 var propData = Utility.Json.ToObject<Dictionary<byte,object>>(item.Value.ToString());
                 switch ((ShopOperate)item.Key)
                 {
