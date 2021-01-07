@@ -186,8 +186,8 @@ namespace AscensionServer
                                     RoleCricketManager.UpdateLevel(xrDict[info.Key].CustomId, new PropData() { PropID =-1, AddNumber = itemidInfo.Value, }, roleId);
                                     break;
                                 case "GetProp":
-                                    var randomValue = RandomManager(itemidInfo.Key,0, setExploration[itemidInfo.Key].PropID.Count);
-                                    InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO>{ { setExploration[itemidInfo.Key].PropID[randomValue],new ItemDTO() { ItemAmount =1 } } });
+                                    var randomValue = RandomManager(itemidInfo.Key, setExploration[itemidInfo.Key].PropID[0], setExploration[itemidInfo.Key].PropID[1]);
+                                    InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO>{ { randomValue, new ItemDTO() { ItemAmount =1 } } });
                                     break;
                                 case "GetMoney":
                                     BuyPropManager.UpdateRoleAssets(roleId, itemidInfo.Value);
