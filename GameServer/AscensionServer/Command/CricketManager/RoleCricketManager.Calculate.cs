@@ -232,7 +232,7 @@ namespace AscensionServer
         /// <param name="roleid"></param>
         public static void AddSpecialSkill(int skillid, int level, int roleid, int cricketid)
         {
-            Utility.Json.ToJson("添加的特殊技能为" + skillid+"蛐蛐id为"+ cricketid);
+            Utility.Debug.LogError("添加的特殊技能为" + skillid + "蛐蛐id为" + cricketid+"玩家ID"+ roleid);
             var nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);
             var nHCriteriacricket = xRCommon.xRNHCriteria("CricketID", cricketid);
             var cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
@@ -257,7 +257,7 @@ namespace AscensionServer
                 }
 
                 cricket.SpecialDict = Utility.Json.ToJson(skills);
-                Utility.Json.ToJson("添加的特殊技能为"+ skillid);
+                Utility.Debug.LogError("添加的特殊技能为" + skillid);
                 var status = CalculateStutas(aptitude, point, addition);
                 status.CricketID = cricket.ID;
                 NHibernateQuerier.Update(cricket);
