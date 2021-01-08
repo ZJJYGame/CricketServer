@@ -418,7 +418,7 @@ namespace AscensionServer
                 MaxEndurance = playerTwo.roleBattleData.MaxEndurance,
                 Endurance = playerTwo.roleBattleData.Endurance,
                 ActionBar = playerTwo.roleBattleData.ActionBar,
-                PassiveSkill = new List<TriggerSkillData>();
+                PassiveSkill = new List<TriggerSkillData>(),
             };
         }
 

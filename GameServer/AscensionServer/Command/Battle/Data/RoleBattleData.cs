@@ -215,7 +215,7 @@ namespace AscensionServer
             BattleAttackSkillList.Add(new BattleSkill(tempAttackSkillDict[4000],1));//添加普通攻击技能
             BattleDefendSkillList = new List<BattleSkill>();
             BattlePassiveSkillList = new List<BattleSkill>();
-            BattlePassiveSkillList.Add(new BattleSkill(tempAttackSkillDict[3332], 1));
+            //BattlePassiveSkillList.Add(new BattleSkill(tempAttackSkillDict[3332], 1));
 
             var tempSkillIdList = cricketDTO.SkillDict.Values.ToList();
             var tempSpecialSkillIdList = cricketDTO.SpecialDict.Values.ToList();
