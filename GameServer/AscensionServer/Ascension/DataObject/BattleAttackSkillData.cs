@@ -12,7 +12,7 @@ namespace AscensionServer
     {
         public int skillId;
         public string name;
-        public bool isAttackSkill;
+        public BattleSkillType battleSkillType;
         public string describe;
         public int enduranceCost;
         public int triggerProb;
@@ -21,6 +21,7 @@ namespace AscensionServer
         public BattleSkillDamageData battleSkillDamageData;
         public List<BattleSkillAddBuffData> battleSkillAddBuffDataList;
     }
+
     [Serializable]
     public class BattleSkillDamageData
     {
@@ -42,5 +43,11 @@ namespace AscensionServer
         public int durationTimeChangeEachLevel;
         public int buffLimitValueChangeEachLevel;
         public bool TargetIsSelf;
+    }
+    public enum BattleSkillType
+    {
+        AttackSkill = 0,
+        BeAttackSkill = 1,
+        PassiveSkill = 2,
     }
 }

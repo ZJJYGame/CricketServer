@@ -24,7 +24,7 @@ namespace AscensionProtocol
         public int MaxEndurance { get; set; }
         public int Endurance { get; set; }
         public int ActionBar { get; set; }
-        public List<int> PassiveSkill { get; set; }
+        public List<TriggerSkillData> PassiveSkill { get; set; }
     }
     [Serializable]
     public class BattleRoleActionData
@@ -79,5 +79,4 @@ namespace AscensionProtocol
            
         }
     }
-
 }

@@ -70,6 +70,7 @@ namespace AscensionServer
                     {
                         Utility.Debug.LogError("不满足触发条件，触发过了，移除事件");
                         battleBuffController.ChangeProperty(battleBuffEffectProperty, -buffValue);
+                        hasTrigger = false;
                     }
                 }
                 else//满足触发条件
@@ -81,7 +82,7 @@ namespace AscensionServer
                         battleBuffController.ChangeProperty(battleBuffEffectProperty, buffValue);
                         hasTrigger = true;
                     }
-                }
+                } 
             }
             else
             {

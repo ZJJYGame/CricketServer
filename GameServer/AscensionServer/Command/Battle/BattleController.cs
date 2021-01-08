@@ -36,6 +36,10 @@ namespace AscensionServer
             BattleCharacterEntity nextDefendPlayer=null;
             //双方血量大于0一直执行
             Utility.Debug.LogInfo("开始战斗流程");
+            //双方被动技能生效
+            playerOne.UsePassiveSkill();
+            playerTwo.UsePassiveSkill();
+
             while (playerOne.roleBattleData.Health > 0 && playerTwo.roleBattleData.Health > 0)
             {
                 bool isCrash = false;
@@ -163,8 +167,8 @@ namespace AscensionServer
             }
             Utility.Debug.LogInfo("战斗传输数据=>" + Utility.Json.ToJson(battleRoleActionDataList));
             battleTransferDTO.BattleRoleActionDataList = battleRoleActionDataList;
-            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerOne.RoleID, battleTransferDTO);
-            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(playerTwo.RoleID, battleTransferDTO);
+            playerOne.S2CSendBattleData(battleTransferDTO);
+            playerTwo.S2CSendBattleData(battleTransferDTO);
         }
         /// <summary>
         /// 
@@ -395,14 +399,14 @@ namespace AscensionServer
             battleTransferDTO.RoleOneData = new BattleRoleData()
             {
                 RoleID = playerOne.RoleID,
-                RoleName=playerOne.RoleName,
+                RoleName = playerOne.RoleName,
                 CricketId = playerOne.CricketID,
                 MaxHealth = playerOne.roleBattleData.MaxHealth,
                 Health = playerOne.roleBattleData.Health,
                 MaxEndurance = playerOne.roleBattleData.MaxEndurance,
                 Endurance = playerOne.roleBattleData.Endurance,
                 ActionBar = playerOne.roleBattleData.ActionBar,
-                PassiveSkill = new List<int>()
+                PassiveSkill = new List<TriggerSkillData>(),
             };
             battleTransferDTO.RoleTwoData = new BattleRoleData()
             {
@@ -414,7 +418,7 @@ namespace AscensionServer
                 MaxEndurance = playerTwo.roleBattleData.MaxEndurance,
                 Endurance = playerTwo.roleBattleData.Endurance,
                 ActionBar = playerTwo.roleBattleData.ActionBar,
-                PassiveSkill = new List<int>()
+                PassiveSkill = new List<TriggerSkillData>();
             };
         }
 

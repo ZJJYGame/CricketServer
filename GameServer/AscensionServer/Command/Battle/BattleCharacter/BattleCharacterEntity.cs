@@ -98,7 +98,7 @@ namespace AscensionServer
 
         }
 
-        //待完善，需要从数据库拿取人物数据
+
         RoleBattleData GetRoleBattleData(int roleId)
         {
             RoleBattleData roleBattleData = new RoleBattleData(battleBuffController) { };
@@ -115,8 +115,41 @@ namespace AscensionServer
             return roleBattleData;
         }
 
+        /// <summary>
+        /// 使用被动技能
+        /// </summary>
+        public void UsePassiveSkill()
+        {
+            List<BattleSkill> battlePassiveSkillList = roleBattleData.BattlePassiveSkillList;
+            BattleSkill battlePassiveSkill;
+            for (int i = 0; i < battlePassiveSkillList.Count; i++)
+            {
+                battlePassiveSkill = battlePassiveSkillList[i];
+                for (int j = 0; j < battlePassiveSkill.BattleSkillAddBuffList.Count; j++)
+                {
+                    Utility.Debug.LogError("添加被动技能" + battlePassiveSkill.SkillId);
+                    battleBuffController.AddBuff(battlePassiveSkill.BattleSkillAddBuffList[j], battlePassiveSkill.SkillId);
+                }
+            }
+            battleBuffController.TriggerBuff();
+        }
+
+        public void S2CSendBattleData(BattleTransferDTO battleTransferDTO)
+        {
+            if (IsRobot)
+                return;
+            GameManager.CustomeModule<BattleRoomManager>().S2CEnterBattle(RoleID, battleTransferDTO);
+        }
+
         public void Clear()
         {
+            RoleID = 0;
+            RoleName = null;
+            CricketID = 0;
+            RemainActionBar = 0;
+            IsRobot = false;
+            roleBattleData = null;
+            battleBuffController = null;
         }
 
         public void OnRefresh()

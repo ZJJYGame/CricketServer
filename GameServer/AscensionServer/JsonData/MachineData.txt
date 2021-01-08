@@ -7,7 +7,7 @@
 		"CricketIcon":"null",
 		"CricketModel":"null",
 		"Atk":10,
-		"Hp":95,
+		"Hp":950,
 		"Defense":0,
 		"Mp":100,
 		"MpReply":50,

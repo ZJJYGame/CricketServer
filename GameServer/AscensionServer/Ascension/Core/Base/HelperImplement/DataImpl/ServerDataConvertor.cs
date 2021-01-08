@@ -52,6 +52,9 @@ namespace AscensionServer
 
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(BattleAttackSkillData).Name, out var battleAttackSkillDataData);
                 var battleAttackSkillDataDict = TransObject<List<BattleAttackSkillData>>(battleAttackSkillDataData).ToDictionary(key => key.skillId, value => value);
+                //GameManager.CustomeModule<DataManager>().TryGetValue(typeof(BattlePassiveSkillData).Name, out var battlePassiveSkillDataData);
+
+                //var battlePassiveSkillDataDict = TransObject<List<BattlePassiveSkillData>>(battlePassiveSkillDataData).ToDictionary(key => key.skillId, value => value);
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(BattleBuffData).Name, out var battleBuffDataData);
                 var battleBuffDataDict= TransObject<List<BattleBuffData>>(battleBuffDataData).ToDictionary(key => key.buffId, value => value);
 

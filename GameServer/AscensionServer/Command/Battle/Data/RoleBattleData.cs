@@ -101,6 +101,8 @@ namespace AscensionServer
         //所有受击技能总概率
         public int AllDefendSkillProp { get; private set; }
 
+        public List<BattleSkill> BattlePassiveSkillList { get; private set; } 
+
         IRoleBattleData buffRoleBattleData;
 
         /// <summary>
@@ -165,7 +167,7 @@ namespace AscensionServer
             //    if (tempSkillList[i].isAttackSkill)
             //        BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[tempSkillList[i].skillId], 1));
             //}
-            BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[3005], 1));
+            BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[4000], 1));
             for (int i = 0; i < BattleAttackSkillList.Count; i++)
             {
                 AllAttackSkillProp += BattleAttackSkillList[i].TriggerProb;
@@ -182,6 +184,8 @@ namespace AscensionServer
             {
                 AllDefendSkillProp += BattleDefendSkillList[i].TriggerProb;
             }
+
+            BattlePassiveSkillList = new List<BattleSkill>();
         }
         public RoleBattleData(IRoleBattleData buffRoleBattleData,RoleDTO roleDTO,CricketDTO cricketDTO)
         {
@@ -201,15 +205,17 @@ namespace AscensionServer
             receiveDamage = 100 - (int)cricketstatus.ReduceAtk;
             pierce = (int)cricketstatus.ReduceDef;
             reboundDamage = (int)cricketstatus.Rebound;
-            critDamage = (int)cricketstatus.CrtAtk-100;
+            critDamage = (int)cricketstatus.CrtAtk;
             critResistance = (int)cricketstatus.CrtDef;
             this.buffRoleBattleData = buffRoleBattleData;
             Dictionary<int, BattleAttackSkillData> tempAttackSkillDict = GameManager.CustomeModule<BattleRoomManager>().battleAttackSkillDataDict;
             List<BattleAttackSkillData> tempAttackSkillList = tempAttackSkillDict.Values.ToList();
 
             BattleAttackSkillList = new List<BattleSkill>();
-            BattleAttackSkillList.Add(new BattleSkill(tempAttackSkillDict[4000],1));
+            BattleAttackSkillList.Add(new BattleSkill(tempAttackSkillDict[4000],1));//添加普通攻击技能
             BattleDefendSkillList = new List<BattleSkill>();
+            BattlePassiveSkillList = new List<BattleSkill>();
+            BattlePassiveSkillList.Add(new BattleSkill(tempAttackSkillDict[3332], 1));
 
             var tempSkillIdList = cricketDTO.SkillDict.Values.ToList();
             var tempSpecialSkillIdList = cricketDTO.SpecialDict.Values.ToList();
@@ -219,10 +225,18 @@ namespace AscensionServer
                 if (tempAttackSkillDict.ContainsKey(tempSkillIdList[i]))
                 {
                     BattleAttackSkillData battleAttackSkillData = tempAttackSkillDict[tempSkillIdList[i]];
-                    if (battleAttackSkillData.isAttackSkill)
-                        BattleAttackSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSkillIdList[i]]));
-                    else
-                        BattleDefendSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSkillIdList[i]]));
+                    switch (battleAttackSkillData.battleSkillType)
+                    {
+                        case BattleSkillType.AttackSkill:
+                            BattleAttackSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSkillIdList[i]]));
+                            break;
+                        case BattleSkillType.BeAttackSkill:
+                            BattleDefendSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSkillIdList[i]]));
+                            break;
+                        case BattleSkillType.PassiveSkill:
+                            BattlePassiveSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSkillIdList[i]]));
+                            break;
+                    }
                 }
             }
             for (int i = 0; i < tempSpecialSkillIdList.Count; i++)
@@ -231,10 +245,18 @@ namespace AscensionServer
                 if (tempAttackSkillDict.ContainsKey(tempSpecialSkillIdList[i]))
                 {
                     BattleAttackSkillData battleAttackSkillData = tempAttackSkillDict[tempSpecialSkillIdList[i]];
-                    if (battleAttackSkillData.isAttackSkill)
-                        BattleAttackSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSpecialSkillIdList[i]]));
-                    else
-                        BattleDefendSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSpecialSkillIdList[i]]));
+                    switch (battleAttackSkillData.battleSkillType)
+                    {
+                        case BattleSkillType.AttackSkill:
+                            BattleAttackSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSkillIdList[i]]));
+                            break;
+                        case BattleSkillType.BeAttackSkill:
+                            BattleDefendSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSkillIdList[i]]));
+                            break;
+                        case BattleSkillType.PassiveSkill:
+                            BattlePassiveSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSkillIdList[i]]));
+                            break;
+                    }
                 }
             }
 
@@ -273,6 +295,7 @@ namespace AscensionServer
             BattleAttackSkillList = new List<BattleSkill>();
             BattleAttackSkillList.Add(new BattleSkill(tempAttackSkillDict[4000], 1));
             BattleDefendSkillList = new List<BattleSkill>();
+            BattlePassiveSkillList = new List<BattleSkill>();
 
             for (int i = 0; i < machineData.SkillPool.Count; i++)
             {
@@ -280,10 +303,18 @@ namespace AscensionServer
                 if (tempAttackSkillDict.ContainsKey(machineData.SkillPool[i]))
                 {
                     BattleAttackSkillData battleAttackSkillData = tempAttackSkillDict[machineData.SkillPool[i]];
-                    if (battleAttackSkillData.isAttackSkill)
-                        BattleAttackSkillList.Add(new BattleSkill(battleAttackSkillData, 1));
-                    else
-                        BattleDefendSkillList.Add(new BattleSkill(battleAttackSkillData, 1));
+                    switch (battleAttackSkillData.battleSkillType)
+                    {
+                        case BattleSkillType.AttackSkill:
+                            BattleAttackSkillList.Add(new BattleSkill(battleAttackSkillData, 1));
+                            break;
+                        case BattleSkillType.BeAttackSkill:
+                            BattleDefendSkillList.Add(new BattleSkill(battleAttackSkillData, 1));
+                            break;
+                        case BattleSkillType.PassiveSkill:
+                            BattlePassiveSkillList.Add(new BattleSkill(battleAttackSkillData, 1));
+                            break;
+                    }
                 }
             }
 
