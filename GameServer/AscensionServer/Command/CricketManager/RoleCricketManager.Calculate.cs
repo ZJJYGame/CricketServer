@@ -233,6 +233,13 @@ namespace AscensionServer
         public static void AddSpecialSkill(int skillid, int level, int roleid, int cricketid)
         {
             Utility.Debug.LogError("添加的特殊技能为" + skillid + "蛐蛐id为" + cricketid+"玩家ID"+ roleid);
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, BattleAttackSkillData>>(out var skillDict);
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PassiveSkill>>(out var specialSkillDict);
+            if (!skillDict.ContainsKey(skillid)&&!specialSkillDict.ContainsKey(skillid))
+            {
+                return;
+            }
+
             var nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);
             var nHCriteriacricket = xRCommon.xRNHCriteria("CricketID", cricketid);
             var cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
@@ -372,8 +379,7 @@ namespace AscensionServer
             var  pointFixed = new CricketPoint();
             var statusPercentage = new CricketStatus();
             var statusFixed = new CricketStatus();
-            Dictionary<int, int> pairs = new Dictionary<int, int>();
-    
+   
 
             foreach (var item in skills)
             {
