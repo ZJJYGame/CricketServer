@@ -42,6 +42,7 @@ namespace AscensionServer
                 case SubOperationCode.Remove:
                     break;
                 case SubOperationCode.Verify:
+                    CanelPlayer(roleSet[(byte)ParameterCode.RoleMatch]);
                     break;
             }
         }
@@ -53,6 +54,7 @@ namespace AscensionServer
         public void InitMatch(MatchDTO match)
         {
             MatchDTO matchDto = new MatchDTO();
+          
             if (matchSetDict.Count != 0)
             {
                 var setData = matchSetDict.Find(xr => xr.selfCricketData.LevelID >= match.selfCricketData.LevelID || xr.selfCricketData.LevelID < match.selfCricketData.LevelID);
@@ -95,9 +97,9 @@ namespace AscensionServer
                 matchDto.selfCricketData = match.selfCricketData;
                 matchDto.otherData = match.otherData;
                 matchDto.otherCricketData = match.otherCricketData;
-                var setData = matchSetDict.Find(xr => xr.RoleId == match.selfData.RoleID);
-                if (setData != null)
-                    matchSetDict.Remove(setData);
+                var setDataRes = matchSetDict.Find(xr => xr.RoleId == match.selfData.RoleID);
+                if (setDataRes != null)
+                    matchSetDict.Remove(setDataRes);
                 matchSetDict.Add(matchDto);
             }
         }
@@ -133,7 +135,16 @@ namespace AscensionServer
 
         }
 
-
+        /// <summary>
+        /// 取消匹配
+        /// </summary>
+        /// <param name="match"></param>
+        public void CanelPlayer(MatchDTO match)
+        {
+            var xrRemove = matchSetDict.Find(x => x.RoleId == match.RoleId);
+            if (xrRemove != null)
+                matchSetDict.Remove(xrRemove);
+        }
        
 
     }
