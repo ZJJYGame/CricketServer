@@ -112,21 +112,24 @@ namespace AscensionServer
                 matchSetDict.Remove(xrRemove);
             MatchDTO matchDto = new MatchDTO();
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, MachineData>>(out var machineData);
-            var setData = machineData[match.selfCricketData.RankID];
-            matchDto.selfData = match.selfData;
-            matchDto.selfCricketData = match.selfCricketData;
-            matchDto.otherData = new RoleDTO() { RoleName = setData.UserName };
-            matchDto.otherCricketData = new CricketDTO() { CricketName = setData.CricketName, RankID = setData.RankID };
-            var pareams = xRCommon.xRS2CParams();
-            pareams.Add((byte)ParameterCode.RoleMatch, Utility.Json.ToJson(matchDto));
-            var subOp = xRCommon.xRS2CSub();
-            subOp.Add((byte)SubOperationCode.Get, pareams);
-            xRCommon.xRS2CSend(matchDto.selfData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
+            if (machineData.ContainsKey(match.selfCricketData.RankID))
+            {
+                var setData = machineData[match.selfCricketData.RankID];
+                matchDto.selfData = match.selfData;
+                matchDto.selfCricketData = match.selfCricketData;
+                matchDto.otherData = new RoleDTO() { RoleName = setData.UserName };
+                matchDto.otherCricketData = new CricketDTO() { CricketName = setData.CricketName, RankID = setData.RankID };
+                var pareams = xRCommon.xRS2CParams();
+                pareams.Add((byte)ParameterCode.RoleMatch, Utility.Json.ToJson(matchDto));
+                var subOp = xRCommon.xRS2CSub();
+                subOp.Add((byte)SubOperationCode.Get, pareams);
+                xRCommon.xRS2CSend(matchDto.selfData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
 
-            //TODO
-            GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto, setData);
-            TimerManager matchManager = new TimerManager(1500);
-            matchManager.BattleStartTimer();
+                //TODO
+                GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto, setData);
+                TimerManager matchManager = new TimerManager(1500);
+                matchManager.BattleStartTimer();
+            }
 
         }
 

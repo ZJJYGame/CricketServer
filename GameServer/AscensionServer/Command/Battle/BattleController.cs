@@ -408,6 +408,10 @@ namespace AscensionServer
                 ActionBar = playerOne.roleBattleData.ActionBar,
                 PassiveSkill = new List<TriggerSkillData>(),
             };
+            for (int i = 0; i < playerOne.roleBattleData.BattlePassiveSkillList.Count; i++)
+            {
+
+            }
             battleTransferDTO.RoleTwoData = new BattleRoleData()
             {
                 RoleID = playerTwo.RoleID,
