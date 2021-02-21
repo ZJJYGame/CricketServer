@@ -379,7 +379,7 @@
 	},
 	{
 		"EventID":2028,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子，获得绳子×*",
 		"Probability":[711,720],
 		"EventType":"GetPropC",
 		"PropID":[1901],
@@ -393,7 +393,7 @@
 	},
 	{
 		"EventID":2029,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩，获得网罩×*",
 		"Probability":[721,727],
 		"EventType":"GetPropC",
 		"PropID":[1902],
@@ -407,7 +407,7 @@
 	},
 	{
 		"EventID":2030,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包，获得道具包×*",
 		"Probability":[728,730],
 		"EventType":"GetPropC",
 		"PropID":[1903],
@@ -827,7 +827,7 @@
 	},
 	{
 		"EventID":2060,
-		"EventDescribe":"路见不平拔刀相助，作为回报获得了道具腊八粥×*",
+		"EventDescribe":"路见不平拔刀相助，作为回报，获得道具腊八粥×*",
 		"Probability":[971,985],
 		"EventType":"GetPropA",
 		"PropID":[1002],
@@ -1261,7 +1261,7 @@
 	},
 	{
 		"EventID":2128,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子，获得绳子×*",
 		"Probability":[711,720],
 		"EventType":"GetPropC",
 		"PropID":[1901],
@@ -1275,7 +1275,7 @@
 	},
 	{
 		"EventID":2129,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩，获得网罩×*",
 		"Probability":[721,727],
 		"EventType":"GetPropC",
 		"PropID":[1902],
@@ -1289,7 +1289,7 @@
 	},
 	{
 		"EventID":2130,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包，获得道具包×*",
 		"Probability":[728,730],
 		"EventType":"GetPropC",
 		"PropID":[1903],
@@ -1709,7 +1709,7 @@
 	},
 	{
 		"EventID":2160,
-		"EventDescribe":"路见不平拔刀相助，作为回报获得了道具腊八粥×*",
+		"EventDescribe":"路见不平拔刀相助，作为回报，获得道具腊八粥×*",
 		"Probability":[971,985],
 		"EventType":"GetPropA",
 		"PropID":[1002],
@@ -2143,7 +2143,7 @@
 	},
 	{
 		"EventID":2228,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子，获得绳子×*",
 		"Probability":[711,720],
 		"EventType":"GetPropC",
 		"PropID":[1901],
@@ -2157,7 +2157,7 @@
 	},
 	{
 		"EventID":2229,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩，获得网罩×*",
 		"Probability":[721,727],
 		"EventType":"GetPropC",
 		"PropID":[1902],
@@ -2171,7 +2171,7 @@
 	},
 	{
 		"EventID":2230,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包，获得道具包×*",
 		"Probability":[728,730],
 		"EventType":"GetPropC",
 		"PropID":[1903],
@@ -2577,7 +2577,7 @@
 	},
 	{
 		"EventID":2259,
-		"EventDescribe":"路见不平拔刀相助，作为回报获得了道具腊八粥×*",
+		"EventDescribe":"路见不平拔刀相助，作为回报，获得道具腊八粥×*",
 		"Probability":[971,985],
 		"EventType":"GetPropA",
 		"PropID":[1002],
@@ -3011,7 +3011,7 @@
 	},
 	{
 		"EventID":2328,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了绳子，获得绳子×*",
 		"Probability":[711,720],
 		"EventType":"GetPropC",
 		"PropID":[1901],
@@ -3025,7 +3025,7 @@
 	},
 	{
 		"EventID":2329,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了网罩，获得网罩×*",
 		"Probability":[721,727],
 		"EventType":"GetPropC",
 		"PropID":[1902],
@@ -3039,7 +3039,7 @@
 	},
 	{
 		"EventID":2330,
-		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包×*",
+		"EventDescribe":"路过河边，开始钓鱼，居然钓到了道具包，获得道具包×*",
 		"Probability":[728,730],
 		"EventType":"GetPropC",
 		"PropID":[1903],
@@ -3445,7 +3445,7 @@
 	},
 	{
 		"EventID":2359,
-		"EventDescribe":"路见不平拔刀相助，作为回报获得了道具腊八粥×*",
+		"EventDescribe":"路见不平拔刀相助，作为回报，获得道具腊八粥×*",
 		"Probability":[966,975],
 		"EventType":"GetPropA",
 		"PropID":[1002],
