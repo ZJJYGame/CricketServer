@@ -46,6 +46,7 @@
     <Compile Include="Crickey\subCmd\ShopOperate.cs" />
     <Compile Include="Crickey\subCmd\SpreaCodeOperate.cs" />
     <Compile Include="Crickey\subCmd\subTaskOp.cs" />
+    <Compile Include="DTO\BattleCombatDTO.cs" />
     <Compile Include="DTO\BattleTransferDTO.cs" />
     <Compile Include="Crickey\subCmd\subInventoryOp.cs" />
     <Compile Include="DTO\CricketAptitudeDTO.cs" />

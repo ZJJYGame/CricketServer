@@ -60,7 +60,8 @@ namespace AscensionServer
                 cricketAddition.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketAddition);
                 #endregion
-                #region 插入背包和每日任务 以及探索
+                #region 插入背包和每日任务 以及探索  以及 战斗结束表格
+                NHibernateQuerier.Insert(new BattleCombat() { RoleID = role.RoleID });
                 NHibernateQuerier.Insert(new Inventory() { RoleID = role.RoleID });
                 InventoryManager.xRAddInventory(role.RoleID,new Dictionary<int, ItemDTO> { {1201, new ItemDTO() { ItemAmount =1 } }, { 1001, new ItemDTO() { ItemAmount = 1 } } });
                 Dictionary<int, TaskItemDTO> darilyDict = new Dictionary<int, TaskItemDTO>();

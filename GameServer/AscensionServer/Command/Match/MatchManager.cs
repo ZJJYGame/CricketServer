@@ -79,9 +79,9 @@ namespace AscensionServer
                     }
                     matchSetDict.Remove(setData);
                     matchSetDict.Remove(match);
+
                     //TODO
                     GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto);
-
                     TimerManager matchManager = new TimerManager(1500);
                     matchManager.BattleStartTimer();
                 }
@@ -132,7 +132,6 @@ namespace AscensionServer
                 TimerManager matchManager = new TimerManager(1500);
                 matchManager.BattleStartTimer();
             }
-
         }
 
         /// <summary>
@@ -147,6 +146,14 @@ namespace AscensionServer
         }
        
 
-    }
+        /// <summary>
+        /// 战斗结算
+        /// </summary>
+        public void BattleCombat()
+        {
 
+        }
+
+
+    }
 }

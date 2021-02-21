@@ -211,6 +211,7 @@
     <Compile Include="Command\SpreaCodeManager\SpreaCodeManager.cs" />
     <Compile Include="Command\xRTask\TaskManager.Concreteness.cs" />
     <Compile Include="Command\xRTask\TaskManager.cs" />
+    <Compile Include="DataObjectMap\BattleCombatMap.cs" />
     <Compile Include="DataObjectMap\CricketAdditionMap.cs" />
     <Compile Include="DataObjectMap\CricketAptitudeMap.cs" />
     <Compile Include="DataObjectMap\CricketMap.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="DataObjectMap\SpreaCodeMap.cs" />
     <Compile Include="DataObjectMap\xRTaskMap.cs" />
     <Compile Include="DataObjectMap\UserMap.cs" />
+    <Compile Include="DataObject\BattleCombat.cs" />
     <Compile Include="DataObject\Cricket.cs" />
     <Compile Include="DataObject\CricketAddition.cs" />
     <Compile Include="DataObject\CricketAptitude.cs" />
