@@ -449,7 +449,7 @@
 	},
 	{
 		"EventID":2033,
-		"EventDescribe":"路过女巫小屋时,被女巫投掷不明药剂，获得技能迟钝",
+		"EventDescribe":"路过女巫小屋时，被女巫投掷不明药剂，获得技能迟钝",
 		"Probability":[741,745],
 		"EventType":"GetSkill",
 		"PropID":[],
@@ -463,7 +463,7 @@
 	},
 	{
 		"EventID":2034,
-		"EventDescribe":"路过女巫小屋时,被女巫投掷不明药剂，获得技能笨拙",
+		"EventDescribe":"路过女巫小屋时，被女巫投掷不明药剂，获得技能笨拙",
 		"Probability":[746,750],
 		"EventType":"GetSkill",
 		"PropID":[],
@@ -491,7 +491,7 @@
 	},
 	{
 		"EventID":2036,
-		"EventDescribe":"路过女巫小屋时,被女巫投掷不明药剂，获得技能大块头",
+		"EventDescribe":"路过女巫小屋时，被女巫投掷不明药剂，获得技能大块头",
 		"Probability":[756,760],
 		"EventType":"GetSkill",
 		"PropID":[],
@@ -645,7 +645,7 @@
 	},
 	{
 		"EventID":2047,
-		"EventDescribe":"路过女巫小屋时,被女巫投掷不明药剂，获得技能精神抖擞",
+		"EventDescribe":"路过女巫小屋时，被女巫投掷不明药剂，获得技能精神抖擞",
 		"Probability":[806,811],
 		"EventType":"GetSkill",
 		"PropID":[],
@@ -757,7 +757,7 @@
 	},
 	{
 		"EventID":2055,
-		"EventDescribe":"路过集市时，拿着五本破烂书籍的乞丐冒了出来，抱着打发的心态买了一本就走了,获得技能书×*",
+		"EventDescribe":"路过集市时，拿着五本破烂书籍的乞丐冒了出来，抱着打发的心态买了一本就走了，获得技能书×*",
 		"Probability":[851,875],
 		"EventType":"GetPropA",
 		"PropID":[1201,1247],
@@ -1639,7 +1639,7 @@
 	},
 	{
 		"EventID":2155,
-		"EventDescribe":"路过集市时，拿着五本破烂书籍的乞丐冒了出来，抱着打发的心态买了两本就走了,获得技能书×*",
+		"EventDescribe":"路过集市时，拿着五本破烂书籍的乞丐冒了出来，抱着打发的心态买了两本就走了，获得技能书×*",
 		"Probability":[851,875],
 		"EventType":"GetPropA",
 		"PropID":[1201,1247],
@@ -2507,7 +2507,7 @@
 	},
 	{
 		"EventID":2254,
-		"EventDescribe":"路过集市时，拿着五本破烂书籍的乞丐冒了出来，抱着打发的心态买了三本就走了,获得技能书×*",
+		"EventDescribe":"路过集市时，拿着五本破烂书籍的乞丐冒了出来，抱着打发的心态买了三本就走了，获得技能书×*",
 		"Probability":[851,875],
 		"EventType":"GetPropA",
 		"PropID":[1201,1247],
@@ -3375,7 +3375,7 @@
 	},
 	{
 		"EventID":2354,
-		"EventDescribe":"路过集市时，拿着五本破烂书籍的乞丐冒了出来，抱着打发的心态买了三本就走了,获得技能书×*",
+		"EventDescribe":"路过集市时，拿着五本破烂书籍的乞丐冒了出来，抱着打发的心态买了三本就走了，获得技能书×*",
 		"Probability":[851,875],
 		"EventType":"GetPropA",
 		"PropID":[1201,1247],
