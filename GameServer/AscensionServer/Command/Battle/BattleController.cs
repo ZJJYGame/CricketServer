@@ -123,7 +123,7 @@ namespace AscensionServer
                             defendTriggerSkillList.Add(defendBattleSkillList[i].SkillId);
                     }
 
-                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData }, null, defendBattleSkillList, new List<int>() { attackPlayer.CricketID }, false));
+                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData }, null, defendBattleSkillList, new List<int>() { attackPlayer.RoleID }, false));
 
                     crashColdTime -= offestTime;
 
@@ -151,7 +151,7 @@ namespace AscensionServer
                             attackTriggerSkillList.Add(attackBattleSkillList[i].SkillId);
                     }
 
-                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData, defendBattleDamageData }, attackBattleSkillList, defendBattleSkillList, new List<int>() { attackPlayer.CricketID,defendPlayer.CricketID }, true));
+                    battleRoleActionDataList.Add(GetTransferData(new List<BattleDamageData>() { attackBattleDamageData, defendBattleDamageData }, attackBattleSkillList, defendBattleSkillList, new List<int>() { attackPlayer.RoleID,defendPlayer.RoleID }, true));
 
                     crashNum += 1;
                     crashColdTime = 5000;
