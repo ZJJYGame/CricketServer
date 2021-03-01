@@ -21,12 +21,13 @@ namespace AscensionServer
             {
                 var str = Utility.IO.ReadTextFileContent(folderPath, f.Name);
                 var pureStr = f.Name.TrimEnd(ch);
-                jsonDict.Add(pureStr, str);
+                //jsonDict.Add(pureStr, str);
+                GameManager.CustomeModule<DataManager>().TryAdd(pureStr, str);
 #if DEBUG
                 //Utility.Debug.LogInfo($"\n{pureStr}\n{str}\n");
 #endif
             }
-            GameManager.CustomeModule<DataManager>().SetDataDict(jsonDict);
+            //GameManager.CustomeModule<DataManager>().SetDataDict(jsonDict);
             ParseData();
         }
         void  ParseData()
@@ -46,7 +47,8 @@ namespace AscensionServer
                         var obj = Utility.Json.ToObject(json, datas[i].GetType());
                         if (obj != null)
                         {
-                            objectDict.TryAdd(datas[i].GetType(), obj);
+                            //objectDict.TryAdd(datas[i].GetType(), obj);
+                            GameManager.CustomeModule<DataManager>().TryAdd(datas[i].GetType(), obj);
                         }
                     }
                     catch (Exception e)
@@ -55,7 +57,7 @@ namespace AscensionServer
                     }
                 }
             }
-            GameManager.CustomeModule<DataManager>().SetDataDict(objectDict);
+            //GameManager.CustomeModule<DataManager>().SetDataDict(objectDict);
         }
     }
 }
