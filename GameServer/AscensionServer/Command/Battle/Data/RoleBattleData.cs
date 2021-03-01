@@ -217,10 +217,11 @@ namespace AscensionServer
             BattlePassiveSkillList = new List<BattleSkill>();
             //BattlePassiveSkillList.Add(new BattleSkill(tempAttackSkillDict[3332], 1));
 
-            var tempSkillIdList = cricketDTO.SkillDict.Values.ToList();
-            var tempSpecialSkillIdList = cricketDTO.SpecialDict.Values.ToList();
+            var tempSkillIdList = cricketDTO.SkillDict.Keys.ToList();
+            var tempSpecialSkillIdList = cricketDTO.SpecialDict.Keys.ToList();
             for (int i = 0; i < tempSkillIdList.Count; i++)
             {
+                Utility.Debug.LogError("蛐蛐技能id" + tempSkillIdList[i]);
                 //攻击受击技能添加
                 if (tempAttackSkillDict.ContainsKey(tempSkillIdList[i]))
                 {
@@ -228,6 +229,7 @@ namespace AscensionServer
                     switch (battleAttackSkillData.battleSkillType)
                     {
                         case BattleSkillType.AttackSkill:
+                            Utility.Debug.LogError("攻击技能添加成功");
                             BattleAttackSkillList.Add(new BattleSkill(battleAttackSkillData, cricketDTO.SkillDict[tempSkillIdList[i]]));
                             break;
                         case BattleSkillType.BeAttackSkill:
