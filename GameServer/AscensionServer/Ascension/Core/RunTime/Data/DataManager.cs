@@ -62,14 +62,14 @@ namespace AscensionServer
                 latestRefreshTime = now + intervalSec;
             }
         }
-        //public void SetDataDict(Dictionary<string, string> dict)
-        //{
-        //    this.jsonDict = dict;
-        //}
-        //public void SetDataDict(Dictionary<Type, object> dict)
-        //{
-        //    this.typeObjectDict = dict;
-        //}
+        public void SetDataDict(Dictionary<string, string> dict)
+        {
+            this.jsonDict = dict;
+        }
+        public void SetDataDict(Dictionary<Type, object> dict)
+        {
+            this.typeObjectDict = dict;
+        }
 #endif
         public bool ContainsKey(Type key)
         {
