@@ -70,7 +70,8 @@ namespace AscensionServer
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(MachineData).Name, out var machineData);
                 var machineDict = TransObject<List<MachineData>>(machineData).ToDictionary(key => key.RankID, value => value);
 
-
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(RankLevel).Name, out var rankLevel);
+                var rankLevelDict = TransObject<List<RankLevel>>(rankLevel).ToDictionary(key => key.RankID, value => value);
                 #endregion
 
                 #region 储存方式 
@@ -88,6 +89,7 @@ namespace AscensionServer
                 GameManager.CustomeModule<DataManager>().TryAdd(CricketStatusDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(battleBuffDataDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(machineDict);
+                GameManager.CustomeModule<DataManager>().TryAdd(rankLevelDict);
                 #endregion
 
                 #region 获取方式

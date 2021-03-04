@@ -12,7 +12,7 @@
 		"Mp":100,
 		"MpReply":50,
 		"Crt":0,
-		"Eva":0,
+		"Eva":50,
 		"Speed":2100,
 		"SkillPool":[],
 		"CrtAtk":50,

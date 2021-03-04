@@ -82,7 +82,7 @@ namespace AscensionServer
 
                     //TODO
                     GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto);
-                    TimerManager matchManager = new TimerManager(1500);
+                    TimerManager matchManager = new TimerManager(500);
                     matchManager.BattleStartTimer();
                 }
                 else
@@ -149,11 +149,90 @@ namespace AscensionServer
         /// <summary>
         /// 战斗结算
         /// </summary>
-        public void BattleCombat()
+        public void BattleCombat(params BattleCharacterEntity[] array)
         {
-
+            for (int i = 0; i < array.Length; i++)
+            {
+                BattleCharacterEntity battleCharacterEntity = array[i];
+                if (battleCharacterEntity.IsRobot)
+                    continue;
+                if(battleCharacterEntity.IsWin)
+                {
+                    //给予玩家50-100金币
+                    //蛐蛐 等级*等级 的经验值
+                    //段位加一颗星
+                    //胜场增加一场
+                }
+                else
+                {
+                    //给予玩家10-30金币
+                    //蛐蛐 等级*等级/2 的经验值
+                    //段位减一颗星
+                }
+                RandomAddMoney(battleCharacterEntity.RoleID, battleCharacterEntity.IsWin);
+            }
         }
-
-
+        /// <summary>
+        /// 给玩家随机增加金钱
+        /// </summary>
+        void RandomAddMoney(int roleID,bool isWinner)
+        {
+            NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", roleID);
+            var battleCombat = xRCommon.xRCriteria<BattleCombat>(nHCriteria);
+            int getMoney;
+            Random random = new Random();
+            if (isWinner)
+                getMoney = random.Next(WinnerGetMoneyLowerLimit, WinnerGetMoneyUpperLimit + 1);
+            else
+                getMoney = random.Next(LoserGetMoneyLowerLimit, LoserGetMoneyUpperLimit + 1);
+            if (getMoney > GetMoneyLimit - battleCombat.MoneyLimit)
+                getMoney = GetMoneyLimit - battleCombat.MoneyLimit;
+            if (getMoney != 0)
+            {
+                BuyPropManager.UpdateRoleAssets(roleID, getMoney);
+                battleCombat.MoneyLimit += getMoney;
+                NHibernateQuerier.Update(battleCombat);
+            }
+        }
+        /// <summary>
+        /// 给蛐蛐增加经验
+        /// </summary>
+        void RandomAddExp(int cricketID,int roleID,bool isWinner)
+        {
+            NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketID);
+            Cricket cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
+            int addExp;
+            if (isWinner)
+                addExp = cricket.LevelID * cricket.LevelID;
+            else
+                addExp = (int)Math.Ceiling(cricket.LevelID * cricket.LevelID / 2f);
+            PropData propData = new PropData()
+            {
+                PropID = -1,
+                AddNumber = addExp
+            };
+            RoleCricketManager.UpdateLevel(cricketID, propData, roleID);
+        }
+        /// <summary>
+        /// 更新蛐蛐rank等级
+        /// </summary>
+        void UpdateRankLevel(int cricketID,bool isWinner)
+        {
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, RankLevel>>(out var rankLevelDict);
+            NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketID);
+            Cricket cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
+            if (isWinner)
+                cricket.RankID = rankLevelDict[cricket.RankID].NextID;
+            else
+                cricket.RankID = rankLevelDict[cricket.RankID].UpperID;
+            NHibernateQuerier.Update(cricket);
+        }
+        #region 结算相关参数
+        public const int GetMoneyLimit = 2000;
+        public const int WinnerGetMoneyUpperLimit = 100;
+        public const int WinnerGetMoneyLowerLimit = 50;
+        public const int LoserGetMoneyUpperLimit = 30;
+        public const int LoserGetMoneyLowerLimit = 10;
+        #endregion
     }
 }

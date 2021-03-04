@@ -15,6 +15,7 @@ namespace AscensionServer
         public int CricketID { get; private set; }
         public int RemainActionBar { get; private set; }
         public bool IsRobot { get; private set; }
+        public bool IsWin { get; private set; }
 
         public RoleBattleData roleBattleData;
 
@@ -66,6 +67,7 @@ namespace AscensionServer
                 randomSkillList = roleBattleData.BattleAttackSkillList;
                 Utility.Debug.LogError("随机技能数量" + randomSkillList.Count);
                 randomNum = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, roleBattleData.AllAttackSkillProp);
+                Utility.Debug.LogError("randomNum=>" + randomNum);
             }
             else
             {
@@ -80,11 +82,12 @@ namespace AscensionServer
                 propNum += randomSkillList[i].TriggerProb;
                 if (randomNum <= propNum)
                 {
+                    Utility.Debug.LogError(CricketID+"propNum=>" + propNum);
                     resultSkill = randomSkillList[i];
                     return resultSkill;
                 }
             }
-            Utility.Debug.LogInfo("没有符合的技能");
+            Utility.Debug.LogInfo(CricketID+"没有符合的技能");
             return null;
         }
 
@@ -102,17 +105,17 @@ namespace AscensionServer
 
         RoleBattleData GetRoleBattleData(int roleId)
         {
-            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController) { };
+            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController,this) { };
             return roleBattleData;
         }
         RoleBattleData GetRoleBattleData(RoleDTO roleDTO,CricketDTO cricketDTO)
         {
-            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController, roleDTO, cricketDTO) { };
+            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController, roleDTO, cricketDTO,this) { };
             return roleBattleData;
         }
         RoleBattleData GetRoleBattleData(MachineData machineData)
         {
-            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController,machineData) { };
+            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController,machineData,this) { };
             return roleBattleData;
         }
 

@@ -10,6 +10,7 @@ namespace AscensionServer
 {
     public class RoleBattleData: IRoleBattleData
     {
+        BattleCharacterEntity BattleCharacterEntity { get; set; }
         //攻击力
         int attack;
         public int Attack { get { return attack + buffRoleBattleData.Attack; } }
@@ -141,8 +142,10 @@ namespace AscensionServer
             endurance += enduranceReply;
         }
 
-        public RoleBattleData(IRoleBattleData buffRoleBattleData)
+        public RoleBattleData(IRoleBattleData buffRoleBattleData,BattleCharacterEntity battleCharacterEntity)
         {
+            BattleCharacterEntity = battleCharacterEntity;
+
             attack = 100;
             maxHealth = 1000;
             health = 1000;
@@ -187,8 +190,10 @@ namespace AscensionServer
 
             BattlePassiveSkillList = new List<BattleSkill>();
         }
-        public RoleBattleData(IRoleBattleData buffRoleBattleData,RoleDTO roleDTO,CricketDTO cricketDTO)
+        public RoleBattleData(IRoleBattleData buffRoleBattleData,RoleDTO roleDTO,CricketDTO cricketDTO,BattleCharacterEntity battleCharacterEntity)
         {
+            BattleCharacterEntity = battleCharacterEntity;
+
             Utility.Debug.LogError("战斗匹配蛐蛐ID"+Utility.Json.ToJson(cricketDTO));
             var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", cricketDTO.ID);
             var cricketstatus = xRCommon.xRCriteria<CricketStatus>(nHCriteriastatus);
@@ -213,6 +218,9 @@ namespace AscensionServer
 
             BattleAttackSkillList = new List<BattleSkill>();
             BattleAttackSkillList.Add(new BattleSkill(tempAttackSkillDict[4000],1));//添加普通攻击技能
+            //BattleAttackSkillList.Add(new BattleSkill(tempAttackSkillDict[3001], 1));
+            //BattleAttackSkillList.Add(new BattleSkill(tempAttackSkillDict[3003], 1));
+            //BattleAttackSkillList.Add(new BattleSkill(tempAttackSkillDict[3005], 1));
             BattleDefendSkillList = new List<BattleSkill>();
             BattlePassiveSkillList = new List<BattleSkill>();
             //BattlePassiveSkillList.Add(new BattleSkill(tempAttackSkillDict[3332], 1));
@@ -272,8 +280,10 @@ namespace AscensionServer
                 AllDefendSkillProp += BattleDefendSkillList[i].TriggerProb;
             }
         }
-        public RoleBattleData(IRoleBattleData buffRoleBattleData,MachineData machineData)
+        public RoleBattleData(IRoleBattleData buffRoleBattleData,MachineData machineData,BattleCharacterEntity battleCharacterEntity)
         {
+            BattleCharacterEntity = battleCharacterEntity;
+
             attack = machineData.Atk;
             maxHealth = machineData.Hp;
             health = machineData.Hp;

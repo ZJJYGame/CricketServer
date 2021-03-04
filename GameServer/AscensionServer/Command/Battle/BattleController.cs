@@ -12,8 +12,7 @@ namespace AscensionServer
     {
         //当前战斗时间
         int nowTime;
-        //当前总攻击次数
-        int nowAttackNum;
+
         BattleCharacterEntity playerOne;
         BattleCharacterEntity playerTwo;
 

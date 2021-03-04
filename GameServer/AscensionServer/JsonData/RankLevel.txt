@@ -1,0 +1,842 @@
+[
+    {
+        "RankID": 301,
+        "RankName": "玩赏类-灰0",
+        "NextID": 302,
+        "UpperID": 301,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 302,
+        "RankName": "玩赏类-灰1",
+        "NextID": 303,
+        "UpperID": 301,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 303,
+        "RankName": "玩赏类-灰2",
+        "NextID": 304,
+        "UpperID": 302,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 304,
+        "RankName": "玩赏类-灰3",
+        "NextID": 306,
+        "UpperID": 303,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 305,
+        "RankName": "玩赏类-绿0",
+        "NextID": 306,
+        "UpperID": 303,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 306,
+        "RankName": "玩赏类-绿1",
+        "NextID": 307,
+        "UpperID": 305,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 307,
+        "RankName": "玩赏类-绿2",
+        "NextID": 308,
+        "UpperID": 306,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 308,
+        "RankName": "玩赏类-绿3",
+        "NextID": 310,
+        "UpperID": 307,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 309,
+        "RankName": "玩赏类-青0",
+        "NextID": 310,
+        "UpperID": 307,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 310,
+        "RankName": "玩赏类-青1",
+        "NextID": 311,
+        "UpperID": 309,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 311,
+        "RankName": "玩赏类-青2",
+        "NextID": 312,
+        "UpperID": 310,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 312,
+        "RankName": "玩赏类-青3",
+        "NextID": 314,
+        "UpperID": 311,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 313,
+        "RankName": "玩赏类-紫0",
+        "NextID": 314,
+        "UpperID": 311,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 314,
+        "RankName": "玩赏类-紫1",
+        "NextID": 315,
+        "UpperID": 313,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 315,
+        "RankName": "玩赏类-紫2",
+        "NextID": 316,
+        "UpperID": 314,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 316,
+        "RankName": "玩赏类-紫3",
+        "NextID": 318,
+        "UpperID": 315,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 317,
+        "RankName": "玩赏类-红0",
+        "NextID": 318,
+        "UpperID": 315,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 318,
+        "RankName": "玩赏类-红1",
+        "NextID": 319,
+        "UpperID": 317,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 319,
+        "RankName": "玩赏类-红2",
+        "NextID": 320,
+        "UpperID": 318,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 320,
+        "RankName": "玩赏类-红3",
+        "NextID": 322,
+        "UpperID": 319,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 321,
+        "RankName": "先锋型-灰0",
+        "NextID": 322,
+        "UpperID": 319,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 322,
+        "RankName": "先锋型-灰1",
+        "NextID": 323,
+        "UpperID": 321,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 323,
+        "RankName": "先锋型-灰2",
+        "NextID": 324,
+        "UpperID": 322,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 324,
+        "RankName": "先锋型-灰3",
+        "NextID": 326,
+        "UpperID": 323,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 325,
+        "RankName": "先锋型-绿0",
+        "NextID": 326,
+        "UpperID": 323,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 326,
+        "RankName": "先锋型-绿1",
+        "NextID": 327,
+        "UpperID": 325,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 327,
+        "RankName": "先锋型-绿2",
+        "NextID": 328,
+        "UpperID": 326,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 328,
+        "RankName": "先锋型-绿3",
+        "NextID": 330,
+        "UpperID": 327,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 329,
+        "RankName": "先锋型-青0",
+        "NextID": 330,
+        "UpperID": 327,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 330,
+        "RankName": "先锋型-青1",
+        "NextID": 331,
+        "UpperID": 329,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 331,
+        "RankName": "先锋型-青2",
+        "NextID": 332,
+        "UpperID": 330,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 332,
+        "RankName": "先锋型-青3",
+        "NextID": 334,
+        "UpperID": 331,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 333,
+        "RankName": "先锋型-紫0",
+        "NextID": 334,
+        "UpperID": 331,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 334,
+        "RankName": "先锋型-紫1",
+        "NextID": 335,
+        "UpperID": 333,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 335,
+        "RankName": "先锋型-紫2",
+        "NextID": 336,
+        "UpperID": 334,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 336,
+        "RankName": "先锋型-紫3",
+        "NextID": 338,
+        "UpperID": 335,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 337,
+        "RankName": "先锋型-红0",
+        "NextID": 338,
+        "UpperID": 335,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 338,
+        "RankName": "先锋型-红1",
+        "NextID": 339,
+        "UpperID": 337,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 339,
+        "RankName": "先锋型-红2",
+        "NextID": 340,
+        "UpperID": 338,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 340,
+        "RankName": "先锋型-红3",
+        "NextID": 342,
+        "UpperID": 339,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 341,
+        "RankName": "三等将-灰0",
+        "NextID": 342,
+        "UpperID": 339,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 342,
+        "RankName": "三等将-灰1",
+        "NextID": 343,
+        "UpperID": 341,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 343,
+        "RankName": "三等将-灰2",
+        "NextID": 344,
+        "UpperID": 342,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 344,
+        "RankName": "三等将-灰3",
+        "NextID": 346,
+        "UpperID": 343,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 345,
+        "RankName": "三等将-绿0",
+        "NextID": 346,
+        "UpperID": 343,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 346,
+        "RankName": "三等将-绿1",
+        "NextID": 347,
+        "UpperID": 345,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 347,
+        "RankName": "三等将-绿2",
+        "NextID": 348,
+        "UpperID": 346,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 348,
+        "RankName": "三等将-绿3",
+        "NextID": 350,
+        "UpperID": 347,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 349,
+        "RankName": "三等将-青0",
+        "NextID": 350,
+        "UpperID": 347,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 350,
+        "RankName": "三等将-青1",
+        "NextID": 351,
+        "UpperID": 349,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 351,
+        "RankName": "三等将-青2",
+        "NextID": 352,
+        "UpperID": 350,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 352,
+        "RankName": "三等将-青3",
+        "NextID": 354,
+        "UpperID": 351,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 353,
+        "RankName": "三等将-紫0",
+        "NextID": 354,
+        "UpperID": 351,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 354,
+        "RankName": "三等将-紫1",
+        "NextID": 355,
+        "UpperID": 353,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 355,
+        "RankName": "三等将-紫2",
+        "NextID": 356,
+        "UpperID": 354,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 356,
+        "RankName": "三等将-紫3",
+        "NextID": 358,
+        "UpperID": 355,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 357,
+        "RankName": "三等将-红0",
+        "NextID": 358,
+        "UpperID": 355,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 358,
+        "RankName": "三等将-红1",
+        "NextID": 359,
+        "UpperID": 357,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 359,
+        "RankName": "三等将-红2",
+        "NextID": 360,
+        "UpperID": 358,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 360,
+        "RankName": "三等将-红3",
+        "NextID": 362,
+        "UpperID": 359,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 361,
+        "RankName": "中将-灰0",
+        "NextID": 362,
+        "UpperID": 359,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 362,
+        "RankName": "中将-灰1",
+        "NextID": 363,
+        "UpperID": 361,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 363,
+        "RankName": "中将-灰2",
+        "NextID": 364,
+        "UpperID": 362,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 364,
+        "RankName": "中将-灰3",
+        "NextID": 366,
+        "UpperID": 363,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 365,
+        "RankName": "中将-绿0",
+        "NextID": 366,
+        "UpperID": 363,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 366,
+        "RankName": "中将-绿1",
+        "NextID": 367,
+        "UpperID": 365,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 367,
+        "RankName": "中将-绿2",
+        "NextID": 368,
+        "UpperID": 366,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 368,
+        "RankName": "中将-绿3",
+        "NextID": 370,
+        "UpperID": 367,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 369,
+        "RankName": "中将-青0",
+        "NextID": 370,
+        "UpperID": 367,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 370,
+        "RankName": "中将-青1",
+        "NextID": 371,
+        "UpperID": 369,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 371,
+        "RankName": "中将-青2",
+        "NextID": 372,
+        "UpperID": 370,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 372,
+        "RankName": "中将-青3",
+        "NextID": 374,
+        "UpperID": 371,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 373,
+        "RankName": "中将-紫0",
+        "NextID": 374,
+        "UpperID": 371,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 374,
+        "RankName": "中将-紫1",
+        "NextID": 375,
+        "UpperID": 373,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 375,
+        "RankName": "中将-紫2",
+        "NextID": 376,
+        "UpperID": 374,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 376,
+        "RankName": "中将-紫3",
+        "NextID": 378,
+        "UpperID": 375,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 377,
+        "RankName": "中将-红0",
+        "NextID": 378,
+        "UpperID": 375,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 378,
+        "RankName": "中将-红1",
+        "NextID": 379,
+        "UpperID": 377,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 379,
+        "RankName": "中将-红2",
+        "NextID": 380,
+        "UpperID": 378,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 380,
+        "RankName": "中将-红3",
+        "NextID": 382,
+        "UpperID": 379,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 381,
+        "RankName": "元帅-灰0",
+        "NextID": 382,
+        "UpperID": 379,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 382,
+        "RankName": "元帅-灰1",
+        "NextID": 383,
+        "UpperID": 381,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 383,
+        "RankName": "元帅-灰2",
+        "NextID": 384,
+        "UpperID": 382,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 384,
+        "RankName": "元帅-灰3",
+        "NextID": 386,
+        "UpperID": 383,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 385,
+        "RankName": "元帅-绿0",
+        "NextID": 386,
+        "UpperID": 383,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 386,
+        "RankName": "元帅-绿1",
+        "NextID": 387,
+        "UpperID": 385,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 387,
+        "RankName": "元帅-绿2",
+        "NextID": 388,
+        "UpperID": 386,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 388,
+        "RankName": "元帅-绿3",
+        "NextID": 390,
+        "UpperID": 387,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 389,
+        "RankName": "元帅-青0",
+        "NextID": 390,
+        "UpperID": 387,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 390,
+        "RankName": "元帅-青1",
+        "NextID": 391,
+        "UpperID": 389,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 391,
+        "RankName": "元帅-青2",
+        "NextID": 392,
+        "UpperID": 390,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 392,
+        "RankName": "元帅-青3",
+        "NextID": 394,
+        "UpperID": 391,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 393,
+        "RankName": "元帅-紫0",
+        "NextID": 394,
+        "UpperID": 391,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 394,
+        "RankName": "元帅-紫1",
+        "NextID": 395,
+        "UpperID": 393,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 395,
+        "RankName": "元帅-紫2",
+        "NextID": 396,
+        "UpperID": 394,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 396,
+        "RankName": "元帅-紫3",
+        "NextID": 398,
+        "UpperID": 395,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 397,
+        "RankName": "元帅-红0",
+        "NextID": 398,
+        "UpperID": 395,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 398,
+        "RankName": "元帅-红1",
+        "NextID": 399,
+        "UpperID": 397,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 399,
+        "RankName": "元帅-红2",
+        "NextID": 400,
+        "UpperID": 398,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 400,
+        "RankName": "元帅-红3",
+        "NextID": 402,
+        "UpperID": 399,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 401,
+        "RankName": "虫王-灰0",
+        "NextID": 402,
+        "UpperID": 399,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 402,
+        "RankName": "虫王-灰1",
+        "NextID": 403,
+        "UpperID": 401,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 403,
+        "RankName": "虫王-灰2",
+        "NextID": 404,
+        "UpperID": 402,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 404,
+        "RankName": "虫王-灰3",
+        "NextID": 406,
+        "UpperID": 403,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 405,
+        "RankName": "虫王-绿0",
+        "NextID": 406,
+        "UpperID": 403,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 406,
+        "RankName": "虫王-绿1",
+        "NextID": 407,
+        "UpperID": 405,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 407,
+        "RankName": "虫王-绿2",
+        "NextID": 408,
+        "UpperID": 406,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 408,
+        "RankName": "虫王-绿3",
+        "NextID": 410,
+        "UpperID": 407,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 409,
+        "RankName": "虫王-青0",
+        "NextID": 410,
+        "UpperID": 407,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 410,
+        "RankName": "虫王-青1",
+        "NextID": 411,
+        "UpperID": 409,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 411,
+        "RankName": "虫王-青2",
+        "NextID": 412,
+        "UpperID": 410,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 412,
+        "RankName": "虫王-青3",
+        "NextID": 414,
+        "UpperID": 411,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 413,
+        "RankName": "虫王-紫0",
+        "NextID": 414,
+        "UpperID": 411,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 414,
+        "RankName": "虫王-紫1",
+        "NextID": 415,
+        "UpperID": 413,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 415,
+        "RankName": "虫王-紫2",
+        "NextID": 416,
+        "UpperID": 414,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 416,
+        "RankName": "虫王-紫3",
+        "NextID": 418,
+        "UpperID": 415,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 417,
+        "RankName": "虫王-红0",
+        "NextID": 418,
+        "UpperID": 415,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 418,
+        "RankName": "虫王-红1",
+        "NextID": 419,
+        "UpperID": 417,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 419,
+        "RankName": "虫王-红2",
+        "NextID": 420,
+        "UpperID": 418,
+        "RankIcon": "null"
+    },
+    {
+        "RankID": 420,
+        "RankName": "虫王-红3",
+        "NextID": 420,
+        "UpperID": 419,
+        "RankIcon": "null"
+    }
+]
