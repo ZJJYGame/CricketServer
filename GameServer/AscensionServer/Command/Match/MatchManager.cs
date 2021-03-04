@@ -218,14 +218,14 @@ namespace AscensionServer
         /// </summary>
         void UpdateRankLevel(int cricketID,bool isWinner)
         {
-            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, RankLevel>>(out var rankLevelDict);
-            NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketID);
-            Cricket cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
-            if (isWinner)
-                cricket.RankID = rankLevelDict[cricket.RankID].NextID;
-            else
-                cricket.RankID = rankLevelDict[cricket.RankID].UpperID;
-            NHibernateQuerier.Update(cricket);
+            //GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, RankLevel>>(out var rankLevelDict);
+            //NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketID);
+            //Cricket cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
+            //if (isWinner)
+            //    cricket.RankID = rankLevelDict[cricket.RankID].NextID;
+            //else
+            //    cricket.RankID = rankLevelDict[cricket.RankID].UpperID;
+            //NHibernateQuerier.Update(cricket);
         }
         #region 结算相关参数
         public const int GetMoneyLimit = 2000;
