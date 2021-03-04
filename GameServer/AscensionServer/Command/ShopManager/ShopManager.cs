@@ -9,7 +9,7 @@ using Protocol;
 namespace AscensionServer
 {
     [CustomeModule]
-    public class ShopManager : Module<ShopManager>
+    public partial class ShopManager : Module<ShopManager>
     {
         public override void OnPreparatory()
         {

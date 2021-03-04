@@ -25,20 +25,25 @@ namespace AscensionServer
         List<IDataProvider> providerSet = new List<IDataProvider>();
         public override void OnInitialization()
         {
-            var objs = Utility.Assembly.GetInstancesByAttribute<ImplementProviderAttribute, IDataProvider>();
-            for (int i = 0; i < objs.Length; i++)
-            {
-                objs[i]?.LoadData();
-            }
-            providerSet.AddRange(objs);
-            latestRefreshTime = Utility.Time.SecondNow() + intervalSec;
+           
         }
         public override void OnActive()
         {
-            var objs = Utility.Assembly.GetInstancesByAttribute<ImplementProviderAttribute, IDataConvertor>();
-            for (int i = 0; i < objs.Length; i++)
             {
-                objs[i].ConvertData();
+                var objs = Utility.Assembly.GetInstancesByAttribute<ImplementProviderAttribute, IDataProvider>();
+                for (int i = 0; i < objs.Length; i++)
+                {
+                    objs[i]?.LoadData();
+                }
+                providerSet.AddRange(objs);
+            }
+            {
+                latestRefreshTime = Utility.Time.SecondNow() + intervalSec;
+                var objs = Utility.Assembly.GetInstancesByAttribute<ImplementProviderAttribute, IDataConvertor>();
+                for (int i = 0; i < objs.Length; i++)
+                {
+                    objs[i].ConvertData();
+                }
             }
         }
         /// <summary>
