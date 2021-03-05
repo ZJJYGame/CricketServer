@@ -115,6 +115,9 @@ namespace AscensionServer
                     List<BattleSkill> defendBattleSkillList = new List<BattleSkill>();
                     PlayerAction(attackPlayer, defendPlayer, defendBattleSkillList,out var attackBattleDamageData,out var defendBattleDamageDataList, isCrash);
 
+                    
+                    DamageTakeEffect(attackPlayer, defendPlayer, attackBattleDamageData, null);
+
                     List<int> defendTriggerSkillList = new List<int>();
                     for (int i = 0; i < defendBattleSkillList.Count; i++)
                     {
@@ -143,6 +146,8 @@ namespace AscensionServer
                     List<BattleSkill> attackBattleSkillList = new List<BattleSkill>();
                     PlayerAction(defendPlayer, attackPlayer, attackBattleSkillList, out var defendBattleDamageData,out var defendAttackBattleDamageDataList, isCrash);
 
+                    DamageTakeEffect(attackPlayer, defendPlayer, attackBattleDamageData, defendBattleDamageData);
+
                     List<int> attackTriggerSkillList = new List<int>();
                     for (int i = 0; i < attackBattleSkillList.Count; i++)
                     {
@@ -164,8 +169,15 @@ namespace AscensionServer
 
                 Utility.Debug.LogError("当前时间=>" + nowTime + (isCrash ? "，发生碰撞" : "，没有碰撞") + ",碰撞冷却=>" + crashColdTime);
             }
-            Utility.Debug.LogInfo("战斗传输数据=>" + Utility.Json.ToJson(battleRoleActionDataList));
+
+            Utility.Debug.LogInfo("战斗结果：蛐蛐" + playerOne.CricketID + (playerOne.IsWin ? "胜利" : "失败") + "，蛐蛐" + playerTwo.CricketID + (playerTwo.IsWin ? "胜利" : "失败"));
             battleTransferDTO.BattleRoleActionDataList = battleRoleActionDataList;
+            Utility.Debug.LogInfo("战斗传输数据=>" + Utility.Json.ToJson(battleTransferDTO));
+            Dictionary<int, BattleResult> battleResultDict = GameManager.CustomeModule<MatchManager>().BattleCombat(playerOne, playerTwo);
+            if (battleResultDict.ContainsKey(battleTransferDTO.RoleOneData.RoleID))
+                battleTransferDTO.RoleOneData.BattleResult = battleResultDict[battleTransferDTO.RoleOneData.RoleID];
+            if (battleResultDict.ContainsKey(battleTransferDTO.RoleTwoData.RoleID))
+                battleTransferDTO.RoleTwoData.BattleResult = battleResultDict[battleTransferDTO.RoleTwoData.RoleID];
             playerOne.S2CSendBattleData(battleTransferDTO);
             playerTwo.S2CSendBattleData(battleTransferDTO);
         }
@@ -193,9 +205,6 @@ namespace AscensionServer
                     defendBattleDamageDataList.Add(defendBattleDamageData);
                 }
             }
-            //伤害结算
-            defendPlayer.roleBattleData.OnHurt(attackBattleDamageData);
-            attackPlayer.roleBattleData.OnReboundHurt(attackBattleDamageData);
             //耐力消耗
             attackPlayer.roleBattleData.OnEnduranceCost(attackBattleSkill);
             for (int i = 0; i < defendBattleSkillList.Count; i++)
@@ -390,8 +399,44 @@ namespace AscensionServer
             }
             return battleRoleActionData;
         }
-
-
+        //每轮伤害结算
+        void DamageTakeEffect(BattleCharacterEntity attacker,BattleCharacterEntity defender,BattleDamageData attackerDamage,BattleDamageData defenderDamage)
+        {
+            if(defenderDamage==null)//非碰撞的情况
+            {
+                for (int i = 0; i < attackerDamage.damageNumList.Count; i++)
+                {
+                    defender.roleBattleData.OnHurt(attackerDamage.damageNumList[i]);
+                    attacker.roleBattleData.OnReboundHurt(attackerDamage.returnDamageNumList[i]);
+                }
+            }
+            else//碰撞的情况
+            {
+                int count = attackerDamage.damageNumList.Count > defenderDamage.damageNumList.Count ? attackerDamage.damageNumList.Count : defenderDamage.damageNumList.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    if (attackerDamage.damageNumList.Count > i )
+                    {
+                        defender.roleBattleData.OnHurt(attackerDamage.damageNumList[i]);
+                        attacker.roleBattleData.OnReboundHurt(attackerDamage.returnDamageNumList[i]);
+                    }
+                    if (defenderDamage.damageNumList.Count > i )
+                    {
+                        attacker.roleBattleData.OnHurt(defenderDamage.damageNumList[i]);
+                        defender.roleBattleData.OnReboundHurt(defenderDamage.returnDamageNumList[i]);
+                    }
+                    if (attacker.roleBattleData.Health<=0 || defender.roleBattleData.Health<=0)//有一方死亡
+                    {
+                        Utility.Debug.LogError("碰撞中有一方死亡");
+                        attackerDamage.damageNumList.RemoveRange(i + 1, attackerDamage.damageNumList.Count - (i + 1));
+                        attackerDamage.returnDamageNumList.RemoveRange(i + 1, attackerDamage.returnDamageNumList.Count - (i + 1));
+                        defenderDamage.damageNumList.RemoveRange(i + 1, defenderDamage.damageNumList.Count - (i + 1));
+                        defenderDamage.returnDamageNumList.RemoveRange(i + 1, defenderDamage.returnDamageNumList.Count - (i + 1));
+                        break;
+                    }
+                }
+            }
+        }
 
         public void SetTransferRoleData()
         {

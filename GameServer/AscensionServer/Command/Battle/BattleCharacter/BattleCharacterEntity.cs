@@ -15,7 +15,7 @@ namespace AscensionServer
         public int CricketID { get; private set; }
         public int RemainActionBar { get; private set; }
         public bool IsRobot { get; private set; }
-        public bool IsWin { get; private set; }
+        public bool IsWin { get;set; }
 
         public RoleBattleData roleBattleData;
 
@@ -29,6 +29,7 @@ namespace AscensionServer
             RemainActionBar = roleBattleData.ActionBar;
             battleBuffController.roleBattleData = roleBattleData;
             IsRobot = false;
+            IsWin = true;
         }
         public void Init(RoleDTO roleDTO,CricketDTO cricketDTO)
         {
@@ -40,6 +41,7 @@ namespace AscensionServer
             RemainActionBar = roleBattleData.ActionBar;
             battleBuffController.roleBattleData = roleBattleData;
             IsRobot = false;
+            IsWin = true;
         }
         //机器人
         public void Init(RoleDTO roleDTO, CricketDTO cricketDTO,MachineData machineData)
@@ -51,7 +53,8 @@ namespace AscensionServer
             roleBattleData = GetRoleBattleData(machineData);
             RemainActionBar = roleBattleData.ActionBar;
             battleBuffController.roleBattleData = roleBattleData;
-            IsRobot = false;
+            IsRobot = true;
+            IsWin = true;
         }
         /// <summary>
         /// 随机使用一个技能
@@ -67,7 +70,6 @@ namespace AscensionServer
                 randomSkillList = roleBattleData.BattleAttackSkillList;
                 Utility.Debug.LogError("随机技能数量" + randomSkillList.Count);
                 randomNum = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, roleBattleData.AllAttackSkillProp);
-                Utility.Debug.LogError("randomNum=>" + randomNum);
             }
             else
             {
@@ -82,7 +84,6 @@ namespace AscensionServer
                 propNum += randomSkillList[i].TriggerProb;
                 if (randomNum <= propNum)
                 {
-                    Utility.Debug.LogError(CricketID+"propNum=>" + propNum);
                     resultSkill = randomSkillList[i];
                     return resultSkill;
                 }

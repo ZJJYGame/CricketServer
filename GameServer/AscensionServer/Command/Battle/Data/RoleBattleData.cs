@@ -109,22 +109,32 @@ namespace AscensionServer
         /// <summary>
         /// 受到的直接伤害
         /// </summary>
-        public void OnHurt(BattleDamageData battleDamageData)
+        //public void OnHurt(BattleDamageData battleDamageData)
+        //{
+        //    for (int i = 0; i < battleDamageData.damageNumList.Count; i++)
+        //    {
+        //        health -= battleDamageData.damageNumList[i];
+        //    }
+        //}
+        public void OnHurt(int damage)
         {
-            for (int i = 0; i < battleDamageData.damageNumList.Count; i++)
-            {
-                health -= battleDamageData.damageNumList[i];
-            }
+            health -= damage;
+            if (health <= 0) BattleCharacterEntity.IsWin = false;
         }
         /// <summary>
         /// 受到的反伤伤害
         /// </summary>
-        public void OnReboundHurt(BattleDamageData battleDamageData)
+        //public void OnReboundHurt(BattleDamageData battleDamageData)
+        //{
+        //    for (int i = 0; i < battleDamageData.returnDamageNumList.Count; i++)
+        //    {
+        //        health -= battleDamageData.returnDamageNumList[i];
+        //    }
+        //}
+        public void OnReboundHurt(int damage)
         {
-            for (int i = 0; i < battleDamageData.returnDamageNumList.Count; i++)
-            {
-                health -= battleDamageData.returnDamageNumList[i];
-            }
+            health -= damage;
+            if (health <= 0) BattleCharacterEntity.IsWin = false;
         }
         /// <summary>
         /// 耐力消耗

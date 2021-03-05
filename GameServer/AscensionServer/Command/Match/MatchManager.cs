@@ -149,34 +149,28 @@ namespace AscensionServer
         /// <summary>
         /// 战斗结算
         /// </summary>
-        public void BattleCombat(params BattleCharacterEntity[] array)
+        public Dictionary<int,BattleResult> BattleCombat(params BattleCharacterEntity[] array)
         {
+            Dictionary<int, BattleResult> battleResultDict = new Dictionary<int, BattleResult>();
             for (int i = 0; i < array.Length; i++)
             {
                 BattleCharacterEntity battleCharacterEntity = array[i];
                 if (battleCharacterEntity.IsRobot)
                     continue;
-                if(battleCharacterEntity.IsWin)
-                {
-                    //给予玩家50-100金币
-                    //蛐蛐 等级*等级 的经验值
-                    //段位加一颗星
-                    //胜场增加一场
-                }
-                else
-                {
-                    //给予玩家10-30金币
-                    //蛐蛐 等级*等级/2 的经验值
-                    //段位减一颗星
-                }
-                RandomAddMoney(battleCharacterEntity.RoleID, battleCharacterEntity.IsWin);
+                BattleResult battleResult = new BattleResult() { IsWinner = battleCharacterEntity.IsWin };
+                battleResult.GetMoney = RandomAddMoney(battleCharacterEntity.RoleID, battleCharacterEntity.IsWin);
+                battleResult.GetExp = RandomAddExp(battleCharacterEntity.CricketID, battleCharacterEntity.RoleID, battleCharacterEntity.IsWin);
+                battleResult.RankLevel = UpdateRankLevel(battleCharacterEntity.CricketID, battleCharacterEntity.RoleID, battleCharacterEntity.IsWin);
+                battleResultDict[battleCharacterEntity.RoleID] = battleResult;
             }
+            return battleResultDict;
         }
         /// <summary>
         /// 给玩家随机增加金钱
         /// </summary>
-        void RandomAddMoney(int roleID,bool isWinner)
+        int RandomAddMoney(int roleID,bool isWinner)
         {
+            Utility.Debug.LogError(roleID + "尝试增加金钱");
             NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", roleID);
             var battleCombat = xRCommon.xRCriteria<BattleCombat>(nHCriteria);
             int getMoney;
@@ -193,11 +187,12 @@ namespace AscensionServer
                 battleCombat.MoneyLimit += getMoney;
                 NHibernateQuerier.Update(battleCombat);
             }
+            return getMoney;
         }
         /// <summary>
         /// 给蛐蛐增加经验
         /// </summary>
-        void RandomAddExp(int cricketID,int roleID,bool isWinner)
+        int RandomAddExp(int cricketID,int roleID,bool isWinner)
         {
             NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketID);
             Cricket cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
@@ -212,20 +207,30 @@ namespace AscensionServer
                 AddNumber = addExp
             };
             RoleCricketManager.UpdateLevel(cricketID, propData, roleID);
+            return addExp;
         }
         /// <summary>
-        /// 更新蛐蛐rank等级
+        /// 更新蛐蛐rank等级,增加胜场
         /// </summary>
-        void UpdateRankLevel(int cricketID,bool isWinner)
+        int UpdateRankLevel(int cricketID,int roleID,bool isWinner)
         {
-            //GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, RankLevel>>(out var rankLevelDict);
-            //NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketID);
-            //Cricket cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
-            //if (isWinner)
-            //    cricket.RankID = rankLevelDict[cricket.RankID].NextID;
-            //else
-            //    cricket.RankID = rankLevelDict[cricket.RankID].UpperID;
-            //NHibernateQuerier.Update(cricket);
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, RankLevel>>(out var rankLevelDict);
+            NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketID);
+            Cricket cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
+            if (isWinner)
+                cricket.RankID = rankLevelDict[cricket.RankID].NextID;
+            else
+                cricket.RankID = rankLevelDict[cricket.RankID].UpperID;
+            NHibernateQuerier.Update(cricket);
+
+            NHCriteria nHCriteria2 = xRCommon.xRNHCriteria("RoleID", roleID);
+            var battleCombat = xRCommon.xRCriteria<BattleCombat>(nHCriteria2);
+            if (isWinner)
+            {
+                battleCombat.MatchWon++;
+                NHibernateQuerier.Update(battleCombat);
+            }
+            return cricket.RankID;
         }
         #region 结算相关参数
         public const int GetMoneyLimit = 2000;

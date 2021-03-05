@@ -25,6 +25,7 @@ namespace AscensionProtocol
         public int Endurance { get; set; }
         public int ActionBar { get; set; }
         public List<TriggerSkillData> PassiveSkill { get; set; }
+        public BattleResult BattleResult { get; set; }
     }
     [Serializable]
     public class BattleRoleActionData
@@ -53,6 +54,7 @@ namespace AscensionProtocol
         public List<int> AddBuffDurationTime { get; set; }
         public List<TriggerSkillData> TriggerSkillList { get; set; }
 
+
         public BattleActionData()
         {
             DamageList = new List<int>();
@@ -78,5 +80,13 @@ namespace AscensionProtocol
             DurationTime = new List<int>();
            
         }
+    }
+    //战斗结果
+    public class BattleResult
+    {
+        public int GetMoney { get; set; }
+        public int GetExp { get; set; }
+        public int RankLevel { get; set; }
+        public bool IsWinner { get; set; }
     }
 }
