@@ -24,6 +24,7 @@ namespace AscensionServer
                     var role = xRCommon.xRCriteria<Role>(nHCriteriaRole);
                     var roleAsset = xRCommon.xRCriteria<RoleAssets>(nHCriteriaRole);
                     var roleCricket = xRCommon.xRCriteria<RoleCricket>(nHCriteriaRole);
+                    var battleCombat = xRCommon.xRCriteria<BattleCombat>(nHCriteriaRole);
                     RoleCricketDTO roleCricketDTO = new RoleCricketDTO();
                     roleCricketDTO.RoleID = roleCricket.RoleID;
                     roleCricketDTO.CricketList =Utility.Json.ToObject<List<int>>(roleCricket.CricketList);
@@ -33,6 +34,7 @@ namespace AscensionServer
                     dataDict.Add((byte)ParameterCode.Role,Utility.Json.ToJson(role));
                     dataDict.Add((byte)ParameterCode.RoleAsset, Utility.Json.ToJson(roleAsset));
                     dataDict.Add((byte)ParameterCode.RoleCricket, Utility.Json.ToJson(roleCricketDTO));
+                    dataDict.Add((byte)ParameterCode.RoleBattleCombat, Utility.Json.ToJson(battleCombat));
                     #region 
                     var roleEntity = RoleEntity.Create(role.RoleID, (peer as IPeerEntity).SessionId, role);
                     IPeerEntity peerAgent;

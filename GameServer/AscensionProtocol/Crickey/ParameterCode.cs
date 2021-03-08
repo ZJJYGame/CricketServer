@@ -62,5 +62,6 @@
         SpreaCode=27,
         RoleMatch =28,
         RoleExlorationProp=29,
+        RoleBattleCombat=30,
     }
 }

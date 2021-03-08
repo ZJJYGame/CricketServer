@@ -268,8 +268,10 @@ namespace AscensionServer
                 battleDamageData.endurenceReply = -battleSkill.EnduranceCost;
                 int atk = (int)(attackPlayerData.Attack * battleSkill.DamagePercentValue / 100f);
                 int normalDamage = (int)((defendPlayerData.ReceiveDamage / 100f) * (atk - defendPlayerData.Defence * (100 - attackPlayerData.Pierce) / 100f)) + battleSkill.DamageFixedValue;
-
                 int critDamage = (int)((defendPlayerData.ReceiveDamage / 100f) * (atk+(atk * attackPlayerData.CritDamage * (100 - defendPlayerData.CritResistance) / 10000f) - defendPlayerData.Defence * (100 - attackPlayerData.Pierce) / 100f)) + battleSkill.DamageFixedValue;
+                normalDamage = normalDamage <= 0 ? 1 : normalDamage;
+                critDamage = critDamage <= 0 ? 1 : critDamage;
+
 
                 for (int i = 0; i < battleSkill.AttackNumber; i++)
                 {
@@ -428,10 +430,14 @@ namespace AscensionServer
                     if (attacker.roleBattleData.Health<=0 || defender.roleBattleData.Health<=0)//有一方死亡
                     {
                         Utility.Debug.LogError("碰撞中有一方死亡");
-                        attackerDamage.damageNumList.RemoveRange(i + 1, attackerDamage.damageNumList.Count - (i + 1));
-                        attackerDamage.returnDamageNumList.RemoveRange(i + 1, attackerDamage.returnDamageNumList.Count - (i + 1));
-                        defenderDamage.damageNumList.RemoveRange(i + 1, defenderDamage.damageNumList.Count - (i + 1));
-                        defenderDamage.returnDamageNumList.RemoveRange(i + 1, defenderDamage.returnDamageNumList.Count - (i + 1));
+                        if (attackerDamage.damageNumList.Count > i + 1)
+                            attackerDamage.damageNumList.RemoveRange(i + 1, attackerDamage.damageNumList.Count - (i + 1));
+                        if (attackerDamage.returnDamageNumList.Count > i + 1)
+                            attackerDamage.returnDamageNumList.RemoveRange(i + 1, attackerDamage.returnDamageNumList.Count - (i + 1));
+                        if (defenderDamage.damageNumList.Count > i + 1)
+                            defenderDamage.damageNumList.RemoveRange(i + 1, defenderDamage.damageNumList.Count - (i + 1));
+                        if (defenderDamage.returnDamageNumList.Count > i + 1)
+                            defenderDamage.returnDamageNumList.RemoveRange(i + 1, defenderDamage.returnDamageNumList.Count - (i + 1));
                         break;
                     }
                 }
