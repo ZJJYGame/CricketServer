@@ -36,18 +36,18 @@ namespace AscensionServer
         int actionBar;
         public int ActionBar { get { return actionBar;}  }
         //暴击率
-        int critProp;
-        public int CritProp
+        float critProp;
+        public float CritProp
         {
             get
             {
-                int num = critProp + buffRoleBattleData.CritProp;
+                float num = critProp + buffRoleBattleData.CritProp;
                 return num > 80 ? 80 : num;
             }
         }
         //闪避率
-        int dodgeProp;
-        public int DodgeProp { get { return dodgeProp + buffRoleBattleData.DodgeProp; } }
+        float dodgeProp;
+        public float DodgeProp { get { return dodgeProp + buffRoleBattleData.DodgeProp; } }
         //受到伤害
         int receiveDamage;
         public int ReceiveDamage

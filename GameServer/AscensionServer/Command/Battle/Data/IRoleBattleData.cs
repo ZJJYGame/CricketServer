@@ -25,9 +25,9 @@ namespace AscensionServer
         //行动条
         int ActionBar { get; }
         //暴击率
-        int CritProp { get; }
+        float CritProp { get; }
         //闪避率
-        int DodgeProp { get; }
+        float DodgeProp { get; }
         //受到伤害
         int ReceiveDamage { get; }
         //穿透

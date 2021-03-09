@@ -16,6 +16,8 @@ namespace AscensionServer
         public int RemainActionBar { get; private set; }
         public bool IsRobot { get; private set; }
         public bool IsWin { get;set; }
+        //行动次数记录
+        public int ActionCount { get; set; }
 
         public RoleBattleData roleBattleData;
 
@@ -30,6 +32,7 @@ namespace AscensionServer
             battleBuffController.roleBattleData = roleBattleData;
             IsRobot = false;
             IsWin = true;
+            ActionCount = 1;
         }
         public void Init(RoleDTO roleDTO,CricketDTO cricketDTO)
         {
@@ -42,6 +45,7 @@ namespace AscensionServer
             battleBuffController.roleBattleData = roleBattleData;
             IsRobot = false;
             IsWin = true;
+            ActionCount = 1;
         }
         //机器人
         public void Init(RoleDTO roleDTO, CricketDTO cricketDTO,MachineData machineData)
@@ -55,6 +59,7 @@ namespace AscensionServer
             battleBuffController.roleBattleData = roleBattleData;
             IsRobot = true;
             IsWin = true;
+            ActionCount = 1;
         }
         /// <summary>
         /// 随机使用一个技能
@@ -102,7 +107,10 @@ namespace AscensionServer
                 RemainActionBar = roleBattleData.ActionBar;
 
         }
-
+        public void AddActionCount()
+        {
+            ActionCount++;
+        }
 
         RoleBattleData GetRoleBattleData(int roleId)
         {
@@ -155,6 +163,7 @@ namespace AscensionServer
             IsRobot = false;
             roleBattleData = null;
             battleBuffController = null;
+            ActionCount = 0;
         }
 
         public void OnRefresh()

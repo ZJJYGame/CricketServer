@@ -21,8 +21,8 @@ namespace AscensionServer
 		public int Defense; // 防御力
 		public int Mp; // 耐力
 		public int MpReply; // 耐力回复
-		public int Crt; // 暴击率
-		public int Eva; // 闪避
+		public float Crt; // 暴击率
+		public float Eva; // 闪避
 		public int Speed; // 行动条
 		public List<int> SkillPool; // 技能池
 		public int CrtAtk; // 暴击伤害

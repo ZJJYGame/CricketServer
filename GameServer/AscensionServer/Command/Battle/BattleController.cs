@@ -42,7 +42,15 @@ namespace AscensionServer
             while (playerOne.roleBattleData.Health > 0 && playerTwo.roleBattleData.Health > 0)
             {
                 bool isCrash = false;
-               
+
+                //出手数过多，提前终止
+                if (playerOne.ActionCount > 30 && playerTwo.ActionCount > 30)
+                {
+                    playerOne.IsWin = false;
+                    playerTwo.IsWin = false;
+                    break;
+                }
+
                 //决定攻击方
                 if (playerOne.RemainActionBar < playerTwo.RemainActionBar)
                 {
@@ -105,6 +113,10 @@ namespace AscensionServer
                 defendPlayer.ChangeActionBar(offestTime);
                 if (isCrash)
                     defendPlayer.ChangeActionBar(-defendPlayer.roleBattleData.ActionBar);
+                //攻击次数结算
+                attackPlayer.AddActionCount();
+                if (isCrash)
+                    defendPlayer.AddActionCount();
  
                 //todo所有buff实体持续时间减少
                 attackPlayer.battleBuffController.UpdateBuffTime(offestTime);
@@ -166,6 +178,7 @@ namespace AscensionServer
                 //触发buff
                 attackPlayer.battleBuffController.TriggerBuff();
                 defendPlayer.battleBuffController.TriggerBuff();
+
 
                 Utility.Debug.LogError("当前时间=>" + nowTime + (isCrash ? "，发生碰撞" : "，没有碰撞") + ",碰撞冷却=>" + crashColdTime);
             }
