@@ -40,6 +40,7 @@ namespace AscensionServer
                 Utility.Debug.LogInfo("Server Start Running");
             }
             NHibernateQuerier.Init();
+            RedisDotNet.RedisManager.Instance.ConnectRedis();
             GameManager.InitCustomeModule(this.GetType().Assembly);
             var thread = new Thread(GameManagerAgent.Instance.Start);
             thread.Start();
