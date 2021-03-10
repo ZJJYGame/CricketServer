@@ -127,7 +127,8 @@ namespace AscensionServer
                             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, TaskData>>(out var setTask);
                             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var setProp);
                             if (setTask[info.Key].PropID != 0)
-                                //InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO> { { setProp[setTask[info.Key].PropID].PropID, new ItemDTO() { ItemAmount = 1 } } });
+                                // InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO> { { setProp[setTask[info.Key].PropID].PropID, new ItemDTO() { ItemAmount = 1 } } });
+                                ExplorationManager.xRAddExploration(roleId, new Dictionary<int, ExplorationItemDTO>(), new Dictionary<int, int> { { setTask[info.Key].PropID, 1 } });
                             BuyPropManager.UpdateRoleAssets(roleId, xrDict[info.Key].taskManoy);
                         }
                     }
