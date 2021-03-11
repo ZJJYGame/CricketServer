@@ -101,10 +101,6 @@
     <Compile Include="RedisManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Framework\CFramework.csproj">
-      <Project>{81a14e63-385f-4b83-b403-a6b7d6fc94d8}</Project>
-      <Name>CFramework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework\Framework.csproj">
       <Project>{ba0b495c-3c9c-4ff6-a150-020829328cee}</Project>
       <Name>Framework</Name>

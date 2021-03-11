@@ -112,6 +112,8 @@
     <Reference Include="System.Diagnostics.PerformanceCounter, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.PerformanceCounter.5.0.0\lib\net461\System.Diagnostics.PerformanceCounter.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
       <Private>True</Private>
@@ -311,7 +313,9 @@
     <EmbeddedResource Include="JsonData\MachineData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Content Include="JsonData\RankLevel.txt" />
+    <EmbeddedResource Include="JsonData\RankLevel.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />
     <Content Include="Plugin\ExitGames.Logging.Log4Net.XML" />
     <Content Include="Plugin\ExitGamesLibs.dll" />
@@ -339,10 +343,6 @@
     <ProjectReference Include="..\Protocol\Protocol.csproj">
       <Project>{2d2f0f7a-63ce-4898-a74d-fee8dd3eb58a}</Project>
       <Name>Protocol</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RedisService\RedisService.csproj">
-      <Project>{c1e88d49-8582-4ca4-bc91-0f6147c8f876}</Project>
-      <Name>RedisService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

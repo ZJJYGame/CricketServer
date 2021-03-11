@@ -10,19 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AscensionProtocol", "AscensionProtocol\AscensionProtocol.csproj", "{92FE5C81-2FA8-4E3F-9CE6-EE8CC7C9A261}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AscensionServer", "AscensionServer\AscensionServer.csproj", "{39A92997-E396-4B11-AF3D-57A1ED785C03}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C1E88D49-8582-4CA4-BC91-0F6147C8F876} = {C1E88D49-8582-4CA4-BC91-0F6147C8F876}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisService", "RedisService\RedisService.csproj", "{C1E88D49-8582-4CA4-BC91-0F6147C8F876}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BA0B495C-3C9C-4FF6-A150-020829328CEE} = {BA0B495C-3C9C-4FF6-A150-020829328CEE}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRunner", "TestRunner\TestRunner.csproj", "{BD85753B-0D27-4BE8-AA52-15BA62E06118}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C1E88D49-8582-4CA4-BC91-0F6147C8F876} = {C1E88D49-8582-4CA4-BC91-0F6147C8F876}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,14 +33,6 @@ Global
 		{39A92997-E396-4B11-AF3D-57A1ED785C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39A92997-E396-4B11-AF3D-57A1ED785C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39A92997-E396-4B11-AF3D-57A1ED785C03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1E88D49-8582-4CA4-BC91-0F6147C8F876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1E88D49-8582-4CA4-BC91-0F6147C8F876}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1E88D49-8582-4CA4-BC91-0F6147C8F876}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1E88D49-8582-4CA4-BC91-0F6147C8F876}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD85753B-0D27-4BE8-AA52-15BA62E06118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD85753B-0D27-4BE8-AA52-15BA62E06118}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD85753B-0D27-4BE8-AA52-15BA62E06118}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD85753B-0D27-4BE8-AA52-15BA62E06118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
