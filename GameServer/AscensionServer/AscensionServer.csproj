@@ -347,6 +347,10 @@
       <Project>{2d2f0f7a-63ce-4898-a74d-fee8dd3eb58a}</Project>
       <Name>Protocol</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RedisService\RedisService.csproj">
+      <Project>{c1e88d49-8582-4ca4-bc91-0f6147c8f876}</Project>
+      <Name>RedisService</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Ascension\Core\Base\HelperImplement\NetworkHelper\" />
