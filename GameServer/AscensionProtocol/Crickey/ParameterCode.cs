@@ -63,5 +63,9 @@
         RoleMatch =28,
         RoleExlorationProp=29,
         RoleBattleCombat=30,
+        /// <summary>
+        /// 胜场排行榜
+        /// </summary>
+        WinRank=31,
     }
 }

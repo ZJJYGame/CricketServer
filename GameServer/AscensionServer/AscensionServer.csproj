@@ -176,6 +176,7 @@
     <Compile Include="Ascension\Core\Base\NHibernate\NHCriteria.cs" />
     <Compile Include="Ascension\Core\Base\NHibernate\NHibernateHelper.cs" />
     <Compile Include="Ascension\Core\Base\NHibernate\NHibernateQuerier.cs" />
+    <Compile Include="Ascension\Core\Base\ResdisKey\RedisKeyDefine.cs" />
     <Compile Include="Ascension\Core\Base\Stream\DataStream.cs" />
     <Compile Include="Ascension\Core\Base\Stream\DataStreamQueue.cs" />
     <Compile Include="Ascension\Core\Base\Stream\GenericDataStream.cs" />
@@ -232,6 +233,8 @@
     <Compile Include="Command\Match\MatchManager.cs" />
     <Compile Include="Command\Match\TimerManager.cs" />
     <Compile Include="Command\NoviceGuideManager\NoviceGuideManager.cs" />
+    <Compile Include="Command\OnTimeEventManager\OnTimeEventManager.cs" />
+    <Compile Include="Command\OnTimeEventManager\OnTimeEventStruct.cs" />
     <Compile Include="Command\Rank\RankManager.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginHandler.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginManager.cs" />

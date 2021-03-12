@@ -7,6 +7,7 @@ using System.Timers;
 using AscensionProtocol;
 using Cosmos;
 using Protocol;
+using RedisDotNet;
 
 namespace AscensionServer
 {
@@ -158,7 +159,7 @@ namespace AscensionServer
                 if (battleCharacterEntity.IsRobot)
                     continue;
                 BattleResult battleResult = new BattleResult() { IsWinner = battleCharacterEntity.IsWin };
-                battleResult.GetMoney = RandomAddMoney(battleCharacterEntity.RoleID, battleCharacterEntity.IsWin);
+                battleResult.GetMoney = RandomAddMoney(battleCharacterEntity.RoleID, battleCharacterEntity.IsWin).Result;
                 battleResult.GetExp = RandomAddExp(battleCharacterEntity.CricketID, battleCharacterEntity.RoleID, battleCharacterEntity.IsWin);
                 battleResult.RankLevel = UpdateRankLevel(battleCharacterEntity.CricketID, battleCharacterEntity.RoleID, battleCharacterEntity.IsWin);
                 battleResultDict[battleCharacterEntity.RoleID] = battleResult;
@@ -168,24 +169,30 @@ namespace AscensionServer
         /// <summary>
         /// 给玩家随机增加金钱
         /// </summary>
-        int RandomAddMoney(int roleID,bool isWinner)
+        /// todo 将获得金币上限记录在redis中
+         async Task<int> RandomAddMoney(int roleID,bool isWinner)
         {
-            Utility.Debug.LogError(roleID + "尝试增加金钱");
-            NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", roleID);
-            var battleCombat = xRCommon.xRCriteria<BattleCombat>(nHCriteria);
+            //NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", roleID);
+            //var battleCombat = xRCommon.xRCriteria<BattleCombat>(nHCriteria);
+            int moneyLimit;
+            if (await RedisHelper.Hash.HashExistAsync(RedisKeyDefine._RankGetMoneyLimitPerfix, roleID.ToString()))
+                moneyLimit = await RedisHelper.Hash.HashGetAsync<int>(RedisKeyDefine._RankGetMoneyLimitPerfix, roleID.ToString());
+            else
+                moneyLimit = 0;
+
             int getMoney;
             Random random = new Random();
             if (isWinner)
                 getMoney = random.Next(WinnerGetMoneyLowerLimit, WinnerGetMoneyUpperLimit + 1);
             else
                 getMoney = random.Next(LoserGetMoneyLowerLimit, LoserGetMoneyUpperLimit + 1);
-            if (getMoney > GetMoneyLimit - battleCombat.MoneyLimit)
-                getMoney = GetMoneyLimit - battleCombat.MoneyLimit;
+            if (getMoney > GetMoneyLimit - moneyLimit)
+                getMoney = GetMoneyLimit - moneyLimit;
             if (getMoney != 0)
             {
                 BuyPropManager.UpdateRoleAssets(roleID, getMoney);
-                battleCombat.MoneyLimit += getMoney;
-                NHibernateQuerier.Update(battleCombat);
+                moneyLimit += getMoney;
+                await RedisHelper.Hash.HashSetAsync<int>(RedisKeyDefine._RankGetMoneyLimitPerfix, roleID.ToString(), moneyLimit);
             }
             return getMoney;
         }

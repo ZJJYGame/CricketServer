@@ -61,7 +61,6 @@ namespace RedisDotNet
                 throw new RedisConnectionException(ConnectionFailureType.UnableToConnect, "Redis Connect Fail");
             }
 
-            RedisHelper.String.StringSet<int>("俞志强", 623);
         }
         /// <summary>
         /// 订阅key过期事件；
@@ -84,7 +83,7 @@ namespace RedisDotNet
             }
             var mutlti =this. Redis;
             var subscriber = mutlti.GetSubscriber();
-            subscriber.Subscribe("__keyevent@0__:expired", (channel, keyVar) =>
+            subscriber.Subscribe("__keyevent@4__:expired", (channel, keyVar) =>
             {
                 if (keyVar.StartsWith(key))
                 {

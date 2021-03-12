@@ -12,7 +12,8 @@ namespace AscensionServer
     [CustomeModule]
     public partial class RankManager:Module<RankManager>
     {
-        public Dictionary<int, RankDTO> rankDict = new Dictionary<int, RankDTO>();
+        Dictionary<int, RankDTO> rankDict = new Dictionary<int, RankDTO>();
+        Dictionary<int, BattleCombatDTO> winsDict = new Dictionary<int, BattleCombatDTO>();
         public override void OnPreparatory() => CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncRank, C2SRank);
 
         private void C2SRank(OperationData opData)
@@ -60,6 +61,12 @@ namespace AscensionServer
             var subOp = xRCommon.xRS2CSub();
             subOp.Add((byte)SubOperationCode.Get, pareams);
             xRCommon.xRS2CSend(roleId, (byte)ATCmd.SyncRank, (byte)ReturnCode.Success, subOp);
+        }
+
+        public void ClearRankDict()
+        {
+            rankDict.Clear();
+            winsDict.Clear();
         }
     }
 }
