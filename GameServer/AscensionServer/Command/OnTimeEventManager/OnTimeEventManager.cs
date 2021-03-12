@@ -19,6 +19,8 @@ namespace AscensionServer
             RefreshGetMoneyLimitEvent();
             //清除重置 每日任务的事件
             RefreshDailyTaskEvent();
+            //排行榜刷新事件
+            RefreshRankListEvent();
         }
         /// <summary>
         /// 添加Redis周期刷新事件
@@ -45,8 +47,8 @@ namespace AscensionServer
             {
                 await RedisHelper.String.StringSetAsync<string>(key, DateTime.Now.ToString(), timeSpan);
                 if (onTimeEventStruct.dayInWeek.Contains((int)today.DayOfWeek))
-                    if(index >= 0)
-                    onTimeEventStruct.actionCallBack?.Invoke(key);
+                    if (index >= 0)
+                        onTimeEventStruct.actionCallBack?.Invoke(key);
             }
 
             RedisManager.Instance.AddKeyExpireListener(key, (string str) =>
@@ -59,7 +61,7 @@ namespace AscensionServer
         /// <summary>
         /// 刷新获得金钱限制的事件
         /// </summary>
-         void RefreshGetMoneyLimitEvent()
+        void RefreshGetMoneyLimitEvent()
         {
             AddOnTImeEventByDay(RedisKeyDefine._RankGetMoneyLimitRefreshFlagPerfix, new OnTimeEventStruct(9, 30, 0, new int[] { 0, 1, 2, 3, 4, 5, 6 }, async (string str) =>
              {
@@ -81,6 +83,17 @@ namespace AscensionServer
                 //清除所有玩家每日完成任务的记录
                 await RedisHelper.KeyDeleteAsync(RedisKeyDefine._RoleDailyTaskRecordPerfix);
             }));
+        }
+        /// <summary>
+        /// 刷新排行榜事件
+        /// </summary>
+        void RefreshRankListEvent()
+        {
+            AddOnTImeEventByDay(RedisKeyDefine._RankListRefreshFlag, new OnTimeEventStruct(9, 30, 0, new int[] { 0, 1, 2, 3, 4, 5, 6 }, (string str) =>
+           {
+               Utility.Debug.LogError("排行榜刷新");
+               GameManager.CustomeModule<RankManager>().ClearRankDict();
+           }));
         }
     }
 }

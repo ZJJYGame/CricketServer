@@ -24,5 +24,11 @@ namespace AscensionServer
         //玩家每日任务完成情况记录
         public static readonly string _RoleDailyTaskRecordPerfix = "RoleDailyTaskRecord";
         #endregion
+        #region 排行榜事件
+        /// <summary>
+        /// 排行榜刷新
+        /// </summary>
+        public static readonly string _RankListRefreshFlag = "RankListRefreshFlag";
+        #endregion
     }
 }
