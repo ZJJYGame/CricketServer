@@ -25,14 +25,10 @@ namespace AscensionServer
             Exp = 0;
             RankID = 301;
             CricketName = "蛐蛐1";
-            //SkillDict = "{}";
-            Dictionary<int, int> dict = new Dictionary<int, int>();
-            //dict.Add(3602, 0);
-            //dict.Add(3604, 0);
-            dict.Add(3606, 0);
-            //dict.Add(3613, 0);
-            //dict.Add(3615, 0);
-            SkillDict = Utility.Json.ToJson(dict);
+            SkillDict = "{}";
+            //Dictionary<int, int> Dict = new Dictionary<int, int>();
+            //Dict.Add(3611,0);
+            //SkillDict = Utility.Json.ToJson(Dict); 
             SpecialDict = "{}";
             Roleid = -1;//玩家ID
         }
