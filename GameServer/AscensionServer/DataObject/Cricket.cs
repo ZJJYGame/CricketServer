@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Cosmos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace AscensionServer
 {
    public class Cricket
@@ -25,7 +25,14 @@ namespace AscensionServer
             Exp = 0;
             RankID = 301;
             CricketName = "蛐蛐1";
-            SkillDict = "{}";
+            //SkillDict = "{}";
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            //dict.Add(3602, 0);
+            //dict.Add(3604, 0);
+            dict.Add(3606, 0);
+            //dict.Add(3613, 0);
+            //dict.Add(3615, 0);
+            SkillDict = Utility.Json.ToJson(dict);
             SpecialDict = "{}";
             Roleid = -1;//玩家ID
         }

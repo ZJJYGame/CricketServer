@@ -95,9 +95,10 @@ namespace AscensionServer
                     cricketPoint.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketPoint);
                     //cricketStatus = RoleCricketManager.CalculateStutas(cricketAptitude, cricketPoint, cricketAddition);
-                    cricketStatus =RoleCricketManager.SkillAdditionStatus(cricket, cricketAptitude, cricketPoint, cricketAddition);
+                    cricketStatus =RoleCricketManager.SkillAdditionStatus(cricket, cricketAptitude, cricketPoint, cricketAddition,out var cricketPointTemp);
                     cricketStatus.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketStatus);
+                    NHibernateQuerier.Insert(cricketPointTemp);
                     roleCricketDTO.TemporaryCrickets[i] = cricket.ID;
                     break;
                 }
@@ -225,10 +226,11 @@ namespace AscensionServer
         public static void AddPointForScricket(int roleid, int cricketid, CricketPointDTO cricketPointDTO)
         {
             NHCriteria nHCriteria = xRCommon.xRNHCriteria("CricketID", cricketid);
+            NHCriteria nHCriteriaCricket = xRCommon.xRNHCriteria("ID", cricketid);
             var cricketPoint = xRCommon.xRCriteria<CricketPoint>(nHCriteria);
             var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteria);
             var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteria);
-            var cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
+            var cricket = xRCommon.xRCriteria<Cricket>(nHCriteriaCricket);
             if (cricketPoint!=null)
             {
                 if ((cricketPointDTO.Dex + cricketPointDTO.Def + cricketPointDTO.Con + cricketPointDTO.Str) > cricketPoint.FreePoint)
@@ -249,10 +251,10 @@ namespace AscensionServer
                     var dataDict = xRCommon.xRS2CSub();
                     var cricketPointDict = xRCommon.xRS2CParams();
 
-                    var status = SkillAdditionStatus(cricket,aptitude, cricketPoint, addition);
+                    var status = SkillAdditionStatus(cricket,aptitude, cricketPoint, addition,out var cricketPointTemp);
 
                     status.CricketID = cricketPoint.CricketID;
-                    cricketPointDict.Add((byte)ParameterCode.CricketPoint, cricketPoint);
+                    cricketPointDict.Add((byte)ParameterCode.CricketPoint, cricketPointTemp);
                     cricketPointDict.Add((byte)ParameterCode.CricketAptitude, aptitude);
                     cricketPointDict.Add((byte)ParameterCode.CricketStatus, status);
                     NHibernateQuerier.Update(status);

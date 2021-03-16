@@ -88,10 +88,11 @@ namespace AscensionServer
         public static void  AptitudeProp(int roleid,PropData propData,int cricketid)
         {
             var nHCriteriaAptitude = xRCommon.xRNHCriteria("CricketID", cricketid);
+            var nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);
             var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
             var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriaAptitude);
-            var cricketObj = xRCommon.xRCriteria<Cricket>(nHCriteriaAptitude);
+            var cricketObj = xRCommon.xRCriteria<Cricket>(nHCriteria);
             if (point != null && aptitude != null&& addition!= null && cricketObj != null)
             {
                 switch ((PropType)propData.PropType)
@@ -112,12 +113,12 @@ namespace AscensionServer
                         break;
                 }
                 //var status = CalculateStutas(aptitude, point, addition);
-                var status = SkillAdditionStatus(cricketObj, aptitude, point, addition);
+                var status = SkillAdditionStatus(cricketObj, aptitude, point, addition,out var cricketPoint);
                 status.CricketID = aptitude.CricketID;
                 var data = xRCommon.xRS2CParams();
                 data.Add((byte)ParameterCode.CricketStatus, status);
                 data.Add((byte)ParameterCode.CricketAptitude, aptitude);
-                data.Add((byte)ParameterCode.CricketPoint, point);
+                data.Add((byte)ParameterCode.CricketPoint, cricketPoint);
                 NHibernateQuerier.Update(status);
                 var dict= xRCommon.xRS2CSub();
                 dict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(data));
@@ -142,12 +143,13 @@ namespace AscensionServer
         /// <param name="cricketStatus"></param>
         public static void StatusProp(int roleid, PropData propData, int cricketid)
         {
-
             var nHCriteriaAptitude = xRCommon.xRNHCriteria("CricketID", cricketid);
+            var nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);
             var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
             var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriaAptitude);
-            var cricketObj = xRCommon.xRCriteria<Cricket>(nHCriteriaAptitude);
+            var cricketObj = xRCommon.xRCriteria<Cricket>(nHCriteria);
+            Utility.Debug.LogError("探索得到的蛐蛐ID为" + cricketid+">>>>"+ (cricketObj == null));
             if (point != null && addition != null && aptitude != null && cricketObj != null)
             {
                 switch ((PropType)propData.PropType)
@@ -172,12 +174,12 @@ namespace AscensionServer
                 }
             }
             //var status = CalculateStutas(aptitude, point, addition);
-            var status = SkillAdditionStatus(cricketObj, aptitude, point, addition);
+            var status = SkillAdditionStatus(cricketObj, aptitude, point, addition,out var cricketPoint);
             status.CricketID = aptitude.CricketID;
             var data = xRCommon.xRS2CParams();
             data.Add((byte)ParameterCode.CricketStatus, status);
             data.Add((byte)ParameterCode.CricketAptitude, aptitude);
-            data.Add((byte)ParameterCode.CricketPoint, point);
+            data.Add((byte)ParameterCode.CricketPoint, cricketPoint);
             NHibernateQuerier.Update(status);
             var dict = xRCommon.xRS2CSub();
             dict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(data));

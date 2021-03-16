@@ -23,5 +23,21 @@ namespace AscensionProtocol
         public virtual float Rebound { set; get; }
         public virtual float Eva { set; get; }
         public virtual double Speed { set; get; }
+        public void clear()
+        {
+            Atk = 0;
+            Hp = 0;
+            Defense = 0;
+            Mp = 0;
+            MpReply = 0;
+            Crt = 0;
+            CrtAtk = 0;
+            CrtDef = 0;
+            ReduceAtk = 0;
+            ReduceDef = 0;
+            Rebound = 0;
+            Eva = 0;
+            Speed = 0;
+        }
     }
 }

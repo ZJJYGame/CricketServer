@@ -50,14 +50,14 @@ namespace AscensionServer
                 roleCricket.TemporaryCrickets = Utility.Json.ToJson(roleCricketObj.TemporaryCrickets);
                 NHibernateQuerier.Insert(roleCricket);
                 //cricketStatus= RoleCricketManager.CalculateStutas(cricketAptitude, cricketPoint, cricketAddition);
-                cricketStatus = RoleCricketManager.SkillAdditionStatus(cricket, cricketAptitude, cricketPoint, cricketAddition);
+                cricketStatus = RoleCricketManager.SkillAdditionStatus(cricket, cricketAptitude, cricketPoint, cricketAddition,out var cricketPointTemp);
                 Utility.Debug.LogInfo("yzqData发送成功"+ Utility.Json.ToJson(cricketStatus));
                 cricketStatus.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketStatus);
                 cricketAptitude.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketAptitude);
-                cricketPoint.CricketID = cricket.ID;
-                NHibernateQuerier.Insert(cricketPoint);
+                cricketPointTemp.CricketID = cricket.ID;
+                NHibernateQuerier.Insert(cricketPointTemp);
                 cricketAddition.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketAddition);
                 #endregion
