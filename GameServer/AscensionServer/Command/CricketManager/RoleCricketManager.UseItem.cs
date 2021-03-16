@@ -91,7 +91,8 @@ namespace AscensionServer
             var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
             var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriaAptitude);
-            if (point != null && aptitude != null&& addition!=null)
+            var cricketObj = xRCommon.xRCriteria<Cricket>(nHCriteriaAptitude);
+            if (point != null && aptitude != null&& addition!= null && cricketObj != null)
             {
                 switch ((PropType)propData.PropType)
                 {
@@ -110,7 +111,8 @@ namespace AscensionServer
                     default:
                         break;
                 }
-                var status = CalculateStutas(aptitude, point, addition);
+                //var status = CalculateStutas(aptitude, point, addition);
+                var status = SkillAdditionStatus(cricketObj, aptitude, point, addition);
                 status.CricketID = aptitude.CricketID;
                 var data = xRCommon.xRS2CParams();
                 data.Add((byte)ParameterCode.CricketStatus, status);
@@ -145,7 +147,8 @@ namespace AscensionServer
             var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriaAptitude);
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
             var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriaAptitude);
-            if (point!=null&& addition!=null&& aptitude!=null)
+            var cricketObj = xRCommon.xRCriteria<Cricket>(nHCriteriaAptitude);
+            if (point != null && addition != null && aptitude != null && cricketObj != null)
             {
                 switch ((PropType)propData.PropType)
                 {
@@ -168,7 +171,8 @@ namespace AscensionServer
                         break;
                 }
             }
-            var status = CalculateStutas(aptitude, point, addition);
+            //var status = CalculateStutas(aptitude, point, addition);
+            var status = SkillAdditionStatus(cricketObj, aptitude, point, addition);
             status.CricketID = aptitude.CricketID;
             var data = xRCommon.xRS2CParams();
             data.Add((byte)ParameterCode.CricketStatus, status);

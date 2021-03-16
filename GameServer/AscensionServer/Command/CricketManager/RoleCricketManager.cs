@@ -94,7 +94,8 @@ namespace AscensionServer
                     cricketPoint.FreePoint = cricketLevelDict[cricket.LevelID].AssignPoint;
                     cricketPoint.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketPoint);
-                    cricketStatus = RoleCricketManager.CalculateStutas(cricketAptitude, cricketPoint, cricketAddition);
+                    //cricketStatus = RoleCricketManager.CalculateStutas(cricketAptitude, cricketPoint, cricketAddition);
+                    cricketStatus =RoleCricketManager.SkillAdditionStatus(cricket, cricketAptitude, cricketPoint, cricketAddition);
                     cricketStatus.CricketID = cricket.ID;
                     NHibernateQuerier.Insert(cricketStatus);
                     roleCricketDTO.TemporaryCrickets[i] = cricket.ID;
@@ -227,6 +228,7 @@ namespace AscensionServer
             var cricketPoint = xRCommon.xRCriteria<CricketPoint>(nHCriteria);
             var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteria);
             var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteria);
+            var cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
             if (cricketPoint!=null)
             {
                 if ((cricketPointDTO.Dex + cricketPointDTO.Def + cricketPointDTO.Con + cricketPointDTO.Str) > cricketPoint.FreePoint)
@@ -246,7 +248,9 @@ namespace AscensionServer
 
                     var dataDict = xRCommon.xRS2CSub();
                     var cricketPointDict = xRCommon.xRS2CParams();
-                    var status = CalculateStutas(aptitude, cricketPoint, addition);
+
+                    var status = SkillAdditionStatus(cricket,aptitude, cricketPoint, addition);
+
                     status.CricketID = cricketPoint.CricketID;
                     cricketPointDict.Add((byte)ParameterCode.CricketPoint, cricketPoint);
                     cricketPointDict.Add((byte)ParameterCode.CricketAptitude, aptitude);
