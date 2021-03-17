@@ -97,8 +97,14 @@ namespace AscensionServer
                     //cricketStatus = RoleCricketManager.CalculateStutas(cricketAptitude, cricketPoint, cricketAddition);
                     cricketStatus =RoleCricketManager.SkillAdditionStatus(cricket, cricketAptitude, cricketPoint, cricketAddition,out var cricketPointTemp);
                     cricketStatus.CricketID = cricket.ID;
+                    #region
+                    cricketAptitude.SkillCon = cricketPointTemp.Con;
+                    cricketAptitude.SkillDef = cricketPointTemp.Def;
+                    cricketAptitude.SkillDex = cricketPointTemp.Dex;
+                    cricketAptitude.SkillStr = cricketPointTemp.Str;
+                    #endregion
                     NHibernateQuerier.Insert(cricketStatus);
-                    NHibernateQuerier.Insert(cricketPointTemp);
+                    NHibernateQuerier.Update(cricketAptitude);
                     roleCricketDTO.TemporaryCrickets[i] = cricket.ID;
                     break;
                 }

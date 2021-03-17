@@ -44,7 +44,7 @@ namespace AscensionServer
                 var data = xRCommon.xRS2CParams();
                 data.Add((byte)ParameterCode.CricketAptitude, aptitude);
                 data.Add((byte)ParameterCode.CricketStatus, status);
-                data.Add((byte)ParameterCode.CricketPoint, cricketPoint);
+                data.Add((byte)ParameterCode.CricketPoint, point);
                 var dict = xRCommon.xRS2CSub();
                 dict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(data));
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Success, dict);
@@ -59,27 +59,29 @@ namespace AscensionServer
         /// <summary>
         /// 计算属性加成
         /// </summary>
-        public static CricketStatus CalculateStutas(CricketAptitude cricketAptitude, CricketPoint cricketPoint, CricketAddition cricketAddition)
-        {
-            //TODO补充技能的加成
-            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketStatusData>>(out var StatusDict);
-            CricketStatus cricketStatus = new CricketStatus();
+        #region 待删
+        //public static CricketStatus CalculateStutas(CricketAptitude cricketAptitude, CricketPoint cricketPoint, CricketAddition cricketAddition)
+        //{
+        //    //TODO补充技能的加成
+        //    GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketStatusData>>(out var StatusDict);
+        //    CricketStatus cricketStatus = new CricketStatus();
 
-            cricketStatus.Atk = cricketAddition.Atk + StatusDict[1].Atk + (int)((cricketAptitude.Str + cricketPoint.Str) * (cricketAptitude.StrAptitude + 100) * 0.01f);
-            cricketStatus.Defense = cricketAddition.Defense + StatusDict[1].Defense + (int)((cricketAptitude.Def + cricketPoint.Def) * (cricketAptitude.DefAptitude + 100) * 0.005f);
-            cricketStatus.Hp = cricketAddition.Hp + StatusDict[1].Hp + (int)((cricketAptitude.Con + cricketPoint.Con) * (cricketAptitude.ConAptitude + 100) * 0.05f);
-            cricketStatus.Mp = cricketAddition.Mp + StatusDict[1].Mp + (int)(cricketStatus.Hp / 100) + (cricketStatus.Mp);
-            cricketStatus.MpReply = cricketAddition.MpReply + StatusDict[1].MpReply + (int)(cricketStatus.Mp / 10) + cricketStatus.MpReply;
-            cricketStatus.Crt = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
-            cricketStatus.Eva = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
-            cricketStatus.Speed = StatusDict[1].Speed -  ((cricketAptitude.Dex + cricketPoint .Dex) * (1.5f - (0.01 * (100 - cricketAptitude.DefAptitude))));
-            cricketStatus.ReduceAtk = StatusDict[1].ReduceAtk;
-            cricketStatus.ReduceDef = StatusDict[1].ReduceDef;
-            cricketStatus.Rebound = StatusDict[1].Rebound;
-            Utility.Debug.LogInfo("闪避固定值" + (cricketAptitude.Dex + cricketPoint.Dex) +"资质"+ cricketAptitude.DexAptitude+"值"+ (300 - (2 * (100f - cricketAptitude.DexAptitude))) / 1000000f+"计算值"+ cricketStatus.Eva);
-            //Utility.Debug.LogInfo("攻击" +(cricketAddition.Atk + StatusDict[1].Atk) + "防御" + (cricketAptitude.Str + cricketPoint.Str) + "血量" + (cricketAptitude.StrAptitude + 100) * 0.01f);
-            return cricketStatus;
-        }
+        //    cricketStatus.Atk = cricketAddition.Atk + StatusDict[1].Atk + (int)((cricketAptitude.Str + cricketPoint.Str) * (cricketAptitude.StrAptitude + 100) * 0.01f);
+        //    cricketStatus.Defense = cricketAddition.Defense + StatusDict[1].Defense + (int)((cricketAptitude.Def + cricketPoint.Def) * (cricketAptitude.DefAptitude + 100) * 0.005f);
+        //    cricketStatus.Hp = cricketAddition.Hp + StatusDict[1].Hp + (int)((cricketAptitude.Con + cricketPoint.Con) * (cricketAptitude.ConAptitude + 100) * 0.05f);
+        //    cricketStatus.Mp = cricketAddition.Mp + StatusDict[1].Mp + (int)(cricketStatus.Hp / 100) + (cricketStatus.Mp);
+        //    cricketStatus.MpReply = cricketAddition.MpReply + StatusDict[1].MpReply + (int)(cricketStatus.Mp / 10) + cricketStatus.MpReply;
+        //    cricketStatus.Crt = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
+        //    cricketStatus.Eva = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
+        //    cricketStatus.Speed = StatusDict[1].Speed -  ((cricketAptitude.Dex + cricketPoint .Dex) * (1.5f - (0.01 * (100 - cricketAptitude.DefAptitude))));
+        //    cricketStatus.ReduceAtk = StatusDict[1].ReduceAtk;
+        //    cricketStatus.ReduceDef = StatusDict[1].ReduceDef;
+        //    cricketStatus.Rebound = StatusDict[1].Rebound;
+        //    Utility.Debug.LogInfo("闪避固定值" + (cricketAptitude.Dex + cricketPoint.Dex) +"资质"+ cricketAptitude.DexAptitude+"值"+ (300 - (2 * (100f - cricketAptitude.DexAptitude))) / 1000000f+"计算值"+ cricketStatus.Eva);
+        //    //Utility.Debug.LogInfo("攻击" +(cricketAddition.Atk + StatusDict[1].Atk) + "防御" + (cricketAptitude.Str + cricketPoint.Str) + "血量" + (cricketAptitude.StrAptitude + 100) * 0.01f);
+        //    return cricketStatus;
+        //}
+        #endregion
         /// <summary>
         /// 获取资质等随机随机
         /// </summary>
@@ -142,7 +144,10 @@ namespace AscensionServer
             var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", cricketid);
             var cricket = xRCommon.xRCriteria<Cricket>(nHCriteriacricket);
             var cricketstatus = xRCommon.xRCriteria<CricketStatus>(nHCriteriastatus);
-            if (cricket != null)
+            var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriastatus);
+            var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriastatus);
+            var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriastatus);
+            if (cricket != null&& cricketstatus!=null&& aptitude!=null&& addition!=null&& point!=null)
             {
                 if (propDict.ContainsKey(prop))
                 {
@@ -158,10 +163,26 @@ namespace AscensionServer
                         skills.Add(propDict[prop].SkillID, 0);
                         //返回成功并更新数据库
                         cricket.SkillDict = Utility.Json.ToJson(skills);
+                        var status = SkillAdditionStatus(cricket, aptitude, point, addition, out var cricketPoint);
+                        Utility.Debug.LogError("学习技能" + Utility.Json.ToJson(cricketPoint) );
+
+
+                        status.CricketID = cricket.ID;
+                        #region
+                        aptitude.SkillDex = cricketPoint.Dex;
+                        aptitude.SkillDef = cricketPoint.Def;
+                        aptitude.SkillStr = cricketPoint.Str;
+                        aptitude.SkillCon = cricketPoint.Con;
+                        #endregion
                         NHibernateQuerier.Update(cricket);
+                        NHibernateQuerier.Update(status);
+                        NHibernateQuerier.Update(aptitude);
+
                         var data = xRCommon.xRS2CParams();
                         data.Add((byte)ParameterCode.Cricket, SetCricketValue(cricket));
-                        data.Add((byte)ParameterCode.CricketStatus, cricketstatus);
+                        data.Add((byte)ParameterCode.CricketStatus, status);
+                        data.Add((byte)ParameterCode.CricketAptitude, aptitude);
+                        data.Add((byte)ParameterCode.CricketPoint, point);
                         var dict = xRCommon.xRS2CSub();
                         dict.Add((byte)CricketOperateType.UpdateSkill, Utility.Json.ToJson(data));
                         xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Success, dict);
@@ -193,8 +214,10 @@ namespace AscensionServer
             var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", cricketid);
             var cricket = xRCommon.xRCriteria<Cricket>(nHCriteriacricket);
             var cricketstatus = xRCommon.xRCriteria<CricketStatus>(nHCriteriastatus);
-
-            if (cricket != null)
+            var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriastatus);
+            var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriastatus);
+            var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriastatus);
+            if (cricket != null && cricketstatus != null && aptitude != null && addition != null && point != null)
             {
                 var skillDict = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SkillDict);
 
@@ -206,10 +229,27 @@ namespace AscensionServer
                     skillDict.Remove(skilllist[num]);
                     Utility.Debug.LogInfo("YZQ删除技能后的蛐蛐" + skillDict.Count + "下标" + num);
                     cricket.SkillDict = Utility.Json.ToJson(skillDict);
+
+
+                    var status = SkillAdditionStatus(cricket, aptitude, point, addition, out var cricketPoint);
+                    Utility.Debug.LogError("学习技能" + Utility.Json.ToJson(cricketPoint));
+
+
+                    status.CricketID = cricket.ID;
+                    #region
+                    aptitude.SkillDex = cricketPoint.Dex;
+                    aptitude.SkillDef = cricketPoint.Def;
+                    aptitude.SkillStr = cricketPoint.Str;
+                    aptitude.SkillCon = cricketPoint.Con;
+                    #endregion
                     NHibernateQuerier.Update(cricket);
+                    NHibernateQuerier.Update(status);
+                    NHibernateQuerier.Update(aptitude);
                     var data = xRCommon.xRS2CParams();
                     data.Add((byte)ParameterCode.Cricket, SetCricketValue(cricket));
                     data.Add((byte)ParameterCode.CricketStatus, cricketstatus);
+                    data.Add((byte)ParameterCode.CricketAptitude, aptitude);
+                    data.Add((byte)ParameterCode.CricketPoint, point);
                     var dict = xRCommon.xRS2CSub();
                     dict.Add((byte)CricketOperateType.UpdateSkill, Utility.Json.ToJson(data));
                     xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Success, dict);
@@ -266,17 +306,25 @@ namespace AscensionServer
                 }
 
                 cricket.SpecialDict = Utility.Json.ToJson(skills);
-                Utility.Debug.LogError("添加的特殊技能为" + skillid);
+                Utility.Debug.LogError("添加的特殊技能为" + cricket.SpecialDict);
                 //var status = CalculateStutas(aptitude, point, addition);
                 var status = SkillAdditionStatus(cricket, aptitude, point, addition,out var cricketPoint);
                 status.CricketID = cricket.ID;
+                #region
+                aptitude.SkillDex = cricketPoint.Dex;
+                aptitude.SkillDef = cricketPoint.Def;
+                aptitude.SkillStr = cricketPoint.Str;
+                aptitude.SkillCon = cricketPoint.Con;
+                #endregion
                 NHibernateQuerier.Update(cricket);
                 NHibernateQuerier.Update(status);
+                NHibernateQuerier.Update(aptitude);
 
                 var data = xRCommon.xRS2CParams();
                 data.Add((byte)ParameterCode.CricketStatus, status);
-                data.Add((byte)ParameterCode.CricketPoint, cricketPoint);
+                data.Add((byte)ParameterCode.CricketAptitude, aptitude);
                 data.Add((byte)ParameterCode.Cricket, SetCricketValue(cricket));
+                data.Add((byte)ParameterCode.CricketPoint, point);
                 var dict = xRCommon.xRS2CSub();
                 dict.Add((byte)CricketOperateType.UpdateSkill, Utility.Json.ToJson(data));
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, dict);
@@ -342,6 +390,9 @@ namespace AscensionServer
                 var nHCriteriastatus = xRCommon.xRNHCriteria("CricketID", cricketid);
                 var cricket = xRCommon.xRCriteria<Cricket>(nHCriteriacricket);
                 var cricketstatus = xRCommon.xRCriteria<CricketStatus>(nHCriteriastatus);
+                var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriastatus);
+                var aptitude = xRCommon.xRCriteria<CricketAptitude>(nHCriteriastatus);
+                var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriastatus);
 
                 if (cricket != null && cricketstatus != null)
                 {
@@ -359,9 +410,27 @@ namespace AscensionServer
 
                             cricket.SkillDict = Utility.Json.ToJson(skillDict);
                             NHibernateQuerier.Update(cricket);
+
+                            var status = SkillAdditionStatus(cricket, aptitude, point, addition, out var cricketPoint);
+                            status.CricketID = cricket.ID;
+                            #region
+                            aptitude.SkillDex = cricketPoint.Dex;
+                            aptitude.SkillDef = cricketPoint.Def;
+                            aptitude.SkillStr = cricketPoint.Str;
+                            aptitude.SkillCon = cricketPoint.Con;
+                            #endregion
+                            NHibernateQuerier.Update(cricket);
+                            NHibernateQuerier.Update(status);
+                            NHibernateQuerier.Update(aptitude);
+
                             var data = xRCommon.xRS2CParams();
+                            data.Add((byte)ParameterCode.CricketStatus, status);
+                            data.Add((byte)ParameterCode.CricketAptitude, aptitude);
                             data.Add((byte)ParameterCode.Cricket, SetCricketValue(cricket));
-                            data.Add((byte)ParameterCode.CricketStatus, cricketstatus);
+                            data.Add((byte)ParameterCode.CricketPoint, point);
+
+
+
                             var dict = xRCommon.xRS2CSub();
                             dict.Add((byte)CricketOperateType.UpdateSkill, Utility.Json.ToJson(data));
                             xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Success, dict);
@@ -378,6 +447,8 @@ namespace AscensionServer
 
         public static CricketStatus SkillAdditionStatus(Cricket  cricket, CricketAptitude cricketAptitude, CricketPoint cricketPoint, CricketAddition cricketAddition,out CricketPoint cricketPointTemp)
         {
+            cricketPointTemp = new CricketPoint();
+            Utility.Debug.LogError("加成前的數值" + Utility.Json.ToJson(cricket)+">>>>>>>"+ Utility.Json.ToJson(cricketPoint));
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PassiveSkill>>(out var passiveSkill);
             var statusPercentage = new CricketStatusDTO();
             var statusFixed = new CricketStatusDTO();
@@ -385,19 +456,27 @@ namespace AscensionServer
             statusFixed.clear();
             var skill = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SkillDict);
             var Special = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SpecialDict);
-            if (skill.Count > 0 && Special.Count > 0)
+            var SkillDict = new Dictionary<int, int>();
+            if (skill.Count > 0 )
+            {
+                foreach (var item in skill)
+                {
+                    SkillDict.Add(item.Key, item.Value);
+                }
+            }
+            if (Special.Count>0)
             {
                 foreach (var item in Special)
                 {
-                    if (!skill.ContainsKey(item.Key))
+                    if (!SkillDict.ContainsKey(item.Key))
                     {
-                        skill.Add(item.Key, item.Value);
+                        SkillDict.Add(item.Key, item.Value);
                     }
                 }
             }
-            if (skill.Count>0)
-            {
-                foreach (var item in skill)
+            if (SkillDict.Count>0)
+            {   
+                foreach (var item in SkillDict)
                 {
                     var result = passiveSkill.TryGetValue(item.Key, out var passive);
                     if (result)
@@ -407,16 +486,17 @@ namespace AscensionServer
                             switch ((SkillAdditionType)passive.Attribute[i])
                             {
                                 case SkillAdditionType.Str:
-                                    cricketPoint.Str += passive.Fixed[i] + passive.LevelFixed[i] * item.Value;
+                                    cricketPointTemp.Str += passive.Fixed[i] + passive.LevelFixed[i] * item.Value;
+                                    Utility.Debug.LogError("加成的數值"+ cricketPoint.Str);
                                     break;
                                 case SkillAdditionType.Con:
-                                    cricketPoint.Con += passive.Fixed[i] + passive.LevelFixed[i] * item.Value;
+                                    cricketPointTemp.Con += passive.Fixed[i] + passive.LevelFixed[i] * item.Value;
                                     break;
                                 case SkillAdditionType.Dex:
-                                    cricketPoint.Dex += passive.Fixed[i] + passive.LevelFixed[i] * item.Value;
+                                    cricketPointTemp.Dex += passive.Fixed[i] + passive.LevelFixed[i] * item.Value;
                                     break;
                                 case SkillAdditionType.Def:
-                                    cricketPoint.Def += passive.Fixed[i] + passive.LevelFixed[i] * item.Value;
+                                    cricketPointTemp.Def += passive.Fixed[i] + passive.LevelFixed[i] * item.Value;
                                     break;
                                 case SkillAdditionType.Atk:
                                     statusFixed.Atk += passive.Fixed[i] + passive.LevelFixed[i] * item.Value;
@@ -477,29 +557,26 @@ namespace AscensionServer
                     }
                 }
             }
-
-            Utility.Debug.LogError("技能加成后的數值1"+Utility.Json.ToJson(cricketPoint));
-            Utility.Debug.LogError("技能加成后的數值2" + Utility.Json.ToJson(statusPercentage));
-            Utility.Debug.LogError("技能加成后的數值3" + Utility.Json.ToJson(statusFixed));
+            //Utility.Debug.LogError("技能加成后的數值1"+Utility.Json.ToJson(cricketPoint));
+            //Utility.Debug.LogError("技能加成后的數值2" + Utility.Json.ToJson(statusPercentage));
+            //Utility.Debug.LogError("技能加成后的數值3" + Utility.Json.ToJson(statusFixed));
 
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketStatusData>>(out var StatusDict);
             CricketStatus cricketStatuTemp= new CricketStatus();
 
-            cricketStatuTemp.Atk =(int) (statusFixed.Atk+ cricketAddition.Atk + StatusDict[1].Atk + ((cricketAptitude.Str + cricketPoint.Str) * (cricketAptitude.StrAptitude + 100) * 0.01f))*(100+ statusPercentage.Atk)/100;
-            cricketStatuTemp.Defense = (int)(statusFixed.Defense + cricketAddition.Defense + StatusDict[1].Defense + ((cricketAptitude.Def + cricketPoint.Def ) * (cricketAptitude.DefAptitude + 100) * 0.005f)) * (100 + statusPercentage.Defense) / 100;
-            cricketStatuTemp.Hp = (int)(statusFixed.Hp + cricketAddition.Hp + StatusDict[1].Hp +((cricketAptitude.Con + cricketPoint.Con ) * (cricketAptitude.ConAptitude + 100) * 0.05f)) * (100 + statusPercentage.Hp) / 100;
+            cricketStatuTemp.Atk =(int) (statusFixed.Atk+ cricketAddition.Atk + StatusDict[1].Atk + ((cricketAptitude.Str+ cricketPointTemp.Str + cricketPoint.Str) * (cricketAptitude.StrAptitude + 100) * 0.01f))*(100+ statusPercentage.Atk)/100;
+            cricketStatuTemp.Defense = (int)(statusFixed.Defense + cricketAddition.Defense + StatusDict[1].Defense + ((cricketAptitude.Def + cricketPoint.Def+ cricketPointTemp.Def) * (cricketAptitude.DefAptitude + 100) * 0.005f)) * (100 + statusPercentage.Defense) / 100;
+            cricketStatuTemp.Hp = (int)(statusFixed.Hp + cricketAddition.Hp + StatusDict[1].Hp +((cricketAptitude.Con + cricketPoint.Con+ cricketPointTemp.Con) * (cricketAptitude.ConAptitude + 100) * 0.05f)) * (100 + statusPercentage.Hp) / 100;
             cricketStatuTemp.Mp = (int)(statusFixed.Mp + cricketAddition.Mp + StatusDict[1].Mp + (cricketStatuTemp.Mp / 100) + (cricketStatuTemp.Mp)) * (100 + statusPercentage.Mp) / 100;
             cricketStatuTemp.MpReply = (int)(statusFixed.MpReply + cricketAddition.MpReply + StatusDict[1].MpReply + ((cricketStatuTemp.Mp / 10) + cricketStatuTemp.MpReply) )* (100 + statusPercentage.MpReply) / 100;
-            cricketStatuTemp.Crt = (cricketAptitude.Dex + cricketPoint.Dex ) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
-            cricketStatuTemp.Eva = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
-            cricketStatuTemp.Speed = (int)(statusFixed.Speed + StatusDict[1].Speed - ((cricketAptitude.Dex + cricketPoint.Dex ) * (1.5f - (0.01 * (100 - cricketAptitude.DexAptitude))))) * (100 + statusPercentage.Speed) / 100;
+            cricketStatuTemp.Crt = (cricketAptitude.Dex + cricketPoint.Dex+ cricketPointTemp.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
+            cricketStatuTemp.Eva = (cricketAptitude.Dex + cricketPoint.Dex+ cricketPointTemp.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
+            cricketStatuTemp.Speed = (int)(statusFixed.Speed + StatusDict[1].Speed - ((cricketAptitude.Dex + cricketPoint.Dex+ cricketPointTemp.Dex) * (1.5f - (0.01 * (100 - cricketAptitude.DexAptitude))))) * (100 + statusPercentage.Speed) / 100;
             cricketStatuTemp.ReduceAtk = (int)(statusFixed.ReduceAtk + StatusDict[1].ReduceAtk) * (100 + statusPercentage.ReduceAtk) / 100;
             cricketStatuTemp.ReduceDef = (int)(statusFixed.ReduceDef + StatusDict[1].ReduceDef) * (100 + statusPercentage.ReduceDef) / 100;
             cricketStatuTemp.Rebound = (int)( statusFixed.Rebound + StatusDict[1].Rebound) * (100 + statusPercentage.Rebound) / 100;
-            Utility.Debug.LogInfo("闪避固定值" + (cricketAptitude.Dex + cricketPoint.Dex) + "资质" + cricketAptitude.DexAptitude + "值" + (300 - (2 * (100f - cricketAptitude.DexAptitude))) / 1000000f + "计算值" + cricketStatuTemp.Eva);
-
-            cricketPointTemp = cricketPoint;
-
+            //Utility.Debug.LogInfo("闪避固定值" + (cricketAptitude.Dex + cricketPoint.Dex) + "资质" + cricketAptitude.DexAptitude + "值" + (300 - (2 * (100f - cricketAptitude.DexAptitude))) / 1000000f + "计算值" + cricketStatuTemp.Eva);
+            Utility.Debug.LogError("技能加成后的數值生命值" + cricketStatuTemp.Hp);
             return cricketStatuTemp;
 
         }

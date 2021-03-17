@@ -15,6 +15,10 @@ namespace AscensionServer
             Map(x => x.Con).Column("con");
             Map(x => x.Dex).Column("dex");
             Map(x => x.Def).Column("def");
+            Map(x => x.SkillStr).Column("skill_str");
+            Map(x => x.SkillCon).Column("skill_con");
+            Map(x => x.SkillDex).Column("skill_dex");
+            Map(x => x.SkillDef).Column("skill_def");
             Map(x => x.StrAptitude).Column("str_aptitude");
             Map(x => x.ConAptitude).Column("con_aptitude");
             Map(x => x.DexAptitude).Column("dex_aptitude");

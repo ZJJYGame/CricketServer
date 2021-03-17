@@ -14,6 +14,10 @@ namespace AscensionProtocol
         public virtual int Con { get; set; }
         public virtual int Dex { get; set; }
         public virtual int Def { get; set; }
+        public virtual int SkillStr { get; set; }
+        public virtual int SkillCon { get; set; }
+        public virtual int SkillDex { get; set; }
+        public virtual int SkillDef { get; set; }
         public virtual int StrAptitude { get; set; }
         public virtual int ConAptitude { get; set; }
         public virtual int DexAptitude { get; set; }
