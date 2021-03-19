@@ -567,8 +567,8 @@ namespace AscensionServer
             cricketStatuTemp.Atk =(int) (statusFixed.Atk+ cricketAddition.Atk + StatusDict[1].Atk + ((cricketAptitude.Str+ cricketPointTemp.Str + cricketPoint.Str) * (cricketAptitude.StrAptitude + 100) * 0.01f))*(100+ statusPercentage.Atk)/100;
             cricketStatuTemp.Defense = (int)(statusFixed.Defense + cricketAddition.Defense + StatusDict[1].Defense + ((cricketAptitude.Def + cricketPoint.Def+ cricketPointTemp.Def) * (cricketAptitude.DefAptitude + 100) * 0.005f)) * (100 + statusPercentage.Defense) / 100;
             cricketStatuTemp.Hp = (int)(statusFixed.Hp + cricketAddition.Hp + StatusDict[1].Hp +((cricketAptitude.Con + cricketPoint.Con+ cricketPointTemp.Con) * (cricketAptitude.ConAptitude + 100) * 0.05f)) * (100 + statusPercentage.Hp) / 100;
-            cricketStatuTemp.Mp = (int)(statusFixed.Mp + cricketAddition.Mp + StatusDict[1].Mp + (cricketStatuTemp.Mp / 100) + (cricketStatuTemp.Mp)) * (100 + statusPercentage.Mp) / 100;
-            cricketStatuTemp.MpReply = (int)(statusFixed.MpReply + cricketAddition.MpReply + StatusDict[1].MpReply + ((cricketStatuTemp.Mp / 10) + cricketStatuTemp.MpReply) )* (100 + statusPercentage.MpReply) / 100;
+            cricketStatuTemp.Mp = (int)(statusFixed.Mp + cricketAddition.Mp + StatusDict[1].Mp  ) * (100 + statusPercentage.Mp) / 100;
+            cricketStatuTemp.MpReply = (int)(statusFixed.MpReply + cricketAddition.MpReply + StatusDict[1].MpReply  )* (100 + statusPercentage.MpReply) / 100;
             cricketStatuTemp.Crt = (cricketAptitude.Dex + cricketPoint.Dex+ cricketPointTemp.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
             cricketStatuTemp.Eva = (cricketAptitude.Dex + cricketPoint.Dex+ cricketPointTemp.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
             cricketStatuTemp.Speed = (int)(statusFixed.Speed + StatusDict[1].Speed - ((cricketAptitude.Dex + cricketPoint.Dex+ cricketPointTemp.Dex) * (1.5f - (0.01 * (100 - cricketAptitude.DexAptitude))))) * (100 + statusPercentage.Speed) / 100;
