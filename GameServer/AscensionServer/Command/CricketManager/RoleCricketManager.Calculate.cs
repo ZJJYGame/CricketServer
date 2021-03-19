@@ -567,19 +567,76 @@ namespace AscensionServer
             cricketStatuTemp.Atk =(int) (statusFixed.Atk+ cricketAddition.Atk + StatusDict[1].Atk + ((cricketAptitude.Str+ cricketPointTemp.Str + cricketPoint.Str) * (cricketAptitude.StrAptitude + 100) * 0.01f))*(100+ statusPercentage.Atk)/100;
             cricketStatuTemp.Defense = (int)(statusFixed.Defense + cricketAddition.Defense + StatusDict[1].Defense + ((cricketAptitude.Def + cricketPoint.Def+ cricketPointTemp.Def) * (cricketAptitude.DefAptitude + 100) * 0.005f)) * (100 + statusPercentage.Defense) / 100;
             cricketStatuTemp.Hp = (int)(statusFixed.Hp + cricketAddition.Hp + StatusDict[1].Hp +((cricketAptitude.Con + cricketPoint.Con+ cricketPointTemp.Con) * (cricketAptitude.ConAptitude + 100) * 0.05f)) * (100 + statusPercentage.Hp) / 100;
-            cricketStatuTemp.Mp = (int)(statusFixed.Mp + cricketAddition.Mp + StatusDict[1].Mp  ) * (100 + statusPercentage.Mp) / 100;
-            cricketStatuTemp.MpReply = (int)(statusFixed.MpReply + cricketAddition.MpReply + StatusDict[1].MpReply  )* (100 + statusPercentage.MpReply) / 100;
-            cricketStatuTemp.Crt = (cricketAptitude.Dex + cricketPoint.Dex+ cricketPointTemp.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
-            cricketStatuTemp.Eva = (cricketAptitude.Dex + cricketPoint.Dex+ cricketPointTemp.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
+            cricketStatuTemp.Mp = (int)(StatusDict[1].Mp + cricketAddition.Mp + statusFixed.Mp + cricketStatuTemp.Hp / 100);
+            cricketStatuTemp.MpReply = (int)(StatusDict[1].MpReply + cricketAddition.MpReply + statusFixed.MpReply + cricketStatuTemp.Mp / 10);
+            cricketStatuTemp.Crt = ((cricketAptitude.Dex + cricketPoint.Dex+ cricketPointTemp.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f) + statusPercentage.Crt/100;
+            cricketStatuTemp.Eva = ((cricketAptitude.Dex + cricketPoint.Dex+ cricketPointTemp.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f)+ statusPercentage.Eva/100;
             cricketStatuTemp.Speed = (int)(statusFixed.Speed + StatusDict[1].Speed - ((cricketAptitude.Dex + cricketPoint.Dex+ cricketPointTemp.Dex) * (1.5f - (0.01 * (100 - cricketAptitude.DexAptitude))))) * (100 + statusPercentage.Speed) / 100;
             cricketStatuTemp.ReduceAtk = (int)(statusFixed.ReduceAtk + StatusDict[1].ReduceAtk) * (100 + statusPercentage.ReduceAtk) / 100;
             cricketStatuTemp.ReduceDef = (int)(statusFixed.ReduceDef + StatusDict[1].ReduceDef) * (100 + statusPercentage.ReduceDef) / 100;
             cricketStatuTemp.Rebound = (int)( statusFixed.Rebound + StatusDict[1].Rebound) * (100 + statusPercentage.Rebound) / 100;
             //Utility.Debug.LogInfo("闪避固定值" + (cricketAptitude.Dex + cricketPoint.Dex) + "资质" + cricketAptitude.DexAptitude + "值" + (300 - (2 * (100f - cricketAptitude.DexAptitude))) / 1000000f + "计算值" + cricketStatuTemp.Eva);
-            Utility.Debug.LogError("技能加成后的數值生命值" + cricketStatuTemp.Hp);
-            return cricketStatuTemp;
+            Utility.Debug.LogError("技能加成后的暴击值" + statusFixed.Crt +"百分比"+ statusPercentage .Crt+ "闪避" + statusFixed.Eva+"百分比"+ statusPercentage.Eva);
+            return CalibrationNum(cricketStatuTemp);
 
         }
+       static CricketStatus  CalibrationNum(CricketStatus cricketStatus)
+        {
+            if (cricketStatus.Atk<0)
+            {
+                cricketStatus.Atk = 0;
+            }
+            if (cricketStatus.Crt < 0)
+            {
+                cricketStatus.Crt = 0;
+            }
+            if (cricketStatus.CrtAtk < 0)
+            {
+                cricketStatus.CrtAtk = 0;
+            }
+            if (cricketStatus.CrtDef < 0)
+            {
+                cricketStatus.CrtDef = 0;
+            }
+            if (cricketStatus.Defense < 0)
+            {
+                cricketStatus.Defense = 0;
+            }
+            if (cricketStatus.Eva < 0)
+            {
+                cricketStatus.Eva = 0;
+            }
+            if (cricketStatus.Hp < 0)
+            {
+                cricketStatus.Hp = 0;
+            }
+            if (cricketStatus.Mp < 0)
+            {
+                cricketStatus.Mp = 0;
+            }
+            if (cricketStatus.MpReply < 0)
+            {
+                cricketStatus.MpReply = 0;
+            }
+            if (cricketStatus.Rebound < 0)
+            {
+                cricketStatus.Rebound = 0;
+            }
+            if (cricketStatus.ReduceAtk < 0)
+            {
+                cricketStatus.ReduceAtk = 0;
+            }
+            if (cricketStatus.ReduceDef < 0)
+            {
+                cricketStatus.ReduceDef = 0;
+            }
+            if (cricketStatus.Speed < 0)
+            {
+                cricketStatus.Speed = 0;
+            }
+            return cricketStatus;
+        }
+
         public enum SkillAdditionType
         {
             Str=1,

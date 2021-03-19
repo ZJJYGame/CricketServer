@@ -29,7 +29,11 @@ namespace AscensionServer
             //Dictionary<int, int> Dict = new Dictionary<int, int>();
             //Dict.Add(3611,0);
             //SkillDict = Utility.Json.ToJson(Dict); 
-            SpecialDict = "{}";
+            //SpecialDict = "{}";
+            Dictionary<int, int> Dict = new Dictionary<int, int>();
+            Dict.Add(3339, 0);
+            Dict.Add(3613, 0);
+            SpecialDict = Utility.Json.ToJson(Dict);
             Roleid = -1;//玩家ID
         }
     }

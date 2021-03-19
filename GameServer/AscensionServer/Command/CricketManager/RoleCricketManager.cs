@@ -77,10 +77,10 @@ namespace AscensionServer
                     var cricketAptitude = new CricketAptitude();
                     if (aptitudes==null)
                     {
-                        cricketAptitude.ConAptitude = RandomNum(1, 101);
-                        cricketAptitude.StrAptitude = RandomNum(1, 101);
-                        cricketAptitude.DefAptitude = RandomNum(1, 101);
-                        cricketAptitude.DexAptitude = RandomNum(1, 101);
+                        cricketAptitude.ConAptitude = Utility.Algorithm.CreateRandomInt(1, 101);
+                        cricketAptitude.StrAptitude = Utility.Algorithm.CreateRandomInt(1, 101);
+                        cricketAptitude.DefAptitude = Utility.Algorithm.CreateRandomInt(1, 101);
+                        cricketAptitude.DexAptitude = Utility.Algorithm.CreateRandomInt(1, 101);
                     }
                     var cricket = new Cricket();
                     cricket.Roleid = roleid;
