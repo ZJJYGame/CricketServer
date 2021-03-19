@@ -33,7 +33,7 @@ namespace AscensionServer
         }
 
         /// <summary>
-        /// 添加探索
+        /// 添加探索   ///  添加探索事件的时候  会随机添加
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="ItemInfo"></param>
@@ -54,16 +54,23 @@ namespace AscensionServer
                         for (int propInfo = 0; propInfo < xrDict[info.Key].ItemId.Count; propInfo++)
                         {
 
-                            int xrRandom = 1;
+                            int xrRandom = 1;//这个地方处理   默认都是一个 添加的时候事件的时候  通过事件id  给定数量    这个地方随机没改呢
                             if (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number.Count == 2)
                             {
 
                                 xrRandom = RandomManager(info.Key, setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0], setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[1]);
                             }
+
+                            //应该是这个地方//那为什么这里加道具的 随机在下面
                             xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = xrRandom;
                             switch (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].EventType)
                             {
                                 case "GetPropA":
+                                    if (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number.Count == 2)
+                                        xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = RandomManager(info.Key, setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0], setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[1]);
+                                    else
+                                        xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0];
+                                    break;
                                 case "GetPropB":
                                 case "GetPropC":
                                 case "GetCricket"://全局id
@@ -133,7 +140,7 @@ namespace AscensionServer
             }
         }
         /// <summary>
-        /// 移除探索
+        /// 移除探索   //获取事件奖励
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="ItemInfo"></param>
@@ -188,16 +195,24 @@ namespace AscensionServer
                                     RoleCricketManager.UpdateLevel(xrDict[info.Key].CustomId, new PropData() { PropID =-1, AddNumber = itemidInfo.Value, }, roleId);
                                     break;
                                 case "GetPropA":
+                                    int randomCount;
+                                    if (setExploration[itemidInfo.Key].Number.Count == 1)
+                                        randomCount = setExploration[itemidInfo.Key].Number[0];
+                                    else
+                                        randomCount = RandomManager(itemidInfo.Key, setExploration[itemidInfo.Key].Number[0], setExploration[itemidInfo.Key].Number[1]);
+                                    //策划需求道具数量是随机范围，你之前是写死的    这个不应该在这里看 去客户端
                                     if (setExploration[itemidInfo.Key].PropID.Count == 1)
-                                        InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO> { { setExploration[itemidInfo.Key].PropID[0], new ItemDTO() { ItemAmount = 1 } } });
+                                        InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO> { { setExploration[itemidInfo.Key].PropID[0], new ItemDTO() { ItemAmount = itemidInfo.Value} } });
                                     else
                                     {
                                         var randomValue = RandomManager(itemidInfo.Key, setExploration[itemidInfo.Key].PropID[0], setExploration[itemidInfo.Key].PropID[1]);
-                                        InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO> { { randomValue, new ItemDTO() { ItemAmount = 1 } } });
+                                        InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO> { { randomValue, new ItemDTO() { ItemAmount = itemidInfo.Value } } });
                                     }
+                                    //这里原来是这样，你往背包添加的数量是固定一，没有用你那个随机的    上边默认是一个  我就写的一个  改下就好 ，那你记得怎么改吗，你改改  好改 我试试
+                                    //现在是这样，这里的道具数量我改了，正常添加，但是任务结算界面显示不到，怎么办    能演示一遍吗
                                     break;
                                 case "GetPropB":
-                                case "GetPropC":
+                                case "GetPropC"://   区别道具的类型  道具默认+1
                                     if (xrPropDict.ContainsKey(setExploration[itemidInfo.Key].PropID[0]))
                                         xrPropDict[setExploration[itemidInfo.Key].PropID[0]] += 1;
                                     break;
@@ -266,7 +281,7 @@ namespace AscensionServer
         /// <returns></returns>
         public static int RandomManager(int ov, int minValue, int maxValue)
         {
-            var targetValue = new Random((int)DateTime.Now.Ticks + ov).Next(minValue, maxValue);
+            var targetValue = new Random((int)DateTime.Now.Ticks + ov).Next(minValue, maxValue+1);
             return targetValue;
         }
 

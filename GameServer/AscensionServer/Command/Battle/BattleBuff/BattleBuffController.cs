@@ -66,6 +66,10 @@ namespace AscensionServer
             switch (battleBuffEffectProperty)
             {
                 case BattleBuffEffectProperty.Attack:
+                    Utility.Debug.LogError("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    Utility.Debug.LogError(roleBattleData.Attack);
+                    Utility.Debug.LogError(Attack);
+                    Utility.Debug.LogError(changeValue);
                     Attack += (int)((roleBattleData.Attack-Attack) * changeValue / 100f);
                     break;
                 case BattleBuffEffectProperty.Defense:

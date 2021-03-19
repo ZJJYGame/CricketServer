@@ -63,7 +63,7 @@ namespace AscensionServer
             Utility.Debug.LogError("生命值百分比=>" + healthPercent);
             if (isUp)
             {
-                if (healthPercent <= limitValue)//不满足条件
+                if (healthPercent < limitValue)//不满足条件
                 {
                     Utility.Debug.LogError("不满足触发条件");
                     if (hasTrigger)//触发过了，移除触发事件
@@ -79,7 +79,9 @@ namespace AscensionServer
                     if (!hasTrigger)//未触发，触发事件
                     {
                         Utility.Debug.LogError("满足触发条件，未触发，触发事件");
+                        Utility.Debug.LogError("改变前buff攻击力" + battleBuffController.Attack);
                         battleBuffController.ChangeProperty(battleBuffEffectProperty, buffValue);
+                        Utility.Debug.LogError("改变后buff攻击力"+battleBuffController.Attack);
                         hasTrigger = true;
                     }
                 } 
@@ -88,15 +90,19 @@ namespace AscensionServer
             {
                 if (healthPercent > limitValue)//不满足条件
                 {
+                    Utility.Debug.LogError("Down不满足触发条件");
                     if (hasTrigger)//触发过了，移除触发事件
                     {
+                        Utility.Debug.LogError("不满足触发条件，触发过了，移除事件");
                         battleBuffController.ChangeProperty(battleBuffEffectProperty, -buffValue);
                     }
                 }
                 else//满足触发条件
                 {
+                    Utility.Debug.LogError("满足触发条件");
                     if (!hasTrigger)//未触发，触发事件
                     {
+                        Utility.Debug.LogError("满足触发条件，未触发，触发事件");
                         battleBuffController.ChangeProperty(battleBuffEffectProperty, buffValue);
                         hasTrigger = true;
                     }

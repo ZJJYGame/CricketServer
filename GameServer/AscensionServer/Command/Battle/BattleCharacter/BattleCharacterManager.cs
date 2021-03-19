@@ -11,51 +11,51 @@ namespace AscensionServer
     [CustomeModule]
     public class BattleCharacterManager:Module<BattleCharacterManager>
     {
-        Dictionary<int, BattleCharacterEntity> battleCharacterEntityDict = new Dictionary<int, BattleCharacterEntity>();
+        public Dictionary<int, BattleCharacterEntity> BattleCharacterEntityDict { get; protected set; } = new Dictionary<int, BattleCharacterEntity>();
 
         public BattleCharacterEntity CreateCharacter(int roleId)
         {
             BattleCharacterEntity battleCharacterEntity = GameManager.ReferencePoolManager.Spawn<BattleCharacterEntity>();
             battleCharacterEntity.Init(roleId);
-            if (battleCharacterEntityDict.ContainsKey(roleId))
+            if (BattleCharacterEntityDict.ContainsKey(roleId))
             {
-                GameManager.ReferencePoolManager.Despawn(battleCharacterEntityDict[roleId]);
-                battleCharacterEntityDict.Remove(roleId);
+                GameManager.ReferencePoolManager.Despawn(BattleCharacterEntityDict[roleId]);
+                BattleCharacterEntityDict.Remove(roleId);
             }
-            battleCharacterEntityDict.Add(roleId, battleCharacterEntity);
+            BattleCharacterEntityDict.Add(roleId, battleCharacterEntity);
             return battleCharacterEntity;
         }
         public BattleCharacterEntity CreateCharacter(RoleDTO roleDTO,CricketDTO cricketDTO)
         {
             BattleCharacterEntity battleCharacterEntity = GameManager.ReferencePoolManager.Spawn<BattleCharacterEntity>();
             battleCharacterEntity.Init(roleDTO, cricketDTO);
-            if (battleCharacterEntityDict.ContainsKey(battleCharacterEntity.RoleID))
+            if (BattleCharacterEntityDict.ContainsKey(battleCharacterEntity.RoleID))
             {
-                GameManager.ReferencePoolManager.Despawn(battleCharacterEntityDict[battleCharacterEntity.RoleID]);
-                battleCharacterEntityDict.Remove(battleCharacterEntity.RoleID);
+                GameManager.ReferencePoolManager.Despawn(BattleCharacterEntityDict[battleCharacterEntity.RoleID]);
+                BattleCharacterEntityDict.Remove(battleCharacterEntity.RoleID);
             }
-            battleCharacterEntityDict.Add(battleCharacterEntity.RoleID, battleCharacterEntity);
+            BattleCharacterEntityDict.Add(battleCharacterEntity.RoleID, battleCharacterEntity);
             return battleCharacterEntity;
         }
         public BattleCharacterEntity CreateCharacter(RoleDTO roleDTO, CricketDTO cricketDTO,MachineData machineData)
         {
             BattleCharacterEntity battleCharacterEntity = GameManager.ReferencePoolManager.Spawn<BattleCharacterEntity>();
             battleCharacterEntity.Init(roleDTO, cricketDTO,machineData);
-            if (battleCharacterEntityDict.ContainsKey(battleCharacterEntity.RoleID))
+            if (BattleCharacterEntityDict.ContainsKey(battleCharacterEntity.RoleID))
             {
-                GameManager.ReferencePoolManager.Despawn(battleCharacterEntityDict[battleCharacterEntity.RoleID]);
-                battleCharacterEntityDict.Remove(battleCharacterEntity.RoleID);
+                GameManager.ReferencePoolManager.Despawn(BattleCharacterEntityDict[battleCharacterEntity.RoleID]);
+                BattleCharacterEntityDict.Remove(battleCharacterEntity.RoleID);
             }
-            battleCharacterEntityDict.Add(battleCharacterEntity.RoleID, battleCharacterEntity);
+            BattleCharacterEntityDict.Add(battleCharacterEntity.RoleID, battleCharacterEntity);
             return battleCharacterEntity;
         }
 
         public void RemoveCharacter(int roleId)
         {
-            if (battleCharacterEntityDict.ContainsKey(roleId))
+            if (BattleCharacterEntityDict.ContainsKey(roleId))
             {
-                GameManager.ReferencePoolManager.Despawn(battleCharacterEntityDict[roleId]);
-                battleCharacterEntityDict.Remove(roleId);
+                GameManager.ReferencePoolManager.Despawn(BattleCharacterEntityDict[roleId]);
+                BattleCharacterEntityDict.Remove(roleId);
             }
         }
     }
