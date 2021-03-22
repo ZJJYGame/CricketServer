@@ -17,7 +17,7 @@ namespace AscensionServer
         public Role()
         {
             RoleID = -1;
-            RoleName = "蛐蛐你个大蝈蝈";
+            RoleName = "";
             NoviceGuide = 1;
         }
 

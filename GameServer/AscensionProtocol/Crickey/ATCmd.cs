@@ -50,11 +50,7 @@ namespace AscensionProtocol
         /// <summary>
         /// 人物命名
         /// </summary>
-        Rename=15,
-        /// <summary>
-        /// 同步人物头像
-        /// </summary>
-        SyncHeadPortrait = 16,
+        EigeneInfo= 15,
         /// <summary>
         /// 同步战斗结算信息
         /// </summary>

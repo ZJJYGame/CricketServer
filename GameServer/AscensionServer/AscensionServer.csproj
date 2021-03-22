@@ -225,6 +225,7 @@
     <Compile Include="Command\CricketManager\RoleCricketManager.Calculate.cs" />
     <Compile Include="Command\CricketManager\RoleCricketManager.cs" />
     <Compile Include="Command\CricketManager\RoleCricketManager.UseItem.cs" />
+    <Compile Include="Command\EigeneRoleInfo\EigeneRoleInfoManager.cs" />
     <Compile Include="Command\Exploration\ExplorationManager.Concreteness.cs" />
     <Compile Include="Command\Exploration\ExplorationManager.cs" />
     <Compile Include="Command\Inventory\InventoryManager.Concreteness.cs" />
