@@ -237,6 +237,7 @@ namespace AscensionServer
                 battleCombat.MatchWon++;
                 NHibernateQuerier.Update(battleCombat);
             }
+            S2CWinCount(battleCombat);
             return cricket.RankID;
         }
         #region 结算相关参数
@@ -246,5 +247,13 @@ namespace AscensionServer
         public const int LoserGetMoneyUpperLimit = 30;
         public const int LoserGetMoneyLowerLimit = 10;
         #endregion
+        void S2CWinCount(BattleCombat battleCombat)
+        {
+            OperationData operationData = new OperationData();
+            operationData.DataMessage = Utility.Json.ToJson(battleCombat);
+            operationData.OperationCode = (ushort)ATCmd.SyncBattleCombat;
+            GameManager.CustomeModule<RoleManager>().SendMessage(battleCombat.RoleID, operationData);
+            Utility.Debug.LogError("发送给" + battleCombat.RoleID + "胜场" + battleCombat.MatchWon);
+        }
     }
 }

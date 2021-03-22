@@ -18,6 +18,7 @@ namespace AscensionProtocol
     {
         public int RoleID { get; set; }
         public string RoleName { get; set; }
+        public int HeadIconID { get; set; }
         public int CricketId { get; set; }
         public int MaxHealth { get; set; }
         public int Health { get; set; }
