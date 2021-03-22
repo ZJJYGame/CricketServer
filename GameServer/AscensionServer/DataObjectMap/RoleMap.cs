@@ -13,6 +13,7 @@ namespace AscensionServer
             Id(x => x.RoleID).GeneratedBy.Increment().Column("roleid");
             Map(x => x.RoleName).Column("role_name");
             Map(x => x.NoviceGuide).Column("noviceguide");
+            Map(x => x.HeadPortrait).Column("headportrait");
             Table("role");
 
         }

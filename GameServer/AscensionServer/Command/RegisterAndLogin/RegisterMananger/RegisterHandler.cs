@@ -18,6 +18,7 @@ namespace AscensionServer
 
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketStatus>>(out var cricketStatusDict);
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, Cricket>>(out var cricketDict);
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, HeadPortraitData>>(out var HeadPortraitDict);
             bool isExist = xRCommon.xRVerify<User>(nHCriteriaAccount);
 
             var userObj = new User() {Account= account,Password= password };
@@ -35,7 +36,9 @@ namespace AscensionServer
             {
                 userObj = NHibernateQuerier.Insert(userObj);
                 NHCriteria nHCriteriaUUID = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("UUID", userObj.UUID);
-
+                var headList = HeadPortraitDict.Keys.ToList<int>();
+               var num= Utility.Algorithm.CreateRandomInt(0, HeadPortraitDict.Count);
+                role.HeadPortrait = HeadPortraitDict[headList[num]].PlayerHeadID;
                 role = NHibernateQuerier.Insert(role);
                 userObj.RoleID = role.RoleID;
                 NHibernateQuerier.Update(userObj);
