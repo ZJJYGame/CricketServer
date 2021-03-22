@@ -260,7 +260,7 @@ namespace AscensionServer
                     var status = SkillAdditionStatus(cricket,aptitude, cricketPoint, addition,out var cricketPointTemp);
 
                     status.CricketID = cricketPoint.CricketID;
-                    cricketPointDict.Add((byte)ParameterCode.CricketPoint, cricketPointTemp);
+                    cricketPointDict.Add((byte)ParameterCode.CricketPoint, cricketPoint);
                     cricketPointDict.Add((byte)ParameterCode.CricketAptitude, aptitude);
                     cricketPointDict.Add((byte)ParameterCode.CricketStatus, status);
                     NHibernateQuerier.Update(status);

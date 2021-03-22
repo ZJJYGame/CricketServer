@@ -219,7 +219,7 @@ namespace AscensionServer
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriastatus);
             if (cricket != null && cricketstatus != null && aptitude != null && addition != null && point != null)
             {
-                var skillDict = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SkillDict);
+                var skillDict = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SpecialDict);
 
                 if (skillDict.Count > 0)
                 {
@@ -487,7 +487,6 @@ namespace AscensionServer
                             {
                                 case SkillAdditionType.Str:
                                     cricketPointTemp.Str += passive.Fixed[i] + passive.LevelFixed[i] * item.Value;
-                                    Utility.Debug.LogError("加成的數值"+ cricketPoint.Str);
                                     break;
                                 case SkillAdditionType.Con:
                                     cricketPointTemp.Con += passive.Fixed[i] + passive.LevelFixed[i] * item.Value;
