@@ -50,7 +50,7 @@ namespace AscensionServer
                     Utility.Debug.LogInfo("yzqData更改名称头像成功" + Utility.Json.ToJson(roleObj));
 
                     OperationData opData = new OperationData();
-                    opData.OperationCode = (ushort)ATCmd.SyncExploration;
+                    opData.OperationCode = (ushort)ATCmd.EigeneInfo;
                     opData.SubOperationCode = (byte)EigeneRoleInfoOpCode.ReplaceHeadPortrait;
                     opData.ReturnCode = (byte)ReturnCode.Success;
                     opData.DataMessage = Utility.Json.ToJson(roleObj);
