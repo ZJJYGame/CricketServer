@@ -463,6 +463,7 @@ namespace AscensionServer
             {
                 RoleID = playerOne.RoleID,
                 RoleName = playerOne.RoleName,
+                HeadIconID = GetHeadIconID(playerOne),
                 CricketId = playerOne.CricketID,
                 MaxHealth = playerOne.roleBattleData.MaxHealth,
                 Health = playerOne.roleBattleData.Health,
@@ -471,14 +472,11 @@ namespace AscensionServer
                 ActionBar = playerOne.roleBattleData.ActionBar,
                 PassiveSkill = new List<TriggerSkillData>(),
             };
-            for (int i = 0; i < playerOne.roleBattleData.BattlePassiveSkillList.Count; i++)
-            {
-
-            }
             battleTransferDTO.RoleTwoData = new BattleRoleData()
             {
                 RoleID = playerTwo.RoleID,
                 RoleName = playerTwo.RoleName,
+                HeadIconID = GetHeadIconID(playerTwo),
                 CricketId = playerTwo.CricketID,
                 MaxHealth = playerTwo.roleBattleData.MaxHealth,
                 Health = playerTwo.roleBattleData.Health,
@@ -487,6 +485,23 @@ namespace AscensionServer
                 ActionBar = playerTwo.roleBattleData.ActionBar,
                 PassiveSkill = new List<TriggerSkillData>(),
             };
+        }
+
+        int GetHeadIconID(BattleCharacterEntity characterEntity)
+        {
+            if (!characterEntity.IsRobot)
+            {
+                NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", playerOne.RoleID);
+                Role role = xRCommon.xRCriteria<Role>(nHCriteria);
+                return role.HeadPortrait;
+            }
+            else
+            {
+                GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, HeadPortraitData>>(out var headDict);
+                var headIDList = headDict.Keys.ToList();
+                int random = Utility.Algorithm.CreateRandomInt(0, headIDList.Count);
+                return headIDList[random];
+            }
         }
 
         public void InitController(BattleCharacterEntity battleCharacterEntityOne,BattleCharacterEntity battleCharacterEntityTwo)
