@@ -19,6 +19,9 @@ namespace AscensionServer
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketStatus>>(out var cricketStatusDict);
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, Cricket>>(out var cricketDict);
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, HeadPortraitData>>(out var HeadPortraitDict);
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketNameData>>(out var NameDict);
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketHeadPortraitData>>(out var CricketHeadDict);
+
             bool isExist = xRCommon.xRVerify<User>(nHCriteriaAccount);
 
             var userObj = new User() {Account= account,Password= password };
@@ -37,7 +40,7 @@ namespace AscensionServer
                 userObj = NHibernateQuerier.Insert(userObj);
                 NHCriteria nHCriteriaUUID = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("UUID", userObj.UUID);
                 var headList = HeadPortraitDict.Keys.ToList<int>();
-               var num= Utility.Algorithm.CreateRandomInt(0, HeadPortraitDict.Count);
+               var num= Utility.Algorithm.CreateRandomInt(0, HeadPortraitDict.Count+1);
                 role.HeadPortrait = HeadPortraitDict[headList[num]].PlayerHeadID;
                 role = NHibernateQuerier.Insert(role);
                 userObj.RoleID = role.RoleID;
@@ -46,6 +49,15 @@ namespace AscensionServer
                 NHibernateQuerier.Insert(roleAsset);
                 #region 待换
                 cricket.Roleid= role.RoleID;
+                #region
+                var headlist = CricketHeadDict.Keys.ToList<int>();
+                var headnum = Utility.Algorithm.CreateRandomInt(0, headlist.Count+ 1);
+                cricket.HeadPortraitID = CricketHeadDict[headlist[headnum]].CricketID;
+                var namelist = NameDict.Keys.ToList<int>();
+                var namenum = Utility.Algorithm.CreateRandomInt(0, namelist.Count + 1);
+                cricket.CricketName = NameDict[namelist[namenum]].CricketName;
+
+                #endregion
                 cricket = NHibernateQuerier.Insert(cricket);
                 roleCricketObj.CricketList[0] = cricket.ID;
                 roleCricket.RoleID = role.RoleID;
