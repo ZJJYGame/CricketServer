@@ -107,7 +107,11 @@ namespace AscensionServer
                         aptitude.Def += propData.AddNumber;
                         break;
                     case PropType.AddDex:
-                        aptitude.Dex += propData.AddNumber;
+                        if (aptitude.Dex +propData.AddNumber+ point.Dex>=1000)
+                        {
+                            aptitude.Dex = 1000;
+                        }else
+                            aptitude.Dex += propData.AddNumber;
                         break;
                     default:
                         break;
@@ -214,7 +218,12 @@ namespace AscensionServer
                     break;              
                 case PropType.Skill:
                     Utility.Debug.LogInfo("YZQ学习技能的蛐蛐" + cricketid);
-                    StudySkill(propData.PropID, cricketid,roleid);
+                    GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var propDict);
+                    if (propDict.ContainsKey(propData.PropID))
+                    {
+                        StudySkill(propDict[propData.PropID].SkillID, cricketid, roleid);
+                        InventoryManager.xRUpdateInventory(roleid, new Dictionary<int, ItemDTO> { { propData.PropID, new ItemDTO() { ItemAmount = 1 } } });
+                    }
                     break;
                 case PropType.Reset:
                     Utility.Debug.LogInfo("YZQ重置加点的蛐蛐" + cricketid);

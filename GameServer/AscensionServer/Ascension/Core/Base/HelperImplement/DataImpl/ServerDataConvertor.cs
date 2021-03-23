@@ -73,10 +73,18 @@ namespace AscensionServer
 
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(HeadPortraitData).Name, out var headPortraitData);
                 var headPortraitDataDict = TransObject<List<HeadPortraitData>>(headPortraitData).ToDictionary(key => key.PlayerHeadID, value => value);
+
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(CricketHeadPortraitData).Name, out var cricketHeadPortraitData);
+                var cricketHeadPortraitDataDict = TransObject<List<CricketHeadPortraitData>>(cricketHeadPortraitData).ToDictionary(key => key.CricketID, value => value);
+
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(CricketNameData).Name, out var cricketNameData);
+                var cricketNameDataDict = TransObject<List<CricketNameData>>(cricketNameData).ToDictionary(key => key.NameID, value => value);
+
                 #endregion
 
                 #region 储存方式 
-                
+                GameManager.CustomeModule<DataManager>().TryAdd(cricketNameDataDict);
+                GameManager.CustomeModule<DataManager>().TryAdd(cricketHeadPortraitDataDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(headPortraitDataDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(spreaAwardDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(passiveSkillDict);
