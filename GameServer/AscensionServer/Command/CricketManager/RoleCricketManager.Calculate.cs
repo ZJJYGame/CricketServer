@@ -137,7 +137,7 @@ namespace AscensionServer
         /// <summary>
         /// 学习技能
         /// </summary>
-        public static void StudySkill(int prop, int cricketid, int roleid)
+        public static void StudySkill(int skillid, int cricketid, int roleid)
         {
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var propDict);
             var nHCriteriacricket = xRCommon.xRNHCriteria("ID", cricketid);
@@ -149,54 +149,53 @@ namespace AscensionServer
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriastatus);
             if (cricket != null&& cricketstatus!=null&& aptitude!=null&& addition!=null&& point!=null)
             {
-                if (propDict.ContainsKey(prop))
+                #region 
+                var skills = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SkillDict);
+                if (skills.ContainsKey(skillid))
                 {
-                    #region 
-                    var skills = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SkillDict);
-                    if (skills.ContainsKey(propDict[prop].SkillID))
+                    if (skills[skillid] + 1 < 10)
                     {
-                        xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
-                        return;
+                        skills[skillid] += 1;
                     }
                     else
                     {
-                        skills.Add(propDict[prop].SkillID, 0);
-                        //返回成功并更新数据库
-                        cricket.SkillDict = Utility.Json.ToJson(skills);
-                        var status = SkillAdditionStatus(cricket, aptitude, point, addition, out var cricketPoint);
-                        Utility.Debug.LogError("学习技能" + Utility.Json.ToJson(cricketPoint) );
-
-
-                        status.CricketID = cricket.ID;
-                        #region
-                        aptitude.SkillDex = cricketPoint.Dex;
-                        aptitude.SkillDef = cricketPoint.Def;
-                        aptitude.SkillStr = cricketPoint.Str;
-                        aptitude.SkillCon = cricketPoint.Con;
-                        #endregion
-                        NHibernateQuerier.Update(cricket);
-                        NHibernateQuerier.Update(status);
-                        NHibernateQuerier.Update(aptitude);
-
-                        var data = xRCommon.xRS2CParams();
-                        data.Add((byte)ParameterCode.Cricket, SetCricketValue(cricket));
-                        data.Add((byte)ParameterCode.CricketStatus, status);
-                        data.Add((byte)ParameterCode.CricketAptitude, aptitude);
-                        data.Add((byte)ParameterCode.CricketPoint, point);
-                        var dict = xRCommon.xRS2CSub();
-                        dict.Add((byte)CricketOperateType.UpdateSkill, Utility.Json.ToJson(data));
-                        xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Success, dict);
-
-                        InventoryManager.xRUpdateInventory(roleid, new Dictionary<int, ItemDTO> { { prop, new ItemDTO() { ItemAmount = 1 } } });
-                        return;
+                        skills[skillid] = 10;
+                        xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
                     }
-                    #endregion
+                    return;
                 }
                 else
                 {
-                    xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
+                    skills.Add(skillid, 0);
+                    //返回成功并更新数据库
+                    cricket.SkillDict = Utility.Json.ToJson(skills);
+                    var status = SkillAdditionStatus(cricket, aptitude, point, addition, out var cricketPoint);
+                    Utility.Debug.LogError("学习技能" + Utility.Json.ToJson(cricketPoint));
+
+
+                    status.CricketID = cricket.ID;
+                    #region
+                    aptitude.SkillDex = cricketPoint.Dex;
+                    aptitude.SkillDef = cricketPoint.Def;
+                    aptitude.SkillStr = cricketPoint.Str;
+                    aptitude.SkillCon = cricketPoint.Con;
+                    #endregion
+                    NHibernateQuerier.Update(cricket);
+                    NHibernateQuerier.Update(status);
+                    NHibernateQuerier.Update(aptitude);
+
+                    var data = xRCommon.xRS2CParams();
+                    data.Add((byte)ParameterCode.Cricket, SetCricketValue(cricket));
+                    data.Add((byte)ParameterCode.CricketStatus, status);
+                    data.Add((byte)ParameterCode.CricketAptitude, aptitude);
+                    data.Add((byte)ParameterCode.CricketPoint, point);
+                    var dict = xRCommon.xRS2CSub();
+                    dict.Add((byte)CricketOperateType.UpdateSkill, Utility.Json.ToJson(data));
+                    xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Success, dict);
+
                     return;
                 }
+                #endregion
             }
             else
             {
@@ -277,9 +276,16 @@ namespace AscensionServer
             Utility.Debug.LogError("添加的特殊技能为" + skillid + "蛐蛐id为" + cricketid+"玩家ID"+ roleid);
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, BattleAttackSkillData>>(out var skillDict);
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PassiveSkill>>(out var specialSkillDict);
-            if (!skillDict.ContainsKey(skillid)&&!specialSkillDict.ContainsKey(skillid))
+            if (!skillDict.ContainsKey(skillid) && !specialSkillDict.ContainsKey(skillid))
             {
                 return;
+            }
+            else
+            {
+                if (specialSkillDict[skillid].SkillType==1)
+                {
+                    StudySkill(skillid, cricketid, roleid);
+                }
             }
 
             var nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);

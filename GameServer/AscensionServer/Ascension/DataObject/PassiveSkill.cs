@@ -16,5 +16,6 @@ namespace AscensionServer
         public List<int> Fixed { get; set; }//固定数值
         public List<int> LevelPercentage { get; set; }//等级影响百分比
         public List<int> LevelFixed { get; set; }//等级影响固定数值
+        public int SkillType { get; set; }//技能类型
     }
 }
