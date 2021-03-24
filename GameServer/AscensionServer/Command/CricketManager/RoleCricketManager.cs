@@ -88,10 +88,10 @@ namespace AscensionServer
                     var cricket = new Cricket();
                     cricket.Roleid = roleid;
                     var headlist = CricketHeadDict.Keys.ToList<int>();
-                    var headnum = Utility.Algorithm.CreateRandomInt(0, headlist.Count + 1);
+                    var headnum = Utility.Algorithm.CreateRandomInt(0, headlist.Count);
                     cricket.HeadPortraitID = CricketHeadDict[headlist[headnum]].CricketID;
                     var namelist = NameDict.Keys.ToList<int>();
-                    var namenum = Utility.Algorithm.CreateRandomInt(0, namelist.Count + 1);
+                    var namenum = Utility.Algorithm.CreateRandomInt(0, namelist.Count);
                     cricket.CricketName = NameDict[namelist[namenum]].CricketName;
                     cricket = NHibernateQuerier.Insert(cricket);
                     cricketAptitude.CricketID = cricket.ID;
