@@ -9,9 +9,9 @@ using AscensionProtocol;
 using Cosmos.Reference;
 namespace AscensionServer
 {
-    public static  class RegisterHandler
+    public static class RegisterHandler
     {
-        public static void RegisterRole(string account,string password,object peer)
+        public static void RegisterRole(string account, string password, object peer)
         {
             NHCriteria nHCriteriaAccount = xRCommon.xRNHCriteria("Account", account);
             //Utility.Debug.LogInfo("yzqData发送失败" + nHCriteriaAccount.Value.ToString());
@@ -24,7 +24,7 @@ namespace AscensionServer
 
             bool isExist = xRCommon.xRVerify<User>(nHCriteriaAccount);
 
-            var userObj = new User() {Account= account,Password= password };
+            var userObj = new User() { Account = account, Password = password };
             var role = new Role() { };
             var roleAsset = new RoleAssets();
             var cricket = new Cricket();
@@ -40,7 +40,7 @@ namespace AscensionServer
                 userObj = NHibernateQuerier.Insert(userObj);
                 NHCriteria nHCriteriaUUID = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("UUID", userObj.UUID);
                 var headList = HeadPortraitDict.Keys.ToList<int>();
-               var num= Utility.Algorithm.CreateRandomInt(0, HeadPortraitDict.Count+1);
+                var num = Utility.Algorithm.CreateRandomInt(0, headList.Count);
                 role.HeadPortrait = HeadPortraitDict[headList[num]].PlayerHeadID;
                 role = NHibernateQuerier.Insert(role);
                 userObj.RoleID = role.RoleID;
@@ -48,13 +48,13 @@ namespace AscensionServer
                 roleAsset.RoleID = role.RoleID;
                 NHibernateQuerier.Insert(roleAsset);
                 #region 待换
-                cricket.Roleid= role.RoleID;
+                cricket.Roleid = role.RoleID;
                 #region
                 var headlist = CricketHeadDict.Keys.ToList<int>();
-                var headnum = Utility.Algorithm.CreateRandomInt(0, headlist.Count+ 1);
+                var headnum = Utility.Algorithm.CreateRandomInt(0, headlist.Count);
                 cricket.HeadPortraitID = CricketHeadDict[headlist[headnum]].CricketID;
                 var namelist = NameDict.Keys.ToList<int>();
-                var namenum = Utility.Algorithm.CreateRandomInt(0, namelist.Count + 1);
+                var namenum = Utility.Algorithm.CreateRandomInt(0, namelist.Count);
                 cricket.CricketName = NameDict[namelist[namenum]].CricketName;
 
                 #endregion
@@ -65,8 +65,8 @@ namespace AscensionServer
                 roleCricket.TemporaryCrickets = Utility.Json.ToJson(roleCricketObj.TemporaryCrickets);
                 NHibernateQuerier.Insert(roleCricket);
                 //cricketStatus= RoleCricketManager.CalculateStutas(cricketAptitude, cricketPoint, cricketAddition);
-                cricketStatus = RoleCricketManager.SkillAdditionStatus(cricket, cricketAptitude, cricketPoint, cricketAddition,out var cricketPointTemp);
-                Utility.Debug.LogInfo("yzqData发送成功"+ Utility.Json.ToJson(cricketStatus));
+                cricketStatus = RoleCricketManager.SkillAdditionStatus(cricket, cricketAptitude, cricketPoint, cricketAddition, out var cricketPointTemp);
+                Utility.Debug.LogInfo("yzqData发送成功" + Utility.Json.ToJson(cricketStatus));
                 cricketStatus.CricketID = cricket.ID;
                 NHibernateQuerier.Insert(cricketStatus);
                 cricketAptitude.CricketID = cricket.ID;
@@ -117,6 +117,6 @@ namespace AscensionServer
             }
         }
 
-  
+
     }
 }
