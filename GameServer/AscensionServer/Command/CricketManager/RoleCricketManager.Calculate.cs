@@ -372,6 +372,7 @@ namespace AscensionServer
             cricketDTO.RankID = cricket.RankID;
             cricketDTO.SkillDict = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SkillDict);
             cricketDTO.SpecialDict = Utility.Json.ToObject<Dictionary<int, int>>(cricket.SpecialDict);
+            cricketDTO.HeadPortraitID = cricket.HeadPortraitID;
 
             return cricketDTO;
         }

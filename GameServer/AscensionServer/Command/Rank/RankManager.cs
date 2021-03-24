@@ -54,7 +54,7 @@ namespace AscensionServer
                 {
                     if (rankDict.Count >= 100)
                         break;
-                    rankDict[info.ID] = new RankDTO { RoleID = info.Roleid,RoleHeadIcon= roleDict[info.Roleid].HeadPortrait,RoleName=roleDict[info.Roleid].RoleName,CricketHeadIcon=roleDict[info.Roleid].HeadPortrait, CricketName = info.CricketName, Duanwei = info.RankID };
+                    rankDict[info.ID] = new RankDTO { RoleID = info.Roleid,RoleHeadIcon= roleDict[info.Roleid].HeadPortrait,RoleName=roleDict[info.Roleid].RoleName,CricketHeadIcon=info.HeadPortraitID, CricketName = info.CricketName, Duanwei = info.RankID };
                 }
             }
 
