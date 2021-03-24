@@ -491,8 +491,9 @@ namespace AscensionServer
         {
             if (!characterEntity.IsRobot)
             {
-                NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", playerOne.RoleID);
+                NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", characterEntity.RoleID);
                 Role role = xRCommon.xRCriteria<Role>(nHCriteria);
+                Utility.Debug.LogError("角色" + characterEntity.RoleID + "的头像" + role.HeadPortrait);
                 return role.HeadPortrait;
             }
             else
@@ -500,6 +501,7 @@ namespace AscensionServer
                 GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, HeadPortraitData>>(out var headDict);
                 var headIDList = headDict.Keys.ToList();
                 int random = Utility.Algorithm.CreateRandomInt(0, headIDList.Count);
+
                 return headIDList[random];
             }
         }
