@@ -47,13 +47,14 @@ namespace AscensionServer
                 //var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
                 //var xRserver = xRCommon.xRCriteria<Role>(nHcriteria);
                 var tableRole = NHibernateQuerier.GetTable<Role>();
+                Dictionary<int, Role> roleDict = tableRole.ToDictionary(key => key.RoleID, value => value);
                 var tableCricket = NHibernateQuerier.GetTable<Cricket>();
                 tableCricket = tableCricket.OrderByDescending(o => o.RankID).ToList();//降序
                 foreach (var info in tableCricket)//tableCricket.Count > 100 ? 100 : tableCricket.Count
                 {
                     if (rankDict.Count >= 100)
                         break;
-                    rankDict[info.ID] = new RankDTO { RoleID = info.Roleid, CricketName = info.CricketName, Duanwei = info.RankID };
+                    rankDict[info.ID] = new RankDTO { RoleID = info.Roleid,RoleHeadIcon= roleDict[info.Roleid].HeadPortrait,RoleName=roleDict[info.Roleid].RoleName,CricketHeadIcon=roleDict[info.Roleid].HeadPortrait, CricketName = info.CricketName, Duanwei = info.RankID };
                 }
             }
 
