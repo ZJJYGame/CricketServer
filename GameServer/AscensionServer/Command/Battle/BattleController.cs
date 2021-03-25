@@ -464,6 +464,7 @@ namespace AscensionServer
                 RoleID = playerOne.RoleID,
                 RoleName = playerOne.RoleName,
                 HeadIconID = GetHeadIconID(playerOne),
+                AssetID=GetAssetID(playerOne),
                 CricketId = playerOne.CricketID,
                 MaxHealth = playerOne.roleBattleData.MaxHealth,
                 Health = playerOne.roleBattleData.Health,
@@ -477,6 +478,7 @@ namespace AscensionServer
                 RoleID = playerTwo.RoleID,
                 RoleName = playerTwo.RoleName,
                 HeadIconID = GetHeadIconID(playerTwo),
+                AssetID = GetAssetID(playerTwo),
                 CricketId = playerTwo.CricketID,
                 MaxHealth = playerTwo.roleBattleData.MaxHealth,
                 Health = playerTwo.roleBattleData.Health,
@@ -499,6 +501,25 @@ namespace AscensionServer
             else
             {
                 GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, HeadPortraitData>>(out var headDict);
+                var headIDList = headDict.Keys.ToList();
+                int random = Utility.Algorithm.CreateRandomInt(0, headIDList.Count);
+
+                return headIDList[random];
+            }
+        }
+
+        int GetAssetID(BattleCharacterEntity characterEntity)
+        {
+            if (!characterEntity.IsRobot)
+            {
+                Utility.Debug.LogError(characterEntity.CricketID);
+                NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", characterEntity.CricketID);
+                Cricket cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
+                return cricket.HeadPortraitID;
+            }
+            else
+            {
+                GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketHeadPortraitData>>(out var headDict);
                 var headIDList = headDict.Keys.ToList();
                 int random = Utility.Algorithm.CreateRandomInt(0, headIDList.Count);
 
