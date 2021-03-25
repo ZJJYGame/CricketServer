@@ -105,7 +105,7 @@ namespace AscensionServer
 
                 #region 获取方式
                 //GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, MonsterDatas>>(out var set);
-                //Utility.Debug.LogInfo("<DataManager> 测试 TryGetValue " + skillGongFaDict[21001].Skill_Describe);
+                Utility.Debug.LogInfo("<DataManager> 测试 TryGetValue " +Utility.Json.ToJson(cricketNameDataDict));
                 #endregion
             }
             catch (Exception e)

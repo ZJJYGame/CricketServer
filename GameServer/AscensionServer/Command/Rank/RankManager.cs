@@ -56,19 +56,20 @@ namespace AscensionServer
                         break;
                     rankDict[info.ID] = new RankDTO { RoleID = info.Roleid,RoleHeadIcon= roleDict[info.Roleid].HeadPortrait,RoleName=roleDict[info.Roleid].RoleName,CricketHeadIcon=info.HeadPortraitID, CricketName = info.CricketName, Duanwei = info.RankID };
                 }
-            }
 
-            if (winsDict.Count == 0)
-            {
-                var tableBattleCombat= NHibernateQuerier.GetTable<BattleCombat>();
+                var tableBattleCombat = NHibernateQuerier.GetTable<BattleCombat>();
                 tableBattleCombat = tableBattleCombat.OrderByDescending(o => o.MatchWon).ToList();
                 foreach (var item in tableBattleCombat)
                 {
                     if (winsDict.Count >= 100)
                         break;
-                    winsDict[item.RoleID] = new BattleCombatDTO { RoleID = item.RoleID, MatchWon = item.MatchWon, RoleName = item.RoleName };
+                    winsDict[item.RoleID] = new BattleCombatDTO { RoleID = item.RoleID, MatchWon = item.MatchWon, RoleName = roleDict[item.RoleID].RoleName, RoleHeadIcon = roleDict[item.RoleID].HeadPortrait };
                 }
             }
+
+
+
+
 
             var pareams = xRCommon.xRS2CParams();
             pareams.Add((byte)ParameterCode.RoleRank, Utility.Json.ToJson(rankDict));

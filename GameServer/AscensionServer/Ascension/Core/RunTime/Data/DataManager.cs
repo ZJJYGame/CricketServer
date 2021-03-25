@@ -55,12 +55,12 @@ namespace AscensionServer
         {
             if (IsPause)
                 return;
-            var now = Utility.Time.SecondNow();
-            if (now >= latestRefreshTime)
-            {
-                RunProvider();
-                latestRefreshTime = now + intervalSec;
-            }
+            //var now = Utility.Time.SecondNow();
+            //if (now >= latestRefreshTime)
+            //{
+            //    RunProvider();
+            //    latestRefreshTime = now + intervalSec;
+            //}
         }
         public void SetDataDict(Dictionary<string, string> dict)
         {

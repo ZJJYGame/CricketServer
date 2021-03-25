@@ -13,5 +13,6 @@ namespace AscensionProtocol
         public virtual int MatchWon { get; set; }
         public virtual int MoneyLimit { get; set; }
         public virtual string RoleName { get; set; }
+        public virtual int RoleHeadIcon { get; set; }
     }
 }
