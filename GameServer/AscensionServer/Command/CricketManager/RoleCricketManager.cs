@@ -258,13 +258,14 @@ namespace AscensionServer
                 {
                     cricketPoint.Def += cricketPointDTO.Def;
                     cricketPoint.Con += cricketPointDTO.Con;
-                    if (cricketPoint.Dex+ cricketPointDTO.Dex+ aptitude.Dex>=1000)
+                    if (cricketPoint.Dex+ cricketPointDTO.Dex+ aptitude.Dex>1000)
                     {
-                        cricketPoint.Dex =1000-(cricketPointDTO.Dex + aptitude.Dex);
+                        cricketPointDTO.Dex = 0;
+                        cricketPoint.Dex =1000-(cricketPoint.Dex);
                     }else
                         cricketPoint.Dex += cricketPointDTO.Dex;
                     cricketPoint.Str += cricketPointDTO.Str;
-                    cricketPoint.FreePoint -= (cricketPointDTO.Dex + cricketPointDTO.Def + cricketPointDTO.Con + cricketPointDTO.Str);
+                    cricketPoint.FreePoint -= (cricketPointDTO.Dex + cricketPointDTO.Dex + cricketPointDTO.Con + cricketPointDTO.Str);
                     NHibernateQuerier.Update(cricketPoint);
 
                     var dataDict = xRCommon.xRS2CSub();
