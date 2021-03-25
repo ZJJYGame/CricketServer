@@ -260,7 +260,7 @@ namespace AscensionServer
                     cricketPoint.Con += cricketPointDTO.Con;
                     if (cricketPoint.Dex+ cricketPointDTO.Dex+ aptitude.Dex>=1000)
                     {
-                        cricketPoint.Dex =1000;
+                        cricketPoint.Dex =1000-(cricketPointDTO.Dex + aptitude.Dex);
                     }else
                         cricketPoint.Dex += cricketPointDTO.Dex;
                     cricketPoint.Str += cricketPointDTO.Str;
