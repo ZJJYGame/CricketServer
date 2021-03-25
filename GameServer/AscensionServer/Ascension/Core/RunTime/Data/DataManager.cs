@@ -17,16 +17,13 @@ namespace AscensionServer
         /// <summary>
         /// 对象字典；
         /// </summary>
-        Dictionary<Type, object> typeObjectDict;
+        Dictionary<Type, object> typeObjectDict=new Dictionary<Type, object>();
         /// <summary>
         /// json数据字典；
         /// </summary>
-        Dictionary<string, string> jsonDict;
+        Dictionary<string, string> jsonDict=new Dictionary<string, string>();
         List<IDataProvider> providerSet = new List<IDataProvider>();
-        public override void OnInitialization()
-        {
-           
-        }
+
         public override void OnActive()
         {
             {
@@ -61,14 +58,6 @@ namespace AscensionServer
             //    RunProvider();
             //    latestRefreshTime = now + intervalSec;
             //}
-        }
-        public void SetDataDict(Dictionary<string, string> dict)
-        {
-            this.jsonDict = dict;
-        }
-        public void SetDataDict(Dictionary<Type, object> dict)
-        {
-            this.typeObjectDict = dict;
         }
 #endif
         public bool ContainsKey(Type key)
