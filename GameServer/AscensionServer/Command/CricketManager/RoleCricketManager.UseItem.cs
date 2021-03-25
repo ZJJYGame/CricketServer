@@ -109,7 +109,7 @@ namespace AscensionServer
                     case PropType.AddDex:
                         if (aptitude.Dex +propData.AddNumber+ point.Dex>=1000)
                         {
-                            aptitude.Dex = 1000;
+                            aptitude.Dex = 1000-(propData.AddNumber + point.Dex);
                         }else
                             aptitude.Dex += propData.AddNumber;
                         break;
