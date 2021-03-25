@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crickey\subCmd\CricketOperate.cs" />
+    <Compile Include="Crickey\subCmd\EigeneRoleInfoOpCode.cs" />
     <Compile Include="Crickey\subCmd\NoviceGuideOperate.cs" />
     <Compile Include="Crickey\subCmd\ShopOperate.cs" />
     <Compile Include="Crickey\subCmd\SpreaCodeOperate.cs" />

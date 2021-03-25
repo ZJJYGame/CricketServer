@@ -11,6 +11,7 @@ namespace AscensionProtocol
         public virtual int RoleID { get; set; }
         public virtual string RoleName { get; set; }
         public virtual int NoviceGuide { get; set; }
+        public virtual int HeadPortrait { get; set; }
     }
     
 }

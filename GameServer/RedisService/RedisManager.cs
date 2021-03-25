@@ -35,6 +35,7 @@ namespace RedisDotNet
         public void ConnectRedis()
         {
             string connectStr = "192.168.0.117:6379,password=123456,DefaultDatabase=4";//内网
+            //string connectStr = "60.12.176.54:6379,password=jygame_%Redis,DefaultDatabase=4"; //公网
             //string connectStr = "127.0.0.1:6379,password=123456,DefaultDatabase=3";//lu
             //string connectStr = "127.0.0.1:6379,password=123456,DefaultDatabase=3";//lu
             try
@@ -59,6 +60,7 @@ namespace RedisDotNet
             {
                 throw new RedisConnectionException(ConnectionFailureType.UnableToConnect, "Redis Connect Fail");
             }
+
         }
         /// <summary>
         /// 订阅key过期事件；
@@ -81,7 +83,7 @@ namespace RedisDotNet
             }
             var mutlti =this. Redis;
             var subscriber = mutlti.GetSubscriber();
-            subscriber.Subscribe("__keyevent@0__:expired", (channel, keyVar) =>
+            subscriber.Subscribe("__keyevent@4__:expired", (channel, keyVar) =>
             {
                 if (keyVar.StartsWith(key))
                 {

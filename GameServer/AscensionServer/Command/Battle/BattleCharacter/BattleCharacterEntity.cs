@@ -140,7 +140,7 @@ namespace AscensionServer
                 battlePassiveSkill = battlePassiveSkillList[i];
                 for (int j = 0; j < battlePassiveSkill.BattleSkillAddBuffList.Count; j++)
                 {
-                    Utility.Debug.LogError("添加被动技能" + battlePassiveSkill.SkillId);
+                    Utility.Debug.LogError(CricketID+"添加被动技能" + battlePassiveSkill.SkillId);
                     battleBuffController.AddBuff(battlePassiveSkill.BattleSkillAddBuffList[j], battlePassiveSkill.SkillId);
                 }
             }

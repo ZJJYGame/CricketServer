@@ -176,6 +176,7 @@
     <Compile Include="Ascension\Core\Base\NHibernate\NHCriteria.cs" />
     <Compile Include="Ascension\Core\Base\NHibernate\NHibernateHelper.cs" />
     <Compile Include="Ascension\Core\Base\NHibernate\NHibernateQuerier.cs" />
+    <Compile Include="Ascension\Core\Base\ResdisKey\RedisKeyDefine.cs" />
     <Compile Include="Ascension\Core\Base\Stream\DataStream.cs" />
     <Compile Include="Ascension\Core\Base\Stream\DataStreamQueue.cs" />
     <Compile Include="Ascension\Core\Base\Stream\GenericDataStream.cs" />
@@ -197,9 +198,12 @@
     <Compile Include="Ascension\DataObject\BattleAttackSkillData.cs" />
     <Compile Include="Ascension\DataObject\BattleBuffData.cs" />
     <Compile Include="Ascension\DataObject\CricketData.cs" />
+    <Compile Include="Ascension\DataObject\CricketHeadPortraitData.cs" />
     <Compile Include="Ascension\DataObject\CricketLevel.cs" />
+    <Compile Include="Ascension\DataObject\CricketNameData.cs" />
     <Compile Include="Ascension\DataObject\CricketStatusData.cs" />
     <Compile Include="Ascension\DataObject\ExplorationData.cs" />
+    <Compile Include="Ascension\DataObject\HeadPortraitData.cs" />
     <Compile Include="Ascension\DataObject\MachineData.cs" />
     <Compile Include="Ascension\DataObject\NestLevel.cs" />
     <Compile Include="Ascension\DataObject\PassiveSkill.cs" />
@@ -223,6 +227,7 @@
     <Compile Include="Command\CricketManager\RoleCricketManager.Calculate.cs" />
     <Compile Include="Command\CricketManager\RoleCricketManager.cs" />
     <Compile Include="Command\CricketManager\RoleCricketManager.UseItem.cs" />
+    <Compile Include="Command\EigeneRoleInfo\EigeneRoleInfoManager.cs" />
     <Compile Include="Command\Exploration\ExplorationManager.Concreteness.cs" />
     <Compile Include="Command\Exploration\ExplorationManager.cs" />
     <Compile Include="Command\Inventory\InventoryManager.Concreteness.cs" />
@@ -232,6 +237,8 @@
     <Compile Include="Command\Match\MatchManager.cs" />
     <Compile Include="Command\Match\TimerManager.cs" />
     <Compile Include="Command\NoviceGuideManager\NoviceGuideManager.cs" />
+    <Compile Include="Command\OnTimeEventManager\OnTimeEventManager.cs" />
+    <Compile Include="Command\OnTimeEventManager\OnTimeEventStruct.cs" />
     <Compile Include="Command\Rank\RankManager.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginHandler.cs" />
     <Compile Include="Command\RegisterAndLogin\LoginManager\LoginManager.cs" />
@@ -319,6 +326,15 @@
     <EmbeddedResource Include="JsonData\RankLevel.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\HeadPortraitData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\CricketHeadPortraitData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\CricketNameData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />
     <Content Include="Plugin\ExitGames.Logging.Log4Net.XML" />
     <Content Include="Plugin\ExitGamesLibs.dll" />
@@ -346,6 +362,10 @@
     <ProjectReference Include="..\Protocol\Protocol.csproj">
       <Project>{2d2f0f7a-63ce-4898-a74d-fee8dd3eb58a}</Project>
       <Name>Protocol</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RedisService\RedisService.csproj">
+      <Project>{c1e88d49-8582-4ca4-bc91-0f6147c8f876}</Project>
+      <Name>RedisService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

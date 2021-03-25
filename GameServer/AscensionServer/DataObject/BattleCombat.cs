@@ -12,12 +12,14 @@ namespace AscensionServer
         public virtual int RoleID { get; set; }
         public virtual int MatchWon { get; set; }
         public virtual int MoneyLimit { get; set; }
+        public virtual string RoleName { get; set; }
 
         public BattleCombat()
         {
             RoleID = -1;
             MatchWon = 0;
             MoneyLimit = 0;
+            RoleName = "";
         }
     }
 }

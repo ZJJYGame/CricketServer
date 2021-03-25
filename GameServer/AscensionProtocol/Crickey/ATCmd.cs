@@ -48,6 +48,14 @@ namespace AscensionProtocol
         SyncMatch = 13,
         SyncGuide=14,
         /// <summary>
+        /// 人物命名
+        /// </summary>
+        EigeneInfo= 15,
+        /// <summary>
+        /// 同步战斗结算信息
+        /// </summary>
+        SyncBattleCombat = 17,
+        /// <summary>
         /// 测试消息队列
         /// </summary>
         MessageQueue = 187,

@@ -21,7 +21,7 @@ namespace AscensionServer
             Con = 0;
             Dex = 0;
             Def = 0;
-            FreePoint = 40;
+            FreePoint = 0;
         }
     }
 }
