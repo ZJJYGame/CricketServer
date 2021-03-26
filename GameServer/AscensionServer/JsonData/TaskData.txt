@@ -3,162 +3,162 @@
 		"TaskID":301,
 		"TaskName":"热身开始",
 		"TaskDescribe":"进行1场战斗",
-		"TaskMoney":[90,110],
+		"Money":[280,300],
 		"TaskType":1,
 		"PropID":1801,
-		"TaskTarget":1
+		"TaskTarget":3
 	},
 	{
 		"TaskID":302,
 		"TaskName":"小试身手",
 		"TaskDescribe":"进行2场战斗",
-		"TaskMoney":[140,160],
+		"Money":[380,400],
 		"TaskType":1,
-		"PropID":1801,
+		"PropID":1802,
 		"TaskTarget":2
 	},
 	{
 		"TaskID":303,
 		"TaskName":"游刃有余",
 		"TaskDescribe":"进行3场战斗",
-		"TaskMoney":[140,160],
+		"Money":[380,400],
 		"TaskType":1,
-		"PropID":1802,
-		"TaskTarget":3
+		"PropID":1803,
+		"TaskTarget":2
 	},
 	{
 		"TaskID":304,
 		"TaskName":"崭露头角",
 		"TaskDescribe":"赢得1场战斗",
-		"TaskMoney":[140,160],
+		"Money":[380,400],
 		"TaskType":2,
-		"PropID":1801,
-		"TaskTarget":1
+		"PropID":1802,
+		"TaskTarget":2
 	},
 	{
 		"TaskID":305,
 		"TaskName":"旗开得胜",
 		"TaskDescribe":"赢得2场战斗",
-		"TaskMoney":[190,210],
+		"Money":[480,500],
 		"TaskType":2,
-		"PropID":1801,
+		"PropID":1803,
 		"TaskTarget":2
 	},
 	{
 		"TaskID":306,
 		"TaskName":"大获全胜",
 		"TaskDescribe":"赢得3场战斗",
-		"TaskMoney":[190,210],
+		"Money":[480,500],
 		"TaskType":2,
-		"PropID":1802,
-		"TaskTarget":3
+		"PropID":1804,
+		"TaskTarget":1
 	},
 	{
 		"TaskID":307,
 		"TaskName":"如愿以偿",
-		"TaskDescribe":"在商店购买1件物品",
-		"TaskMoney":[90,110],
+		"TaskDescribe":"在商店购买1次物品",
+		"Money":[280,300],
 		"TaskType":3,
 		"PropID":1801,
-		"TaskTarget":1
+		"TaskTarget":3
 	},
 	{
 		"TaskID":308,
 		"TaskName":"鱼和熊掌",
-		"TaskDescribe":"在商店购买2件物品",
-		"TaskMoney":[140,160],
+		"TaskDescribe":"在商店购买2次物品",
+		"Money":[380,400],
 		"TaskType":3,
-		"PropID":1801,
+		"PropID":1802,
 		"TaskTarget":2
 	},
 	{
 		"TaskID":309,
 		"TaskName":"十块三样",
-		"TaskDescribe":"在商店购买3件物品",
-		"TaskMoney":[140,160],
+		"TaskDescribe":"在商店购买3次物品",
+		"Money":[380,400],
 		"TaskType":3,
-		"PropID":1802,
-		"TaskTarget":3
+		"PropID":1803,
+		"TaskTarget":2
 	},
 	{
 		"TaskID":310,
 		"TaskName":"初出茅庐",
 		"TaskDescribe":"外出探索1次",
-		"TaskMoney":[90,110],
+		"Money":[280,300],
 		"TaskType":4,
-		"PropID":1801,
+		"PropID":1802,
 		"TaskTarget":1
 	},
 	{
 		"TaskID":311,
 		"TaskName":"出门在外",
 		"TaskDescribe":"外出探索2次",
-		"TaskMoney":[140,160],
+		"Money":[380,400],
 		"TaskType":4,
-		"PropID":1801,
-		"TaskTarget":2
+		"PropID":1803,
+		"TaskTarget":1
 	},
 	{
 		"TaskID":312,
 		"TaskName":"跋山涉水",
 		"TaskDescribe":"外出探索3次",
-		"TaskMoney":[140,160],
+		"Money":[380,400],
 		"TaskType":4,
-		"PropID":1802,
-		"TaskTarget":3
+		"PropID":1804,
+		"TaskTarget":1
 	},
 	{
 		"TaskID":313,
 		"TaskName":"友谊第一",
 		"TaskDescribe":"与好友进行1次战斗",
-		"TaskMoney":[280,320],
+		"Money":[700,700],
 		"TaskType":5,
-		"PropID":1803,
-		"TaskTarget":1
+		"PropID":1804,
+		"TaskTarget":2
 	},
 	{
 		"TaskID":314,
 		"TaskName":"免费午餐",
 		"TaskDescribe":"观看1次广告",
-		"TaskMoney":[140,160],
+		"Money":[380,400],
 		"TaskType":6,
-		"PropID":1803,
-		"TaskTarget":1
+		"PropID":1804,
+		"TaskTarget":2
 	},
 	{
 		"TaskID":315,
 		"TaskName":"瞻仰强者",
 		"TaskDescribe":"查看排行榜",
-		"TaskMoney":[90,110],
+		"Money":[280,300],
 		"TaskType":7,
 		"PropID":1801,
-		"TaskTarget":1
+		"TaskTarget":2
 	},
 	{
 		"TaskID":316,
 		"TaskName":"精心呵护",
 		"TaskDescribe":"喂养蛐蛐1次",
-		"TaskMoney":[90,110],
+		"Money":[280,300],
 		"TaskType":8,
 		"PropID":1801,
-		"TaskTarget":1
+		"TaskTarget":3
 	},
 	{
 		"TaskID":317,
 		"TaskName":"合理喂养",
 		"TaskDescribe":"喂养蛐蛐2次",
-		"TaskMoney":[140,160],
+		"Money":[380,400],
 		"TaskType":8,
-		"PropID":1801,
+		"PropID":1802,
 		"TaskTarget":2
 	},
 	{
 		"TaskID":318,
 		"TaskName":"宠爱有加",
 		"TaskDescribe":"喂养蛐蛐3次",
-		"TaskMoney":[140,160],
+		"Money":[380,400],
 		"TaskType":8,
-		"PropID":1802,
-		"TaskTarget":3
+		"PropID":1803,
+		"TaskTarget":1
 	}
 ]
