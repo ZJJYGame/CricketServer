@@ -35,8 +35,6 @@
 {"PropID":1214,"PropName":"精准","PropType":11,"AddNumber":0,"SkillID":3014},
 {"PropID":1215,"PropName":"伤害加深","PropType":11,"AddNumber":0,"SkillID":3015},
 {"PropID":1216,"PropName":"防备","PropType":11,"AddNumber":0,"SkillID":3016},
-{"PropID":1248,"PropName":"火球攻击","PropType":11,"AddNumber":0,"SkillID":3017},
-{"PropID":1249,"PropName":"毒气弹","PropType":11,"AddNumber":0,"SkillID":3018},
 {"PropID":1217,"PropName":"天生神力","PropType":11,"AddNumber":0,"SkillID":3301},
 {"PropID":1218,"PropName":"动如脱兔","PropType":11,"AddNumber":0,"SkillID":3302},
 {"PropID":1219,"PropName":"身强力壮","PropType":11,"AddNumber":0,"SkillID":3303},
@@ -69,5 +67,7 @@
 {"PropID":1246,"PropName":"不屈","PropType":11,"AddNumber":0,"SkillID":3330},
 {"PropID":1247,"PropName":"荆棘","PropType":11,"AddNumber":0,"SkillID":3331},
 {"PropID":1248,"PropName":"死里逃生","PropType":11,"AddNumber":0,"SkillID":3332},
-{"PropID":1249,"PropName":"乘胜追击","PropType":11,"AddNumber":0,"SkillID":3333}
+{"PropID":1249,"PropName":"乘胜追击","PropType":11,"AddNumber":0,"SkillID":3333},
+{"PropID":1300,"PropName":"火球攻击","PropType":11,"AddNumber":0,"SkillID":3017},
+{"PropID":1301,"PropName":"毒气弹","PropType":11,"AddNumber":0,"SkillID":3018}
 ]
