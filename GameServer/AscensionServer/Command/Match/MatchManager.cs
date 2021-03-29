@@ -121,6 +121,10 @@ namespace AscensionServer
                 matchDto.selfData = match.selfData;
                 matchDto.selfCricketData = match.selfCricketData;
                 matchDto.otherData = new RoleDTO() { RoleName = setData.UserName };
+                GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, HeadPortraitData>>(out var headDict);
+                var headIDList = headDict.Keys.ToList();
+                int random = Utility.Algorithm.CreateRandomInt(0, headIDList.Count);
+                matchDto.otherData.HeadPortrait = headIDList[random];
                 matchDto.otherCricketData = new CricketDTO() { CricketName = setData.CricketName, RankID = setData.RankID };
                 var pareams = xRCommon.xRS2CParams();
                 pareams.Add((byte)ParameterCode.RoleMatch, Utility.Json.ToJson(matchDto));

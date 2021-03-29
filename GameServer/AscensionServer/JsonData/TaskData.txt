@@ -6,7 +6,7 @@
 		"TaskMoney":[280,300],
 		"TaskType":1,
 		"PropID":1801,
-		"TaskTarget":3
+		"TaskTarget":1
 	},
 	{
 		"TaskID":302,
@@ -24,7 +24,7 @@
 		"TaskMoney":[380,400],
 		"TaskType":1,
 		"PropID":1803,
-		"TaskTarget":2
+		"TaskTarget":3
 	},
 	{
 		"TaskID":304,
@@ -33,7 +33,7 @@
 		"TaskMoney":[380,400],
 		"TaskType":2,
 		"PropID":1802,
-		"TaskTarget":2
+		"TaskTarget":1
 	},
 	{
 		"TaskID":305,
@@ -51,7 +51,7 @@
 		"TaskMoney":[480,500],
 		"TaskType":2,
 		"PropID":1804,
-		"TaskTarget":1
+		"TaskTarget":3
 	},
 	{
 		"TaskID":307,
@@ -60,7 +60,7 @@
 		"TaskMoney":[280,300],
 		"TaskType":3,
 		"PropID":1801,
-		"TaskTarget":3
+		"TaskTarget":1
 	},
 	{
 		"TaskID":308,
@@ -78,7 +78,7 @@
 		"TaskMoney":[380,400],
 		"TaskType":3,
 		"PropID":1803,
-		"TaskTarget":2
+		"TaskTarget":3
 	},
 	{
 		"TaskID":310,
@@ -96,7 +96,7 @@
 		"TaskMoney":[380,400],
 		"TaskType":4,
 		"PropID":1803,
-		"TaskTarget":1
+		"TaskTarget":2
 	},
 	{
 		"TaskID":312,
@@ -105,7 +105,7 @@
 		"TaskMoney":[380,400],
 		"TaskType":4,
 		"PropID":1804,
-		"TaskTarget":1
+		"TaskTarget":3
 	},
 	{
 		"TaskID":313,
@@ -114,7 +114,7 @@
 		"TaskMoney":[700,700],
 		"TaskType":5,
 		"PropID":1804,
-		"TaskTarget":2
+		"TaskTarget":1
 	},
 	{
 		"TaskID":314,
@@ -123,7 +123,7 @@
 		"TaskMoney":[380,400],
 		"TaskType":6,
 		"PropID":1804,
-		"TaskTarget":2
+		"TaskTarget":1
 	},
 	{
 		"TaskID":315,
@@ -132,7 +132,7 @@
 		"TaskMoney":[280,300],
 		"TaskType":7,
 		"PropID":1801,
-		"TaskTarget":2
+		"TaskTarget":1
 	},
 	{
 		"TaskID":316,
@@ -141,7 +141,7 @@
 		"TaskMoney":[280,300],
 		"TaskType":8,
 		"PropID":1801,
-		"TaskTarget":3
+		"TaskTarget":1
 	},
 	{
 		"TaskID":317,
@@ -159,6 +159,6 @@
 		"TaskMoney":[380,400],
 		"TaskType":8,
 		"PropID":1803,
-		"TaskTarget":1
+		"TaskTarget":3
 	}
 ]

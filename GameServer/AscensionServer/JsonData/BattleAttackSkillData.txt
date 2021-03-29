@@ -904,7 +904,7 @@
             "battleSkillType": 0,
             "describe": "普通攻击",
             "enduranceCost": 20,
-            "triggerProb": 20,
+            "triggerProb": 200,
             "enduranceCostChangeEachLevel": 0,
             "triggerProbChangeEachLevel": 0,
             "battleSkillDamageData": {

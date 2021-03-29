@@ -463,7 +463,7 @@ namespace AscensionServer
             {
                 RoleID = playerOne.RoleID,
                 RoleName = playerOne.RoleName,
-                HeadIconID = GetHeadIconID(playerOne),
+                HeadIconID = playerOne.RoleHeadId,
                 AssetID=GetAssetID(playerOne),
                 CricketId = playerOne.CricketID,
                 MaxHealth = playerOne.roleBattleData.MaxHealth,
@@ -477,7 +477,7 @@ namespace AscensionServer
             {
                 RoleID = playerTwo.RoleID,
                 RoleName = playerTwo.RoleName,
-                HeadIconID = GetHeadIconID(playerTwo),
+                HeadIconID = playerTwo.RoleHeadId,
                 AssetID = GetAssetID(playerTwo),
                 CricketId = playerTwo.CricketID,
                 MaxHealth = playerTwo.roleBattleData.MaxHealth,
@@ -489,24 +489,7 @@ namespace AscensionServer
             };
         }
 
-        int GetHeadIconID(BattleCharacterEntity characterEntity)
-        {
-            if (!characterEntity.IsRobot)
-            {
-                NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", characterEntity.RoleID);
-                Role role = xRCommon.xRCriteria<Role>(nHCriteria);
-                Utility.Debug.LogError("角色" + characterEntity.RoleID + "的头像" + role.HeadPortrait);
-                return role.HeadPortrait;
-            }
-            else
-            {
-                GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, HeadPortraitData>>(out var headDict);
-                var headIDList = headDict.Keys.ToList();
-                int random = Utility.Algorithm.CreateRandomInt(0, headIDList.Count);
 
-                return headIDList[random];
-            }
-        }
 
         int GetAssetID(BattleCharacterEntity characterEntity)
         {

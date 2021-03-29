@@ -18,6 +18,7 @@ namespace AscensionServer
         public bool IsWin { get;set; }
         //行动次数记录
         public int ActionCount { get; set; }
+        public int RoleHeadId { get; private set; }
 
         public RoleBattleData roleBattleData;
 
@@ -43,6 +44,7 @@ namespace AscensionServer
             roleBattleData = GetRoleBattleData(roleDTO, cricketDTO);
             RemainActionBar = roleBattleData.ActionBar;
             battleBuffController.roleBattleData = roleBattleData;
+            RoleHeadId = roleDTO.HeadPortrait;
             IsRobot = false;
             IsWin = true;
             ActionCount = 1;
@@ -57,6 +59,7 @@ namespace AscensionServer
             roleBattleData = GetRoleBattleData(machineData);
             RemainActionBar = roleBattleData.ActionBar;
             battleBuffController.roleBattleData = roleBattleData;
+            RoleHeadId = roleDTO.HeadPortrait;
             IsRobot = true;
             IsWin = true;
             ActionCount = 1;
