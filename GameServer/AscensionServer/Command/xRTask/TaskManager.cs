@@ -53,19 +53,20 @@ namespace AscensionServer
             {
                 if (taskDataJsonList.Count == 0)
                     break;
-                resultTaskDataList.Add(taskDataJsonList[Utility.Algorithm.CreateRandomInt(0, taskDataJsonList.Count)]);
+                int index = Utility.Algorithm.CreateRandomInt(0, taskDataJsonList.Count);
+                resultTaskDataList.Add(taskDataJsonList[index]);
+                taskDataJsonList.RemoveAt(index);
             }
 
             Dictionary<int, TaskItemDTO> taskItemDIct = new Dictionary<int, TaskItemDTO>();
             for (int i = 0; i < resultTaskDataList.Count; i++)
             {
-                taskItemDIct[resultTaskDataList[i].TaskId] = new TaskItemDTO()
-                {
-                    taskTarget = resultTaskDataList[i].TaskTarget,
-                    taskProgress = 0,
-                    taskStatus = false,
-                    taskManoy = Utility.Algorithm.CreateRandomInt(resultTaskDataList[i].TaskMoney[0], resultTaskDataList[i].TaskMoney[1] + 1),
-                };
+                TaskItemDTO taskItemDTO = new TaskItemDTO();
+                taskItemDTO.taskTarget = resultTaskDataList[i].TaskTarget;
+                taskItemDTO.taskProgress = 0;
+                taskItemDTO.taskStatus = false;
+                taskItemDTO.taskManoy = Utility.Algorithm.CreateRandomInt(resultTaskDataList[i].TaskMoney[0], resultTaskDataList[i].TaskMoney[1] + 1);
+                taskItemDIct.Add(resultTaskDataList[i].TaskId, taskItemDTO);
             }
             return taskItemDIct;
         }
