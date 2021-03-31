@@ -254,7 +254,7 @@ namespace AscensionServer
                     xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Success, dict);
                     InventoryManager.xRUpdateInventory(roleid, new Dictionary<int, ItemDTO> { { prop, new ItemDTO() { ItemAmount = 1 } } });
                     return;
-                }
+    }
                 else
                 {
                     xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
@@ -285,9 +285,9 @@ namespace AscensionServer
                 if (specialSkillDict[skillid].SkillType==1)
                 {
                     StudySkill(skillid, cricketid, roleid);
+                    return;
                 }
             }
-
             var nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);
             var nHCriteriacricket = xRCommon.xRNHCriteria("CricketID", cricketid);
             var cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);
