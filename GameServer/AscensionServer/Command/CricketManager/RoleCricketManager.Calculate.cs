@@ -185,7 +185,7 @@ namespace AscensionServer
                     NHibernateQuerier.Update(aptitude);
 
                     var data = xRCommon.xRS2CParams();
-                    data.Add((byte)ParameterCode.Cricket, SetCricketValue(cricket));
+                    data.Add((byte)ParameterCode.Cricket, SetCricketValue(cricket)); 
                     data.Add((byte)ParameterCode.CricketStatus, status);
                     data.Add((byte)ParameterCode.CricketAptitude, aptitude);
                     data.Add((byte)ParameterCode.CricketPoint, point);
@@ -227,7 +227,7 @@ namespace AscensionServer
                     var skilllist = skillDict.Keys.ToList<int>();
                     skillDict.Remove(skilllist[num]);
                     Utility.Debug.LogInfo("YZQ删除技能后的蛐蛐" + skillDict.Count + "下标" + num);
-                    cricket.SkillDict = Utility.Json.ToJson(skillDict);
+                    cricket.SpecialDict = Utility.Json.ToJson(skillDict);
 
 
                     var status = SkillAdditionStatus(cricket, aptitude, point, addition, out var cricketPoint);
