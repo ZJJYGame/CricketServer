@@ -33,7 +33,7 @@ namespace AscensionServer
         }
 
         /// <summary>
-        /// 添加探索   ///  添加探索事件的时候  会随机添加
+        /// 添加探索   ///  添加探索事件的时候  会随机添加    TimeAndCatchpropInfo 传换个参数就可以啦好我看看  ItemInfo  传入 null  应该没啥的吧或者传入一个空字典我给你加个空判断吧 OK好 
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="ItemInfo"></param>
@@ -45,54 +45,57 @@ namespace AscensionServer
                 var xRserver = xRCommon.xRCriteria<Exploration>(nHcriteria);
                 var xrDict = Utility.Json.ToObject<Dictionary<int, ExplorationItemDTO>>(xRserver.ExplorationItemDict);
                 var xrPropDict = Utility.Json.ToObject<Dictionary<int, int>>(xRserver.CatchAndTimeDict);
-                foreach (var info in ItemInfo)
+                if (ItemInfo!=null)
                 {
-                    if (!xrDict.ContainsKey(info.Key))
+                    foreach (var info in ItemInfo)
                     {
-                        xrDict[info.Key] = info.Value;
-                        GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, ExplorationData>>(out var setExploration);
-                        for (int propInfo = 0; propInfo < xrDict[info.Key].ItemId.Count; propInfo++)
+                        if (!xrDict.ContainsKey(info.Key))
                         {
-
-                            int xrRandom = 1;//这个地方处理   默认都是一个 添加的时候事件的时候  通过事件id  给定数量    这个地方随机没改呢
-                            if (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number.Count == 2)
+                            xrDict[info.Key] = info.Value;
+                            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, ExplorationData>>(out var setExploration);
+                            for (int propInfo = 0; propInfo < xrDict[info.Key].ItemId.Count; propInfo++)
                             {
 
-                                xrRandom = RandomManager(info.Key, setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0], setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[1]);
-                            }
+                                int xrRandom = 1;//这个地方处理   默认都是一个 添加的时候事件的时候  通过事件id  给定数量    这个地方随机没改呢
+                                if (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number.Count == 2)
+                                {
 
-                            //应该是这个地方//那为什么这里加道具的 随机在下面
-                            xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = xrRandom;
-                            switch (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].EventType)
-                            {
-                                case "GetPropA":
-                                    if (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number.Count == 2)
-                                        xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = RandomManager(info.Key, setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0], setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[1]);
-                                    else
-                                        xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0];
-                                    break;
-                                case "GetPropB":
-                                case "GetPropC":
-                                case "GetCricket"://全局id
-                                case "GetSkill":
-                                    xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = 1;
-                                    break;
-                                case "AddExp":
-                                    var nHcriteriaID = xRCommon.xRNHCriteria("ID", info.Value.CustomId);
-                                    var xRserverGrade = xRCommon.xRCriteria<Cricket>(nHcriteriaID);
-                                    var gradeValue = info.Key == 0 ? 100 : info.Key == 1 ? 400 : info.Key == 2 ? 800 : 1600;
-                                    var percentValue = setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0];
-                                    var levbelValue = xRserverGrade.LevelID* xRserverGrade.LevelID;
-                                    var expValue = info.Key == 0 ? levbelValue*6*percentValue: info.Key == 1 ? levbelValue*12 : info.Key == 2 ? levbelValue*18 : levbelValue*24;
-                                    xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = expValue / 100 < gradeValue ? gradeValue : expValue / 100;
-                                    break;
+                                    xrRandom = RandomManager(info.Key, setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0], setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[1]);
+                                }
+
+                                //应该是这个地方//那为什么这里加道具的 随机在下面
+                                xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = xrRandom;
+                                switch (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].EventType)
+                                {
+                                    case "GetPropA":
+                                        if (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number.Count == 2)
+                                            xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = RandomManager(info.Key, setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0], setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[1]);
+                                        else
+                                            xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0];
+                                        break;
+                                    case "GetPropB":
+                                    case "GetPropC":
+                                    case "GetCricket"://全局id
+                                    case "GetSkill":
+                                        xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = 1;
+                                        break;
+                                    case "AddExp":
+                                        var nHcriteriaID = xRCommon.xRNHCriteria("ID", info.Value.CustomId);
+                                        var xRserverGrade = xRCommon.xRCriteria<Cricket>(nHcriteriaID);
+                                        var gradeValue = info.Key == 0 ? 100 : info.Key == 1 ? 400 : info.Key == 2 ? 800 : 1600;
+                                        var percentValue = setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0];
+                                        var levbelValue = xRserverGrade.LevelID * xRserverGrade.LevelID;
+                                        var expValue = info.Key == 0 ? levbelValue * 6 * percentValue : info.Key == 1 ? levbelValue * 12 : info.Key == 2 ? levbelValue * 18 : levbelValue * 24;
+                                        xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = expValue / 100 < gradeValue ? gradeValue : expValue / 100;
+                                        break;
+                                }
                             }
                         }
+                        NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = xRserver.CatchAndTimeDict });
                     }
-                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId,  ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict , CatchAndTimeDict = xRserver.CatchAndTimeDict});
                 }
 
-                if (TimeAndCatchpropInfo != null)
+                if (TimeAndCatchpropInfo != null)  //你直接调用这个方法不就可以了嘛
                 {
                     foreach (var prop in TimeAndCatchpropInfo)
                     {
@@ -129,7 +132,7 @@ namespace AscensionServer
                     NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict),  UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = xRserver.CatchAndTimeDict });
                 }
 
-                foreach (var prop in propInfo)
+                foreach (var prop in propInfo)  //这个是使用的  减少道具的数量
                 {
                     if (!xrPropDict.ContainsKey(prop.Key)) continue;
                     if (xrPropDict[prop.Key] > 0)

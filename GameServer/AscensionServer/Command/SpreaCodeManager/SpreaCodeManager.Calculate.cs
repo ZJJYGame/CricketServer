@@ -123,7 +123,7 @@ namespace AscensionServer
             {
                 spreaCode.SpreaNum += 1;
                 var dict = Utility.Json.ToObject<Dictionary<int, List<int>>>(spreaCode.SpreaLevel);
-                dict.Add(roleid, new List<int>() { -1, -1, -1 });
+                dict.Add(roleid, new List<int>() { -1, -1, -1 ,0});
                 spreaCode.SpreaLevel = Utility.Json.ToJson(dict);
                 NHibernateQuerier.Update(spreaCode);
                 var dataDict = xRCommon.xRS2CSub();
@@ -235,12 +235,21 @@ namespace AscensionServer
                         {
                             spreaCodeDTO.AwardID = 6008;//推广玩家等级30级奖励
                         }
+                        if (spreaCodeDTO.AwardID == 3)
+                        {
+                            spreaCodeDTO.AwardID = 6009;//推广玩家登录奖励
+                        }
                         var result = spreaAwardDict.TryGetValue(spreaCodeDTO.AwardID, out var spreaAward);
                         for (int i = 0; i < spreaAward.PropID.Count; i++)
                         {
                             InventoryManager.xRAddInventory(spreaCodeDTO.RoleID, new Dictionary<int, ItemDTO>() { { spreaAward.PropID[i], new ItemDTO() { ItemAmount = spreaAward.PropNumber[i] } } });
                             BuyPropManager.UpdateRoleAssets(spreaCodeDTO.RoleID, spreaAward.Money);
                         }
+                        for (int i = 0; i < spreaAward.ExploreProp.Count; i++)
+                        {
+                            ExplorationManager.xRAddExploration(spreaCodeDTO.RoleID, null, new Dictionary<int, int>() { { spreaAward.ExploreProp[i], spreaAward.ExploreNumber[i] } });
+                        }
+
                     }
                 }
             }

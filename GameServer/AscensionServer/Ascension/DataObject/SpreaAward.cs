@@ -15,6 +15,8 @@ namespace AscensionServer
         public int Cricket { get; set; }
         public List<int> PropID { get; set; }
         public List<int> PropNumber { get; set; }
+        public List<int> ExploreProp { get; set; }
+        public List<int> ExploreNumber { get; set; }
         public int AwardState { get; set; }
         public int AwardType { get; set; }
     }
