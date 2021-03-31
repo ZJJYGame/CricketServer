@@ -17,11 +17,14 @@ namespace AscensionServer
         /// <summary>
         ///直接加入大池子
         /// </summary>
-        public List<MatchDTO> matchSetDict = new List<MatchDTO>();
+        public List<MatchDTO> matchSetList = new List<MatchDTO>();
 
         public MatchDTO matchSet;
 
-        public override void OnPreparatory() => CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncMatch, C2SMatch);
+        public override void OnPreparatory()
+        {
+            CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncMatch, C2SMatch);
+        }
 
         private void C2SMatch(OperationData opData)
         {
@@ -55,54 +58,68 @@ namespace AscensionServer
         public void InitMatch(MatchDTO match)
         {
             MatchDTO matchDto = new MatchDTO();
-          
-            if (matchSetDict.Count != 0)
+            Utility.Debug.LogError(Utility.Json.ToJson(match.selfCricketData));
+            if (matchSetList.Count != 0)
             {
-                var setData = matchSetDict.Find(xr => xr.selfCricketData.LevelID >= match.selfCricketData.LevelID || xr.selfCricketData.LevelID < match.selfCricketData.LevelID);
-                if (setData !=null)
+                var setData = matchSetList.Find(xr => xr.selfCricketData.RankID >= match.selfCricketData.RankID - 4 && xr.selfCricketData.RankID <= match.selfCricketData.RankID + 4);
+                if (setData != null)
                 {
                     matchDto.selfData = match.selfData;
                     matchDto.selfCricketData = match.selfCricketData;
                     matchDto.otherData = setData.selfData;
                     matchDto.otherCricketData = setData.selfCricketData;
 
-                    Utility.Debug.LogInfo("匹配id！！！"+ matchDto.selfData.RoleID+""+ matchDto.otherData.RoleID);
+                    Utility.Debug.LogInfo("匹配id！！！" + matchDto.selfData.RoleID + "" + matchDto.otherData.RoleID);
                     var pareams = xRCommon.xRS2CParams();
                     pareams.Add((byte)ParameterCode.RoleMatch, Utility.Json.ToJson(matchDto));
                     var subOp = xRCommon.xRS2CSub();
                     subOp.Add((byte)SubOperationCode.Get, pareams);
                     for (int ov = 0; ov < 2; ov++)
                     {
-                        if (ov==0)
+                        if (ov == 0)
                             xRCommon.xRS2CSend(matchDto.selfData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
-                        if (ov ==1)
+                        if (ov == 1)
                             xRCommon.xRS2CSend(matchDto.otherData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
                     }
-                    matchSetDict.Remove(setData);
-                    matchSetDict.Remove(match);
+                    matchSetList.Remove(setData);
+                    matchSetList.Remove(match);
+
+                    if (GameManager.CustomeModule<RoleManager>().TryGetValue(matchDto.selfData.RoleID, out var roleEntityOne))
+                    {
+                        Utility.Debug.LogError("移除" + roleEntityOne.RoleId + "事件");
+                        roleEntityOne.OnDisconnectEvent -= OnDisconnectEvent;
+                    }
+                    if (GameManager.CustomeModule<RoleManager>().TryGetValue(matchDto.selfData.RoleID, out var roleEntityTwo))
+                    {
+                        Utility.Debug.LogError("移除" + roleEntityTwo.RoleId + "事件");
+                        roleEntityTwo.OnDisconnectEvent -= OnDisconnectEvent;
+                    }
 
                     //TODO
                     GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto);
                     TimerManager matchManager = new TimerManager(500);
                     matchManager.BattleStartTimer();
+                    return;
                 }
                 else
                 {
                     Utility.Debug.LogInfo("没有匹配成功！！！");
                 }
             }
-            else
+            if(GameManager.CustomeModule<RoleManager>().TryGetValue(match.selfData.RoleID,out var roleEntity))
             {
-                matchDto.RoleId = match.selfData.RoleID;
-                matchDto.selfData = match.selfData;
-                matchDto.selfCricketData = match.selfCricketData;
-                matchDto.otherData = match.otherData;
-                matchDto.otherCricketData = match.otherCricketData;
-                var setDataRes = matchSetDict.Find(xr => xr.RoleId == match.selfData.RoleID);
-                if (setDataRes != null)
-                    matchSetDict.Remove(setDataRes);
-                matchSetDict.Add(matchDto);
+                roleEntity.OnDisconnectEvent += OnDisconnectEvent;
             }
+
+            matchDto.RoleId = match.selfData.RoleID;
+            matchDto.selfData = match.selfData;
+            matchDto.selfCricketData = match.selfCricketData;
+            matchDto.otherData = match.otherData;
+            matchDto.otherCricketData = match.otherCricketData;
+            var setDataRes = matchSetList.Find(xr => xr.RoleId == match.selfData.RoleID);
+            if (setDataRes != null)
+                matchSetList.Remove(setDataRes);
+            matchSetList.Add(matchDto);
         }
 
         /// <summary>
@@ -110,9 +127,9 @@ namespace AscensionServer
         /// </summary>
         public void StartMatch(MatchDTO match)
         {
-            var xrRemove = matchSetDict.Find(x => x.RoleId == match.RoleId);
+            var xrRemove = matchSetList.Find(x => x.RoleId == match.RoleId);
             if (xrRemove != null)
-                matchSetDict.Remove(xrRemove);
+                matchSetList.Remove(xrRemove);
             MatchDTO matchDto = new MatchDTO();
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, MachineData>>(out var machineData);
             if (machineData.ContainsKey(match.selfCricketData.RankID))
@@ -132,9 +149,15 @@ namespace AscensionServer
                 subOp.Add((byte)SubOperationCode.Get, pareams);
                 xRCommon.xRS2CSend(matchDto.selfData.RoleID, (byte)ATCmd.SyncMatch, (byte)ReturnCode.Success, subOp);
 
+                if (GameManager.CustomeModule<RoleManager>().TryGetValue(matchDto.selfData.RoleID, out var roleEntityTwo))
+                {
+                    Utility.Debug.LogError("移除" + roleEntityTwo.RoleId + "事件");
+                    roleEntityTwo.OnDisconnectEvent -= OnDisconnectEvent;
+                }
+
                 //TODO
                 GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto, setData);
-                TimerManager matchManager = new TimerManager(1500);
+                TimerManager matchManager = new TimerManager(5000);
                 matchManager.BattleStartTimer();
             }
         }
@@ -145,9 +168,9 @@ namespace AscensionServer
         /// <param name="match"></param>
         public void CanelPlayer(MatchDTO match)
         {
-            var xrRemove = matchSetDict.Find(x => x.RoleId == match.RoleId);
+            var xrRemove = matchSetList.Find(x => x.RoleId == match.RoleId);
             if (xrRemove != null)
-                matchSetDict.Remove(xrRemove);
+                matchSetList.Remove(xrRemove);
         }
        
 
@@ -258,6 +281,17 @@ namespace AscensionServer
             operationData.OperationCode = (ushort)ATCmd.SyncBattleCombat;
             GameManager.CustomeModule<RoleManager>().SendMessage(battleCombat.RoleID, operationData);
             Utility.Debug.LogError("发送给" + battleCombat.RoleID + "胜场" + battleCombat.MatchWon);
+        }
+
+        void OnDisconnectEvent(RoleEntity roleEntity)
+        {
+            Utility.Debug.LogError("匹配检测到玩家" + roleEntity.RoleId);
+            var setDataRes = matchSetList.Find(xr => xr.RoleId == roleEntity.RoleId);
+            if (setDataRes != null)
+            {
+                Utility.Debug.LogError("玩家" + roleEntity.RoleId + "下线，移除匹配");
+                matchSetList.Remove(setDataRes);
+            }
         }
     }
 }

@@ -15,6 +15,12 @@ namespace AscensionServer
         public int SessionId{ get; private set; }
         public int DataCount { get { return dataDict.Count; } }
         Dictionary<Type, object> dataDict = new Dictionary<Type, object>();
+        Action<RoleEntity> onDisconnectEvent;
+        public event Action<RoleEntity> OnDisconnectEvent
+        {
+            add { onDisconnectEvent += value; }
+            remove { onDisconnectEvent -= value; }
+        }
 #if !SERVER
         RoleController roleController;
         public RoleController RoleController { get { return roleController; } }
@@ -110,7 +116,10 @@ namespace AscensionServer
             }
             return entity;
         }
-
+        public void OnDisconnect()
+        {
+            onDisconnectEvent?.Invoke(this);
+        }
      
     }
 }

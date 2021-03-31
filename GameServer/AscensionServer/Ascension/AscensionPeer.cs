@@ -63,6 +63,8 @@ namespace AscensionServer
             //if (RoleEntity!=null)
             if (TryGetValue(typeof(RoleEntity), out var roleEntity))
             {
+                (roleEntity as RoleEntity).OnDisconnect();
+                Utility.Debug.LogError(Utility.Json.ToJson(roleEntity));
                 //若存在，则广播到各个模块；
                 var opData = new OperationData();
                 opData.OperationCode = ProtocolDefine.OPR_PLYAER_LOGOFF;
