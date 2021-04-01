@@ -179,8 +179,8 @@ namespace AscensionServer
                             for (int i = 0; i < spreaAward.PropID.Count; i++)
                             {
                                 InventoryManager.xRAddInventory(spreaCodeDTO.RoleID, new Dictionary<int, ItemDTO>() { { spreaAwardDict[item.Key].PropID[i], new ItemDTO() { ItemAmount = spreaAwardDict[item.Key].PropNumber[i] } } });
-                                BuyPropManager.UpdateRoleAssets(spreaCodeDTO.RoleID, spreaAwardDict[item.Key].Money);
                             }
+                            BuyPropManager.UpdateRoleAssets(spreaCodeDTO.RoleID, spreaAwardDict[item.Key].Money);
                         }
                     }
                     else
@@ -243,8 +243,9 @@ namespace AscensionServer
                         for (int i = 0; i < spreaAward.PropID.Count; i++)
                         {
                             InventoryManager.xRAddInventory(spreaCodeDTO.RoleID, new Dictionary<int, ItemDTO>() { { spreaAward.PropID[i], new ItemDTO() { ItemAmount = spreaAward.PropNumber[i] } } });
-                            BuyPropManager.UpdateRoleAssets(spreaCodeDTO.RoleID, spreaAward.Money);
                         }
+                        BuyPropManager.UpdateRoleAssets(spreaCodeDTO.RoleID, spreaAward.Money);
+                        RoleCricketManager.AddCricket(0, spreaCodeDTO.RoleID, spreaAward.Cricket);
                         for (int i = 0; i < spreaAward.ExploreProp.Count; i++)
                         {
                             ExplorationManager.xRAddExploration(spreaCodeDTO.RoleID, null, new Dictionary<int, int>() { { spreaAward.ExploreProp[i], spreaAward.ExploreNumber[i] } });

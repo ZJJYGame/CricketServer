@@ -58,7 +58,7 @@ namespace AscensionServer
         /// </summary>
         /// <param name="cricketid"></param>
         /// <param name="roleid"></param>
-        public static void AddCricket(int cricketid, int roleid,List<int> aptitudes=null)
+        public static void AddCricket(int cricketid, int roleid,int aptitudes=0)
         {
             var nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", roleid);
             var roleCricket = xRCommon.xRCriteria<RoleCricket>(nHCriteriaRole);
@@ -78,12 +78,19 @@ namespace AscensionServer
                 {
                     var cricketStatus = new CricketStatus();
                     var cricketAptitude = new CricketAptitude();
-                    if (aptitudes==null)
+                    if (aptitudes == 0)
                     {
                         cricketAptitude.ConAptitude = Utility.Algorithm.CreateRandomInt(1, 101);
                         cricketAptitude.StrAptitude = Utility.Algorithm.CreateRandomInt(1, 101);
                         cricketAptitude.DefAptitude = Utility.Algorithm.CreateRandomInt(1, 101);
                         cricketAptitude.DexAptitude = Utility.Algorithm.CreateRandomInt(1, 101);
+                    }
+                    else
+                    {
+                        cricketAptitude.ConAptitude = aptitudes;
+                        cricketAptitude.StrAptitude = aptitudes;
+                        cricketAptitude.DefAptitude = aptitudes;
+                        cricketAptitude.DexAptitude = aptitudes;
                     }
                     var cricket = new Cricket();
                     cricket.Roleid = roleid;
