@@ -81,7 +81,7 @@ namespace AscensionServer
                         }
                         else
                         {
-                            int index = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, 2);
+                            int index = Utility.Algorithm.CreateRandomInt(0, 2);
                             if (index == 0)
                             {
                                 attackPlayer = playerOne;
@@ -288,8 +288,9 @@ namespace AscensionServer
 
                 for (int i = 0; i < battleSkill.AttackNumber; i++)
                 {
-                    int dodgeRandomIndex = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, 101);
-                    if (canDodge && dodgeRandomIndex <= defendPlayerData.DodgeProp)//闪避成功
+                    int dodgeRandomIndex = Utility.Algorithm.CreateRandomInt(0, 10001);
+                    Utility.Debug.LogError("闪避率=>" + defendPlayerData.DodgeProp * 100 + "，dodgeRandomIndex=>" + dodgeRandomIndex);
+                    if (canDodge && dodgeRandomIndex <= defendPlayerData.DodgeProp*100)//闪避成功
                     {
                         battleDamageData.damageNumList.Add(0);
                         battleDamageData.isCritList.Add(false);
@@ -299,8 +300,9 @@ namespace AscensionServer
                     else//闪避失败
                     {
                         battleDamageData.isDodgeList.Add(false);
-                        int critRandomIndex = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, 101);
-                        if (critRandomIndex <= attackPlayerData.CritProp)//暴击了
+                        int critRandomIndex = Utility.Algorithm.CreateRandomInt(0, 10001);
+                        Utility.Debug.LogError("暴击率=>" + defendPlayerData.CritProp * 100 + "，critRandomIndex=>" + critRandomIndex);
+                        if (critRandomIndex <= attackPlayerData.CritProp*100)//暴击了
                         {
                             battleDamageData.damageNumList.Add(critDamage);
                             battleDamageData.returnDamageNumList.Add((int)(critDamage * defendPlayerData.ReboundDamage / 100f));

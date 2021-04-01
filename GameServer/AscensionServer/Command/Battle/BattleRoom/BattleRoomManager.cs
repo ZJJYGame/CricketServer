@@ -38,7 +38,7 @@ namespace AscensionServer
         List<int> occupiedRoomIdList = new List<int>();
 
 
-        public Random random = new Random();
+        //public Random random = new Random();
 
         /// 战斗房间实体字典，key=>房间Id,value=>房间实体对象
         Dictionary<int, BattleRoomEntity> battleRoomEntityDict=new Dictionary<int, BattleRoomEntity>();

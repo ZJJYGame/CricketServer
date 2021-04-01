@@ -409,7 +409,7 @@
         },
         {
             "name": "激怒",
-            "skillId": 3323,
+            "skillId": 3318,
             "battleSkillType": 1,
             "describe": "受到攻击后，暴击伤害增加10%，持续3秒",
             "enduranceCost": 5,
@@ -439,7 +439,7 @@
         },
         {
             "name": "石肤",
-            "skillId": 3324,
+            "skillId": 3319,
             "battleSkillType": 1,
             "describe": "受到攻击后，暴击抗性增加10%，持续3秒",
             "enduranceCost": 5,
@@ -469,7 +469,7 @@
         },
         {
             "name": "以眼还眼",
-            "skillId": 3325,
+            "skillId": 3320,
             "battleSkillType": 1,
             "describe": "受到攻击后，暴击率增加10%，持续3秒",
             "enduranceCost": 5,
@@ -499,7 +499,7 @@
         },
         {
             "name": "战意 ",
-            "skillId": 3326,
+            "skillId": 3321,
             "battleSkillType": 1,
             "describe": "受到攻击后，攻击力增加5%，持续3秒",
             "enduranceCost": 5,
@@ -529,7 +529,7 @@
         },
         {
             "name": "硬化 ",
-            "skillId": 3327,
+            "skillId": 3322,
             "battleSkillType": 1,
             "describe": "受到攻击后，防御力增加5%，持续3秒 ",
             "enduranceCost": 5,
@@ -559,7 +559,7 @@
         },
         {
             "name": "格挡",
-            "skillId": 3328,
+            "skillId": 3323,
             "battleSkillType": 1,
             "describe": "受到攻击后，减伤增加5%，持续3秒",
             "enduranceCost": 5,
@@ -589,7 +589,7 @@
         },
         {
             "name": "以牙还牙",
-            "skillId": 3329,
+            "skillId": 3324,
             "battleSkillType": 1,
             "describe": "受到攻击后，反伤增加5%，持续3秒",
             "enduranceCost": 5,
@@ -619,7 +619,7 @@
         },
         {
             "name": "锋利",
-            "skillId": 3330,
+            "skillId": 3325,
             "battleSkillType": 1,
             "describe": "受到攻击后，穿透增加5%，持续3秒",
             "enduranceCost": 5,
@@ -649,7 +649,7 @@
         },
         {
             "name": "稳扎稳打",
-            "skillId": 3331,
+            "skillId": 3326,
             "battleSkillType": 2,
             "describe": "生命值大于等于*%，攻击力增加*%生命值小于等于*%，防御力增加*%",
             "enduranceCost": 0,
@@ -690,7 +690,7 @@
         },
         {
             "name": "背水一战",
-            "skillId": 3332,
+            "skillId": 3327,
             "battleSkillType": 2,
             "describe": "生命值小于20%、攻击力增加10%",
             "enduranceCost": 0,
@@ -720,7 +720,7 @@
         },
         {
             "name": "优先权",
-            "skillId": 3333,
+            "skillId": 3328,
             "battleSkillType": 2,
             "describe": "生命值等于100%，攻击力增加20%",
             "enduranceCost": 0,
@@ -750,7 +750,7 @@
         },
         {
             "name": "殊死一博",
-            "skillId": 3334,
+            "skillId": 3329,
             "battleSkillType": 2,
             "describe": "生命值小于5%，攻击力增加20%",
             "enduranceCost": 0,
@@ -780,7 +780,7 @@
         },
         {
             "name": "不屈",
-            "skillId": 3335,
+            "skillId": 3330,
             "battleSkillType": 2,
             "describe": "生命值小于10%，防御力增加20%",
             "enduranceCost": 0,
@@ -810,7 +810,7 @@
         },
         {
             "name": "荆棘",
-            "skillId": 3336,
+            "skillId": 3331,
             "battleSkillType": 2,
             "describe": "生命值小于30%，反伤增加1%",
             "enduranceCost": 0,
@@ -840,7 +840,7 @@
         },
         {
             "name": "死里逃生",
-            "skillId": 3337,
+            "skillId": 3332,
             "battleSkillType": 2,
             "describe": "生命值小于5%，减伤增加60%",
             "enduranceCost": 0,
@@ -870,7 +870,7 @@
         },
         {
             "name": "乘胜追击",
-            "skillId": 3338,
+            "skillId": 3333,
             "battleSkillType": 2,
             "describe": "生命值大于60%，穿透增加1%",
             "enduranceCost": 0,
@@ -904,7 +904,7 @@
             "battleSkillType": 0,
             "describe": "普通攻击",
             "enduranceCost": 20,
-            "triggerProb": 2,
+            "triggerProb": 200,
             "enduranceCostChangeEachLevel": 0,
             "triggerProbChangeEachLevel": 0,
             "battleSkillDamageData": {
@@ -915,5 +915,53 @@
                 "percentValueChangeEachLevel": 0
             },
             "battleSkillAddBuffDataList": []
+        },
+        {
+            "name": "火球攻击",
+            "skillId": 3017,
+            "battleSkillType": 0,
+            "describe": "火球攻击",
+            "enduranceCost": 100,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 300,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 10
+            },
+            "battleSkillAddBuffDataList": []
+        },
+        {
+            "name": "毒气弹",
+            "skillId": 3018,
+            "battleSkillType": 0,
+            "describe": "毒气弹",
+            "enduranceCost": 40,
+            "triggerProb": 10,
+            "enduranceCostChangeEachLevel": 0,
+            "triggerProbChangeEachLevel": 1,
+            "battleSkillDamageData": {
+                "fixedValue": 0,
+                "percentValue": 100,
+                "attackNumber": 1,
+                "fixedValueChangeEachLevel": 0,
+                "percentValueChangeEachLevel": 10
+            },
+            "battleSkillAddBuffDataList": [
+                {
+                    "buffId": 4001,
+                    "buffValue": 30,
+                    "buffLimitValue": 0,
+                    "isUp": true,
+                    "durationTime": 3,
+                    "buffValueChangeEachLevel": 2,
+                    "durationTimeChangeEachLevel": 0,
+                    "buffLimitValueChangeEachLevel": 0,
+                    "TargetIsSelf": false
+                }
+            ]
         }
     ]

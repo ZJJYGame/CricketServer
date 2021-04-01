@@ -77,12 +77,12 @@ namespace AscensionServer
             {
                 randomSkillList = roleBattleData.BattleAttackSkillList;
                 Utility.Debug.LogError("随机技能数量" + randomSkillList.Count);
-                randomNum = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, roleBattleData.AllAttackSkillProp);
+                randomNum = Utility.Algorithm.CreateRandomInt(0, roleBattleData.AllAttackSkillProp);
             }
             else
             {
                 randomSkillList = roleBattleData.BattleDefendSkillList;
-                randomNum = GameManager.CustomeModule<BattleRoomManager>().random.Next(0, roleBattleData.AllDefendSkillProp);
+                randomNum = Utility.Algorithm.CreateRandomInt(0, roleBattleData.AllDefendSkillProp);
             }
             
             BattleSkill resultSkill;

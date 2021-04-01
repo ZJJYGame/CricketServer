@@ -215,8 +215,8 @@ namespace AscensionServer
             endurance = (int)cricketstatus.Mp;
             enduranceReply = (int)cricketstatus.MpReply;
             actionBar = (int)cricketstatus.Speed;
-            critProp = (int)cricketstatus.Crt;
-            dodgeProp = (int)cricketstatus.Eva;
+            critProp = cricketstatus.Crt*100;
+            dodgeProp = cricketstatus.Eva*100;
             receiveDamage = 100 - (int)cricketstatus.ReduceAtk;
             pierce = (int)cricketstatus.ReduceDef;
             reboundDamage = (int)cricketstatus.Rebound;
