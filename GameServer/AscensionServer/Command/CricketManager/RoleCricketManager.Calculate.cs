@@ -258,13 +258,16 @@ namespace AscensionServer
                 }
                 else
                 {
-                    xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
+                    xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Fail, xRCommonTip.xR_err_RemoveSkill);
+                    Utility.Debug.LogInfo("没有可以删除的技能");
                     return;
                 }
             }
             else
+            {
                 xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (byte)ReturnCode.Fail, xRCommonTip.xR_err_Verify);
-
+                Utility.Debug.LogInfo("数据库没有该技能");
+            }
 
         }
         /// <summary>
@@ -348,7 +351,7 @@ namespace AscensionServer
         public static Cricket LevelUpCalculate(Cricket cricket)
         {
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketLevel>>(out var cricketLevelDict);
-            Utility.Debug.LogInfo("蛐蛐等级"+ cricket.LevelID);
+            Utility.Debug.LogInfo("蛐蛐等级" + cricket.LevelID);
             if (cricket.LevelID < 100)
             {
                 if (cricket.Exp >= cricketLevelDict[cricket.LevelID].ExpUP)

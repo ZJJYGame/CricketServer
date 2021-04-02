@@ -21,5 +21,6 @@ namespace AscensionServer
         public const string xR_err_VerifySpreaCode = "输入失败请确认邀请码";
         public const string xR_err_VerifyAward = "已领取该奖励";
         public const string xR_err_VerifyAwardType = "奖励领取错误";
+        public const string xR_err_RemoveSkill = "没有可以删除的技能";
     }
 }

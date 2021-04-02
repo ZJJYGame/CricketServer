@@ -139,12 +139,13 @@ namespace AscensionServer
             var result = spreaAwardDict.TryGetValue(awardid, out var spreaAward);
             if (result)
             {
+                BuyPropManager.UpdateRoleAssets(roleid, spreaAward.Money);
+                RoleCricketManager.AddCricket(0, spreaCodeDTO.RoleID, spreaAward.Cricket);
                 if (spreaAward.AwardType == 0)
                 {
                     for (int i = 0; i < spreaAward.PropID.Count; i++)
                     {
                         InventoryManager.xRAddInventory(roleid, new Dictionary<int, ItemDTO>() { { spreaAward.PropID[i], new ItemDTO() { ItemAmount = spreaAward.PropNumber[i] } } });
-                        BuyPropManager.UpdateRoleAssets(roleid, spreaAward.Money);
                     }
 
                 }
