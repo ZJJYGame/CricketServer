@@ -475,6 +475,24 @@ namespace AscensionServer
                 ActionBar = playerOne.roleBattleData.ActionBar,
                 PassiveSkill = new List<TriggerSkillData>(),
             };
+            List<BattleSkill> passiveSkillList = playerOne.roleBattleData.BattlePassiveSkillList;
+            for (int i = 0; i < passiveSkillList.Count; i++)
+            {
+                List<int> addBuffIdList = new List<int>();
+                List<int> durationTimeList = new List<int>();
+                for (int j = 0; j < passiveSkillList[i].BattleSkillAddBuffList.Count; j++)
+                {
+                    addBuffIdList.Add(passiveSkillList[i].BattleSkillAddBuffList[j].BuffId);
+                    durationTimeList.Add(passiveSkillList[i].BattleSkillAddBuffList[j].DurationTime);
+                }
+                battleTransferDTO.RoleOneData.PassiveSkill.Add(new TriggerSkillData()
+                {
+                    SkillId = passiveSkillList[i].SkillId,
+                    SkillLevel = passiveSkillList[i].SkillLevel,
+                    AddBuffId = addBuffIdList,
+                    DurationTime = durationTimeList
+                });
+            }
             battleTransferDTO.RoleTwoData = new BattleRoleData()
             {
                 RoleID = playerTwo.RoleID,
@@ -489,6 +507,24 @@ namespace AscensionServer
                 ActionBar = playerTwo.roleBattleData.ActionBar,
                 PassiveSkill = new List<TriggerSkillData>(),
             };
+            passiveSkillList = playerTwo.roleBattleData.BattlePassiveSkillList;
+            for (int i = 0; i < passiveSkillList.Count; i++)
+            {
+                List<int> addBuffIdList = new List<int>();
+                List<int> durationTimeList = new List<int>();
+                for (int j = 0; j < passiveSkillList[i].BattleSkillAddBuffList.Count; j++)
+                {
+                    addBuffIdList.Add(passiveSkillList[i].BattleSkillAddBuffList[j].BuffId);
+                    durationTimeList.Add(passiveSkillList[i].BattleSkillAddBuffList[j].DurationTime);
+                }
+                battleTransferDTO.RoleTwoData.PassiveSkill.Add(new TriggerSkillData()
+                {
+                    SkillId = passiveSkillList[i].SkillId,
+                    SkillLevel = passiveSkillList[i].SkillLevel,
+                    AddBuffId = addBuffIdList,
+                    DurationTime = durationTimeList
+                });
+            }
         }
 
 

@@ -10,6 +10,7 @@ namespace AscensionServer
     public class BattleSkill
     {
         public int SkillId { get; private set; }
+        public int SkillLevel { get; private set; }
         public int EnduranceCost { get; private set; }
         public int TriggerProb { get; private set; }
         public int DamageFixedValue { get; private set; }
@@ -20,6 +21,7 @@ namespace AscensionServer
         public BattleSkill(BattleAttackSkillData battleAttackSkillData,int skillLevel)
         {
             SkillId = battleAttackSkillData.skillId;
+            SkillLevel = skillLevel;
             EnduranceCost = battleAttackSkillData.enduranceCost+battleAttackSkillData.enduranceCostChangeEachLevel*(skillLevel);
             TriggerProb=battleAttackSkillData.triggerProb+ battleAttackSkillData.triggerProbChangeEachLevel * (skillLevel );
             DamageFixedValue = battleAttackSkillData.battleSkillDamageData.fixedValue + battleAttackSkillData.battleSkillDamageData.fixedValueChangeEachLevel * (skillLevel);
