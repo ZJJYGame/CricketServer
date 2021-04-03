@@ -100,9 +100,13 @@ namespace AscensionServer
                     foreach (var prop in TimeAndCatchpropInfo)
                     {
                         if (!xrPropDict.ContainsKey(prop.Key))
+                        {
                             xrPropDict[prop.Key] = prop.Value;
+                        }
                         else
+                        {
                             xrPropDict[prop.Key] += prop.Value;
+                        }    
                         NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = Utility.Json.ToJson(xrPropDict) });
                     }
                 }
@@ -136,7 +140,9 @@ namespace AscensionServer
                 {
                     if (!xrPropDict.ContainsKey(prop.Key)) continue;
                     if (xrPropDict[prop.Key] > 0)
+                    {
                         xrPropDict[prop.Key] -= 1;
+                    }    
                     NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = Utility.Json.ToJson(xrPropDict) });
                 }
                 xRGetExploration(roleId);
@@ -226,7 +232,7 @@ namespace AscensionServer
                                     RoleCricketManager.AddCricket(xrDict[info.Key].GlobalId, roleId);
                                     break;
                                 case "GetSkill":
-                                    RoleCricketManager.AddSpecialSkill(setExploration[itemidInfo.Key].SkillID,0,roleId, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.AddSpecialSkill(setExploration[itemidInfo.Key].SkillID,10,roleId, xrDict[info.Key].CustomId);
                                     break;
                             }
                         }

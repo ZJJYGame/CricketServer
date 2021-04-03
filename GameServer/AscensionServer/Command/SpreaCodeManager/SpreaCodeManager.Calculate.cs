@@ -140,14 +140,13 @@ namespace AscensionServer
             if (result)
             {
                 BuyPropManager.UpdateRoleAssets(roleid, spreaAward.Money);
-                RoleCricketManager.AddCricket(0, spreaCodeDTO.RoleID, spreaAward.Cricket);
+                RoleCricketManager.AddCricket(0, roleid, spreaAward.Cricket);
                 if (spreaAward.AwardType == 0)
                 {
                     for (int i = 0; i < spreaAward.PropID.Count; i++)
                     {
                         InventoryManager.xRAddInventory(roleid, new Dictionary<int, ItemDTO>() { { spreaAward.PropID[i], new ItemDTO() { ItemAmount = spreaAward.PropNumber[i] } } });
                     }
-
                 }
             }
 
@@ -182,6 +181,7 @@ namespace AscensionServer
                                 InventoryManager.xRAddInventory(spreaCodeDTO.RoleID, new Dictionary<int, ItemDTO>() { { spreaAwardDict[item.Key].PropID[i], new ItemDTO() { ItemAmount = spreaAwardDict[item.Key].PropNumber[i] } } });
                             }
                             BuyPropManager.UpdateRoleAssets(spreaCodeDTO.RoleID, spreaAwardDict[item.Key].Money);
+                            RoleCricketManager.AddCricket(0, spreaCodeDTO.RoleID, spreaAward.Cricket);
                         }
                     }
                     else
@@ -246,7 +246,6 @@ namespace AscensionServer
                             InventoryManager.xRAddInventory(spreaCodeDTO.RoleID, new Dictionary<int, ItemDTO>() { { spreaAward.PropID[i], new ItemDTO() { ItemAmount = spreaAward.PropNumber[i] } } });
                         }
                         BuyPropManager.UpdateRoleAssets(spreaCodeDTO.RoleID, spreaAward.Money);
-                        RoleCricketManager.AddCricket(0, spreaCodeDTO.RoleID, spreaAward.Cricket);
                         for (int i = 0; i < spreaAward.ExploreProp.Count; i++)
                         {
                             ExplorationManager.xRAddExploration(spreaCodeDTO.RoleID, null, new Dictionary<int, int>() { { spreaAward.ExploreProp[i], spreaAward.ExploreNumber[i] } });

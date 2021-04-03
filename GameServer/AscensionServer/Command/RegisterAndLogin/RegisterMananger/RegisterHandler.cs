@@ -41,6 +41,7 @@ namespace AscensionServer
                 NHCriteria nHCriteriaUUID = GameManager.ReferencePoolManager.Spawn<NHCriteria>().SetValue("UUID", userObj.UUID);
                 var headList = HeadPortraitDict.Keys.ToList<int>();
                 var num = Utility.Algorithm.CreateRandomInt(0, headList.Count);
+                Utility.Debug.LogInfo("头像ID"+HeadPortraitDict[headList[num]].PlayerHeadID);
                 role.HeadPortrait = HeadPortraitDict[headList[num]].PlayerHeadID;
                 role = NHibernateQuerier.Insert(role);
                 userObj.RoleID = role.RoleID;
