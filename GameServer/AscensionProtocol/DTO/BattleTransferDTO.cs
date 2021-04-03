@@ -72,6 +72,7 @@ namespace AscensionProtocol
     public class TriggerSkillData
     {
         public int SkillId { get; set; }
+        public int SkillLevel { get; set; }
         public int EnduranceCost { get; set; }
         public List<int> AddBuffId { get; set; }
         public List<int> DurationTime { get; set; }
