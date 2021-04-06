@@ -247,7 +247,7 @@ namespace AscensionServer
                     NHibernateQuerier.Update(aptitude);
                     var data = xRCommon.xRS2CParams();
                     data.Add((byte)ParameterCode.Cricket, SetCricketValue(cricket));
-                    data.Add((byte)ParameterCode.CricketStatus, cricketstatus);
+                    data.Add((byte)ParameterCode.CricketStatus, status);
                     data.Add((byte)ParameterCode.CricketAptitude, aptitude);
                     data.Add((byte)ParameterCode.CricketPoint, point);
                     var dict = xRCommon.xRS2CSub();
