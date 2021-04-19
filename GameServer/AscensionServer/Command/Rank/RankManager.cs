@@ -12,7 +12,7 @@ namespace AscensionServer
     [CustomeModule]
     public partial class RankManager:Module<RankManager>
     {
-        Dictionary<int, RankDTO> rankDict = new Dictionary<int, RankDTO>();
+        SortedDictionary<int, RankDTO> rankDict = new SortedDictionary<int, RankDTO>();
         Dictionary<int, BattleCombatDTO> winsDict = new Dictionary<int, BattleCombatDTO>();
         public override void OnPreparatory() => CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncRank, C2SRank);
 
@@ -49,21 +49,27 @@ namespace AscensionServer
                 var tableRole = NHibernateQuerier.GetTable<Role>();
                 Dictionary<int, Role> roleDict = tableRole.ToDictionary(key => key.RoleID, value => value);
                 var tableCricket = NHibernateQuerier.GetTable<Cricket>();
-                tableCricket = tableCricket.OrderByDescending(o => o.RankID).ToList();//降序
-                foreach (var info in tableCricket)//tableCricket.Count > 100 ? 100 : tableCricket.Count
+                SortedList<int, Cricket> cricketSortedList = new SortedList<int, Cricket>();
+                foreach(var item in tableCricket)
                 {
-                    if (rankDict.Count >= 100)
-                        break;
-                    rankDict[info.ID] = new RankDTO { RoleID = info.Roleid,RoleHeadIcon= roleDict[info.Roleid].HeadPortrait,RoleName=roleDict[info.Roleid].RoleName,CricketHeadIcon=info.HeadPortraitID, CricketName = info.CricketName, Duanwei = info.RankID };
+                    cricketSortedList.Add(item.RankID, item);
+                }
+                int indexCount = cricketSortedList.Count < 100 ? cricketSortedList.Count : 100;
+                for (int i = indexCount-1; i >=0; i--)
+                {
+                    rankDict[cricketSortedList[i].ID] = new RankDTO { RoleID = cricketSortedList[i].Roleid, RoleHeadIcon = roleDict[cricketSortedList[i].Roleid].HeadPortrait, RoleName = roleDict[cricketSortedList[i].Roleid].RoleName, CricketHeadIcon = cricketSortedList[i].HeadPortraitID, CricketName = cricketSortedList[i].CricketName, Duanwei = cricketSortedList[i].RankID };
                 }
 
                 var tableBattleCombat = NHibernateQuerier.GetTable<BattleCombat>();
-                tableBattleCombat = tableBattleCombat.OrderByDescending(o => o.MatchWon).ToList();
-                foreach (var item in tableBattleCombat)
+                SortedList<int, BattleCombat> battleCombatSortedList = new SortedList<int, BattleCombat>();
+                foreach(var item in tableBattleCombat)
                 {
-                    if (winsDict.Count >= 100)
-                        break;
-                    winsDict[item.RoleID] = new BattleCombatDTO { RoleID = item.RoleID, MatchWon = item.MatchWon, RoleName = roleDict[item.RoleID].RoleName, RoleHeadIcon = roleDict[item.RoleID].HeadPortrait };
+                    battleCombatSortedList.Add(item.MatchWon, item);
+                }
+                indexCount = battleCombatSortedList.Count < 100 ? battleCombatSortedList.Count : 100;
+                for (int i = indexCount-1; i >= 0; i--)
+                {
+                    winsDict[battleCombatSortedList[i].RoleID] = new BattleCombatDTO { RoleID = battleCombatSortedList[i].RoleID, MatchWon = battleCombatSortedList[i].MatchWon, RoleName = roleDict[battleCombatSortedList[i].RoleID].RoleName, RoleHeadIcon = roleDict[battleCombatSortedList[i].RoleID].HeadPortrait };
                 }
             }
 
