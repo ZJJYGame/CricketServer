@@ -21,7 +21,7 @@ namespace AscensionServer
         public void C2SRegister(OperationData opData)
         {
             var message = Utility.Json.ToObject<UserDTO>(opData.DataMessage.ToString());
-            var dp = opData.DataContract as DataParameters;
+            var dp = opData.DataContract;
             dp.Messages.TryGetValue((byte)ParameterCode.ClientPeer, out var peer);
             Utility.Debug.LogInfo("yzqData/////"+ message.Account);
             RegisterHandler.RegisterRole(message.Account, message.Password, peer);

@@ -11,7 +11,7 @@ namespace Protocol
     /// ProtocolDefine 4319 请求通道的数据类型；
     /// </summary>
     [MessagePackObject]
-    public sealed class DataParameters: IDataContract
+    public sealed class DataParameters
     {
         public object this[byte messageKey]
         {

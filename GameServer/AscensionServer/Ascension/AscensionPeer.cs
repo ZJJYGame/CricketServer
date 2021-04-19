@@ -90,9 +90,10 @@ namespace AscensionServer
         /// </summary>
         protected override void OnMessage(object message, SendParameters sendParameters)
         {
+            Utility.Debug.LogInfo(message);
             //接收到客户端消息后，进行委托广播；
             var opData = Utility.Json.ToObject<OperationData>(Convert.ToString( message ));
-            (opData.DataContract as DataParameters).Messages.Add((byte)ParameterCode.ClientPeer, this);
+            opData.DataContract .Messages.Add((byte)ParameterCode.ClientPeer, this);
             CommandEventCore.Instance.Dispatch(opData.OperationCode, opData);
 
         }

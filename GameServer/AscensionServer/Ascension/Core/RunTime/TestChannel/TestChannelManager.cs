@@ -20,7 +20,7 @@ namespace AscensionServer
         {
             Utility.Debug.LogWarning(opData.DataMessage);
             OperationData opDataTest = new OperationData();
-            var dp = opData.DataContract as DataParameters;
+            var dp = opData.DataContract ;
             dp.Messages.TryGetValue((byte)ParameterCode.ClientPeer, out var peer);
             Utility.Debug.LogWarning($"SessionId:{(peer as IPeerEntity).SessionId}");
 

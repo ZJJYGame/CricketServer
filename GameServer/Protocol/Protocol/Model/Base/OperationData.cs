@@ -11,7 +11,7 @@ namespace Protocol
         /// <summary>
         /// 若使用自定义数据类型，则建议使用dataContract；
         /// </summary>
-        public IDataContract DataContract { get; set; }
+        public DataParameters DataContract { get; set; }
         /// <summary>
         /// 若传输json对象或非自定义的数据类型，建议使用dataMessage;
         /// </summary>
