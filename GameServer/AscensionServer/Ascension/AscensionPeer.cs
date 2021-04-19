@@ -35,7 +35,7 @@ namespace AscensionServer
         /// <param name="opData"></param>
         public void SendMessage(OperationData opData)
         {
-            var data = Utility.MessagePack.ToByteArray(opData);
+            var data = Utility.Json.ToJson(opData);
             base.SendMessage(data, sendParam);
         }
         /// <summary>
@@ -91,7 +91,7 @@ namespace AscensionServer
         protected override void OnMessage(object message, SendParameters sendParameters)
         {
             //接收到客户端消息后，进行委托广播；
-            var opData = Utility.MessagePack.ToObject<OperationData>( message as byte[]);
+            var opData = Utility.Json.ToObject<OperationData>(Convert.ToString( message ));
             (opData.DataContract as DataParameters).Messages.Add((byte)ParameterCode.ClientPeer, this);
             CommandEventCore.Instance.Dispatch(opData.OperationCode, opData);
 
