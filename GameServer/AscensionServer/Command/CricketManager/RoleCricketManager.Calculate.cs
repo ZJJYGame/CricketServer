@@ -57,33 +57,6 @@ namespace AscensionServer
 
 
         }
-        /// <summary>
-        /// 计算属性加成
-        /// </summary>
-        #region 待删
-        //public static CricketStatus CalculateStutas(CricketAptitude cricketAptitude, CricketPoint cricketPoint, CricketAddition cricketAddition)
-        //{
-        //    //TODO补充技能的加成
-        //    GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketStatusData>>(out var StatusDict);
-        //    CricketStatus cricketStatus = new CricketStatus();
-
-        //    cricketStatus.Atk = cricketAddition.Atk + StatusDict[1].Atk + (int)((cricketAptitude.Str + cricketPoint.Str) * (cricketAptitude.StrAptitude + 100) * 0.01f);
-        //    cricketStatus.Defense = cricketAddition.Defense + StatusDict[1].Defense + (int)((cricketAptitude.Def + cricketPoint.Def) * (cricketAptitude.DefAptitude + 100) * 0.005f);
-        //    cricketStatus.Hp = cricketAddition.Hp + StatusDict[1].Hp + (int)((cricketAptitude.Con + cricketPoint.Con) * (cricketAptitude.ConAptitude + 100) * 0.05f);
-        //    cricketStatus.Mp = cricketAddition.Mp + StatusDict[1].Mp + (int)(cricketStatus.Hp / 100) + (cricketStatus.Mp);
-        //    cricketStatus.MpReply = cricketAddition.MpReply + StatusDict[1].MpReply + (int)(cricketStatus.Mp / 10) + cricketStatus.MpReply;
-        //    cricketStatus.Crt = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
-        //    cricketStatus.Eva = (cricketAptitude.Dex + cricketPoint.Dex) * (300 - (2 * (100 - cricketAptitude.DexAptitude))) / 1000000f;
-        //    cricketStatus.Speed = StatusDict[1].Speed -  ((cricketAptitude.Dex + cricketPoint .Dex) * (1.5f - (0.01 * (100 - cricketAptitude.DefAptitude))));
-        //    cricketStatus.ReduceAtk = StatusDict[1].ReduceAtk;
-        //    cricketStatus.ReduceDef = StatusDict[1].ReduceDef;
-        //    cricketStatus.Rebound = StatusDict[1].Rebound;
-        //    Utility.Debug.LogInfo("闪避固定值" + (cricketAptitude.Dex + cricketPoint.Dex) +"资质"+ cricketAptitude.DexAptitude+"值"+ (300 - (2 * (100f - cricketAptitude.DexAptitude))) / 1000000f+"计算值"+ cricketStatus.Eva);
-        //    //Utility.Debug.LogInfo("攻击" +(cricketAddition.Atk + StatusDict[1].Atk) + "防御" + (cricketAptitude.Str + cricketPoint.Str) + "血量" + (cricketAptitude.StrAptitude + 100) * 0.01f);
-        //    return cricketStatus;
-        //}
-        #endregion
-        /// <summary>
         /// 获取资质等随机随机
         /// </summary>
         /// <param name="min"></param>

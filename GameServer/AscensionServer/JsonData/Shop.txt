@@ -1,107 +1,77 @@
 ﻿[
-{
-"PropID":1001,
-"PropName":"大肉包子",
-"PropDescribe":"使用后增加500经验值",
-"PropPrice":200,
-"PropIcon":"prop_darobaozi"
-},
-{
-"PropID":1002,
-"PropName":"腊八粥",
-"PropDescribe":"使用后增加1000经验值",
-"PropPrice":400,
-"PropIcon":"prop_labazhou"
-},
-{
-"PropID":1003,
-"PropName":"龙须面",
-"PropDescribe":"使用后增加2000经验值",
-"PropPrice":800,
-"PropIcon":"prop_longxumian"
-},
-{
-"PropID":1004,
-"PropName":"黄金蛋炒饭",
-"PropDescribe":"使用后增加5000经验值",
-"PropPrice":2000,
-"PropIcon":"prop_huangjindanchaofan"
-},
-{
-"PropID":1005,
-"PropName":"甜玉米",
-"PropDescribe":"使用后增加1点力量",
-"PropPrice":1500,
-"PropIcon":"prop_tianyumi"
-},
-{
-"PropID":1006,
-"PropName":"波罗蜜",
-"PropDescribe":"使用后增加1点体质",
-"PropPrice":1500,
-"PropIcon":"prop_boluomi"
-},
-{
-"PropID":1007,
-"PropName":"坚果",
-"PropDescribe":"使用后增加1点防御",
-"PropPrice":1500,
-"PropIcon":"prop_jianguo"
-},
-{
-"PropID":1008,
-"PropName":"圣女果",
-"PropDescribe":"使用后增加1点敏捷",
-"PropPrice":1500,
-"PropIcon":"prop_shengnuguo"
-},
-{
-"PropID":1009,
-"PropName":"山药",
-"PropDescribe":"使用后随机删除负面技能",
-"PropPrice":1000,
-"PropIcon":"prop_shanyao"
-},
-{
-"PropID":1901,
-"PropName":"绳子",
-"PropDescribe":"微弱提升捕捉的可能性",
-"PropPrice":100,
-"PropIcon":"prop_shengzi"
-},
-{
-"PropID":1902,
-"PropName":"网罩",
-"PropDescribe":"提升捕捉的可能性",
-"PropPrice":300,
-"PropIcon":"prop_wangzhao"
-},
-{
-"PropID":1903,
-"PropName":"道具包",
-"PropDescribe":"较高的提升捕捉的可能性",
-"PropPrice":500,
-"PropIcon":"prop_daojubao"
-},
-{
-"PropID":1016,
-"PropName":"孟婆汤",
-"PropDescribe":"使用后重置加点",
-"PropPrice":10000,
-"PropIcon":"prop_mengpotang"
-},
-{
-"PropID":1013,
-"PropName":"西红柿",
-"PropDescribe":"使用后增加3点耐力",
-"PropPrice":2000,
-"PropIcon":"prop_xihongshi"
-},
-{
-"PropID":1014,
-"PropName":"天山绿茶",
-"PropDescribe":"使用后增加1点耐力回复",
-"PropPrice":2000,
-"PropIcon":"prop_tianshanlucha"
-}
+    {
+        "PropID":1001,
+        "PropPrice":200,
+        "PropType":0
+    },
+    {
+        "PropID":1002,
+        "PropPrice":400,
+        "PropType":0
+    },
+    {
+        "PropID":1003,
+        "PropPrice":800,
+        "PropType":0
+    },
+    {
+        "PropID":1004,
+        "PropPrice":2000,
+        "PropType":0
+    },
+    {
+        "PropID":1005,
+        "PropPrice":1500,
+        "PropType":0
+    },
+    {
+        "PropID":1006,
+        "PropPrice":1500,
+        "PropType":0
+    },
+    {
+        "PropID":1007,
+        "PropPrice":1500,
+        "PropType":0
+    },
+    {
+        "PropID":1008,
+        "PropPrice":1500,
+        "PropType":0
+    },
+    {
+        "PropID":1009,
+        "PropPrice":1000,
+        "PropType":0
+    },
+    {
+        "PropID":1901,
+        "PropPrice":100,
+        "PropType":1
+    },
+    {
+        "PropID":1902,
+        "PropPrice":300,
+        "PropType":1
+    },
+    {
+        "PropID":1903,
+        "PropPrice":500,
+        "PropType":1
+    },
+    {
+        "PropID":1016,
+        "PropPrice":10000,
+        "PropType":0
+    },
+    {
+        "PropID":1013,
+        "PropPrice":2000,
+        "PropType":0
+    },
+    {
+        "PropID":1014,
+        "PropPrice":2000,
+        "PropType":0
+    }
 ]

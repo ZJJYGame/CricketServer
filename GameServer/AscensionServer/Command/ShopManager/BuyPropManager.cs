@@ -23,11 +23,19 @@ namespace AscensionServer
             {
                 Utility.Debug.LogInfo("YZQData" + Utility.Json.ToJson(roleShopDTO) + "商店数据" + Utility.Json.ToJson(shopDict));
                 roleAssets.RoleGold -= (shopDict[roleShopDTO.PropID].PropPrice * roleShopDTO.PropNum);
-                Dictionary<int, ItemDTO> itemDict = new Dictionary<int, ItemDTO>();
-                ItemDTO itemDTO = new ItemDTO();
-                itemDTO.ItemAmount = roleShopDTO.PropNum;
-                itemDict.Add(roleShopDTO.PropID, itemDTO);
-                InventoryManager.xRAddInventory(roleShopDTO.RoleID, itemDict);
+
+                if (shopDict[roleShopDTO.PropID].PropType==0)
+                {
+                    Dictionary<int, ItemDTO> itemDict = new Dictionary<int, ItemDTO>();
+                    ItemDTO itemDTO = new ItemDTO();
+                    itemDTO.ItemAmount = roleShopDTO.PropNum;
+                    itemDict.Add(roleShopDTO.PropID, itemDTO);
+                    InventoryManager.xRAddInventory(roleShopDTO.RoleID, itemDict);
+                }
+                else
+                {
+                    ExplorationManager.xRAddExploration(roleShopDTO.RoleID, null, new Dictionary<int, int>() { { roleShopDTO.PropID, roleShopDTO.PropNum } });
+                }
                 NHibernateQuerier.Update(roleAssets);
 
 

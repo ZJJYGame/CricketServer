@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace AscensionServer
 {
-   public class Shop
+    [ConfigData]
+    [Serializable]
+    public class Shop
     {
         public int PropID { get; set; }
         public int PropPrice { get; set; }
+        public int PropType { get; set; }
     }
 }
