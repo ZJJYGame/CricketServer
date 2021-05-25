@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\Localphotonserver\Criket\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
+    <OutputPath>..\..\..\..\Photon-OnPremise-Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Ascension\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SERVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -213,6 +213,10 @@
     <Compile Include="Ascension\DataObject\Shop.cs" />
     <Compile Include="Ascension\DataObject\SpreaAward.cs" />
     <Compile Include="Ascension\DataObject\TaskData.cs" />
+    <Compile Include="Ascension\DataObject\TowerAwardData.cs" />
+    <Compile Include="Ascension\DataObject\TowerDifficultyData.cs" />
+    <Compile Include="Ascension\DataObject\TowerFloorData.cs" />
+    <Compile Include="Ascension\DataObject\TowerRobotData.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffController.cs" />
     <Compile Include="Command\Battle\BattleBuff\BattleBuffEntity.cs" />
     <Compile Include="Command\Battle\BattleCharacter\BattleCharacterEntity.cs" />
@@ -249,6 +253,7 @@
     <Compile Include="Command\ShopManager\ShopManager.cs" />
     <Compile Include="Command\SpreaCodeManager\SpreaCodeManager.Calculate.cs" />
     <Compile Include="Command\SpreaCodeManager\SpreaCodeManager.cs" />
+    <Compile Include="Command\TowerManager.cs" />
     <Compile Include="Command\xRTask\TaskManager.Concreteness.cs" />
     <Compile Include="Command\xRTask\TaskManager.cs" />
     <Compile Include="DataObjectMap\BattleCombatMap.cs" />
@@ -263,6 +268,7 @@
     <Compile Include="DataObjectMap\RoleCricketMap.cs" />
     <Compile Include="DataObjectMap\RoleMap.cs" />
     <Compile Include="DataObjectMap\SpreaCodeMap.cs" />
+    <Compile Include="DataObjectMap\TowerMap.cs" />
     <Compile Include="DataObjectMap\xRTaskMap.cs" />
     <Compile Include="DataObjectMap\UserMap.cs" />
     <Compile Include="DataObject\BattleCombat.cs" />
@@ -277,6 +283,7 @@
     <Compile Include="DataObject\RoleAssets.cs" />
     <Compile Include="DataObject\RoleCricket.cs" />
     <Compile Include="DataObject\SpreaCode.cs" />
+    <Compile Include="DataObject\Tower.cs" />
     <Compile Include="DataObject\xRTask.cs" />
     <Compile Include="DataObject\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -334,6 +341,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="JsonData\CricketNameData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\TowerAwardData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\TowerDifficultyData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\TowerFloorData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JsonData\TowerRobotData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="Plugin\ExitGames.Logging.Log4Net.dll" />

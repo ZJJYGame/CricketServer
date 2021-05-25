@@ -96,7 +96,7 @@ namespace AscensionServer
                     }
 
                     //TODO
-                    GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto);
+                     GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto, BattleCombat);
                     TimerManager matchManager = new TimerManager(500);
                     matchManager.BattleStartTimer();
                     return;
@@ -156,7 +156,7 @@ namespace AscensionServer
                 }
 
                 //TODO
-                GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto, setData);
+                 GameManager.CustomeModule<BattleRoomManager>().CreateRoom(matchDto, setData, BattleCombat);
                 TimerManager matchManager = new TimerManager(5000);
                 matchManager.BattleStartTimer();
             }
@@ -177,7 +177,7 @@ namespace AscensionServer
         /// <summary>
         /// 战斗结算
         /// </summary>
-        public Dictionary<int,BattleResult> BattleCombat(params BattleCharacterEntity[] array)
+        Dictionary<int,BattleResult> BattleCombat( BattleCharacterEntity[] array)
         {
             Dictionary<int, BattleResult> battleResultDict = new Dictionary<int, BattleResult>();
             for (int i = 0; i < array.Length; i++)
@@ -189,6 +189,7 @@ namespace AscensionServer
                 battleResult.GetMoney = RandomAddMoney(battleCharacterEntity.RoleID, battleCharacterEntity.IsWin).Result;
                 battleResult.GetExp = RandomAddExp(battleCharacterEntity.CricketID, battleCharacterEntity.RoleID, battleCharacterEntity.IsWin);
                 battleResult.RankLevel = UpdateRankLevel(battleCharacterEntity.CricketID, battleCharacterEntity.RoleID, battleCharacterEntity.IsWin);
+                battleResult.BattleMode = BattleMode.Arena;
                 battleResultDict[battleCharacterEntity.RoleID] = battleResult;
             }
             return battleResultDict;

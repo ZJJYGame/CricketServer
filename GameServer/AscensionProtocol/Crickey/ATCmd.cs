@@ -56,6 +56,10 @@ namespace AscensionProtocol
         /// </summary>
         SyncBattleCombat = 17,
         /// <summary>
+        /// 同步爬塔信息
+        /// </summary>
+        SyncTower=18,
+        /// <summary>
         /// 测试消息队列
         /// </summary>
         MessageQueue = 187,

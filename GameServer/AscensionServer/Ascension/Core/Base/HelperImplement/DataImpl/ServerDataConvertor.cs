@@ -80,6 +80,17 @@ namespace AscensionServer
                 GameManager.CustomeModule<DataManager>().TryGetValue(typeof(CricketNameData).Name, out var cricketNameData);
                 var cricketNameDataDict = TransObject<List<CricketNameData>>(cricketNameData).ToDictionary(key => key.NameID, value => value);
 
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(TowerDifficultyData).Name, out var towerDifficultyData);
+                var towerDifficultyDataDict = TransObject<List<TowerDifficultyData>>(towerDifficultyData).ToDictionary(key => key.DifficultyId, value => value);
+
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(TowerRobotData).Name, out var towerRobotData);
+                var towerRobotDataDict = TransObject<List<TowerRobotData>>(towerRobotData).ToDictionary(key => key.CricketId, value => value);
+
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(TowerFloorData).Name, out var towerFloorData);
+                var towerFloorDataDict = TransObject<List<TowerFloorData>>(towerFloorData).ToDictionary(key => key.FloorId, value => value);
+
+                GameManager.CustomeModule<DataManager>().TryGetValue(typeof(TowerAwardData).Name, out var towerAwardData);
+                var towerAwardDataDict = TransObject<List<TowerAwardData>>(towerAwardData).ToDictionary(key => key.RewardID, value => value);
                 #endregion
 
                 #region 储存方式 
@@ -101,6 +112,10 @@ namespace AscensionServer
                 GameManager.CustomeModule<DataManager>().TryAdd(battleBuffDataDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(machineDict);
                 GameManager.CustomeModule<DataManager>().TryAdd(rankLevelDict);
+                GameManager.CustomeModule<DataManager>().TryAdd(towerDifficultyDataDict);
+                GameManager.CustomeModule<DataManager>().TryAdd(towerRobotDataDict);
+                GameManager.CustomeModule<DataManager>().TryAdd(towerFloorDataDict);
+                GameManager.CustomeModule<DataManager>().TryAdd(towerAwardDataDict);
                 #endregion
 
                 #region 获取方式

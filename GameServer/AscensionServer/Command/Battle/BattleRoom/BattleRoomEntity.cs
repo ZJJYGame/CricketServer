@@ -15,36 +15,37 @@ namespace AscensionServer
         BattleCharacterEntity battleCharacterEntity_one;
         BattleCharacterEntity battleCharacterEntity_Two;
 
-        BattleController battleController;
+        BattleController BattleController { get;  set; }
 
+        public Func<BattleCharacterEntity[], Dictionary<int, BattleResult>> battleResultEvent;
 
-        public void Init(int roomId,int playerOneId,int playerTwoId)
-        {
-            this.roomId = roomId;
-            battleCharacterEntity_one = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(playerOneId);
-            battleCharacterEntity_Two = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(playerTwoId);
-            battleController = new BattleController();
-            battleController.InitController(battleCharacterEntity_one, battleCharacterEntity_Two);
-            battleController.StartBattle();
-        }
         public void Init(int roomId,MatchDTO matchDTO)
         {
             this.roomId = roomId;
             battleCharacterEntity_one = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(matchDTO.selfData,matchDTO.selfCricketData);
             battleCharacterEntity_Two = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(matchDTO.otherData,matchDTO.otherCricketData);
-            battleController = new BattleController();
-            battleController.InitController(battleCharacterEntity_one, battleCharacterEntity_Two);
-            battleController.StartBattle();
+            BattleController = new BattleController();
+            BattleController.InitController(this,battleCharacterEntity_one, battleCharacterEntity_Two);
+            BattleController.StartBattle();
         }
-        //一个是机器人
+        //一个是匹配机器人
         public void Init(int roomId, MatchDTO matchDTO,MachineData machineData)
         {
             this.roomId = roomId;
             battleCharacterEntity_one = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(matchDTO.selfData, matchDTO.selfCricketData);
             battleCharacterEntity_Two = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(matchDTO.otherData, matchDTO.otherCricketData,machineData);
-            battleController = new BattleController();
-            battleController.InitController(battleCharacterEntity_one, battleCharacterEntity_Two);
-            battleController.StartBattle();
+            BattleController = new BattleController();
+            BattleController.InitController(this,battleCharacterEntity_one, battleCharacterEntity_Two);
+            BattleController.StartBattle();
+        }
+        public void Init(int roomId,RoleDTO roleDTO,CricketDTO cricketDTO,TowerRobotData towerRobotData)
+        {
+            this.roomId = roomId;
+            battleCharacterEntity_one = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(roleDTO, cricketDTO);
+            battleCharacterEntity_Two = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(towerRobotData);
+            BattleController = new BattleController();
+            BattleController.InitController(this,battleCharacterEntity_one, battleCharacterEntity_Two);
+            BattleController.StartBattle();
         }
 
         public void Clear()

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AscensionServer
 {
     [Serializable]
-    public class BattleCombat
+    public class BattleCombat:IComparable<BattleCombat>
     {
         public virtual int RoleID { get; set; }
         public virtual int MatchWon { get; set; }
@@ -20,6 +20,16 @@ namespace AscensionServer
             MatchWon = 0;
             MoneyLimit = 0;
             RoleName = "";
+        }
+
+        public virtual int CompareTo(BattleCombat other)
+        {
+            if (MatchWon == other.MatchWon)
+                return 0;
+            else if (MatchWon > other.MatchWon)
+                return -1;
+            else
+                return 1;
         }
     }
 }

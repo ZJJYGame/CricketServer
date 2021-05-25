@@ -152,54 +152,6 @@ namespace AscensionServer
             endurance += enduranceReply;
         }
 
-        public RoleBattleData(IRoleBattleData buffRoleBattleData,BattleCharacterEntity battleCharacterEntity)
-        {
-            BattleCharacterEntity = battleCharacterEntity;
-
-            attack = 100;
-            maxHealth = 1000;
-            health = 1000;
-            defence =100;
-            maxEndurance = 500;
-            endurance = 500;
-            enduranceReply = 200;
-            actionBar = 2000;
-            critProp = 20;
-            dodgeProp = 50;
-            receiveDamage = 100;
-            pierce = 30;
-            reboundDamage = 10;
-            critDamage = 50;
-            critResistance = 0;
-            this.buffRoleBattleData = buffRoleBattleData;
-            Dictionary<int, BattleAttackSkillData> tempSkillDict = GameManager.CustomeModule<BattleRoomManager>().battleAttackSkillDataDict;
-            List<BattleAttackSkillData> tempSkillList = tempSkillDict.Values.ToList();
-            BattleAttackSkillList = new List<BattleSkill>();
-            //for (int i = 0; i < tempSkillList.Count; i++)
-            //{
-            //    if (tempSkillList[i].isAttackSkill)
-            //        BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[tempSkillList[i].skillId], 1));
-            //}
-            BattleAttackSkillList.Add(new BattleSkill(tempSkillDict[4000], 1));
-            for (int i = 0; i < BattleAttackSkillList.Count; i++)
-            {
-                AllAttackSkillProp += BattleAttackSkillList[i].TriggerProb;
-            }
-
-            BattleDefendSkillList = new List<BattleSkill>();
-            //for (int i = 0; i < tempSkillList.Count; i++)
-            //{
-            //    if (!tempSkillList[i].isAttackSkill)
-            //        BattleDefendSkillList.Add(new BattleSkill(tempSkillDict[tempSkillList[i].skillId], 1));
-            //}
-            //BattleDefendSkillList.Add(new BattleSkill(tempSkillDict[3337], 1));
-            for (int i = 0; i < BattleDefendSkillList.Count; i++)
-            {
-                AllDefendSkillProp += BattleDefendSkillList[i].TriggerProb;
-            }
-
-            BattlePassiveSkillList = new List<BattleSkill>();
-        }
         public RoleBattleData(IRoleBattleData buffRoleBattleData,RoleDTO roleDTO,CricketDTO cricketDTO,BattleCharacterEntity battleCharacterEntity)
         {
             BattleCharacterEntity = battleCharacterEntity;
@@ -325,6 +277,66 @@ namespace AscensionServer
                 if (tempAttackSkillDict.ContainsKey(machineData.SkillPool[i]))
                 {
                     BattleAttackSkillData battleAttackSkillData = tempAttackSkillDict[machineData.SkillPool[i]];
+                    switch (battleAttackSkillData.battleSkillType)
+                    {
+                        case BattleSkillType.AttackSkill:
+                            BattleAttackSkillList.Add(new BattleSkill(battleAttackSkillData, 1));
+                            break;
+                        case BattleSkillType.BeAttackSkill:
+                            BattleDefendSkillList.Add(new BattleSkill(battleAttackSkillData, 1));
+                            break;
+                        case BattleSkillType.PassiveSkill:
+                            BattlePassiveSkillList.Add(new BattleSkill(battleAttackSkillData, 1));
+                            break;
+                    }
+                }
+            }
+
+            //总概率计算
+            for (int i = 0; i < BattleAttackSkillList.Count; i++)
+            {
+                AllAttackSkillProp += BattleAttackSkillList[i].TriggerProb;
+            }
+            for (int i = 0; i < BattleDefendSkillList.Count; i++)
+            {
+                AllDefendSkillProp += BattleDefendSkillList[i].TriggerProb;
+            }
+        }
+        public RoleBattleData(IRoleBattleData buffRoleBattleData, TowerRobotData towerRobotData, BattleCharacterEntity battleCharacterEntity)
+        {
+            BattleCharacterEntity = battleCharacterEntity;
+
+            attack = towerRobotData.Atk;
+            maxHealth = towerRobotData.Hp;
+            health = towerRobotData.Hp;
+            defence = towerRobotData.Defense;
+            maxEndurance = towerRobotData.Mp;
+            endurance = towerRobotData.Mp;
+            enduranceReply = towerRobotData.MpReply;
+            actionBar = towerRobotData.Speed;
+            critProp = towerRobotData.Crt;
+            dodgeProp = towerRobotData.Eva;
+            receiveDamage = 100 - towerRobotData.ReduceAtk;
+            pierce = towerRobotData.ReduceDef;
+            reboundDamage = towerRobotData.Rebound;
+            critDamage = towerRobotData.CrtAtk;
+            critResistance = towerRobotData.CrtDef;
+            this.buffRoleBattleData = buffRoleBattleData;
+
+            Dictionary<int, BattleAttackSkillData> tempAttackSkillDict = GameManager.CustomeModule<BattleRoomManager>().battleAttackSkillDataDict;
+            List<BattleAttackSkillData> tempAttackSkillList = tempAttackSkillDict.Values.ToList();
+
+            BattleAttackSkillList = new List<BattleSkill>();
+            BattleAttackSkillList.Add(new BattleSkill(tempAttackSkillDict[4000], 1));
+            BattleDefendSkillList = new List<BattleSkill>();
+            BattlePassiveSkillList = new List<BattleSkill>();
+
+            for (int i = 0; i < towerRobotData.SkillPool.Count; i++)
+            {
+                //攻击受击技能添加
+                if (tempAttackSkillDict.ContainsKey(towerRobotData.SkillPool[i]))
+                {
+                    BattleAttackSkillData battleAttackSkillData = tempAttackSkillDict[towerRobotData.SkillPool[i]];
                     switch (battleAttackSkillData.battleSkillType)
                     {
                         case BattleSkillType.AttackSkill:

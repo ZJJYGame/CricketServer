@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace AscensionServer
 {
-   public class Cricket
+   public class Cricket:IComparable<Cricket>
     {
         public virtual int ID { set; get; }
         public virtual int CricketID { set; get; }
@@ -36,6 +36,18 @@ namespace AscensionServer
             //Dict.Add(3613, 0);
             //SpecialDict = Utility.Json.ToJson(Dict);
             Roleid = -1;//玩家ID
+        }
+
+
+
+        public virtual int CompareTo(Cricket other)
+        {
+            if (RankID == other.RankID)
+                return 0;
+            else if (RankID > other.RankID)
+                return -1;
+            else
+                return 1;
         }
     }
 }

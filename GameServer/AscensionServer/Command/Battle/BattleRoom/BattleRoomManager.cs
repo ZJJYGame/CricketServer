@@ -65,7 +65,7 @@ namespace AscensionServer
             Utility.Debug.LogError("收到战斗请求=>"+ OpData.DataMessage.ToString());
             Dictionary<byte, object> tempDict = Utility.Json.ToObject<Dictionary<byte, object>>(OpData.DataMessage.ToString());
             int roleId = Convert.ToInt32(tempDict[(byte)ParameterCode.RoleCricket]);
-            CreateRoom(roleId, 111);
+            //CreateRoom(roleId, 111);
         }
         public void S2CEnterBattle(int roleid,BattleTransferDTO battleTransferDTO)
         {
@@ -78,25 +78,32 @@ namespace AscensionServer
         /// <summary>
         /// 创建房间
         /// </summary>
-        public void CreateRoom(int playerOne_Id,int playerTwo_Id)
+        public BattleRoomEntity CreateRoom(MatchDTO matchDTO, Func<BattleCharacterEntity[], Dictionary<int, BattleResult>> battleResultEvent)
         {
             BattleRoomEntity battleRoomEntity = GameManager.ReferencePoolManager.Spawn<BattleRoomEntity>();
             int roomId = GetRoomId();
-            battleRoomEntity.Init(roomId,playerOne_Id, playerTwo_Id);
-        }
-        public void CreateRoom(MatchDTO matchDTO)
-        {
-            BattleRoomEntity battleRoomEntity = GameManager.ReferencePoolManager.Spawn<BattleRoomEntity>();
-            int roomId = GetRoomId();
+            battleRoomEntity.battleResultEvent = battleResultEvent;
             battleRoomEntity.Init(roomId, matchDTO);
+            return battleRoomEntity;
         }
-        //创建机器人房间
-        public void CreateRoom(MatchDTO matchDTO,MachineData machineData)
+        //创建机器人房间,针对匹配
+        public BattleRoomEntity CreateRoom(MatchDTO matchDTO,MachineData machineData, Func<BattleCharacterEntity[], Dictionary<int, BattleResult>> battleResultEvent)
         {
             BattleRoomEntity battleRoomEntity = GameManager.ReferencePoolManager.Spawn<BattleRoomEntity>();
             int roomId = GetRoomId();
+            battleRoomEntity.battleResultEvent = battleResultEvent;
             battleRoomEntity.Init(roomId, matchDTO, machineData);
+            return battleRoomEntity;
         }
+        public BattleRoomEntity CreateRoom(RoleDTO roleDTO,CricketDTO cricketDTO,TowerRobotData towerRobotData, Func<BattleCharacterEntity[], Dictionary<int, BattleResult>> battleResultEvent)
+        {
+            BattleRoomEntity battleRoomEntity = GameManager.ReferencePoolManager.Spawn<BattleRoomEntity>();
+            int roomId = GetRoomId();
+            battleRoomEntity.battleResultEvent = battleResultEvent;
+            battleRoomEntity.Init(roomId, roleDTO, cricketDTO, towerRobotData);
+            return battleRoomEntity;
+        }
+
 
         /// <summary>
         /// 销毁房间

@@ -11,6 +11,7 @@ namespace AscensionServer
 	public class MachineData
     {
 		public int RankID; // 段位id
+        public int CricketId;
 		public string UserName; // 机器人名字
 		public int Level; // 蛐蛐等级
 		public string CricketName; // 蛐蛐名称

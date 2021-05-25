@@ -10,6 +10,7 @@ namespace AscensionServer
 {
     public class BattleController
     {
+        BattleRoomEntity ownerRoom;
         //当前战斗时间
         int nowTime;
 
@@ -24,6 +25,8 @@ namespace AscensionServer
 
         BattleTransferDTO battleTransferDTO = new BattleTransferDTO();
         List<BattleRoleActionData> battleRoleActionDataList = new List<BattleRoleActionData>();
+
+
 
         public void StartBattle()
         {
@@ -186,11 +189,14 @@ namespace AscensionServer
             Utility.Debug.LogInfo("战斗结果：蛐蛐" + playerOne.CricketID + (playerOne.IsWin ? "胜利" : "失败") + "，蛐蛐" + playerTwo.CricketID + (playerTwo.IsWin ? "胜利" : "失败"));
             battleTransferDTO.BattleRoleActionDataList = battleRoleActionDataList;
             Utility.Debug.LogInfo("战斗传输数据=>" + Utility.Json.ToJson(battleTransferDTO));
-            Dictionary<int, BattleResult> battleResultDict = GameManager.CustomeModule<MatchManager>().BattleCombat(playerOne, playerTwo);
-            if (battleResultDict.ContainsKey(battleTransferDTO.RoleOneData.RoleID))
-                battleTransferDTO.RoleOneData.BattleResult = battleResultDict[battleTransferDTO.RoleOneData.RoleID];
-            if (battleResultDict.ContainsKey(battleTransferDTO.RoleTwoData.RoleID))
-                battleTransferDTO.RoleTwoData.BattleResult = battleResultDict[battleTransferDTO.RoleTwoData.RoleID];
+            Dictionary<int, BattleResult> battleResultDict =ownerRoom.battleResultEvent?.Invoke(new BattleCharacterEntity[] { playerOne, playerTwo });
+            if (battleResultDict != null)
+            {
+                if (battleResultDict.ContainsKey(battleTransferDTO.RoleOneData.RoleID))
+                    battleTransferDTO.RoleOneData.BattleResult = battleResultDict[battleTransferDTO.RoleOneData.RoleID];
+                if (battleResultDict.ContainsKey(battleTransferDTO.RoleTwoData.RoleID))
+                    battleTransferDTO.RoleTwoData.BattleResult = battleResultDict[battleTransferDTO.RoleTwoData.RoleID];
+            }
             playerOne.S2CSendBattleData(battleTransferDTO);
             playerTwo.S2CSendBattleData(battleTransferDTO);
         }
@@ -548,8 +554,9 @@ namespace AscensionServer
             }
         }
 
-        public void InitController(BattleCharacterEntity battleCharacterEntityOne,BattleCharacterEntity battleCharacterEntityTwo)
+        public void InitController(BattleRoomEntity ownerRoom, BattleCharacterEntity battleCharacterEntityOne,BattleCharacterEntity battleCharacterEntityTwo)
         {
+            this.ownerRoom = ownerRoom;
             playerOne = battleCharacterEntityOne;
             playerTwo = battleCharacterEntityTwo;
         }

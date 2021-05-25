@@ -24,24 +24,13 @@ namespace AscensionServer
 
         public BattleBuffController battleBuffController;
 
-        public void Init(int roleId)
-        {
-            this.CricketID = roleId;
-            battleBuffController = new BattleBuffController(roleBattleData);
-            roleBattleData = GetRoleBattleData(roleId);
-            RemainActionBar = roleBattleData.ActionBar;
-            battleBuffController.roleBattleData = roleBattleData;
-            IsRobot = false;
-            IsWin = true;
-            ActionCount = 1;
-        }
         public void Init(RoleDTO roleDTO,CricketDTO cricketDTO)
         {
             RoleID = roleDTO.RoleID;
             RoleName = roleDTO.RoleName;
             CricketID = cricketDTO.ID;
             battleBuffController = new BattleBuffController(roleBattleData);
-            roleBattleData = GetRoleBattleData(roleDTO, cricketDTO);
+            roleBattleData = new RoleBattleData(battleBuffController, roleDTO, cricketDTO, this) { };
             RemainActionBar = roleBattleData.ActionBar;
             battleBuffController.roleBattleData = roleBattleData;
             RoleHeadId = roleDTO.HeadPortrait;
@@ -56,10 +45,27 @@ namespace AscensionServer
             RoleName = machineData.UserName;
             //todo蛐蛐唯一ID
             battleBuffController = new BattleBuffController(roleBattleData);
-            roleBattleData = GetRoleBattleData(machineData);
+            roleBattleData = new RoleBattleData(battleBuffController, machineData, this) { };
             RemainActionBar = roleBattleData.ActionBar;
             battleBuffController.roleBattleData = roleBattleData;
             RoleHeadId = roleDTO.HeadPortrait;
+            IsRobot = true;
+            IsWin = true;
+            ActionCount = 1;
+        }
+        public void Init(TowerRobotData towerRobotData)
+        {
+            //todo机器人RoleID
+            RoleName = "爬";
+            //todo蛐蛐唯一ID
+            battleBuffController = new BattleBuffController(roleBattleData);
+            roleBattleData = new RoleBattleData(battleBuffController, towerRobotData, this) { };
+            RemainActionBar = roleBattleData.ActionBar;
+            battleBuffController.roleBattleData = roleBattleData;
+            //随机头像
+            GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, HeadPortraitData>>(out var headPortraitDataDict);
+            List<HeadPortraitData> headPortraitDatas = headPortraitDataDict.Values.ToList();
+            RoleHeadId = headPortraitDatas[Utility.Algorithm.CreateRandomInt(0, headPortraitDatas.Count)].PlayerHeadID;
             IsRobot = true;
             IsWin = true;
             ActionCount = 1;
@@ -115,19 +121,12 @@ namespace AscensionServer
             ActionCount++;
         }
 
-        RoleBattleData GetRoleBattleData(int roleId)
+
+
+
+        RoleBattleData GetRoleBattleData(TowerRobotData towerRobotData)
         {
-            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController,this) { };
-            return roleBattleData;
-        }
-        RoleBattleData GetRoleBattleData(RoleDTO roleDTO,CricketDTO cricketDTO)
-        {
-            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController, roleDTO, cricketDTO,this) { };
-            return roleBattleData;
-        }
-        RoleBattleData GetRoleBattleData(MachineData machineData)
-        {
-            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController,machineData,this) { };
+            RoleBattleData roleBattleData = new RoleBattleData(battleBuffController, towerRobotData, this) { };
             return roleBattleData;
         }
 

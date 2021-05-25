@@ -67,5 +67,7 @@
         /// 胜场排行榜
         /// </summary>
         WinRank=31,
+        //爬塔相关
+        TowerData=32,
     }
 }

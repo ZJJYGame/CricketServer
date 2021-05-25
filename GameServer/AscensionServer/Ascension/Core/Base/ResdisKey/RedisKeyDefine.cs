@@ -13,8 +13,12 @@ namespace AscensionServer
     public class RedisKeyDefine
     {
         #region 每日获取金币限制相关
+        //计时标记
         public static readonly string _RankGetMoneyLimitRefreshFlagPerfix = "RankGetMoneyLimitRefreshFlag";
         public static readonly string _RankGetMoneyLimitPerfix = "RankGetMoneyLimit";
+        #region 每日爬塔挑战次数相关
+        public static readonly string _TowerChallengeCountPerfix = "_TowerChallengeCountLimit";
+        #endregion
         #endregion
         #region 每日任务相关
         //每日任务倒计时刷新的标记位

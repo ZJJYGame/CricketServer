@@ -89,7 +89,18 @@ namespace AscensionProtocol
     {
         public int GetMoney { get; set; }
         public int GetExp { get; set; }
+        public Dictionary<int, int> GetProp { get; set; }
         public int RankLevel { get; set; }
         public bool IsWinner { get; set; }
+        public BattleMode BattleMode { get; set; }
+    }
+
+    //战斗模式
+    public enum BattleMode : byte
+    {
+        //竞技场
+        Arena=0,
+        //爬塔
+        Tower=1,
     }
 }

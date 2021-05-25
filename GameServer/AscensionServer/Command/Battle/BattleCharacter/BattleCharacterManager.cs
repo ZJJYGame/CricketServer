@@ -13,18 +13,7 @@ namespace AscensionServer
     {
         public Dictionary<int, BattleCharacterEntity> BattleCharacterEntityDict { get; protected set; } = new Dictionary<int, BattleCharacterEntity>();
 
-        public BattleCharacterEntity CreateCharacter(int roleId)
-        {
-            BattleCharacterEntity battleCharacterEntity = GameManager.ReferencePoolManager.Spawn<BattleCharacterEntity>();
-            battleCharacterEntity.Init(roleId);
-            if (BattleCharacterEntityDict.ContainsKey(roleId))
-            {
-                GameManager.ReferencePoolManager.Despawn(BattleCharacterEntityDict[roleId]);
-                BattleCharacterEntityDict.Remove(roleId);
-            }
-            BattleCharacterEntityDict.Add(roleId, battleCharacterEntity);
-            return battleCharacterEntity;
-        }
+
         public BattleCharacterEntity CreateCharacter(RoleDTO roleDTO,CricketDTO cricketDTO)
         {
             BattleCharacterEntity battleCharacterEntity = GameManager.ReferencePoolManager.Spawn<BattleCharacterEntity>();
@@ -41,6 +30,18 @@ namespace AscensionServer
         {
             BattleCharacterEntity battleCharacterEntity = GameManager.ReferencePoolManager.Spawn<BattleCharacterEntity>();
             battleCharacterEntity.Init(roleDTO, cricketDTO,machineData);
+            if (BattleCharacterEntityDict.ContainsKey(battleCharacterEntity.RoleID))
+            {
+                GameManager.ReferencePoolManager.Despawn(BattleCharacterEntityDict[battleCharacterEntity.RoleID]);
+                BattleCharacterEntityDict.Remove(battleCharacterEntity.RoleID);
+            }
+            BattleCharacterEntityDict.Add(battleCharacterEntity.RoleID, battleCharacterEntity);
+            return battleCharacterEntity;
+        }
+        public BattleCharacterEntity CreateCharacter(TowerRobotData towerRobotData)
+        {
+            BattleCharacterEntity battleCharacterEntity = GameManager.ReferencePoolManager.Spawn<BattleCharacterEntity>();
+            battleCharacterEntity.Init(towerRobotData);
             if (BattleCharacterEntityDict.ContainsKey(battleCharacterEntity.RoleID))
             {
                 GameManager.ReferencePoolManager.Despawn(BattleCharacterEntityDict[battleCharacterEntity.RoleID]);

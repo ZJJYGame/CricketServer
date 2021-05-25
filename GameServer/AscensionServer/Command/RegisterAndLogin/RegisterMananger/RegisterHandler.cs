@@ -101,6 +101,9 @@ namespace AscensionServer
                 spreacode.SpreaPlayers = Utility.Json.ToJson(dict);
                 NHibernateQuerier.Insert(spreacode);
                 #endregion
+                #region 爬塔初始化
+                NHibernateQuerier.Insert(new Tower() { RoleID = role.RoleID });
+                #endregion
                 OperationData operationData = new OperationData();
                 operationData.DataMessage = Utility.Json.ToJson(role);
                 operationData.ReturnCode = (byte)ReturnCode.Success;
