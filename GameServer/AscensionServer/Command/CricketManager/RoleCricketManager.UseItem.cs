@@ -25,10 +25,10 @@ namespace AscensionServer
             AddMpReply = 10,
             Skill = 11,
             DeleteSkill = 12,
-            Reset=13,
+            Reset = 13,
         }
 
-        public static void DifferentiateGlobal(int propid,int roleid,int cricketid)
+        public static void DifferentiateGlobal(int propid, int roleid, int cricketid)
         {
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var propDataDict);
 
@@ -85,7 +85,7 @@ namespace AscensionServer
         /// <summary>
         /// 区分加成物品
         /// </summary>
-        public static void  AptitudeProp(int roleid,PropData propData,int cricketid)
+        public static void AptitudeProp(int roleid, PropData propData, int cricketid)
         {
             var nHCriteriaAptitude = xRCommon.xRNHCriteria("CricketID", cricketid);
             var nHCriteria = xRCommon.xRNHCriteria("ID", cricketid);
@@ -93,7 +93,7 @@ namespace AscensionServer
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
             var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriaAptitude);
             var cricketObj = xRCommon.xRCriteria<Cricket>(nHCriteria);
-            if (point != null && aptitude != null&& addition!= null && cricketObj != null)
+            if (point != null && aptitude != null && addition != null && cricketObj != null)
             {
                 switch ((PropType)propData.PropType)
                 {
@@ -107,26 +107,27 @@ namespace AscensionServer
                         aptitude.Def += propData.AddNumber;
                         break;
                     case PropType.AddDex:
-                        if (aptitude.Dex +propData.AddNumber+ point.Dex>1000)
+                        if (aptitude.Dex + propData.AddNumber + point.Dex > 1000)
                         {
-                            aptitude.Dex = 1000-( point.Dex);
-                        }else
+                            aptitude.Dex = 1000 - (point.Dex);
+                        }
+                        else
                             aptitude.Dex += propData.AddNumber;
                         break;
                     default:
                         break;
                 }
                 //var status = CalculateStutas(aptitude, point, addition);
-                var status = SkillAdditionStatus(cricketObj, aptitude, point, addition,out var cricketPoint);
+                var status = SkillAdditionStatus(cricketObj, aptitude, point, addition, out var cricketPoint);
                 status.CricketID = aptitude.CricketID;
                 var data = xRCommon.xRS2CParams();
                 data.Add((byte)ParameterCode.CricketStatus, status);
                 data.Add((byte)ParameterCode.CricketAptitude, aptitude);
                 data.Add((byte)ParameterCode.CricketPoint, cricketPoint);
                 NHibernateQuerier.Update(status);
-                var dict= xRCommon.xRS2CSub();
+                var dict = xRCommon.xRS2CSub();
                 dict.Add((byte)CricketOperateType.AddPoint, Utility.Json.ToJson(data));
-                xRCommon.xRS2CSend(roleid,(ushort)ATCmd.SyncCricket,(short)ReturnCode.Success, dict);
+                xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncCricket, (short)ReturnCode.Success, dict);
                 //更新背包
                 InventoryManager.xRUpdateInventory(roleid, new Dictionary<int, ItemDTO> { { propData.PropID, new ItemDTO() { ItemAmount = 1 } } });
                 //TODO更新数据库并发送
@@ -153,7 +154,7 @@ namespace AscensionServer
             var point = xRCommon.xRCriteria<CricketPoint>(nHCriteriaAptitude);
             var addition = xRCommon.xRCriteria<CricketAddition>(nHCriteriaAptitude);
             var cricketObj = xRCommon.xRCriteria<Cricket>(nHCriteria);
-            Utility.Debug.LogError("探索得到的蛐蛐ID为" + cricketid+">>>>"+ (cricketObj == null));
+            Utility.Debug.LogError("探索得到的蛐蛐ID为" + cricketid + ">>>>" + (cricketObj == null));
             if (point != null && addition != null && aptitude != null && cricketObj != null)
             {
                 switch ((PropType)propData.PropType)
@@ -178,7 +179,7 @@ namespace AscensionServer
                 }
             }
             //var status = CalculateStutas(aptitude, point, addition);
-            var status = SkillAdditionStatus(cricketObj, aptitude, point, addition,out var cricketPoint);
+            var status = SkillAdditionStatus(cricketObj, aptitude, point, addition, out var cricketPoint);
             status.CricketID = aptitude.CricketID;
             var data = xRCommon.xRS2CParams();
             data.Add((byte)ParameterCode.CricketStatus, status);
@@ -197,7 +198,7 @@ namespace AscensionServer
         /// <summary>
         /// 区分消耗物品
         /// </summary>
-        public static void ConsumeProp(int cricketid,PropData propData,int roleid)
+        public static void ConsumeProp(int cricketid, PropData propData, int roleid)
         {
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var propDataDict);
             //是否存在该物品
@@ -209,13 +210,13 @@ namespace AscensionServer
             switch ((PropType)propData.PropType)
             {
                 case PropType.AddExp:
-                    Utility.Debug.LogInfo("YZQ增加经验的蛐蛐"+ cricketid);
-                        UpdateLevel(cricketid,propData,roleid);             
-                    break;         
+                    Utility.Debug.LogInfo("YZQ增加经验的蛐蛐" + cricketid);
+                    UpdateLevel(cricketid, propData, roleid);
+                    break;
                 case PropType.DeleteSkill:
                     Utility.Debug.LogInfo("YZQ删除技能的蛐蛐" + cricketid);
                     RemoveSkill(propData.PropID, cricketid, roleid);
-                    break;              
+                    break;
                 case PropType.Skill:
                     Utility.Debug.LogInfo("YZQ学习技能的蛐蛐" + cricketid);
                     GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var propDict);
@@ -227,7 +228,7 @@ namespace AscensionServer
                     break;
                 case PropType.Reset:
                     Utility.Debug.LogInfo("YZQ重置加点的蛐蛐" + cricketid);
-                    ReSetPoint(roleid,cricketid, propData.PropID);
+                    ReSetPoint(roleid, cricketid, propData.PropID);
                     break;
                 default:
                     break;
@@ -241,10 +242,10 @@ namespace AscensionServer
         /// <param name="propType"></param>
         /// <param name="propData"></param>
         /// <returns></returns>
-        public static bool VerifyProp(int propid,PropType propType,out PropData propData)
+        public static bool VerifyProp(int propid, PropType propType, out PropData propData)
         {
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var cricketLevelDict);
-            var result = cricketLevelDict.TryGetValue(propid, out  propData);
+            var result = cricketLevelDict.TryGetValue(propid, out propData);
             if (result)
             {
                 if (propData.PropType == (int)propType)

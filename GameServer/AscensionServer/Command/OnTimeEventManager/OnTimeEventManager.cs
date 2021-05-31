@@ -34,9 +34,13 @@ namespace AscensionServer
             DateTime tempDateTime = new DateTime(today.Year, today.Month, today.Day, onTimeEventStruct.hours, onTimeEventStruct.minutes, onTimeEventStruct.seconds);
             int index = DateTime.Compare(today, tempDateTime);
             if (index < 0)//还没到刷新时间
+            {
                 tommorow = DateTime.Now;
+            }
             else
+            {
                 tommorow = DateTime.Now.AddDays(1);
+            }
             tommorow = new DateTime(tommorow.Year, tommorow.Month, tommorow.Day, onTimeEventStruct.hours, onTimeEventStruct.minutes, onTimeEventStruct.seconds);
             TimeSpan timeSpan = tommorow.Subtract(today);
             Utility.Debug.LogError(timeSpan.Days + "天" + timeSpan.Hours + "小时" + timeSpan.Minutes + "分钟" + timeSpan.Seconds + "秒");

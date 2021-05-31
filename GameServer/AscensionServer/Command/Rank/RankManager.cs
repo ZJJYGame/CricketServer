@@ -10,12 +10,24 @@ using Protocol;
 namespace AscensionServer
 {
     [CustomeModule]
-    public partial class RankManager:Module<RankManager>
+    public partial class RankManager : Module<RankManager>
     {
-        SortedDictionary<int, RankDTO> rankDict = new SortedDictionary<int, RankDTO>();
-        Dictionary<int, BattleCombatDTO> winsDict = new Dictionary<int, BattleCombatDTO>();
         public override void OnPreparatory() => CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncRank, C2SRank);
+        //存储段位信息
+        LinkedList<RankDTO> rankLinked = new LinkedList<RankDTO>();
+        //存储胜场信息
+        LinkedList<BattleCombatDTO> winLinked = new LinkedList<BattleCombatDTO>();
+        ///第一个int为rankid，第二个为circketid(即ID)
+        SortedDictionary<int, SortedDictionary<int, Cricket>> sortedCricket = new SortedDictionary<int, SortedDictionary<int, Cricket>>();
+        //第一个int为总胜场，第二个为cricketid
+        SortedDictionary<int, SortedDictionary<int, BattleCombat>> winCricket = new SortedDictionary<int, SortedDictionary<int, BattleCombat>>();
+        //临时把所有的蛐蛐数据存入到一个临时list中
+        List<Cricket> tempRankList = new List<Cricket>();
+        //临时把所有胜场信息存到一个临时list中
+        List<BattleCombat> tempBattle = new List<BattleCombat>();
 
+        bool isOne = true;
+        bool isTwo = true;
         private void C2SRank(OperationData opData)
         {
             Utility.Debug.LogInfo("老陆排行榜==>" + (opData.DataMessage.ToString()));
@@ -41,51 +53,115 @@ namespace AscensionServer
 
         public void xrGetRank(int roleId)
         {
-            //rankDict.Clear();
-            if (rankDict.Count == 0)
+            var tableRole = NHibernateQuerier.GetTable<Role>();
+            Dictionary<int, Role> roleDict = tableRole.ToDictionary(key => key.RoleID, value => value);
+            var tableCricket = NHibernateQuerier.GetTable<Cricket>();
+            var tableCricketData = tableCricket.ToList();
+
+
+            if (tableCricket.Count > 0)
             {
-                //var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
-                //var xRserver = xRCommon.xRCriteria<Role>(nHcriteria);
-                var tableRole = NHibernateQuerier.GetTable<Role>();
-                Dictionary<int, Role> roleDict = tableRole.ToDictionary(key => key.RoleID, value => value);
-                var tableCricket = NHibernateQuerier.GetTable<Cricket>();
-                SortedSet<Cricket> cricketSortedList = new SortedSet<Cricket>();
-                foreach(var item in tableCricket)
+                //先储存并排序好所有的数据
+                for (int i = 0; i < tableCricket.Count; i++)
                 {
-                    cricketSortedList.Add( item);
-                }
-                int i = 0;
-                foreach (var item in cricketSortedList)
-                {
-                    rankDict[item.ID] = new RankDTO { RoleID = item.Roleid, RoleHeadIcon = roleDict[item.Roleid].HeadPortrait, RoleName = roleDict[item.Roleid].RoleName, CricketHeadIcon = item.HeadPortraitID, CricketName = item.CricketName, Duanwei = item.RankID };
-                    i++;
-                    if (i >= 100)
-                        break;
-                }
-
-                var tableBattleCombat = NHibernateQuerier.GetTable<BattleCombat>();
-                SortedSet<BattleCombat> battleCombatSortedList = new SortedSet<BattleCombat>();
-                foreach(var item in tableBattleCombat)
-                {
-                    battleCombatSortedList.Add(item);
+                    if (!sortedCricket.TryGetValue(tableCricketData[i].RankID, out var sortedDic))
+                    {
+                        //  isOne = true;
+                        sortedDic = new SortedDictionary<int, Cricket> { { tableCricketData[i].ID, tableCricketData[i] } };
+                        sortedCricket.Add(tableCricketData[i].RankID, sortedDic);
+                    }
+                    else
+                    {
+                        if (!sortedCricket[tableCricketData[i].RankID].TryGetValue(tableCricketData[i].ID, out var tableCriDic))
+                        {
+                            //  isOne = true;
+                            tableCriDic = tableCricketData[i];
+                            sortedCricket[tableCricketData[i].RankID].Add(tableCricketData[i].ID, tableCriDic);
+                        }
+                    }
                 }
 
-                i = 0;
-                foreach (var item in battleCombatSortedList)
+                if (isOne)
                 {
-                    winsDict[item.RoleID] = new BattleCombatDTO { RoleID = item.RoleID, MatchWon = item.MatchWon, RoleName = roleDict[item.RoleID].RoleName, RoleHeadIcon = roleDict[item.RoleID].HeadPortrait };
-                    if (i >= 100)
-                        break;
+                    for (int i = 0; i < sortedCricket.Count; i++)
+                    {
+                        for (int j = 0; j < sortedCricket.ElementAt(i).Value.Count; j++)
+                        {
+                            var cricket = sortedCricket.ElementAt(i).Value.ElementAt(j).Value;
+                            //把这些数据存到一个临时的数组中
+                            //这一步是避免出现一个相同的rankid对应的最大数据为100而导致整个json不止100条的问题（emmm可能说的有点饶
+
+                            tempRankList.Add(cricket);
+                        }
+                    }
+
+                    //这一步是把所有的数据按照段位id从大到小排（默认是从小到大
+                    tempRankList = tempRankList.OrderByDescending(t => t.RankID).ToList();
+                    for (int i = 0; i < tempRankList.Count; i++)
+                    {
+                        if (i < 100)
+                        {
+                            var cricket = tempRankList[i];
+                            //到最后再把数据存到linkedlist中
+                            rankLinked.AddLast(new RankDTO { RoleID = cricket.Roleid, RoleHeadIcon = roleDict[cricket.Roleid].HeadPortrait, RoleName = roleDict[cricket.Roleid].RoleName, CricketHeadIcon = cricket.HeadPortraitID, CricketName = cricket.CricketName, Duanwei = cricket.RankID });
+                        }
+                    }
+                    isOne = false;
                 }
             }
 
+            //胜场榜和段位榜写法一样的
+            var tableBattleCombat = NHibernateQuerier.GetTable<BattleCombat>();
+            var tableBattleCombatData = tableBattleCombat.ToList();
 
+            if (tableBattleCombat.Count > 0)
+            {
+                for (int i = 0; i < tableBattleCombat.Count; i++)
+                {
+                    if (!winCricket.TryGetValue(tableBattleCombatData[i].MatchWon, out var cricketSort))
+                    {
+                        //  isTwo = true;
+                        cricketSort = new SortedDictionary<int, BattleCombat> { { tableBattleCombatData[i].RoleID, tableBattleCombatData[i] } };
+                        winCricket.Add(tableBattleCombatData[i].MatchWon, cricketSort);
+                    }
+                    else
+                    {
+                        if (!winCricket[tableBattleCombatData[i].MatchWon].TryGetValue(tableBattleCombatData[i].RoleID, out var tableWon))
+                        {
+                            // isTwo = true;
+                            tableWon = tableBattleCombatData[i];
+                            winCricket[tableBattleCombatData[i].MatchWon].Add(tableBattleCombatData[i].RoleID, tableWon);
+                        }
+                    }
+                }
 
+                if (isTwo)
+                {
+                    for (int i = 0; i < winCricket.Count; i++)
+                    {
+                        for (int j = 0; j < winCricket.ElementAt(i).Value.Count; j++)
+                        {
+                            var won = winCricket.ElementAt(i).Value.ElementAt(j).Value;
+                            tempBattle.Add(won);
+                        }
+                    }
+                    tempBattle = tempBattle.OrderByDescending(t => t.MatchWon).ToList();
+                    for (int i = 0; i < tempBattle.Count; i++)
+                    {
+                        if (i < 100)
+                        {
+                            var won = tempBattle[i];
+                            winLinked.AddLast(new BattleCombatDTO { RoleID = won.RoleID, MatchWon = won.MatchWon, RoleName = roleDict[won.RoleID].RoleName, RoleHeadIcon = roleDict[won.RoleID].HeadPortrait });
+                        }
+                    }
+                    isTwo = false;
+                }
+            }
 
-
+            Utility.Debug.LogInfo(Utility.Json.ToJson(rankLinked));
             var pareams = xRCommon.xRS2CParams();
-            pareams.Add((byte)ParameterCode.RoleRank, Utility.Json.ToJson(rankDict));
-            pareams.Add((byte)ParameterCode.WinRank, Utility.Json.ToJson(winsDict));
+            pareams.Add((byte)ParameterCode.RoleRank, Utility.Json.ToJson(rankLinked));
+            pareams.Add((byte)ParameterCode.WinRank, Utility.Json.ToJson(winLinked));
             var subOp = xRCommon.xRS2CSub();
             subOp.Add((byte)SubOperationCode.Get, pareams);
             xRCommon.xRS2CSend(roleId, (byte)ATCmd.SyncRank, (byte)ReturnCode.Success, subOp);
@@ -93,8 +169,10 @@ namespace AscensionServer
 
         public void ClearRankDict()
         {
-            rankDict.Clear();
-            winsDict.Clear();
+            isOne = true;
+            isTwo = true;
+            rankLinked.Clear();
+            winLinked.Clear();
         }
     }
 }

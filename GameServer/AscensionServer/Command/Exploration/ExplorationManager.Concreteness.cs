@@ -206,9 +206,14 @@ namespace AscensionServer
                                 case "GetPropA":
                                     int randomCount;
                                     if (setExploration[itemidInfo.Key].Number.Count == 1)
+                                    {
+                                        Utility.Debug.LogError("加成比"+setExploration[itemidInfo.Key].Number[0]);
                                         randomCount = setExploration[itemidInfo.Key].Number[0];
+                                    } 
                                     else
+                                    {
                                         randomCount = RandomManager(itemidInfo.Key, setExploration[itemidInfo.Key].Number[0], setExploration[itemidInfo.Key].Number[1]);
+                                    }   
                                     //策划需求道具数量是随机范围，你之前是写死的    这个不应该在这里看 去客户端
                                     if (setExploration[itemidInfo.Key].PropID.Count == 1)
                                         InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO> { { setExploration[itemidInfo.Key].PropID[0], new ItemDTO() { ItemAmount = itemidInfo.Value} } });

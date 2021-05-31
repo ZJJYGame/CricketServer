@@ -14,7 +14,7 @@ namespace AscensionServer
             Id(x => x.RoleID).GeneratedBy.Assigned().Column("roleid");
             Map(x => x.MatchWon).Column("matchwon");
             Map(x => x.MoneyLimit).Column("moneylimit");
-            Map(x => x.RoleName).Column("roleName");
+          //  Map(x => x.RoleName).Column("roleName");
             Table("battlecombat");
         }
     }
