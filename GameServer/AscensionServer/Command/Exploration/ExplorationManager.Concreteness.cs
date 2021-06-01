@@ -37,7 +37,7 @@ namespace AscensionServer
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="ItemInfo"></param>
-        public static void xRAddExploration (int roleId, Dictionary<int, ExplorationItemDTO> ItemInfo,Dictionary<int,int> TimeAndCatchpropInfo=null)
+        public static void xRAddExploration(int roleId, Dictionary<int, ExplorationItemDTO> ItemInfo, Dictionary<int, int> TimeAndCatchpropInfo = null)
         {
             var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
             if (xRCommon.xRVerify<Role>(nHcriteria))
@@ -45,7 +45,7 @@ namespace AscensionServer
                 var xRserver = xRCommon.xRCriteria<Exploration>(nHcriteria);
                 var xrDict = Utility.Json.ToObject<Dictionary<int, ExplorationItemDTO>>(xRserver.ExplorationItemDict);
                 var xrPropDict = Utility.Json.ToObject<Dictionary<int, int>>(xRserver.CatchAndTimeDict);
-                if (ItemInfo!=null)
+                if (ItemInfo != null)
                 {
                     foreach (var info in ItemInfo)
                     {
@@ -80,13 +80,18 @@ namespace AscensionServer
                                         xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = 1;
                                         break;
                                     case "AddExp":
+                                        //这儿是算探索经验增加的
                                         var nHcriteriaID = xRCommon.xRNHCriteria("ID", info.Value.CustomId);
                                         var xRserverGrade = xRCommon.xRCriteria<Cricket>(nHcriteriaID);
+                                        //每个区域的最低经验
                                         var gradeValue = info.Key == 0 ? 100 : info.Key == 1 ? 400 : info.Key == 2 ? 800 : 1600;
-                                        var percentValue = setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0];
-                                        var levbelValue = xRserverGrade.LevelID * xRserverGrade.LevelID;
-                                        var expValue = info.Key == 0 ? levbelValue * 6 * percentValue : info.Key == 1 ? levbelValue * 12 : info.Key == 2 ? levbelValue * 18 : levbelValue * 24;
-                                        xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = expValue / 100 < gradeValue ? gradeValue : expValue / 100;
+                                        //探索获得经验比
+                                        var percentValue = (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0])/100;
+                                        //蛐蛐等级平方*经验比
+                                        var levbelValue = xRserverGrade.LevelID * xRserverGrade.LevelID * percentValue;
+                                        //区域加成*蛐蛐等级平方*经验比即为最后获得的经验
+                                        var expValue = info.Key == 0 ? levbelValue * 6 : info.Key == 1 ? levbelValue * 12 : info.Key == 2 ? levbelValue * 18 : levbelValue * 24;
+                                        xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = expValue  < gradeValue ? gradeValue : expValue ;
                                         break;
                                 }
                             }
@@ -106,7 +111,7 @@ namespace AscensionServer
                         else
                         {
                             xrPropDict[prop.Key] += prop.Value;
-                        }    
+                        }
                         NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = Utility.Json.ToJson(xrPropDict) });
                     }
                 }
@@ -120,7 +125,7 @@ namespace AscensionServer
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="ItemInfo"></param>
-        public static void xRUpdateExploration(int roleId, Dictionary<int, ExplorationItemDTO> ItemInfo,Dictionary<int,int> propInfo)
+        public static void xRUpdateExploration(int roleId, Dictionary<int, ExplorationItemDTO> ItemInfo, Dictionary<int, int> propInfo)
         {
             var nHcriteria = xRCommon.xRNHCriteria("RoleID", roleId);
             if (xRCommon.xRVerify<Role>(nHcriteria))
@@ -133,7 +138,7 @@ namespace AscensionServer
                     if (!xrDict.ContainsKey(info.Key))
                         continue;
                     xrDict[info.Key].TimeType -= info.Value.TimeType;
-                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict),  UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = xRserver.CatchAndTimeDict });
+                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = xRserver.CatchAndTimeDict });
                 }
 
                 foreach (var prop in propInfo)  //这个是使用的  减少道具的数量
@@ -142,7 +147,7 @@ namespace AscensionServer
                     if (xrPropDict[prop.Key] > 0)
                     {
                         xrPropDict[prop.Key] -= 1;
-                    }    
+                    }
                     NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = Utility.Json.ToJson(xrPropDict) });
                 }
                 xRGetExploration(roleId);
@@ -178,12 +183,12 @@ namespace AscensionServer
                                     break;
                                 case "AddCon":
                                     RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddCon, AddNumber = itemidInfo.Value }, xrDict[info.Key].CustomId);
-                                    break; 
+                                    break;
                                 case "AddDex":
                                     RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddDex, AddNumber = itemidInfo.Value }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddDef":
-                                    RoleCricketManager.AptitudeProp(roleId, new PropData() {  PropType = (int)RoleCricketManager.PropType.AddDef, AddNumber = itemidInfo.Value }, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.AptitudeProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddDef, AddNumber = itemidInfo.Value }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddAtk":
                                     RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddAtk, AddNumber = itemidInfo.Value, }, xrDict[info.Key].CustomId);
@@ -201,22 +206,22 @@ namespace AscensionServer
                                     RoleCricketManager.StatusProp(roleId, new PropData() { PropType = (int)RoleCricketManager.PropType.AddMpReply, AddNumber = itemidInfo.Value, }, xrDict[info.Key].CustomId);
                                     break;
                                 case "AddExp":
-                                    RoleCricketManager.UpdateLevel(xrDict[info.Key].CustomId, new PropData() { PropID =-1, AddNumber = itemidInfo.Value, }, roleId);
+                                    RoleCricketManager.UpdateLevel(xrDict[info.Key].CustomId, new PropData() { PropID = -1, AddNumber = itemidInfo.Value, }, roleId);
                                     break;
                                 case "GetPropA":
                                     int randomCount;
                                     if (setExploration[itemidInfo.Key].Number.Count == 1)
                                     {
-                                        Utility.Debug.LogError("加成比"+setExploration[itemidInfo.Key].Number[0]);
+                                        Utility.Debug.LogError("加成比" + setExploration[itemidInfo.Key].Number[0]);
                                         randomCount = setExploration[itemidInfo.Key].Number[0];
-                                    } 
+                                    }
                                     else
                                     {
                                         randomCount = RandomManager(itemidInfo.Key, setExploration[itemidInfo.Key].Number[0], setExploration[itemidInfo.Key].Number[1]);
-                                    }   
+                                    }
                                     //策划需求道具数量是随机范围，你之前是写死的    这个不应该在这里看 去客户端
                                     if (setExploration[itemidInfo.Key].PropID.Count == 1)
-                                        InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO> { { setExploration[itemidInfo.Key].PropID[0], new ItemDTO() { ItemAmount = itemidInfo.Value} } });
+                                        InventoryManager.xRAddInventory(roleId, new Dictionary<int, ItemDTO> { { setExploration[itemidInfo.Key].PropID[0], new ItemDTO() { ItemAmount = itemidInfo.Value } } });
                                     else
                                     {
                                         var randomValue = RandomManager(itemidInfo.Key, setExploration[itemidInfo.Key].PropID[0], setExploration[itemidInfo.Key].PropID[1]);
@@ -237,12 +242,12 @@ namespace AscensionServer
                                     RoleCricketManager.AddCricket(xrDict[info.Key].GlobalId, roleId);
                                     break;
                                 case "GetSkill":
-                                    RoleCricketManager.AddSpecialSkill(setExploration[itemidInfo.Key].SkillID,10,roleId, xrDict[info.Key].CustomId);
+                                    RoleCricketManager.AddSpecialSkill(setExploration[itemidInfo.Key].SkillID, 10, roleId, xrDict[info.Key].CustomId);
                                     break;
                             }
                         }
                         xrDict.Remove(info.Key);
-                        NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict =xRserver.UnLockDict, CatchAndTimeDict = Utility.Json.ToJson(xrPropDict) });
+                        NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = Utility.Json.ToJson(xrDict), UnLockDict = xRserver.UnLockDict, CatchAndTimeDict = Utility.Json.ToJson(xrPropDict) });
                     }
                 }
                 xRGetExploration(roleId);
@@ -267,7 +272,7 @@ namespace AscensionServer
                     if (!xrDict.ContainsKey(info.Key))
                     {
                         xrDict[info.Key] = true;
-                        xrDict[info.Key+1] = false;
+                        xrDict[info.Key + 1] = false;
                     }
                     else
                     {
@@ -276,7 +281,7 @@ namespace AscensionServer
                     }
                     var glod = info.Key == 1 ? 5000 : info.Key == 2 ? 20000 : 50000;
                     BuyPropManager.ExpenseRoleAssets(roleId, glod);
-                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId,  ExplorationItemDict = xRserver.ExplorationItemDict,  UnLockDict = Utility.Json.ToJson(xrDict), CatchAndTimeDict = xRserver.CatchAndTimeDict });
+                    NHibernateQuerier.Update(new Exploration() { RoleID = roleId, ExplorationItemDict = xRserver.ExplorationItemDict, UnLockDict = Utility.Json.ToJson(xrDict), CatchAndTimeDict = xRserver.CatchAndTimeDict });
                 }
                 xRGetExploration(roleId);
             }
@@ -295,7 +300,7 @@ namespace AscensionServer
         /// <returns></returns>
         public static int RandomManager(int ov, int minValue, int maxValue)
         {
-            var targetValue = new Random((int)DateTime.Now.Ticks + ov).Next(minValue, maxValue+1);
+            var targetValue = new Random((int)DateTime.Now.Ticks + ov).Next(minValue, maxValue + 1);
             return targetValue;
         }
 

@@ -82,6 +82,7 @@ namespace AscensionServer
                 GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketLevel>>(out var cricketLevelDict);
                 cricket.Exp += propData.AddNumber;
                 var tempcricket = new Cricket() { Exp = cricket.Exp, LevelID = cricket.LevelID };
+
                 tempcricket = LevelUpCalculate(tempcricket);
                 for (int i = cricket.LevelID + 1; i <= tempcricket.LevelID; i++)
                 {
@@ -286,7 +287,7 @@ namespace AscensionServer
                     else
                         skills[skillid] = 10;
                 }
-                Utility.Debug.LogError("加的经验"+cricket.Exp);
+
                 cricket.SpecialDict = Utility.Json.ToJson(skills);
                 Utility.Debug.LogError("添加的特殊技能为" + cricket.SpecialDict);
                 //var status = CalculateStutas(aptitude, point, addition);
@@ -322,7 +323,7 @@ namespace AscensionServer
         /// <returns></returns>
         public static Cricket LevelUpCalculate(Cricket cricket)
         {
-            
+
             GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, CricketLevel>>(out var cricketLevelDict);
             Utility.Debug.LogInfo("蛐蛐等级" + cricket.LevelID);
             if (cricket.LevelID < 100)
