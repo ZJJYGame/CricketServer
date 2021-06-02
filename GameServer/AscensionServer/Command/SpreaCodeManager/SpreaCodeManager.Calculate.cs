@@ -8,7 +8,7 @@ using AscensionProtocol;
 using Protocol;
 namespace AscensionServer
 {
-  public partial  class SpreaCodeManager
+    public partial class SpreaCodeManager
     {
         /// <summary>
         ///获取玩家邀请信息
@@ -19,15 +19,25 @@ namespace AscensionServer
             var nHCriteriaRole = xRCommon.xRNHCriteria("RoleID", roleid);
             var spreaCode = xRCommon.xRCriteria<SpreaCode>(nHCriteriaRole);
 
+            //获取玩家信息
+            var headPortrait = NHibernateQuerier.GetTable<Role>();
+            Dictionary<int, Role> getHeadDic = headPortrait.ToDictionary(key => key.RoleID, value => value);
+            //新建一个字典用来存取玩家的昵称所对应的头像id
+            Dictionary<int, int> playerHead = new Dictionary<int, int>();
 
             var roleDict = Utility.Json.ToObject<Dictionary<int, List<int>>>(spreaCode.SpreaLevel);
             var roleList = roleDict.Keys.ToList();
+
             var roleCickets = new List<RoleCricket>();
             for (int i = 0; i < roleList.Count; i++)
             {
+                //把玩家的id和对应的头像id存入字典中
+                playerHead.Add(roleList[i], getHeadDic[roleList[i]].HeadPortrait);
+
                 var nHCriteria = xRCommon.xRNHCriteria("RoleID", roleList[i]);
                 roleCickets.Add(xRCommon.xRCriteria<RoleCricket>(nHCriteria));
             }
+
             //Utility.Debug.LogError("邀请的玩家ID" + Utility.Json.ToJson(roleCickets));
             for (int i = 0; i < roleCickets.Count; i++)
             {
@@ -101,10 +111,11 @@ namespace AscensionServer
 
             spreaCode.SpreaPlayers = Utility.Json.ToJson(numDict);
             spreaCode.SpreaLevel = Utility.Json.ToJson(roleDict);
-            Utility.Debug.LogError(Utility.Json.ToJson(roleDict));
+            spreaCode.PlayerHeadPortrait = Utility.Json.ToJson(playerHead);
+
 
             NHibernateQuerier.Update(spreaCode);
-            var spreaCodeDTO = GiveValue(spreaCode, numDict, roleDict);
+            var spreaCodeDTO = GiveValue(spreaCode, numDict, roleDict, playerHead);
             var dict = xRCommon.xRS2CParams();
             dict.Add((byte)SpreaCodeOperateType.Get, Utility.Json.ToJson(spreaCodeDTO));
             xRCommon.xRS2CSend(roleid, (ushort)ATCmd.SyncSpreaCode, (short)ReturnCode.Success, dict);
@@ -123,7 +134,7 @@ namespace AscensionServer
             {
                 spreaCode.SpreaNum += 1;
                 var dict = Utility.Json.ToObject<Dictionary<int, List<int>>>(spreaCode.SpreaLevel);
-                dict.Add(roleid, new List<int>() { -1, -1, -1 ,0});
+                dict.Add(roleid, new List<int>() { -1, -1, -1, 0 });
                 spreaCode.SpreaLevel = Utility.Json.ToJson(dict);
                 NHibernateQuerier.Update(spreaCode);
                 var dataDict = xRCommon.xRS2CSub();
@@ -166,6 +177,17 @@ namespace AscensionServer
 
             var numDict = Utility.Json.ToObject<Dictionary<int, int>>(spreaCode.SpreaPlayers);
             var levelDict = Utility.Json.ToObject<Dictionary<int, List<int>>>(spreaCode.SpreaLevel);
+
+            //获取玩家信息
+            var headPortrait = NHibernateQuerier.GetTable<Role>();
+            Dictionary<int, Role> getHeadDic = headPortrait.ToDictionary(key => key.RoleID, value => value);
+            //新建一个字典用来存取玩家的昵称所对应的头像id
+            Dictionary<int, int> playerHead = new Dictionary<int, int>();
+            for (int i = 0; i < levelDict.Keys.ToList().Count; i++)
+            {
+                playerHead.Add(levelDict.Keys.ToList()[i], getHeadDic[levelDict.Keys.ToList()[i]].HeadPortrait);
+            }
+
             foreach (var item in spreaCodeDTO.SpreaPlayers)
             {
                 if (numDict.ContainsKey(item.Key))
@@ -198,8 +220,9 @@ namespace AscensionServer
             }
             spreaCode.SpreaLevel = Utility.Json.ToJson(levelDict);
             spreaCode.SpreaPlayers = Utility.Json.ToJson(numDict);
+            spreaCode.PlayerHeadPortrait = Utility.Json.ToJson(playerHead);
             NHibernateQuerier.Update(spreaCode);
-            var spreaCodeObj = GiveValue(spreaCode, numDict, levelDict);
+            var spreaCodeObj = GiveValue(spreaCode, numDict, levelDict, playerHead);
             var data = xRCommon.xRS2CParams();
             data.Add((byte)SpreaCodeOperateType.Get, Utility.Json.ToJson(spreaCodeObj));
             xRCommon.xRS2CSend(spreaCodeDTO.RoleID, (ushort)ATCmd.SyncSpreaCode, (short)ReturnCode.Success, data);
@@ -217,6 +240,17 @@ namespace AscensionServer
 
             var numDict = Utility.Json.ToObject<Dictionary<int, int>>(spreaCode.SpreaPlayers);
             var levelDict = Utility.Json.ToObject<Dictionary<int, List<int>>>(spreaCode.SpreaLevel);
+
+            //获取玩家信息
+            var headPortrait = NHibernateQuerier.GetTable<Role>();
+            Dictionary<int, Role> getHeadDic = headPortrait.ToDictionary(key => key.RoleID, value => value);
+            //新建一个字典用来存取玩家的昵称所对应的头像id
+            Dictionary<int, int> playerHead = new Dictionary<int, int>();
+
+            for (int i = 0; i < levelDict.Keys.ToList().Count; i++)
+            {
+                playerHead.Add(levelDict.Keys.ToList()[i], getHeadDic[levelDict.Keys.ToList()[i]].HeadPortrait);
+            }
             foreach (var item in spreaCodeDTO.SpreaLevel)
             {
                 if (levelDict.ContainsKey(item.Key))
@@ -256,8 +290,9 @@ namespace AscensionServer
             }
             spreaCode.SpreaLevel = Utility.Json.ToJson(levelDict);
             spreaCode.SpreaPlayers = Utility.Json.ToJson(numDict);
+            spreaCode.PlayerHeadPortrait = Utility.Json.ToJson(playerHead);
             NHibernateQuerier.Update(spreaCode);
-            var spreaCodeObj = GiveValue(spreaCode, numDict, levelDict);
+            var spreaCodeObj = GiveValue(spreaCode, numDict, levelDict, playerHead);
             var data = xRCommon.xRS2CParams();
             data.Add((byte)SpreaCodeOperateType.Get, Utility.Json.ToJson(spreaCodeObj));
             xRCommon.xRS2CSend(spreaCodeDTO.RoleID, (ushort)ATCmd.SyncSpreaCode, (short)ReturnCode.Success, data);
@@ -269,7 +304,7 @@ namespace AscensionServer
         /// <param name="dict"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public SpreaCodeDTO GiveValue(SpreaCode spreaCode, Dictionary<int, int> dict, Dictionary<int, List<int>> data)
+        public SpreaCodeDTO GiveValue(SpreaCode spreaCode, Dictionary<int, int> dict, Dictionary<int, List<int>> data, Dictionary<int, int> headDic)
         {
             SpreaCodeDTO spreaCodeDTO = new SpreaCodeDTO();
             spreaCodeDTO.RoleID = spreaCode.RoleID;
@@ -277,6 +312,7 @@ namespace AscensionServer
             spreaCodeDTO.SpreaLevel = data;
             spreaCodeDTO.SpreaPlayers = dict;
             spreaCodeDTO.SpreaNum = spreaCode.SpreaNum;
+            spreaCodeDTO.PlayerHeadPortrait = headDic;
             return spreaCodeDTO;
         }
     }

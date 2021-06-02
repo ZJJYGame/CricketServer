@@ -51,7 +51,7 @@ namespace AscensionServer
             {
                 await RedisHelper.String.StringSetAsync<string>(key, DateTime.Now.ToString(), timeSpan);
                 if (onTimeEventStruct.dayInWeek.Contains((int)today.DayOfWeek))
-                    if (index >= 0)
+                    if (index > 0)
                         onTimeEventStruct.actionCallBack?.Invoke(key);
             }
 

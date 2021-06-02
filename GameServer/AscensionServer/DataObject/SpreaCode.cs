@@ -13,12 +13,14 @@ namespace AscensionServer
         public virtual int SpreaNum { get; set; }
         public virtual string SpreaLevel { get; set; }
         public virtual string SpreaPlayers { get; set; }
+        public virtual string PlayerHeadPortrait { get; set; }
         public SpreaCode()
         {
             CodeID = 0;
             SpreaNum = 0;
             SpreaLevel = "{}";
-            SpreaPlayers ="{}";
+            SpreaPlayers = "{}";
+            PlayerHeadPortrait = "{}";
         }
     }
 }

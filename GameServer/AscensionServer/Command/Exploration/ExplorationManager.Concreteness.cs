@@ -86,12 +86,12 @@ namespace AscensionServer
                                         //每个区域的最低经验
                                         var gradeValue = info.Key == 0 ? 100 : info.Key == 1 ? 400 : info.Key == 2 ? 800 : 1600;
                                         //探索获得经验比
-                                        var percentValue = (setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0])/100;
+                                        var percentValue = setExploration[xrDict[info.Key].ItemId.ToList()[propInfo].Key].Number[0];
                                         //蛐蛐等级平方*经验比
                                         var levbelValue = xRserverGrade.LevelID * xRserverGrade.LevelID * percentValue;
                                         //区域加成*蛐蛐等级平方*经验比即为最后获得的经验
                                         var expValue = info.Key == 0 ? levbelValue * 6 : info.Key == 1 ? levbelValue * 12 : info.Key == 2 ? levbelValue * 18 : levbelValue * 24;
-                                        xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = expValue  < gradeValue ? gradeValue : expValue ;
+                                        xrDict[info.Key].ItemId[xrDict[info.Key].ItemId.ToList()[propInfo].Key] = expValue / 100 < gradeValue ? gradeValue : expValue / 100;
                                         break;
                                 }
                             }

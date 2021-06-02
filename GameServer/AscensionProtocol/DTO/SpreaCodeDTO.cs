@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AscensionProtocol
 {
-   public class SpreaCodeDTO
+    public class SpreaCodeDTO
     {
         public virtual int CodeID { get; set; }
         public virtual int RoleID { get; set; }
@@ -16,6 +16,9 @@ namespace AscensionProtocol
         /// 玩家名字为key对应三个等级宝箱-1,0,1分别对应领取状态未获得，未领取，已领取
         /// </summary>
         public virtual Dictionary<int, List<int>> SpreaLevel { get; set; }
-        public virtual Dictionary<int, int> SpreaPlayers  { get; set; }
+        public virtual Dictionary<int, int> SpreaPlayers { get; set; }
+
+        //玩家的id对应的key，玩家的头像id对应的value
+        public virtual Dictionary<int, int> PlayerHeadPortrait { get; set; }
     }
 }

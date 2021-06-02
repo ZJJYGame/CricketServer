@@ -26,8 +26,8 @@ namespace AscensionServer
         //临时把所有胜场信息存到一个临时list中
         List<BattleCombat> tempBattle = new List<BattleCombat>();
 
-        bool isOne = true;
-        bool isTwo = true;
+        bool isRankRefresh = true;
+        bool isWinRefresh = true;
         private void C2SRank(OperationData opData)
         {
             Utility.Debug.LogInfo("老陆排行榜==>" + (opData.DataMessage.ToString()));
@@ -66,7 +66,6 @@ namespace AscensionServer
                 {
                     if (!sortedCricket.TryGetValue(tableCricketData[i].RankID, out var sortedDic))
                     {
-                        //  isOne = true;
                         sortedDic = new SortedDictionary<int, Cricket> { { tableCricketData[i].ID, tableCricketData[i] } };
                         sortedCricket.Add(tableCricketData[i].RankID, sortedDic);
                     }
@@ -74,14 +73,13 @@ namespace AscensionServer
                     {
                         if (!sortedCricket[tableCricketData[i].RankID].TryGetValue(tableCricketData[i].ID, out var tableCriDic))
                         {
-                            //  isOne = true;
                             tableCriDic = tableCricketData[i];
                             sortedCricket[tableCricketData[i].RankID].Add(tableCricketData[i].ID, tableCriDic);
                         }
                     }
                 }
 
-                if (isOne)
+                if (isRankRefresh)
                 {
                     for (int i = 0; i < sortedCricket.Count; i++)
                     {
@@ -90,7 +88,6 @@ namespace AscensionServer
                             var cricket = sortedCricket.ElementAt(i).Value.ElementAt(j).Value;
                             //把这些数据存到一个临时的数组中
                             //这一步是避免出现一个相同的rankid对应的最大数据为100而导致整个json不止100条的问题（emmm可能说的有点饶
-
                             tempRankList.Add(cricket);
                         }
                     }
@@ -103,10 +100,11 @@ namespace AscensionServer
                         {
                             var cricket = tempRankList[i];
                             //到最后再把数据存到linkedlist中
+                            
                             rankLinked.AddLast(new RankDTO { RoleID = cricket.Roleid, RoleHeadIcon = roleDict[cricket.Roleid].HeadPortrait, RoleName = roleDict[cricket.Roleid].RoleName, CricketHeadIcon = cricket.HeadPortraitID, CricketName = cricket.CricketName, Duanwei = cricket.RankID });
                         }
                     }
-                    isOne = false;
+                    isRankRefresh = false;
                 }
             }
 
@@ -120,7 +118,6 @@ namespace AscensionServer
                 {
                     if (!winCricket.TryGetValue(tableBattleCombatData[i].MatchWon, out var cricketSort))
                     {
-                        //  isTwo = true;
                         cricketSort = new SortedDictionary<int, BattleCombat> { { tableBattleCombatData[i].RoleID, tableBattleCombatData[i] } };
                         winCricket.Add(tableBattleCombatData[i].MatchWon, cricketSort);
                     }
@@ -128,14 +125,13 @@ namespace AscensionServer
                     {
                         if (!winCricket[tableBattleCombatData[i].MatchWon].TryGetValue(tableBattleCombatData[i].RoleID, out var tableWon))
                         {
-                            // isTwo = true;
                             tableWon = tableBattleCombatData[i];
                             winCricket[tableBattleCombatData[i].MatchWon].Add(tableBattleCombatData[i].RoleID, tableWon);
                         }
                     }
                 }
 
-                if (isTwo)
+                if (isWinRefresh)
                 {
                     for (int i = 0; i < winCricket.Count; i++)
                     {
@@ -154,11 +150,10 @@ namespace AscensionServer
                             winLinked.AddLast(new BattleCombatDTO { RoleID = won.RoleID, MatchWon = won.MatchWon, RoleName = roleDict[won.RoleID].RoleName, RoleHeadIcon = roleDict[won.RoleID].HeadPortrait });
                         }
                     }
-                    isTwo = false;
+                    isWinRefresh = false;
                 }
             }
 
-            Utility.Debug.LogInfo(Utility.Json.ToJson(rankLinked));
             var pareams = xRCommon.xRS2CParams();
             pareams.Add((byte)ParameterCode.RoleRank, Utility.Json.ToJson(rankLinked));
             pareams.Add((byte)ParameterCode.WinRank, Utility.Json.ToJson(winLinked));
@@ -169,8 +164,8 @@ namespace AscensionServer
 
         public void ClearRankDict()
         {
-            isOne = true;
-            isTwo = true;
+            isRankRefresh = true;
+            isWinRefresh = true;
             rankLinked.Clear();
             winLinked.Clear();
         }
