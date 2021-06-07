@@ -10,7 +10,7 @@ using Protocol;
 namespace AscensionServer
 {
     [CustomeModule]
-   public partial  class ExplorationManager:Module<ExplorationManager>
+    public partial class ExplorationManager : Module<ExplorationManager>
     {
         public override void OnPreparatory() => CommandEventCore.Instance.AddEventListener((ushort)ATCmd.SyncExploration, C2SExploration);
 
