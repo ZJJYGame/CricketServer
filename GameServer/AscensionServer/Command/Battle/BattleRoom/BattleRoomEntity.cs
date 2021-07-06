@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Cosmos;
 using Cosmos.Reference;
 using AscensionProtocol;
+using System.Threading;
 
 namespace AscensionServer
 {
@@ -26,7 +27,11 @@ namespace AscensionServer
             battleCharacterEntity_Two = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(matchDTO.otherData,matchDTO.otherCricketData);
             BattleController = new BattleController();
             BattleController.InitController(this,battleCharacterEntity_one, battleCharacterEntity_Two);
-            BattleController.StartBattle();
+            ThreadPool.QueueUserWorkItem(new WaitCallback((obj)=> {
+                BattleController.StartBattle();
+            }));
+
+           
         }
         //一个是匹配机器人
         public void Init(int roomId, MatchDTO matchDTO,MachineData machineData)
@@ -36,7 +41,9 @@ namespace AscensionServer
             battleCharacterEntity_Two = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(matchDTO.otherData, matchDTO.otherCricketData,machineData);
             BattleController = new BattleController();
             BattleController.InitController(this,battleCharacterEntity_one, battleCharacterEntity_Two);
-            BattleController.StartBattle();
+            ThreadPool.QueueUserWorkItem(new WaitCallback((obj) => {
+                BattleController.StartBattle();
+            }));
         }
         public void Init(int roomId,RoleDTO roleDTO,CricketDTO cricketDTO,TowerRobotData towerRobotData)
         {
@@ -45,7 +52,9 @@ namespace AscensionServer
             battleCharacterEntity_Two = GameManager.CustomeModule<BattleCharacterManager>().CreateCharacter(towerRobotData);
             BattleController = new BattleController();
             BattleController.InitController(this,battleCharacterEntity_one, battleCharacterEntity_Two);
-            BattleController.StartBattle();
+            ThreadPool.QueueUserWorkItem(new WaitCallback((obj) => {
+                BattleController.StartBattle();
+            }));
         }
 
         public void Clear()

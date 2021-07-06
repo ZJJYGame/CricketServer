@@ -208,8 +208,8 @@ namespace AscensionServer
                 if (battleCharacterEntity.IsRobot)
                     continue;
                 BattleResult battleResult = new BattleResult() { IsWinner = battleCharacterEntity.IsWin };
-                battleResult.GetMoney = 0;
-                battleResult.GetExp = 0;
+                battleResult.GetMoney = GameManager.CustomeModule<MatchManager>().RandomAddMoney(battleCharacterEntity.RoleID, battleResult.IsWinner).Result;
+                battleResult.GetExp = GameManager.CustomeModule<MatchManager>().RandomAddExp(battleCharacterEntity.CricketID, battleCharacterEntity.RoleID, battleResult.IsWinner);
                 battleResult.RankLevel = 0;
                 battleResult.BattleMode = BattleMode.Tower;
                 battleResultDict[battleCharacterEntity.RoleID] = battleResult;
@@ -219,7 +219,7 @@ namespace AscensionServer
                     Tower tower = xRCommon.xRCriteria<Tower>(nHCriteria);
                     if (tower != null)
                     {
-                        GetTowerAward(tower);
+                        battleResult.GetProp = GetTowerAward(tower);
                         AddTowerLevelS2C(tower);
                     }
                 }
@@ -253,6 +253,8 @@ namespace AscensionServer
                     if (randomValue <= propList[j])
                     {
                         itemId = towerAwardData.GoodsID[j];
+                        Utility.Debug.LogError("randomValue=>" + randomValue + ",prop=>" + propList[j] + ",itemid=>" + itemId);
+                        break;
                     }
                 }
                 if (awardItemDict.ContainsKey(itemId))
@@ -260,6 +262,11 @@ namespace AscensionServer
                 else
                     awardItemDict.Add(itemId, count);
                 //将物品添加到背包
+                GameManager.CustomeModule<DataManager>().TryGetValue<Dictionary<int, PropData>>(out var propDataDict);
+                if(propDataDict.ContainsKey(itemId))
+                    InventoryManager.xRAddInventory(tower.RoleID, new Dictionary<int, ItemDTO>() { { itemId, new ItemDTO() { ItemAmount = count } } });
+                else
+                    ExplorationManager.xRAddExploration(tower.RoleID, null, new Dictionary<int, int>() { {itemId, count } });
             }
             return awardItemDict;
         }

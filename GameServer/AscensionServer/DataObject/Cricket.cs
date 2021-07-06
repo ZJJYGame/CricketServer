@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace AscensionServer
 {
-   public class Cricket:IComparable<Cricket>
+   public class Cricket:IComparable
     {
         public virtual int ID { set; get; }
         public virtual int CricketID { set; get; }
@@ -40,11 +40,12 @@ namespace AscensionServer
 
 
 
-        public virtual int CompareTo(Cricket other)
+        public virtual int CompareTo(object other)
         {
-            if (RankID == other.RankID)
+            Cricket cricket = other as Cricket;
+            if (RankID == cricket.RankID)
                 return 0;
-            else if (RankID > other.RankID)
+            else if (RankID > cricket.RankID)
                 return -1;
             else
                 return 1;

@@ -8,6 +8,7 @@ using AscensionProtocol;
 using Cosmos;
 using Protocol;
 using RedisDotNet;
+using System.Diagnostics;
 
 namespace AscensionServer
 {
@@ -198,7 +199,7 @@ namespace AscensionServer
         /// 给玩家随机增加金钱
         /// </summary>
         /// todo 将获得金币上限记录在redis中
-         async Task<int> RandomAddMoney(int roleID,bool isWinner)
+         public async Task<int> RandomAddMoney(int roleID,bool isWinner)
         {
             //NHCriteria nHCriteria = xRCommon.xRNHCriteria("RoleID", roleID);
             //var battleCombat = xRCommon.xRCriteria<BattleCombat>(nHCriteria);
@@ -227,7 +228,7 @@ namespace AscensionServer
         /// <summary>
         /// 给蛐蛐增加经验
         /// </summary>
-        int RandomAddExp(int cricketID,int roleID,bool isWinner)
+        public int RandomAddExp(int cricketID,int roleID,bool isWinner)
         {
             NHCriteria nHCriteria = xRCommon.xRNHCriteria("ID", cricketID);
             Cricket cricket = xRCommon.xRCriteria<Cricket>(nHCriteria);

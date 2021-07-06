@@ -78,30 +78,27 @@ namespace AscensionServer
         /// <summary>
         /// 创建房间
         /// </summary>
-        public BattleRoomEntity CreateRoom(MatchDTO matchDTO, Func<BattleCharacterEntity[], Dictionary<int, BattleResult>> battleResultEvent)
+        public void CreateRoom(MatchDTO matchDTO, Func<BattleCharacterEntity[], Dictionary<int, BattleResult>> battleResultEvent)
         {
             BattleRoomEntity battleRoomEntity = GameManager.ReferencePoolManager.Spawn<BattleRoomEntity>();
             int roomId = GetRoomId();
             battleRoomEntity.battleResultEvent = battleResultEvent;
             battleRoomEntity.Init(roomId, matchDTO);
-            return battleRoomEntity;
         }
         //创建机器人房间,针对匹配
-        public BattleRoomEntity CreateRoom(MatchDTO matchDTO,MachineData machineData, Func<BattleCharacterEntity[], Dictionary<int, BattleResult>> battleResultEvent)
+        public void CreateRoom(MatchDTO matchDTO,MachineData machineData, Func<BattleCharacterEntity[], Dictionary<int, BattleResult>> battleResultEvent)
         {
             BattleRoomEntity battleRoomEntity = GameManager.ReferencePoolManager.Spawn<BattleRoomEntity>();
             int roomId = GetRoomId();
             battleRoomEntity.battleResultEvent = battleResultEvent;
             battleRoomEntity.Init(roomId, matchDTO, machineData);
-            return battleRoomEntity;
         }
-        public BattleRoomEntity CreateRoom(RoleDTO roleDTO,CricketDTO cricketDTO,TowerRobotData towerRobotData, Func<BattleCharacterEntity[], Dictionary<int, BattleResult>> battleResultEvent)
+        public void CreateRoom(RoleDTO roleDTO,CricketDTO cricketDTO,TowerRobotData towerRobotData, Func<BattleCharacterEntity[], Dictionary<int, BattleResult>> battleResultEvent)
         {
             BattleRoomEntity battleRoomEntity = GameManager.ReferencePoolManager.Spawn<BattleRoomEntity>();
             int roomId = GetRoomId();
             battleRoomEntity.battleResultEvent = battleResultEvent;
             battleRoomEntity.Init(roomId, roleDTO, cricketDTO, towerRobotData);
-            return battleRoomEntity;
         }
 
 
